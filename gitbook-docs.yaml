@@ -1,0 +1,12 @@
+$schema: https://api.gitbook.com/gitbook-docs.yaml
+
+site:
+  title: GR00T 2 与具身智能
+  structure:
+    - type: space
+      key: gr00t2
+      title: GR00T 2 与具身智能
+      path: /
+      default: true
+      content:
+        directory: ./
