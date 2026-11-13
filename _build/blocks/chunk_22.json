@@ -1,0 +1,275 @@
+{
+ "chunk_id": "chunk_22",
+ "sections": [
+  "F.1. RL-Based Adaptation of World-Action Models"
+ ],
+ "pages": [
+  84,
+  87
+ ],
+ "chars": 9666,
+ "blocks": [
+  {
+   "id": "H49",
+   "page": 84,
+   "kind": "heading",
+   "text": "F.1. RL-Based Adaptation of World-Action Models",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1494",
+   "page": 84,
+   "kind": "prose",
+   "text": "We investigate two complementary strategies for adapting GR00T 2. Direct GR00T 2 post-training updates the pretrained model through RL or self-imitation, while residual RL freezes GR00T 2 and learns a lightweight corrective policy. The former improves the underlying generative policy, whereas the latter targets precisioncritical stages where GR00T 2 already produces approximately correct behaviors.",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1495",
+   "page": 84,
+   "kind": "prose",
+   "text": "F.1.1. Direct GR00T 2 Post-Training",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1496",
+   "page": 84,
+   "kind": "prose",
+   "text": "Stochastic Exploration with CPS. To enable exploration and likelihood-based policy optimization (Liu et al., 2025; Lei et al., 2026), we replace GR00T 2’s deterministic Euler action updates with Coefficients-Preserving Sampling (CPS) (Wang and Yu, 2025) during rollout. Noise is injected only into the action denoising process. Video denoising remains deterministic given its initial latent, while video features continue to condition action generation.",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1497",
+   "page": 84,
+   "kind": "prose",
+   "text": "Following DPPO (Ren et al., 2025) and RL-100 (Lei et al., 2026), we optimize GR00T 2 through its action denoising process. Let 𝑡index environment decisions and 𝑘index action-denoising events. GR00T 2 uses four such events: joint passes (𝑘= 0, 2) update video and action latents through a shared DiT, while cached passes (𝑘= 1, 3) update action tokens using video and state keys and values from the preceding joint pass (Fig. 46).",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1498",
+   "page": 84,
+   "kind": "prose",
+   "text": "After denoising, the first 𝐻𝑒actions are executed, where 𝐻𝑒is the executed action horizon.",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1500",
+   "page": 84,
+   "kind": "prose",
+   "text": "𝑡 the intermediate action latent at environment decision 𝑡and denoising event 𝑘, and v(𝑘)",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1501",
+   "page": 84,
+   "kind": "prose",
+   "text": "𝜃,𝑡the corresponding action velocity in the noise-minus-data convention. The noise schedule 𝜎𝑘decreases from 𝜎0 = 1 to 𝜎4 = 0. The clean-action and noise estimates are",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "C063",
+   "page": 85,
+   "kind": "caption",
+   "text": "Figure 46: Joint video-action denoising with CPS exploration. Four action-denoising events alternate between joint and cached passes. CPS adds fresh noise only to executed action coordinates. Video denoising is deterministic given its initial latent. GRPO scores joint action transitions and backpropagates through their joint forward passes, with carried latents detached.",
+   "section": "F.1. RL-Based Adaptation of World-Action Models",
+   "asset": "F046"
+  },
+  {
+   "id": "S1524",
+   "page": 85,
+   "kind": "prose",
+   "text": "Using clipped transition standard deviations (Lei et al., 2026), we sample",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1533",
+   "page": 85,
+   "kind": "prose",
+   "text": "Here 𝜂controls stochastic exploration, 𝜇𝜃,𝑡,𝑘is the CPS transition mean, and 𝑠𝑘is its standard deviation, bounded by 𝑠min > 0 and 𝑠max. The subscript exec denotes active coordinates in the first 𝐻𝑒action rows. Noise injection and likelihood evaluation are restricted to these coordinates, excluding padding. CPS provides explicit Gaussian transition densities for subsequent policy optimization.",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1534",
+   "page": 85,
+   "kind": "prose",
+   "text": "Online RL with GRPO. We optimize GR00T 2 from its own successful and failed rollouts with a GRPO-style algorithm developed through AutoRL (Sec. F.2). A training round collects 𝑁𝑔attempts for each selected reset context 𝑔(a task paired with a scene layout) under a fixed behavior policy. Attempt 𝑖of context 𝑔receives a binary return 𝑅𝑔,𝑖∈{0, 1}.",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1535",
+   "page": 85,
+   "kind": "prose",
+   "text": "Leave-one-out advantages with a context memory. With a baseline computed solely from the current group, uniform outcomes yield zero reward-based advantages. We incorporate a historical per-context mean to retain a learning signal when current outcomes differ from past performance. The baseline for attempt 𝑖pools the other 𝑁𝑔−1 returns of its context with ℎ𝑔pseudo-returns fixed at the context’s historical mean 𝑚𝑔:",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "E005",
+   "page": 85,
+   "kind": "equation",
+   "text": "𝑗̸=𝑖𝑅𝑔,𝑗 ℎ𝑔+ 𝑁𝑔−1 , 𝐴𝑔,𝑖= 𝑅𝑔,𝑖−𝑏𝑔,𝑖. (12)",
+   "section": "F.1. RL-Based Adaptation of World-Action Models",
+   "crop": "assets/equations/E005.png"
+  },
+  {
+   "id": "S1538",
+   "page": 85,
+   "kind": "prose",
+   "text": "With ℎ𝑔= 0 this is the leave-one-out baseline of RLOO (Ahmadian et al., 2024). We use ℎ𝑔= 0 only on a context’s first visit and ℎ𝑔= ℎ= 2 afterwards. A uniform failure in a context that used to succeed at rate 𝑚𝑔 now yields a negative advantage of magnitude ℎ𝑚𝑔/(ℎ+ 𝑁𝑔−1), and a uniform success in a historically weak context yields the mirror image.",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1539",
+   "page": 85,
+   "kind": "prose",
+   "text": "Let 𝑇𝑔,𝑖be the number of environment decisions in an attempt. The attempt’s advantage is spread evenly over its decisions and rescaled once per batch, so that long attempts do not dominate merely by containing more decisions, and 𝑐is applied only when the batch has nonzero advantage mass. The sums defining 𝑐run over the collected attempts.",
+   "section": "F.1. RL-Based Adaptation of World-Action Models",
+   "merged_ids": [
+    "S1540",
+    "S1547"
+   ]
+  },
+  {
+   "id": "S1548",
+   "page": 86,
+   "kind": "prose",
+   "text": "Persistent context table. The historical means 𝑚𝑔live in a global table indexed by context. The table persists across rounds and, through checkpointing, across training segments, so it records how well the policy has done in every context so far. Once a round’s advantages have been computed, each visited context is updated by an exponential moving average of its round mean, with 𝛼EMA = 0.25 and 𝑚𝑔= 𝜇𝑔on the first visit. Unvisited contexts are left untouched. Updating the table after advantage computation ensures that the historical term uses only preceding rounds.",
+   "section": "F.1. RL-Based Adaptation of World-Action Models",
+   "merged_ids": [
+    "S1554"
+   ]
+  },
+  {
+   "id": "S1555",
+   "page": 86,
+   "kind": "prose",
+   "text": "Clipped transition-level objective for a denoising policy. GR00T 2 produces actions by iterative denoising, so the exact action log-likelihood that GRPO would compare between policies is not available. CPS, however, gives a Gaussian density for every action-denoising transition, and we score the policy on those transitions instead. On the selected joint denoising events 𝒦= {0, 2} we maximize the clipped surrogate (Liu et al., 2025; Lei et al., 2026; Schulman et al., 2017)",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1558",
+   "page": 86,
+   "kind": "prose",
+   "text": "𝑟𝑔,𝑖,𝑡,𝑘ˆ𝐴𝑔,𝑖,𝑡, clip(𝑟𝑔,𝑖,𝑡,𝑘, 1 −𝜖clip, 1 + 𝜖clip) ˆ𝐴𝑔,𝑖,𝑡 min where ℬis the batch of recorded decisions, 𝜖clip is the clipping threshold, and 𝑟= exp(ℓ𝜃−ℓold) is the current-tobehavior likelihood ratio for one recorded transition. Gaussian log densities condition on the observation context and input action latent at event 𝑘and sum over executed coordinates. Ratios are not multiplied across events or decisions. In practice, rather than sampling 𝑘, each minibatch scores one joint event, alternating between 𝑘= 0 and 𝑘= 2. Recorded action latents are teacher-forced, while video computation is reconstructed under the current parameters. Gradients flow through the selected joint pass, including the shared DiT, state/action encoders, and action decoder. Carried latents are detached, yielding a local surrogate without backpropagation through the full denoising chain.",
+   "section": "F.1. RL-Based Adaptation of World-Action Models",
+   "merged_ids": [
+    "S1562",
+    "S1563"
+   ]
+  },
+  {
+   "id": "S1564",
+   "page": 86,
+   "kind": "prose",
+   "text": "GRPO-Induced Self-Imitation. Online RL enables GR00T 2 to discover successful behaviors through exploration, while supervised learning provides a potentially more stable optimization approach for consolidating these behaviors. We investigate GRPO-induced self-imitation, combining the exploration capabilities of RL with the optimization stability of supervised fine-tuning.",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1565",
+   "page": 86,
+   "kind": "prose",
+   "text": "We retain successful episodes from the full set of rollouts used to train the best-performing GRPO checkpoint, forming 𝒟succ. Starting from the same SFT initialization as GRPO, we perform one round of fine-tuning using GR00T 2’s original joint video-action objective:",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "E006",
+   "page": 86,
+   "kind": "equation",
+   "text": "ℒSI(𝜃) = 𝜆vℒvideo(𝜃; 𝒟succ) + 𝜆aℒaction(𝜃; 𝒟succ). (16)",
+   "section": "F.1. RL-Based Adaptation of World-Action Models",
+   "crop": "assets/equations/E006.png"
+  },
+  {
+   "id": "S1566",
+   "page": 86,
+   "kind": "prose",
+   "text": "Here ℒvideo and ℒaction denote GR00T 2’s original video and action denoising objectives, and 𝜆v and 𝜆a control their relative weights.",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1567",
+   "page": 86,
+   "kind": "prose",
+   "text": "Task success determines which trajectories are selected, while the learning signal comes from the original video and action supervision. This enables GR00T 2 to benefit from RL-discovered successful behaviors while optimizing a standard supervised objective, without additional robot rollouts, demonstrations, or human corrective actions.",
+   "section": "F.1. RL-Based Adaptation of World-Action Models",
+   "merged_ids": [
+    "S1568"
+   ]
+  },
+  {
+   "id": "S1569",
+   "page": 87,
+   "kind": "prose",
+   "text": "F.1.2. Residual Reinforcement Learning",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1570",
+   "page": 87,
+   "kind": "prose",
+   "text": "Direct GR00T 2 post-training updates the generative policy itself. A complementary approach is to retain GR00T 2’s pretrained capabilities and learn targeted corrections for precision-critical stages, where approximately correct trajectories can still fail because of small alignment or contact errors.",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1571",
+   "page": 87,
+   "kind": "prose",
+   "text": "We keep GR00T 2 frozen and train a lightweight residual policy to correct its actions online. Unlike direct GR00T 2 training, residual RL does not use CPS. Instead, it relies on the stochastic residual actor for exploration.",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1572",
+   "page": 87,
+   "kind": "prose",
+   "text": "The residual operates within designated task stages. At each decision 𝑗, a tanh-squashed Gaussian actor 𝜋𝜑 receives observations z𝑗comprising camera images, proprioception, GR00T 2’s forecast end-effector targets, and the current correction offset. The actor produces a bounded residual action a𝑗over the next control horizon.",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1573",
+   "page": 87,
+   "kind": "prose",
+   "text": "Per-tick corrections are accumulated into bounded offsets and composed with GR00T 2’s targets:",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1576",
+   "page": 87,
+   "kind": "prose",
+   "text": "xcmd",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1579",
+   "page": 87,
+   "kind": "prose",
+   "text": "Here o𝑗is the accumulated correction offset, 𝛿is the per-tick correction scale, 𝛾is the correction gain, and B denotes axis-wise offset bounds. The operator ⊕composes the correction offset with GR00T 2’s end-effector target. Zero residual action leaves the current offset unchanged, while zero offset recovers the base policy.",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1580",
+   "page": 87,
+   "kind": "prose",
+   "text": "Following HIL-SERL (Luo et al., 2025), we train the residual actor using Soft Actor-Critic (SAC) (Haarnoja et al., 2018) with prior demonstrations and online interaction, including occasional human corrections. Evaluation episodes are manually scored using binary task-specific success criteria.",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1581",
+   "page": 87,
+   "kind": "prose",
+   "text": "We draw half of each critic batch from online data and half from demonstrations, and train an ensemble of critics using bootstrapped returns. The actor objective combines entropy-regularized policy improvement with a zero-residual prior and imitation of successful residual actions:",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1589",
+   "page": 87,
+   "kind": "prose",
+   "text": "Here 𝜑and 𝜓denote the residual actor and critic parameters, respectively. The distribution 𝒟RL represents observations sampled from the training replay buffer. The function ¯𝑄𝜓is the ensemble critic mean, 𝜇𝜑is the actor mean, and 𝒟+ contains successful residual experience. The entropy coefficient 𝛼controls exploration, while 𝜆𝑄, 𝜆0, and 𝜆bc weight the critic, zero-residual regularization, and behavior-cloning terms, respectively.",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1590",
+   "page": 87,
+   "kind": "prose",
+   "text": "The zero-residual prior discourages unnecessary corrections, while successful experience reinforces effective behavior. Residual RL thus enables targeted adaptation without modifying pretrained GR00T 2 weights.",
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  }
+ ]
+}

@@ -1,0 +1,129 @@
+{
+ "chunk_id": "chunk_18",
+ "sections": [
+  "D.7. Limitations",
+  "E. UMIverse for GR00T 2",
+  "E.1. Gripper UMI Hardware"
+ ],
+ "pages": [
+  71,
+  74
+ ],
+ "chars": 8357,
+ "blocks": [
+  {
+   "id": "H40",
+   "page": 71,
+   "kind": "heading",
+   "text": "D.7. Limitations",
+   "section": "D.7. Limitations"
+  },
+  {
+   "id": "S1342",
+   "page": 71,
+   "kind": "prose",
+   "text": "• Relative, suite-specific ratings. Elo measures skill relative to the other checkpoints on the same suite. Ratings from different suites are not comparable, and adding a checkpoint shifts all ratings of a suite by a common constant. • Few independent units. Independent replication comes from distinct tasks, not trials: the first suite has 16 tasks with A/B comparisons, the current one 38. Intervals are correspondingly wide (median 93 Elo on V2, 128 on V1), and some checkpoints with few tasks have none. On V1, one checkpoint’s point estimate (Elo 840) lies outside its own bootstrap interval [853, 995]. We make no claims about it.",
+   "section": "D.7. Limitations"
+  },
+  {
+   "id": "C052",
+   "page": 72,
+   "kind": "caption",
+   "text": "Figure 38: Skill versus inference speed on YAM V2. Elo against policy inferences per second (log scale), measured as server-side compute per inference during the same A/B episodes. Bars are 90% Elo intervals, shown for the labelled checkpoints (all intervals are in Fig. 36). Inference-rate intervals are narrower than the markers. Colour is the model family and marker shape the serving stack. Dashed: frontier of point estimates across stacks. Ringed: the checkpoint that dominates all others served by the GR00T 2 policy server.",
+   "section": "D.7. Limitations",
+   "asset": "F038"
+  },
+  {
+   "id": "S1366",
+   "page": 72,
+   "kind": "prose",
+   "text": "• Ties and grading. Ties are 30 to 35% of matches. Rankings come from human operators, and the rubric bounds but does not remove their judgment. • Confounds across campaigns. A/B trials remove drift within a campaign. Differences between stations and operators across campaigns are absorbed only through shared opponents, and the reference-first pairing policy keeps most checkpoints connected to the same opponents. • Live evidence. Graded trials of campaigns still in progress count immediately. Four V2 campaigns were paused at the snapshot, and the comparisons of GR00T 1.7 and 𝜋0.5 rest on campaigns from the last week before it. • Curated metadata. Model-family labels, checkpoint dates (storage timestamps), and serving stacks are recorded or inferred outside the A/B record itself. Embodiment tags and serving settings, such as 𝜋0.5’s separate embodiment tag or video-codec settings, are admission criteria but are not part of the rating.",
+   "section": "D.7. Limitations"
+  },
+  {
+   "id": "H41",
+   "page": 73,
+   "kind": "heading",
+   "text": "E. UMIverse for GR00T 2",
+   "section": "E. UMIverse for GR00T 2"
+  },
+  {
+   "id": "S1367",
+   "page": 73,
+   "kind": "prose",
+   "text": "UMIverse is our family of robot-free interfaces that record human demonstrations in a robot’s own sensory and action space. Gripper UMI is a handheld parallel gripper in the lineage of the Universal Manipulation Interface (Chi et al., 2024): it carries the robot’s wrist cameras and measures the gripper width that the robot later commands. DexUMI (Xu et al., 2025) is a wearable hand exoskeleton that replicates the kinematics, contact surfaces, and camera mount of a dexterous robot hand, so that every recorded finger joint, fingertip force, and camera view has a robot counterpart. Our GEAR DexUMI (NVIDIA GEAR Team, 2026) replicates the XHAND1 Pro-U (Sec. E.4). Unlike teleoperation, neither interface needs a robot during collection. Unlike human video, both record actions in robot coordinates and observations through robot cameras.",
+   "section": "E. UMIverse for GR00T 2"
+  },
+  {
+   "id": "S1368",
+   "page": 73,
+   "kind": "prose",
+   "text": "The two interfaces play complementary roles in GR00T 2. Gripper UMI provides scale: collection stations in three regions supply thousands of hours of bimanual pretraining demonstrations, and the resulting policies deploy directly onto a matching robot (Sec. E.2) or transfer across an embodiment gap to YAM (Sec. B.2), a test of the cross-embodiment imagination that GR00T 2 is built for. DexUMI provides depth: post-training data for complex, long-horizon, and dynamic dexterous tasks (Sec. B.3), which GR00T 2 learns with compliance labels derived from fingertip force (Eqs. (1) and (3)). For DexUMI, the visual gap between the exoskeleton and the robot hand is addressed inside the world-action model rather than by editing video (Sec. E.6). DexUMI demonstrations can also be retargeted to a hand that the exoskeleton does not replicate, such as the Sharpa hand (Sec. B.4). The UMI →YAM transfer and the DexUMI post-training results are presented in Sec. B.2 and B.3. This appendix describes the hardware of both interfaces (Sec. E.1 and E.4), UMI direct (Sec. E.2), the embodiment gaps and ablations of the UMI →YAM transfer (Sec. E.3), and DexUMI’s post-training recipe and WAM-native inpainting (Sec. E.5 and E.6).",
+   "section": "E. UMIverse for GR00T 2"
+  },
+  {
+   "id": "H42",
+   "page": 73,
+   "kind": "heading",
+   "text": "E.1. Gripper UMI Hardware",
+   "section": "E.1. Gripper UMI Hardware"
+  },
+  {
+   "id": "S1369",
+   "page": 73,
+   "kind": "prose",
+   "text": "The handheld gripper mirrors its robot counterpart. Relative to the original UMI gripper (Chi et al., 2024), the main mechanical change is that the pin joints, bearings, and return springs of the finger-trigger linkage are replaced by a single compliant flexure linkage (Fig. 39) that is printed entirely on a desktop printer. This yields the following improvements over the previous design:",
+   "section": "E.1. Gripper UMI Hardware"
+  },
+  {
+   "id": "S1370",
+   "page": 73,
+   "kind": "prose",
+   "text": "• Constant force scaling. The finger-to-jaw force scaling is constant over the gripper’s entire range of motion. In the original UMI gripper, the scaling is large when the gripper is fully open but varies nonlinearly with opening, and when the gripper is fully closed the fingertip force falls to roughly 20% of the force applied at the trigger. The constant scaling of the new design instead delivers substantially higher fingertip force at small openings, which is better suited to fine-grained dexterous manipulation. • Fewer parts and faster assembly. The flexure joints are printed directly into the links, so the linkage needs no pins, bearings, or return springs and only a few fasteners, which greatly reduces part count and assembly time. • Simpler linkage and less backlash. The complex multi-part linkage is replaced by a single compliant mechanism with no discrete sliding or pivoting interfaces, which significantly reduces backlash. • Encoder-based width sensing. An encoder measures the gripper opening directly, which avoids the visual occlusion that can affect a camera-and-marker approach to width sensing.",
+   "section": "E.1. Gripper UMI Hardware"
+  },
+  {
+   "id": "S1371",
+   "page": 73,
+   "kind": "prose",
+   "text": "Flexure linkage. The linkage is mirror-symmetric and rides on a 150 mm linear rail (MGN9). Rigid links and finger mounts are printed in PLA, and four TPU 90A flexure joints are printed directly into them. Each joint is a short, thin strip with a T-shaped head embedded in a pocket of the PLA part, so load transfers without additional fasteners. The operator’s finger pinch acts on the long links, and the bottom joint is guided along the symmetry plane, so pinch maps to jaw motion through a fixed lever ratio: the jaws move about 2.9× as far as the fingertips and, ideally, carry about 0.35× the finger force. Because the rigid links meet the flexures directly, the operator’s input reaches the jaws through a short, stiff load path with little lost motion.",
+   "section": "E.1. Gripper UMI Hardware"
+  },
+  {
+   "id": "S1372",
+   "page": 73,
+   "kind": "prose",
+   "text": "Design rules from rapid prototyping.",
+   "section": "E.1. Gripper UMI Hardware"
+  },
+  {
+   "id": "C053",
+   "page": 74,
+   "kind": "caption",
+   "text": "Figure 39: Flexure linkage of the handheld gripper. (a) Cut view at the symmetry plane with main dimensions in mm: black parts are PLA, blue parts are TPU 90A, the gray shape is the operator’s finger contour, and the four TPU joints are numbered 1 to 4 (top, mid, static, bottom). (b) Section views of joints 1 to 4: T-shaped TPU anchors sit in pockets of the PLA parts, and the short exposed strip between them forms the flexure (strip thickness 𝑡and out-of-plane width 𝑤in mm).",
+   "section": "E.1. Gripper UMI Hardware",
+   "asset": "F039"
+  },
+  {
+   "id": "S1391",
+   "page": 74,
+   "kind": "prose",
+   "text": "• Thin strips: strip thickness is set by print accuracy, 1.8 mm (2.3 mm at the top joint), about four extrusion lines, so it prints reliably yet still bends. • Short necks: each exposed neck is kept short so the flexure behaves like a rotary joint, with bending concentrated at one location instead of along a long leaf spring. • Width: links and joints are 23 mm wide out of plane (16 mm for the short link and inner joints). Narrower variants twisted under side loads, while wider ones needed a firm grip to close. • Compliance: the finite compliance of TPU absorbs small mismatches between rail, mounts, and link lengths that a rigid pin-jointed version would not tolerate.",
+   "section": "E.1. Gripper UMI Hardware"
+  },
+  {
+   "id": "S1392",
+   "page": 74,
+   "kind": "prose",
+   "text": "Pre-strained open state. The linkage is printed wider than the rail allows (163.8 mm relaxed pivot span versus 118.1 mm at the rail stops), so the TPU joints are pre-strained at the open stop (Fig. 40). This provides a passive restoring force that returns the gripper to its open state and replaces separate return springs.",
+   "section": "E.1. Gripper UMI Hardware"
+  },
+  {
+   "id": "S1393",
+   "page": 74,
+   "kind": "prose",
+   "text": "End effector. Apart from the added width encoder, sensor placement is kept consistent with the existing UMI configuration, which preserves compatibility with established data-collection pipelines. Further end-effector details, including sensing and assembly, are available in our open-source documentation (NVIDIA GEAR Team, 2026).",
+   "section": "E.1. Gripper UMI Hardware"
+  }
+ ]
+}

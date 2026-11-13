@@ -1,0 +1,274 @@
+{
+ "chunk_id": "chunk_38",
+ "sections": [
+  "K.4. Distributed Training"
+ ],
+ "pages": [
+  129,
+  132
+ ],
+ "chars": 11415,
+ "blocks": [
+  {
+   "id": null,
+   "page": 129,
+   "kind": "heading",
+   "text": "K.4. Distributed Training",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2270",
+   "page": 129,
+   "kind": "prose",
+   "text": "Distributed training of GR00T 2 requires coordinating multimodal input preparation with synchronous model updates. We design the runtime to reduce memory use, limit waiting between training stages, and preserve progress across interruptions.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2271",
+   "page": 129,
+   "kind": "prose",
+   "text": "K.4.1. Parallelism and Memory Management",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2272",
+   "page": 129,
+   "kind": "prose",
+   "text": "We use synchronous data parallelism with DeepSpeed ZeRO-2. Model weights are replicated on each GPU, while gradients and optimizer state are partitioned across ranks to reduce per-device memory use. BF16 gradient synchronization overlaps with model computation to reduce exposed communication time.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2273",
+   "page": 129,
+   "kind": "prose",
+   "text": "K.4.2. Efficient Multimodal Computation",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2274",
+   "page": 129,
+   "kind": "prose",
+   "text": "Multimodal training requires computation in both frozen feature encoders and the trainable model. Depending on the recipe, the runtime supports TensorRT video encoding, fused text-encoder operations, efficient attention kernels, and PyTorch compilation.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2275",
+   "page": 129,
+   "kind": "prose",
+   "text": "Activation recomputation reduces memory use at the cost of additional computation. Attention optimizations retain the model’s masking rules, and precision choices are evaluated for numerical stability and model quality.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2277",
+   "page": 130,
+   "kind": "prose",
+   "text": "Where enabled, the runtime prepares the next batch’s encoded features during the current batch’s gradient synchronization and optimizer update to reduce waiting for feature encoding.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2278",
+   "page": 130,
+   "kind": "prose",
+   "text": "K.4.3. Data Loading",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "C102",
+   "page": 130,
+   "kind": "caption",
+   "text": "Figure 68: Data delivery during multi-view pretraining on 1,024 NVIDIA GB300 GPUs over 100 consecutive steadystate steps. (a) Delivered sample-window throughput. (b) Exposed batch-retrieval wait, showing the mean and maximum across ranks.",
+   "section": "K.4. Distributed Training",
+   "asset": "F068"
+  },
+  {
+   "id": "S2279",
+   "page": 130,
+   "kind": "prose",
+   "text": "GR00T 2’s data loader combines versioned multimodal storage, offline quality filtering, and asynchronous batch preparation. Training recipes specify the data snapshots to read and how samples are selected and interpreted across embodiments. The training mixture used for the measurements below comprises 25 versioned dataset stores, totaling 15.6 million episode records and 46.2 billion recorded time steps before applying the run’s sampling views. These totals aggregate the selected stores without deduplicating recording content across stores.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2280",
+   "page": 130,
+   "kind": "prose",
+   "text": "Versioned storage and schema. We store training data in LanceDS, built on the Lance columnar format (Pace et al., 2025; Lance Contributors, 2026). Each dataset contains a step table for state, action, annotations, and quality-control (QC) signals, an episode table, and a media table holding the original videos. Lance’s versioning preserves earlier snapshots when episodes are added or annotations or QC signals change, and new QC columns can be added without rewriting existing columns. A per-dataset commit record ties each snapshot’s table versions to its normalization statistics and metadata. A training run pins one snapshot per dataset, so data, statistics, and metadata are reproduced together. Snapshots are replicated to the object store and to training clusters in commit order, with the commit record copied last, so a replica serves a pinned snapshot completely or not at all.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2281",
+   "page": 130,
+   "kind": "prose",
+   "text": "Datasets share a schema in which state and action groups are packed into one state column and one action column. Group names and offsets are recorded in schema metadata, allowing the loader to select fields by name despite differences in their stored order. At read time, the recipe’s embodiment tag selects groups, cameras, annotations, normalization statistics pooled across datasets of that embodiment, and, for dexterous hands, fingertip force signals and deformation video. The same tag determines the model’s embodiment-specific projection layers. Datasets of the same embodiment can be merged with a common group order.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2282",
+   "page": 130,
+   "kind": "prose",
+   "text": "Steps within each episode are stored contiguously, and the loader fetches episode ranges through batched reads. Step-table reads bypass filesystem readahead, which amplified per-shard step-table I/O by 28× to 60× in an earlier production benchmark.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2283",
+   "page": 131,
+   "kind": "prose",
+   "text": "Window-aware QC views. A view records the steps eligible to serve as training-sample starts. User-defined Python filters evaluate an episode’s columns over the temporal window consumed by each sample, so eligibility accounts for the observations and action targets that training will read. Filters can also select whole episodes by metadata such as task family, collection date, or data origin. Views are computed offline and stored as runs of consecutive eligible steps per episode. Training samples directly from these runs without evaluating the filters in the loading path.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2284",
+   "page": 131,
+   "kind": "prose",
+   "text": "Each view is identified by a hash of the dataset, filter code and arguments, and sample window. Cosmetic edits to a filter keep its hash. Views are tagged with the table versions they serve and can be shared by identifier across runs. A view is reused at a new version when the dataset’s rows and the columns its filters read are unchanged. Views are rebuilt automatically: each new snapshot triggers a build of every registered view in the same job that writes the snapshot, and the snapshot and its views are published together, so recipes can pin new snapshots without a manual build step.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2285",
+   "page": 131,
+   "kind": "prose",
+   "text": "Views also carry normalization statistics (mean, standard deviation, minimum, maximum, and 1st and 99th percentiles) computed over the samples they keep. Each statistics entry is keyed to the training configuration it was computed under: the snapshot, embodiment, action horizon, and which actions are trained relative to state.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2286",
+   "page": 131,
+   "kind": "prose",
+   "text": "For human demonstrations, QC filters check head and wrist motion, hand-pose plausibility, and keypoint visibility, excluding tracking failures such as frozen head poses and abrupt fingertip jumps. For robot demonstrations, filters exclude task-irrelevant motion, idle time, and annotated mistakes or failures. Storing these signals as step-table columns allows curation rules to evolve alongside the versioned dataset.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2287",
+   "page": 131,
+   "kind": "prose",
+   "text": "Sampling and batch delivery. Sampling choices are generated on demand from deterministic per-rank step seeds, avoiding a precomputed sampling sequence. Samples are mixed across shards to target the recipe’s dataset proportions in each global step. Sampling without replacement accommodates datasets of different lengths without requiring aligned epoch boundaries.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2288",
+   "page": 131,
+   "kind": "prose",
+   "text": "Batch preparation uses three asynchronous stages. The I/O stage prefetches video shards from shared storage into node-local NVMe. The decoding stage reads cached shards, decodes frames, and prepares trajectory metadata. In a representative three-view shard benchmark, decoding was estimated to account for about 90% of preparation time. A separate sequential-decoding microbenchmark measured approximately 7,000 frames/s with one decoding thread at 320×240. The loader stage applies augmentations (random crops retaining 95% of each spatial dimension, resizing to 224×320, and codec augmentation), collates samples, and prepares asynchronous transfers from pinned host memory to the GPU. Keeping prefetched video shards on NVMe reduces the host RAM required for buffering and allows a deeper prefetch window. Dedicated worker pools, SIMD-vectorized decoding, and C++ augmentation implementations reduce CPU processing overhead.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2289",
+   "page": 131,
+   "kind": "prose",
+   "text": "On clusters with limited shared-storage capacity, the I/O stage instead stages upcoming shards’ source files on node-local NVMe through a cluster-lifetime object store. Each file is read from the data source once per cluster and forwarded between nodes, so source traffic does not grow with node count. A preloaded interposer serves data-loader reads from local NVMe at the files’ original paths, and a file that cannot be delivered is an error rather than a skipped episode.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2290",
+   "page": 131,
+   "kind": "prose",
+   "text": "Variable-length token packing reduces padding when samples differ in camera configuration or sequence length. In the measured training run, packed sequences occupied 94.5% of the available positions in 32,768-token rows.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2291",
+   "page": 131,
+   "kind": "prose",
+   "text": "Reproducibility and diagnostics. The loader controls random seeds for sampling and spatiotemporal augmentation. Training checkpoints record loader progress (including active shard offsets, sample indices, and worker state) together with the configuration, including each dataset’s pinned snapshot. The supported sharded pipeline restores sample-sequence progress when resuming with the same data configuration and rank/worker topology. Each sample carries a composite identifier comprising dataset ID, trajectory ID, and frame index, linking the training input to its source.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2293",
+   "page": 132,
+   "kind": "prose",
+   "text": "Structured events from each worker and distributed rank trace the batch-loading lifecycle. Correlating these events with sample identifiers helps investigate storage delays, worker starvation, and loss anomalies. A CPU-only benchmark harness uses Gloo and identity model stubs to profile the loading pipeline before GPU runs. Fig. 68 and Tab. 35 report the measured input-delivery performance.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2294",
+   "page": 132,
+   "kind": "prose",
+   "text": "K.4.4. Straggler Control and Communication",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2295",
+   "page": 132,
+   "kind": "prose",
+   "text": "A rank delayed by input preparation or a CPU pause can hold up collective operations across the training job. We profile CPU activity, GPU execution, and collective timing together to distinguish late-arriving ranks from slow communication.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2296",
+   "page": 132,
+   "kind": "prose",
+   "text": "Depending on the configuration, the runtime coordinates garbage collection, controls CPU thread placement, balances loader concurrency, and reports metrics asynchronously to limit host delays that interrupt GPU work and synchronization.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2297",
+   "page": 132,
+   "kind": "prose",
+   "text": "K.4.5. Checkpointing and Recovery",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2298",
+   "page": 132,
+   "kind": "prose",
+   "text": "Checkpointing coordinates a consistent foreground snapshot of training state, followed by background serialization and writes. Asynchronous saving reduces exposed I/O, and a checkpoint becomes available for continuation once all required writes complete.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2299",
+   "page": 132,
+   "kind": "prose",
+   "text": "Model artifacts provide weights for evaluation and downstream initialization. Continuation checkpoints additionally retain optimizer partitions, scheduler history, random-number-generator state, and supported loader progress. Restoring training requires compatibility between the saved state and the resumed runtime.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2300",
+   "page": 132,
+   "kind": "prose",
+   "text": "K.4.6. Training Efficiency",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2301",
+   "page": 132,
+   "kind": "prose",
+   "text": "We assess training efficiency across input retrieval, frozen feature encoding, model computation, gradient synchronization, and optimizer updates. Step time is interpreted alongside model quality, accounting for differences in active modalities, trainable components, and input shapes.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2302",
+   "page": 132,
+   "kind": "prose",
+   "text": "Tab. 35 reports input-delivery performance over 100 steady-state pretraining steps on 1,024 NVIDIA GB300 GPUs. These measurements characterize the data pipeline. They do not measure whole-model FLOP utilization.",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "C103",
+   "page": 132,
+   "kind": "caption",
+   "text": "Table 35: Measured training-input delivery over 100 steady-state steps on 1,024 NVIDIA GB300 GPUs. The wait-time share is relative to aggregate measured rank-step time.",
+   "section": "K.4. Distributed Training",
+   "asset": "T035"
+  },
+  {
+   "id": "S2303",
+   "page": 132,
+   "kind": "prose",
+   "text": "Measurement Result",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2304",
+   "page": 132,
+   "kind": "prose",
+   "text": "Aggregate sample-window throughput ∼12,000 windows/s Per-GPU sample-window throughput 11.7 windows/s Mean exposed data-loader wait 0.37 ms 99th-percentile exposed data-loader wait 0.61 ms Exposed wait / aggregate measured rank-step time 0.049%",
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2305",
+   "page": 132,
+   "kind": "prose",
+   "text": "We monitor Overall FLOP Utilization (OFU), a hardware-counter-based complement to application-level Model FLOPs Utilization (MFU), alongside step time and task-level evaluation (Pedersen et al., 2026). DCGM provides GPU telemetry (NVIDIA, n.d.e), and Weights & Biases records step time. Utilization helps diagnose accelerator use, while elapsed time and model quality determine whether a change is useful. An optimization can reduce step time without changing the utilization signal. Assessment of a full training run also accounts for startup, compilation, checkpoint pauses, interruptions, and replayed work.",
+   "section": "K.4. Distributed Training"
+  }
+ ]
+}

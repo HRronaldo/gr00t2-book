@@ -1,0 +1,185 @@
+{
+ "chunk_id": "chunk_32",
+ "sections": [
+  "J.3. Simulation Benchmarking"
+ ],
+ "pages": [
+  123,
+  126
+ ],
+ "chars": 8443,
+ "blocks": [
+  {
+   "id": "H69",
+   "page": 123,
+   "kind": "heading",
+   "text": "J.3. Simulation Benchmarking",
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2206",
+   "page": 123,
+   "kind": "prose",
+   "text": "We evaluate GR00T 2 on five simulation benchmarks that span single-arm mobile manipulation (RoboCasa365), bimanual manipulation (RoboDojo), zero-shot real-to-sim tabletop manipulation (RoboLab, MolmoSpaces) and humanoid loco-manipulation (G1 Factory). Unless stated otherwise, each GR00T 2 result is a single post-trained checkpoint initialized from the same pretrained GR00T 2 model, evaluated with the benchmark’s official task set, episode budget and success criterion. Among VLA and WAM policies on the public leaderboards,4 GR00T 2",
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2207",
+   "page": 123,
+   "kind": "prose",
+   "text": "4Baselines are taken from the official leaderboards as of November 6, 2026 with the exception of GR00T 1.7 which we retrain and evaluate ourselves.",
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "C096",
+   "page": 124,
+   "kind": "caption",
+   "text": "Table 30: Results on the RoboCasa365 benchmark. We report success rate (%). The best and second-best results are highlighted in bold and underline, respectively.",
+   "section": "J.3. Simulation Benchmarking",
+   "asset": "T030"
+  },
+  {
+   "id": "S2209",
+   "page": 124,
+   "kind": "prose",
+   "text": "𝜋0.5 (Physical Intelligence et al., 2025) 16.9 39.6 7.1 1.2 GR00T 1.7 (NVIDIA, 2026a) 22.1 41.7 17.7 4.4 Paimon-0 58.1 79.3 55.8 36.7 Axiom-0 (Shu et al., 2026) 61.6 86.5 59.4 35.8 Awomo-0.5V (Awomo-WAM Team, 2026) 62.5 85.0 60.4 39.4 minionx 62.6 81.8 60.0 43.6 Awomo-0.5I (Awomo-WAM Team, 2026) 64.4 86.5 58.8 45.2",
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "C097",
+   "page": 124,
+   "kind": "caption",
+   "text": "Table 31: Results on the RoboDojo benchmark. Dimension columns report success rate (%), while the last two columns report the average score and success rate (%). GR00T 2 is evaluated on all three layout banks. Tab. 19 reports layout bank 0 only, for all four GR00T 2 configurations including RL and agentic execution. The best and second-best results are highlighted in bold and underline, respectively.",
+   "section": "J.3. Simulation Benchmarking",
+   "asset": "T031"
+  },
+  {
+   "id": "S2214",
+   "page": 124,
+   "kind": "prose",
+   "text": "GR00T 1.7 (NVIDIA, 2026a) 4.1 1.1 11.8 2.6 1.4 7.65 4.20 𝜋0.5 (Physical Intelligence et al., 2025) 8.2 5.5 14.7 4.7 1.7 11.44 6.93 Rex-M1 Preview 26.1 23.8 33.0 48.2 6.1 33.79 27.44 Simate-beta 28.0 26.9 43.4 33.0 8.5 33.95 27.96 Awomo-0.5 (Awomo-WAM Team, 2026) 23.8 33.5 26.8 41.2 22.9 35.34 29.64 VPP2 (Guo et al., 2026) 29.5 35.2 37.0 55.6 4.1 39.26 32.26 WALL-OSS-1.0-lite 37.9 29.1 32.3 56.0 19.6 42.59 34.97",
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2217",
+   "page": 124,
+   "kind": "prose",
+   "text": "RoboCasa365. RoboCasa365 (Nasiriany et al., 2026) is a large-scale household simulation benchmark with 365 tasks across 2,500 procedurally generated kitchens, in which a mobile manipulator acts from three RGB cameras. Following the official multi-task protocol, we train on the Human300 pretraining mixture and evaluate on 50 target tasks split into 18 Atomic-Seen, 16 Composite-Seen and 16 Composite-Unseen tasks. The last split is absent from training and therefore tests zero-shot composition of learned skills. The overall score is the mean of the 50 per-task success rates. Results are shown in Tab. 30.",
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2218",
+   "page": 124,
+   "kind": "prose",
+   "text": "GR00T 2 reaches 67.2% average success, 2.8 percentage points above the best prior entry, and it leads on the Atomic-Seen and Composite-Seen splits. Notably, its largest margin is on the Composite-Seen tasks, multi-step activities that chain several learned skills, where it reaches 73.6%, 13.2 points above the next entry (Awomo-0.5V, 60.4%).",
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2219",
+   "page": 124,
+   "kind": "prose",
+   "text": "RoboDojo. RoboDojo (Chen et al., 2026a) is a bimanual benchmark in Isaac Sim (NVIDIA, 2025) on the 14-DoF ARX-X5 platform, with 42 tasks grouped into five capability dimensions: Generalization (standard and randomized layouts), Precision, Long-Horizon (up to 1,900 control steps), Memory and Open (open-vocabulary instructions with no training demonstrations). Following the official protocol, we run the evaluation over all 42 tasks (54 task configurations) on three layout banks (6,300 episodes) and report the partial-progress score and success rate. Results are shown in Tab. 31.",
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "C098",
+   "page": 125,
+   "kind": "caption",
+   "text": "Table 32: Results on the RoboLab benchmark. We report success rate (%) overall and per difficulty tier. The best and second-best results are highlighted in bold and underline, respectively.",
+   "section": "J.3. Simulation Benchmarking",
+   "asset": "T032"
+  },
+  {
+   "id": "S2222",
+   "page": 125,
+   "kind": "prose",
+   "text": "GR00T 1.7 (NVIDIA, 2026a) 18.9 22.8 15.9 10.9 𝜋0.5 (Physical Intelligence et al., 2025) 28.0 29.7 31.5 13.5 Atomic-WAM (Shi et al., 2026) 39.6 44.4 40.5 19.4 HiDream-O1-Embodied 39.9 43.1 37.7 32.9 FLUX 3 Action (Black Forest Labs, 2026) 42.9 49.1 39.2 28.2 BiMind v0.5 49.2 51.6 52.6 32.4 Lakeside 51.0 57.6 44.1 42.4",
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "C099",
+   "page": 125,
+   "kind": "caption",
+   "text": "Table 33: Results on the MolmoSpaces benchmark. We report success rate (%). The best and second-best results are highlighted in bold and underline, respectively. Baselines: 𝜋0.5-DROID (Physical Intelligence et al., 2025), GR00T 1.7 (NVIDIA, 2026a), MolmoAct2 DROID (Fang et al., 2026), PRTS-Droid (Zhang et al., 2026), WALL-OSS-0.5 (Yu et al., 2026b), and Cosmos3-Nano-Policy (NVIDIA Cosmos Team, 2026).",
+   "section": "J.3. Simulation Benchmarking",
+   "asset": "T033"
+  },
+  {
+   "id": "S2228",
+   "page": 125,
+   "kind": "prose",
+   "text": "𝜋0.5-DROID 22.7 65.1 18.1 6.4 7.0 8.0 12.0 10.2 10.4 17.77 GR00T 1.7 11.9 68.0 35.3 11.7 12.5 7.8 9.4 12.9 11.6 20.12 MolmoAct2 DROID 11.7 71.3 43.4 20.5 21.9 11.1 15.6 18.5 19.3 25.92 PRTS-Droid 12.0 76.3 47.5 18.1 20.5 21.6 17.4 19.0 18.2 27.84 WALL-OSS-0.5 16.8 78.5 78.4 47.9 47.2 30.1 13.8 15.9 18.3 38.55 Cosmos3-Nano-Policy 32.0 79.1 66.5 32.3 32.2 25.7 26.0 22.9 34.3 39.00 ZoeInside-VLA 36.6 85.7 74.8 51.8 55.9 45.5 37.8 21.2 36.2 49.50",
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2229",
+   "page": 125,
+   "kind": "prose",
+   "text": "GR00T 2 (Ours) 20.7 79.0 71.9 42.0 42.9 20.3 44.2 37.5 47.6 45.12 manipulation to coordinated bimanual control. On Precision it leads the strongest prior entry by 4.8 points in success rate (40.0% vs. 35.2%) and reaches the highest partial-progress score (47.7 vs. 43.0), meaning it advances further through fine-grained manipulation even when an episode does not finish.",
+   "section": "J.3. Simulation Benchmarking",
+   "merged_ids": [
+    "S2230"
+   ]
+  },
+  {
+   "id": "S2231",
+   "page": 125,
+   "kind": "prose",
+   "text": "RoboLab. RoboLab (Yang et al., 2026) is a high-fidelity Isaac Lab benchmark of 120 tabletop tasks on the DROID (Khazatsky et al., 2024) Franka setup, grouped into 64 simple, 39 moderate and 17 complex tasks. Following the official protocol, we run 10 episodes per task (1,200 episodes) with the default instructions and report binary success rate. Our policy is post-trained only on real DROID data, so this evaluation is zero-shot real-to-sim transfer. Results are shown in Tab. 32.",
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2232",
+   "page": 125,
+   "kind": "prose",
+   "text": "GR00T 2 reaches 47.4% success, placing in the top three among non-agentic entries on the leaderboard. Since GR00T 2 is post-trained only on real-world DROID data, this result indicates GR00T 2’s robust zero-shot transfer to unseen simulated scenes and tasks.",
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2233",
+   "page": 125,
+   "kind": "prose",
+   "text": "MolmoSpaces. MolmoSpaces (Kim et al., 2026) evaluates a Franka DROID policy in procedurally generated MuJoCo houses populated with Objaverse (Deitke et al., 2023) objects. Following the leaderboard’s default view, we report success rate on nine suites: articulated Open and Close, four pick suites (Pick-v1.5 and Pick-v2 under the classic renderer, the filament renderer and randomized cameras) and three pick-and-place suites (plain, next-to and color-referred), 8,915 episodes in total. The overall score is the unweighted mean over the nine suites, with unsubmitted suites counted as zero. As with RoboLab, we evaluate the same real-DROID post-trained checkpoint zero-shot. Results are shown in Tab. 33.",
+   "section": "J.3. Simulation Benchmarking",
+   "merged_ids": [
+    "S2234"
+   ]
+  },
+  {
+   "id": "S2235",
+   "page": 125,
+   "kind": "prose",
+   "text": "GR00T 2 scores 45.12%, second only to ZoeInside-VLA (49.50%), and it has the best score on all three",
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "C100",
+   "page": 126,
+   "kind": "caption",
+   "text": "Table 34: Results on G1 Factory. We report success rate (%) over 100 episodes per task. The best results are highlighted in bold. Baseline: GR00T 1.7 (NVIDIA, 2026a).",
+   "section": "J.3. Simulation Benchmarking",
+   "asset": "T034"
+  },
+  {
+   "id": "S2243",
+   "page": 126,
+   "kind": "prose",
+   "text": "pick-and-place suites (44.2%, 37.5% and 47.6% on v2, NextTo and Color). Notably, it leads the spatially referred NextTo suite by 14.6 points (37.5% vs. 22.9% for Cosmos3-Nano-Policy), indicating strong grounding of spatial language. Its weakest suite is Pick-v2 with randomized cameras (20.3%), indicating sensitivity to camera viewpoint.",
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2244",
+   "page": 126,
+   "kind": "prose",
+   "text": "G1 Factory. G1 Factory (NVIDIA, 2026c) adapts the nine Unitree G1 loco-manipulation tasks introduced in HumanoidMimicGen (Lin et al., 2026) to NVIDIA Isaac Lab-Arena. The tasks involve lifting and shelving boxes, retrieving and transferring drills, pressing buttons, and pushing a shelving cart with a 43-DoF G1 humanoid. The policy commands the arms, hands, and waist together with base-height and navigation commands that are executed by a lower-body controller. We train on 100 demonstrations per task from the released G1 Factory dataset and evaluate each policy over 100 episodes per task (900 episodes in total). We compare against GR00T 1.7 and report overall success rates in Tab. 34.",
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2245",
+   "page": 126,
+   "kind": "prose",
+   "text": "GR00T 2 achieves an overall success rate of 84.7%, outperforming GR00T 1.7 (69.4%) by 15.3 percentage points. It improves success rates on all nine tasks and achieves 100% success on box lifting from both the table and the floor. Remaining failures are concentrated in contact-rich tasks that require precise end-effector placement while the robot maintains balance: drill retrieval from the holder, shelf pushing, and button pressing.",
+   "section": "J.3. Simulation Benchmarking"
+  }
+ ]
+}

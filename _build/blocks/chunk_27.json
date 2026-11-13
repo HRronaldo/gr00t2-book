@@ -1,0 +1,142 @@
+{
+ "chunk_id": "chunk_27",
+ "sections": [
+  "G.2. Agentic Steering with Visual Guidance",
+  "G.3. Toward Robotic Self-Improvement",
+  "H. Humanoid Loco-Manipulation"
+ ],
+ "pages": [
+  106,
+  109
+ ],
+ "chars": 7903,
+ "blocks": [
+  {
+   "id": "S1948",
+   "page": 106,
+   "kind": "prose",
+   "text": "Agent Cost and Latency. Steering adds the agent’s cost and latency to every episode, which we measure on trash sorting on both robots (Tab. 24). With visual guidance, an episode takes a median of 9 agent turns and costs $0.26 on YAM and $0.14 on Dexter, and the robot waits for the agent during 38% and 32% of the episode. GR00T 2 was served without the accelerations of Sec. 4.6.1 on YAM (about 0.6 s per policy call) and with TensorRT on Dexter (about 0.14 s).",
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1949",
+   "page": 106,
+   "kind": "prose",
+   "text": "Detecting Step Completion. The agent’s cost and the robot’s waiting also depend on when the harness queries the agent at the end of a step. In the YAM long-horizon runs, gripper events, which need no model call,",
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "C080",
+   "page": 107,
+   "kind": "caption",
+   "text": "Table 24: Agent cost and latency on trash sorting. Medians over the 20 episodes per setting. Latency is the per-episode median agent-turn time, agent cost is the charge for the agent’s turns (excluding the completion checks), and waiting is the share of the episode during which the robot holds still for the agent.",
+   "section": "G.2. Agentic Steering with Visual Guidance",
+   "asset": "T024"
+  },
+  {
+   "id": "S1962",
+   "page": 107,
+   "kind": "prose",
+   "text": "triggered 418 of the 435 step-end queries, and the 45 s limit triggered the remaining 17. The completion check is meant for steps that end without a release, such as closing a drawer, but replaying the logged requests shows that even an always-correct check would confirm a step a median of 3.9 to 6.7 s after it ends, against about 1.5 s for a gripper event. Polled throughout every step, the checks also account for 26 to 36% of the combined agent and check charge on YAM, so we keep the check as a backstop.",
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1963",
+   "page": 107,
+   "kind": "prose",
+   "text": "Failure Analysis. Failures on YAM trash sorting differ in kind between the two agent-guided settings. With visual guidance, 6 of 100 items are lost, in 3 episodes, and each of these episodes contains a failed hand-over, in which the agent asked one arm to stage an item at the center of the table for the other arm. By the agent’s step-end observations, every release aimed at a bin landed in the marked bin, with one case unclear. Of the 54 items lost with language guidance, 21 were released into a wrong bin, or a different item was moved, after the agent had named the correct bin, and 20 were never attempted because the agent spent the remaining steps retrieving misplaced items. On Dexter trash sorting, visual guidance leaves 11 items in a wrong bin, against 43 with language guidance and 56 for GR00T 2, while a similar share of pick-and-place attempts ends in some bin in every setting (72%, 65%, and 71%), so the settings differ mainly in choosing the right bin.",
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1964",
+   "page": 107,
+   "kind": "prose",
+   "text": "Simulation Test of Steerability on LIBERO. Simulation lets us test steerability without the agent by computing the markers from the simulator state. We evaluate 45 tasks from LIBERO-PRO (Zhou et al., 2025), which perturbs the scenes and instructions of LIBERO (Liu et al., 2023), with 10 episodes per task (448 valid episodes), including spatial-instruction variants of a two-bowl scene on which an earlier language-only checkpoint failed, to test steering where language is weak. We compare a single-arm language-only checkpoint with a single-arm point-conditioned checkpoint, both mid-trained for 20k steps on RoboCasa365 (Nasiriany et al., 2026), LIBERO, and DROID (Khazatsky et al., 2024). This simulation checkpoint uses an earlier, richer form of the interface: a time-colored end-effector path with a disc at the next grasp or release point. The markers raise success from 69.6% (312 of 448) for the language-only checkpoint to 85.0% (381), while the same point-conditioned checkpoint with nothing drawn reaches 72.5% (325). On the two-bowl variants, the markers raise success from 18 of 70 for the language-only checkpoint (20 with nothing drawn) to 41 of 70. Across tasks, the marked checkpoint does better than the language-only checkpoint on 13, worse on 8, and ties on the other 24.",
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1965",
+   "page": 107,
+   "kind": "prose",
+   "text": "Limitations. Visual steering also has three limitations. The points specify spatial targets and the acting arm, not a manipulation strategy, which limits the gains on grasp and action references. Every step moves one arm, so coordinated two-arm motion is excluded, and a hand-over becomes two single-arm steps. On the real robots, generalization to new scenes and objects is not tested.",
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "H57",
+   "page": 107,
+   "kind": "heading",
+   "text": "G.3. Toward Robotic Self-Improvement",
+   "section": "G.3. Toward Robotic Self-Improvement"
+  },
+  {
+   "id": "S1966",
+   "page": 107,
+   "kind": "prose",
+   "text": "Agentic learning, execution, and steering address complementary challenges in building autonomous robotic systems. AutoResearch investigates how learning algorithms can be improved through autonomous experimentation. CaP enables structured orchestration and specialized intervention during long-horizon execution.",
+   "section": "G.3. Toward Robotic Self-Improvement"
+  },
+  {
+   "id": "S1967",
+   "page": 108,
+   "kind": "prose",
+   "text": "Visual guidance allows a high-level reasoning model to steer the behavior of a foundation policy through richer interfaces beyond language.",
+   "section": "G.3. Toward Robotic Self-Improvement"
+  },
+  {
+   "id": "S1968",
+   "page": 108,
+   "kind": "prose",
+   "text": "A promising direction for future work is to integrate these capabilities into a unified self-improvement process. During deployment, agentic execution and steering could identify difficult states, generate corrective behaviors, and collect interaction experiences that expose limitations of the current foundation policy.",
+   "section": "G.3. Toward Robotic Self-Improvement"
+  },
+  {
+   "id": "S1969",
+   "page": 108,
+   "kind": "prose",
+   "text": "These experiences could be incorporated into AutoResearch to discover better post-training strategies, while successful agentic behaviors could be distilled into the foundation policy to improve its generality and reduce the need for future intervention.",
+   "section": "G.3. Toward Robotic Self-Improvement"
+  },
+  {
+   "id": "S1970",
+   "page": 108,
+   "kind": "prose",
+   "text": "Such integration would create a feedback loop in which agentic systems improve not only how robots execute tasks, but also how their underlying policies are trained and adapted.",
+   "section": "G.3. Toward Robotic Self-Improvement"
+  },
+  {
+   "id": "S1971",
+   "page": 108,
+   "kind": "prose",
+   "text": "Although realizing this fully integrated loop remains a direction for future work, these three approaches illustrate complementary opportunities for building robotic systems that can autonomously learn, orchestrate, and adapt their behavior.",
+   "section": "G.3. Toward Robotic Self-Improvement"
+  },
+  {
+   "id": "H58",
+   "page": 109,
+   "kind": "heading",
+   "text": "H. Humanoid Loco-Manipulation",
+   "section": "H. Humanoid Loco-Manipulation"
+  },
+  {
+   "id": "S1972",
+   "page": 109,
+   "kind": "prose",
+   "text": "Loco-manipulation for bipedal humanoids poses additional challenges for robot foundation models, as humanoids must achieve precise end-effector control while maintaining balance under complex whole-body dynamics. Given these stringent requirements for reactive control, we turn to GR00T 2 Turbo, the lightweight variant of GR00T 2 suitable for deployment on edge devices (e.g. NVIDIA Jetson AGX Thor (Maheshwari et al., 2025)). We extend GR00T 2’s two-level architecture with SONIC (Luo et al., 2026) to form a three-level hierarchy (Fig. 9). A reasoning model, System 2 (S2), selects the task. Conditioned on this task and the current observations, GR00T 2 Turbo, System 1 (S1), generates short-horizon whole-body motion commands in SONIC’s compact latent action space. SONIC, System 0 (S0), translates these motion commands into joint-level commands while maintaining balance. Both S1 and S0 run onboard the robot, coupling task-directed motion generation with reactive whole-body control.",
+   "section": "H. Humanoid Loco-Manipulation"
+  },
+  {
+   "id": "S1973",
+   "page": 109,
+   "kind": "prose",
+   "text": "Our investigation shows that GR00T 2 Turbo achieves high success rates across four task settings that highlight complementary aspects of whole-body loco-manipulation: scooping and serving popcorn, which requires precise bimanual tool use while standing; clearing diverse objects from a table into bins, which requires long-horizon coordination of walking, reaching, grasping, and carrying; and floor-level tasks, such as wiping spills with the feet and picking up objects while squatting or kneeling, which require coordinated upper- and lower-body motion.",
+   "section": "H. Humanoid Loco-Manipulation"
+  },
+  {
+   "id": "S1974",
+   "page": 109,
+   "kind": "prose",
+   "text": "All post-training data for whole-body loco-manipulation comes from whole-body teleoperation, which is expensive to collect and hard to scale. We therefore augment it with a large amount of synthetic data from a real-to-sim pipeline: teleoperated pick-and-place motions are fitted to the S0 controller and rolled out in simulation, so the synthetic demonstrations share the action space of the real data. GR00T 2 Turbo makes better use of this simulated data than the GR00T 1.7 VLA baseline, especially on out-of-distribution tabletop pick-and-place: starting from the same 6.7% success with real data alone, co-training raises GR00T 2 Turbo to 63.3%, compared with 40.0% for GR00T 1.7 (Tab. 26).",
+   "section": "H. Humanoid Loco-Manipulation"
+  }
+ ]
+}

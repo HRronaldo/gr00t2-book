@@ -1,0 +1,325 @@
+{
+ "chunk_id": "chunk_25",
+ "sections": [
+  "F.5. Reinforcement Learning with Neural Simulation",
+  "G. Agentic GR00T 2",
+  "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+ ],
+ "pages": [
+  95,
+  101
+ ],
+ "chars": 17024,
+ "blocks": [
+  {
+   "id": "S1719",
+   "page": 95,
+   "kind": "prose",
+   "text": "Fig. 51(a) tracks DreamDojo rollout success and native RoboLab success at twelve policy checkpoints, including SFT. Native RoboLab success reaches 71% in evaluations of 100 episodes per policy. The separate final evaluation uses 5,000 episodes per policy and shows an increase from 51.32% to 70.88%. DreamDojo success is measured by the learned reward on training rollouts, whereas RoboLab evaluation uses native task outcomes. Because the sampling procedures and horizons differ, these curves track learning within each setting rather than measure simulator calibration.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1720",
+   "page": 95,
+   "kind": "prose",
+   "text": "Fig. 51(b) compares eleven matched collection budgets through 67,584 trajectories. The larger combined batch/group configuration has higher native RoboLab success at ten budgets, and its success rate is 11.1 percentage points higher on average across the eleven budgets. At the final budget, success is 71% versus 54%, a 17-point difference. At 24,576 trajectories, the rates are 68% and 47%, respectively.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1721",
+   "page": 95,
+   "kind": "prose",
+   "text": "These single-run results favor the larger combined recipe. They also differ in optimization and reset layout: at the final budget, the smaller recipe has made 528 optimizer updates and the larger one 176. Late continuation of the smaller recipe additionally removed a numerical lower log-ratio bound. These differences limit attribution to either size parameter, and one run per configuration does not establish stability across independent runs.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1722",
+   "page": 95,
+   "kind": "prose",
+   "text": "Policy Improvement on Real-World Tasks. We deploy fixed policies on peg insertion, test-tube insertion into a specified rack hole, bun placement on yellow and white cups, and nine-instruction hardware sorting. For",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "C068",
+   "page": 96,
+   "kind": "caption",
+   "text": "Figure 50: Joint RL on ten RoboLab tasks. Training GR00T 2 in DreamDojo increases mean task success from 51.32% to 70.88%, evaluated over 500 episodes per task and policy. Error bars denote 95% Wilson confidence intervals.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation",
+   "asset": "F050"
+  },
+  {
+   "id": "C069",
+   "page": 96,
+   "kind": "caption",
+   "text": "Figure 51: Policy improvement through neural simulation. (a) DreamDojo rollout success and native RoboLab success during RL. (b) Native RoboLab success at matched collection budgets for two batch/group configurations, reaching 71% and 54%. Each configuration has one training run. Batch and group sizes vary together.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation",
+   "asset": "F051"
+  },
+  {
+   "id": "S1781",
+   "page": 96,
+   "kind": "prose",
+   "text": "insertion tasks, success requires insertion into the requested hole followed by release. For bun placement, the bun must be released onto the requested cup. For hardware sorting, the requested object must be released into the specified tray. Outcomes use operator records and reconciled human-review labels where available. Each RL policy is compared with its SFT initialization. Hardware-sorting trials are included only when they are confirmed to use the same reference scene.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1782",
+   "page": 96,
+   "kind": "prose",
+   "text": "Fig. 52 compares four real-world tasks using 60 trials per policy and task. Peg insertion increases from 43.3% to 81.7%, and insertion into the specified rack hole from 51.7% to 73.3%. Bun placement increases from 63.3% to 76.7% on the yellow cup and from 11.7% to 55.0% on the white cup. The equally weighted four-task",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "C070",
+   "page": 97,
+   "kind": "caption",
+   "text": "Figure 52: Real-world policy improvement with DreamDojo. Top: two-legged peg insertion, test-tube insertion into the fifth rack hole, bun placement on yellow and white cups, and hardware sorting. Bottom: task success before and after RL, and the nine hardware-sorting instructions are trained jointly with one GR00T 2 policy. Error bars denote 95% Wilson confidence intervals.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation",
+   "asset": "F052"
+  },
+  {
+   "id": "S1829",
+   "page": 97,
+   "kind": "prose",
+   "text": "mean increases from 42.5% to 71.7%, a gain of 29.2 percentage points.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1830",
+   "page": 97,
+   "kind": "prose",
+   "text": "For hardware sorting, one GR00T 2 policy is trained jointly with RL on nine instructions, formed by pairing three target objects (black tube, gear hinge, and brass fitting) with three destination trays (Fig. 52). Averaging the nine instruction success rates equally, success increases from 51.2% to 70.4%, a gain of 19.2 percentage points.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1831",
+   "page": 97,
+   "kind": "prose",
+   "text": "Each hardware instruction has 70 or 71 SFT trials and 24 RL trials. The RL cohort includes four checkpointselection trials and 20 subsequent repeat-evaluation trials per instruction. SFT and RL were collected in separate batches using the same reference scene.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1832",
+   "page": 97,
+   "kind": "prose",
+   "text": "Discussion. These results demonstrate policy improvement using experience generated by a world model adapted to an initial policy’s rollouts. GR00T 2 learns in this environment and is evaluated in RoboLab and on real-world robots. The current pipeline still requires task-rollout collection and task-specific world-model adaptation. Reusing the learned environment across new tasks and repeating the full world-model and policy improvement cycle remain directions for future work.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1833",
+   "page": 97,
+   "kind": "prose",
+   "text": "Our experiments focus on individual manipulation skills that serve as building blocks for more complex robot behavior. These skills can be integrated into agentic execution (Sec. G.1), where high-level orchestration, progress monitoring, and recovery coordinate actions across longer task horizons. RL-based adaptation and agentic execution therefore provide complementary mechanisms for improving robot reliability, from finegrained physical interactions to long-horizon task completion.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1834",
+   "page": 97,
+   "kind": "prose",
+   "text": "Our longer-term goal is to develop scalable post-training methods that enable world-action models to improve consistently through real-world experience, extending their capabilities to increasingly challenging manipulation tasks.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "H54",
+   "page": 98,
+   "kind": "heading",
+   "text": "G. Agentic GR00T 2",
+   "section": "G. Agentic GR00T 2"
+  },
+  {
+   "id": "S1835",
+   "page": 98,
+   "kind": "prose",
+   "text": "Pretraining and post-training equip GR00T 2 with increasingly capable manipulation skills, but robust longhorizon execution requires more than a strong underlying policy. Complex tasks involve multiple stages, task-level decisions, and unexpected failures that are difficult to resolve through continuous policy execution alone. Language instructions can also leave important aspects of task intent underspecified, such as which object to manipulate or where to place it.",
+   "section": "G. Agentic GR00T 2"
+  },
+  {
+   "id": "S1836",
+   "page": 98,
+   "kind": "prose",
+   "text": "We explore two complementary approaches to agentic manipulation. First, agentic skill composition and recovery integrates GR00T 2 with CaP, enabling higher-level agents to compose manipulation skills, monitor execution, and recover from unexpected failures (Sec. G.1). Second, steerable world-action generation exposes GR00T 2’s learned capabilities through the WAM API, allowing agents to guide and compose robot behaviors using visual targets (Sec. G.2). Together, these approaches enable higher-level reasoning agents to leverage GR00T 2 for complex, long-horizon manipulation.",
+   "section": "G. Agentic GR00T 2"
+  },
+  {
+   "id": "H55",
+   "page": 98,
+   "kind": "heading",
+   "text": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1837",
+   "page": 98,
+   "kind": "prose",
+   "text": "Even after post-training, long-horizon manipulation remains vulnerable to compounding errors and unforeseen states (Ross et al., 2011). We introduce an agentic execution framework in which a frontier multimodal coding agent serves as System 2 (S2), composing GR00T 2 with CaP tools while monitoring task progress and recovering from failures. The agent verifies each intervention before resuming execution, without requiring GR00T 2 to learn every contingency.",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1838",
+   "page": 98,
+   "kind": "prose",
+   "text": "The same framework supports complementary execution strategies. In simulation, we use ASPIRE (Lu et al., 2026) to discover task-level programs that call GR00T 2 as a manipulation tool, and each task runs either its program or GR00T 2 alone as the default executor, whichever succeeds more often on development seeds. On physical robots, where GR00T 2 is already capable of handling most manipulation, it remains the default controller. In both settings, S2 provides monitoring and CaP-based recovery. The key distinction is what executes between interventions.",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1839",
+   "page": 98,
+   "kind": "prose",
+   "text": "Agentic Runtime Architecture. The runtime exposes GR00T 2 execution, robot observations, and CaP primitives through the Model Context Protocol (MCP). S2 uses these tools in an observe-reason-act-verify loop (Fig. 6).",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1840",
+   "page": 98,
+   "kind": "prose",
+   "text": "The wam_act tool executes GR00T 2 with a task prompt and returns execution feedback. The agent can access camera observations and robot state through dedicated observation tools and adjust GR00T 2’s language prompt during execution if needed. The stop_wam tool terminates GR00T 2 execution when a recovery action requires control. CaP action primitives issue end-effector and gripper commands through inverse kinematics and motion planning, while observation primitives use vision foundation models for information such as object localization and pose estimation. CaP programs compose these primitives into executable skills that can be added at test time without retraining GR00T 2. A single control worker coordinates actuation so that GR00T 2 and CaP do not issue conflicting robot commands.",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1841",
+   "page": 98,
+   "kind": "prose",
+   "text": "The agent receives an operating guide (AGENTS.md), skill documentation, and task context describing stages, success criteria, and known failure modes. It checks observations and tool feedback for stalled progress or errors, then invokes a recovery action when needed. Recovery may involve regrasping a dropped part, reorienting a component, or returning the robot to a valid configuration before execution resumes.",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1842",
+   "page": 98,
+   "kind": "prose",
+   "text": "Program and Skill Acquisition. ASPIRE learns the executable behaviors used alongside GR00T 2, but the scope differs by setting. In simulation, it discovers task-level CaP programs that compose GR00T 2 calls with perception, geometric reasoning, and manipulation primitives. During online execution, S2 may reuse or adapt code from these programs for recovery. On physical robots, ASPIRE instead acquires targeted CaP skills, either through direct robot interaction or through CaP sim-to-real transfer, in which skills are learned in simulation and adapted to real-world conditions (Sec. J.2.4).",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "C071",
+   "page": 99,
+   "kind": "caption",
+   "text": "Table 19: Comparison with the top seven entries of the RoboCasa365 and RoboDojo leaderboards, including agentic submissions. We report success rate (%) overall and per category. The RoboDojo average is the official mean over the five capability dimensions. Leaderboard numbers are as of November 6, 2026. Our RoboDojo results use layout bank 0, so the GR00T 2 SFT row differs slightly from the official three-bank evaluation of the same benchmark in Tab. 31 (35.5% average success). In the agentic rows, each task’s default executor is selected on development seeds of the same benchmark, disjoint from the test seeds. The best and second-best results are highlighted in bold and underline, respectively.",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy",
+   "asset": "T019"
+  },
+  {
+   "id": "S1845",
+   "page": 99,
+   "kind": "prose",
+   "text": "HexaShell 1.5 Agent 85.6 91.1 85.0 80.0 Awomo-0.5I (Awomo-WAM Team, 2026) WAM 64.4 86.5 58.8 45.2 minionx VLA 62.6 81.8 60.0 43.6 Awomo-0.5V (Awomo-WAM Team, 2026) WAM 62.5 85.0 60.4 39.4 Axiom-0 (Shu et al., 2026) VLA 61.6 86.5 59.4 35.8 Paimon-0 VLA 58.1 79.3 55.8 36.7 Xiaomi-Robotics-1 VLA 57.4 80.2 57.1 32.1",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1846",
+   "page": 99,
+   "kind": "prose",
+   "text": "GR00T 2 - SFT (Ours) WAM 67.2 87.4 73.6 38.2 GR00T 2 - SFT + RL (Ours) WAM 72.4 92.5 81.5 40.6 GR00T 2 - SFT + Agent (Ours) Agent + WAM 81.8 88.2 86.9 69.5 GR00T 2 - SFT + RL + Agent (Ours) Agent + WAM 88.0 95.6 92.0 75.5",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1849",
+   "page": 99,
+   "kind": "prose",
+   "text": "Q0-Preview Agent 68.9 58.7 58.5 58.5 93.7 75.0 GO-3 Nano Preview Agent + WAM 56.4 33.7 76.0 53.5 63.7 55.3 PyRUA-Lean Agent 50.4 43.2 38.3 43.8 68.3 58.3 HexaShell-Preview Agent 46.9 34.5 32.0 31.5 81.0 55.3 WorldScape-R2SI Agent + WAM 39.4 35.8 15.5 34.3 63.7 47.5 EmbodiedEvo Agent 39.0 30.8 16.3 21.8 76.7 49.3 WALL-OSS-1.0-lite VLA 35.0 37.9 29.1 32.3 56.0 19.6",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1850",
+   "page": 99,
+   "kind": "prose",
+   "text": "GR00T 2 - SFT (Ours) WAM 35.2 40.0 40.5 53.8 36.0 5.8 GR00T 2 - SFT + RL (Ours) WAM 40.8 45.0 53.7 55.0 39.3 11.0 GR00T 2 - SFT + Agent (Ours) Agent + WAM 72.3 64.0 62.5 62.3 93.7 79.2 GR00T 2 - SFT + RL + Agent (Ours) Agent + WAM 75.8 67.7 68.8 68.0 95.0 79.5",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1851",
+   "page": 99,
+   "kind": "prose",
+   "text": "Simulation Evaluation. We evaluate on RoboCasa365 (Nasiriany et al., 2026) and RoboDojo (Chen et al., 2026a) using four configurations: SFT, SFT + RL, SFT + Agent, and SFT + RL + Agent. For agentic execution, ASPIRE discovers programs using 15 development seeds per task. On 30 development seeds, including those 15, we then run each task’s program and GR00T 2 alone, and make whichever succeeds more often the task’s default executor, keeping the program on ties. With the SFT checkpoint, this selects GR00T 2 for 23 of the 50 RoboCasa365 tasks and 12 of the 54 RoboDojo task configurations. S2 starts every episode with the default executor, monitors it, and invokes online CaP recovery when needed. We test on 50 held-out seeds per task on both benchmarks (25 each for the standard and randomized variants of RoboDojo’s generalization tasks), disjoint from the development seeds.",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1852",
+   "page": 99,
+   "kind": "prose",
+   "text": "With SFT alone, GR00T 2 achieves the highest success rate of any non-agentic policy on both the RoboCasa365 and RoboDojo leaderboards (Sec. J.3 and Tab. 19). Memory- and reasoning-based tasks and high-precision manipulation still leave room for improvement.",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1853",
+   "page": 100,
+   "kind": "prose",
+   "text": "RL post-training with AutoRL (Sec. F.2) mainly improves precision, raising RoboDojo Precision success from 40.5% to 53.7%, and lifts average success from 67.2% to 72.4% on RoboCasa365 and from 35.2% to 40.8% on RoboDojo layout bank 0 (Tab. 19). Agentic execution helps most on memory- and reasoning-focused tasks: ASPIRE programs and S2 raise success on RoboCasa365 Composite-Unseen tasks from 38.2% to 69.5% and on RoboDojo Memory tasks from 36.0% to 93.7%. Overall, it brings average success to 81.8% on RoboCasa365 and 72.3% on RoboDojo, and combining it with RL gives the best results on both benchmarks. Compared with the top entries of both public leaderboards, including agentic submissions, SFT + RL + Agent ranks first on RoboCasa365 (88.0% vs. 85.6% for HexaShell 1.5) and on RoboDojo, where we evaluate layout bank 0 only (75.8% vs. 68.9% for Q0-Preview) (Tab. 19).",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "C072",
+   "page": 100,
+   "kind": "caption",
+   "text": "Table 20: Episode outcomes by whether S2 intervenes (SFT + Agent). Each cell gives the number of episodes and how many of them succeed, over all episodes of the SFT + Agent runs (2,093 on RoboDojo and 2,500 on RoboCasa365).",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy",
+   "asset": "T020"
+  },
+  {
+   "id": "S1856",
+   "page": 100,
+   "kind": "prose",
+   "text": "To characterize online recovery in the SFT + Agent setting, we split episodes by whether S2 intervened (Tab. 20). S2 rarely lets a failure through: of the episodes it leaves untouched, only 29 of 1,320 fail on RoboDojo and 20 of 1,512 on RoboCasa365. Of the episodes it intervenes in, 24% succeed on RoboDojo (188 of 773) and 56% on RoboCasa365 (553 of 988). Fig. 53 shows one rescue and one failed recovery.",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1857",
+   "page": 100,
+   "kind": "prose",
+   "text": "A manual review of failed SFT + Agent episodes on both benchmarks (Fig. 54) shows that most failures fall into two groups: the recovery requires manipulation too precise for S2 to perform with motion-planning tools (38% on RoboCasa365, 39% on RoboDojo), or the episode reaches a state that can no longer be recovered, such as an object on the floor or too little time left (24% and 38%). Most of the rest look complete but do not satisfy the benchmark’s success check.",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy",
+   "merged_ids": [
+    "S1858"
+   ]
+  },
+  {
+   "id": "S1859",
+   "page": 100,
+   "kind": "prose",
+   "text": "Real-World Long-Horizon Manipulation. We evaluate agentic execution with GR00T 2 as the default controller on multi-stage assembly and repeated precision insertion, examining how CaP recovery complements policy post-training.",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1860",
+   "page": 100,
+   "kind": "prose",
+   "text": "Multi-stage assembly. We consider Toy Plane, Toy Tractor, and Hot Wheels assembly (Fig. 55). To stress-test robustness, each episode begins by dumping parts onto the table, producing clutter and varied object poses. The robot must assemble the parts in order, use a toy drill, and recover from execution errors. We compare SFT, SFT + DAgger (Ross et al., 2011), and SFT + DAgger + Agent.",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1861",
+   "page": 100,
+   "kind": "prose",
+   "text": "The Toy Plane task assembles a fuselage, two wings, and two screws using a toy drill. It requires seating and fastening the bottom wing, turning the airplane over, and fastening the top wing, with bimanual handovers and accurate screw-hole alignment. Success requires both wings fastened and the drill set down. The Toy Tractor task mounts and fastens two small front wheels and two large rear wheels, turning the body over between sides and returning it upright at the end. The Hot Wheels task mounts the correct front and rear wheels and installs a correctly oriented hood, fastening the components with a drill.",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1862",
+   "page": 100,
+   "kind": "prose",
+   "text": "Fig. 7a reports the results. DAgger improves Toy Plane Assembly, Toy Tractor Assembly, and Hot Wheels Assembly success from 69%, 51%, and 23% to 84%, 71%, and 78%, respectively. Adding agentic execution further increases success to 98%, 97%, and 97%. This improvement reflects the ability of S2 to detect and repair local execution failures while preserving GR00T 2’s learned manipulation capabilities. Because every trial starts from parts dumped at random, these success rates measure robustness to unseen starting configurations and are not directly comparable with the post-training benchmark (Tab. 1a), whose trials start from arranged layouts. For Hot Wheels Assembly, for example, the benchmark reports 85% success from its fixed layout.",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1863",
+   "page": 100,
+   "kind": "prose",
+   "text": "Repeated precision insertion. We test five consecutive cable and charger insertions using the precision skills in",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "C073",
+   "page": 101,
+   "kind": "caption",
+   "text": "Figure 53: Online recovery on RoboCasa365 (SFT + Agent). Keyframes from two episodes. The bar below each row shows who controls the robot over the episode. (A) The ASPIRE program grabs the oven handle instead of the drawer handle. S2 stops it and grasps the drawer handle with CaP, and the drawer opens. (B) The program pulls the toast out of the toaster but it lands flat on top. S2 stops the program, its CaP grasp of the flat toast fails, and the hand-back to GR00T 2 runs out of time.",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy",
+   "asset": "F053"
+  },
+  {
+   "id": "S1864",
+   "page": 101,
+   "kind": "prose",
+   "text": "Sec. F.4, comparing SFT and RL-post-trained GR00T 2 within the same agentic system (Fig. 55).",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  }
+ ]
+}

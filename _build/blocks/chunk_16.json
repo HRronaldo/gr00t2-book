@@ -1,0 +1,115 @@
+{
+ "chunk_id": "chunk_16",
+ "sections": [
+  "C.4. Data Annotations",
+  "D. Real-World Benchmarking with GearArena",
+  "D.1. Why Aggregate Real-Robot Evaluations, and Why A/B"
+ ],
+ "pages": [
+  63,
+  66
+ ],
+ "chars": 6669,
+ "blocks": [
+  {
+   "id": "H34",
+   "page": 63,
+   "kind": "heading",
+   "text": "C.4. Data Annotations",
+   "section": "C.4. Data Annotations"
+  },
+  {
+   "id": "S1145",
+   "page": 63,
+   "kind": "prose",
+   "text": "We built Flora (Leng et al., 2026), the data engine that annotates training data for GR00T 2 models. Flora consists of three models: Flora-TempSeg localizes actions in time, Flora-Captioner describes each localized action, and Flora-Rewarder produces outcome, dense, and rubric-based rewards. They are trained on opensource, licensed, and in-house data, where human annotators provide dense timestamped captions and action-quality labels under detailed labeling guidelines. The same models label human egocentric video and robot recordings from parallel-gripper and dexterous-hand embodiments, with one or more synchronized camera views.",
+   "section": "C.4. Data Annotations"
+  },
+  {
+   "id": "S1146",
+   "page": 64,
+   "kind": "prose",
+   "text": "Timestamped captions. Given an episode video, Flora outputs a set of time intervals, each paired with a caption of the action performed in it. Flora-TempSeg runs on overlapping windows and predicts the start and end time of each action in a window, together with flags that mark actions continuing past the window edges. These predictions are mapped to episode time and stitched into episode-level intervals, while concurrent actions, such as two hands doing different things, remain separate intervals. Flora-Captioner then captions each interval independently. In addition to the frames of the interval, it sees frames from the neighboring actions before and after it, which help resolve object identity and intent, while the caption describes only the target interval. Synchronized camera views are tiled into one image per time step. Each caption is a self-contained imperative instruction that names the intended action, the objects, the role of each hand or arm, and relevant spatial relations, for example “hold tea leaves with right hand, pass tea leaves to left hand”. Failed attempts are captioned with their intended goal, without implying success. Both models are first fine-tuned on human-annotated captions and then trained with GRPO (Shao et al., 2024) on verifiable rewards: temporal F1 and boundary accuracy for Flora-TempSeg, and reference-grounded coverage of caption requirements with a penalty for factual errors for Flora-Captioner.",
+   "section": "C.4. Data Annotations"
+  },
+  {
+   "id": "S1147",
+   "page": 64,
+   "kind": "prose",
+   "text": "Quality and cost. On WGO-Bench (Macrodata Labs, 2026), Flora achieves the best temporal segmentation F1 of all evaluated models, 50.3 versus 46.0 for the next-best model, GPT-6 Astra (OpenAI, 2026). On our 300-episode in-house captioning benchmark, it leads all models on human episodes and ranks second to Astra on robot episodes.",
+   "section": "C.4. Data Annotations"
+  },
+  {
+   "id": "S1148",
+   "page": 64,
+   "kind": "prose",
+   "text": "Annotating GR00T 2 data. For GR00T 2, Flora turns raw episodes into training-ready supervision. These instructions provide fine-grained language conditioning for pretraining. At the production rate above, relabeling the roughly 400k hours of Human-1M data used by GR00T 2 takes about two days.",
+   "section": "C.4. Data Annotations"
+  },
+  {
+   "id": "H35",
+   "page": 65,
+   "kind": "heading",
+   "text": "D. Real-World Benchmarking with GearArena",
+   "section": "D. Real-World Benchmarking with GearArena"
+  },
+  {
+   "id": "S1149",
+   "page": 65,
+   "kind": "prose",
+   "text": "This appendix describes how we benchmark GR00T 2 on real robots: why we aggregate real-robot evaluations into a single leaderboard and why that leaderboard is built from blinded A/B comparisons (Sec. D.1), how the evaluation tasks are designed (Sec. D.2), how the arena is organized (Sec. D.3), the rating model (Sec. D.4), the A/B evaluation infrastructure (Sec. D.5), what the arena shows about GR00T 2 (Sec. D.6), and its limitations (Sec. D.7). Tab. 12 summarizes the evidence behind every number in this appendix.",
+   "section": "D. Real-World Benchmarking with GearArena"
+  },
+  {
+   "id": "C045",
+   "page": 65,
+   "kind": "caption",
+   "text": "Table 12: GearArena at a glance (snapshot of November 6, 2026, 12:28 PT). A campaign is one A/B evaluation request, a trial runs every arm once on the same scene, a rollout is one graded robot episode, and a match is one pairwise comparison inside a trial. The three suites are separate leagues whose ratings are not comparable with each other. Five YAM campaigns ran tasks of both YAM suites and are counted in both columns, so the two YAM suites hold 195 distinct campaigns. †Dex records list stations by service identifier and do not record the operator.",
+   "section": "D. Real-World Benchmarking with GearArena",
+   "asset": "T012"
+  },
+  {
+   "id": "S1152",
+   "page": 65,
+   "kind": "prose",
+   "text": "Graded trials 2,167 3,403 721 Graded rollouts 6,373 9,671 2,146 Pairwise matches (ties) 5,732 (30%) 6,035 (35%) 1,492 (33%) Tasks with matches 16 74 names (38 tasks) 56 Evidence window Jul 15 – Nov 6 Sep 21 – Nov 6 Sep 29 – Oct 29",
+   "section": "D. Real-World Benchmarking with GearArena"
+  },
+  {
+   "id": "H36",
+   "page": 65,
+   "kind": "heading",
+   "text": "D.1. Why Aggregate Real-Robot Evaluations, and Why A/B",
+   "section": "D.1. Why Aggregate Real-Robot Evaluations, and Why A/B"
+  },
+  {
+   "id": "S1153",
+   "page": 65,
+   "kind": "prose",
+   "text": "Real-robot evaluations are expensive but cumulative. A real-robot evaluation costs robot time, an operator, a staged scene, and grading. Each one answers a narrow question, but over months the evaluations of a project add up to far more evidence than any single study could afford. The question is whether that evidence can be pooled: a model trained in October should be comparable with one trained in July, even though they were never run side by side.",
+   "section": "D.1. Why Aggregate Real-Robot Evaluations, and Why A/B"
+  },
+  {
+   "id": "S1154",
+   "page": 65,
+   "kind": "prose",
+   "text": "Absolute scores drift. Success rate and rubric score are not stable across evaluation sessions. They depend on the station (arm calibration, cameras, lighting, wear), on the operator (how a scene is staged and how borderline outcomes are graded), and on the day. Two checkpoints evaluated in different sessions therefore differ by their skill and by the drift between the sessions, and the two cannot be separated after the fact. The arena makes this concrete: it can also construct derived comparisons from independent evaluations of two checkpoints on the same task within 45 days, but because those comparisons cross sessions, it down-weights them to at most a quarter of a blinded comparison and excludes them from the default leaderboard.",
+   "section": "D.1. Why Aggregate Real-Robot Evaluations, and Why A/B"
+  },
+  {
+   "id": "S1155",
+   "page": 65,
+   "kind": "prose",
+   "text": "A/B comparisons cancel the drift. In a blinded A/B trial, two to four checkpoints run in randomized order on the same staged scene, on the same station, by the same operator, within minutes, and the operator does not know which checkpoint is which (Sec. D.5). Whatever the session does to one checkpoint it does to the others, so the comparison is free of the drift that corrupts the absolute score. Pairwise outcomes from many such trials can then be fit jointly into one rating scale (Sec. D.4), in the same way that Chatbot Arena ranks language models from pairwise human preferences (Chiang et al., 2024). Three differences from that setting shape our design. Robot checkpoints are frozen, so all history can be pooled in one batch fit rather than updated sequentially. The comparisons from one trial share a scene and are correlated, so uncertainty must be estimated at the level of scenes. Each checkpoint has tens to hundreds of comparisons rather than thousands, so confidence intervals are essential.",
+   "section": "D.1. Why Aggregate Real-Robot Evaluations, and Why A/B"
+  },
+  {
+   "id": "C046",
+   "page": 66,
+   "kind": "caption",
+   "text": "Figure 34: Gauging the current suite. Mean rubric score (bars) and full-credit rate (dots) per task over all graded A/B rollouts on YAM V2, grouped by sub-suite and ordered by task code (M05* is a variant of M05 with 20 rollouts). No task is near the ceiling, and six sit in the shelving zone, where nearly every rollout fails.",
+   "section": "D.1. Why Aggregate Real-Robot Evaluations, and Why A/B",
+   "asset": "F034"
+  }
+ ]
+}

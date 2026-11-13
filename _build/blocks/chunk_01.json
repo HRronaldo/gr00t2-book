@@ -1,0 +1,88 @@
+{
+ "chunk_id": "chunk_01",
+ "sections": [
+  "1. Introduction",
+  "GR00T 2"
+ ],
+ "pages": [
+  3,
+  5
+ ],
+ "chars": 8103,
+ "blocks": [
+  {
+   "id": "H02",
+   "page": 3,
+   "kind": "heading",
+   "text": "1. Introduction",
+   "section": "1. Introduction"
+  },
+  {
+   "id": "S021",
+   "page": 3,
+   "kind": "prose",
+   "text": "Building general-purpose robots requires models that can acquire diverse physical skills, generalize across tasks and embodiments, and adapt efficiently to new environments and objectives. Recent advances in vision-language-action (VLA) models have demonstrated the potential of large-scale pretraining for robotic manipulation. However, scaling robot intelligence involves challenges beyond learning from increasingly large demonstration datasets. A general-purpose robot foundation model must learn from heterogeneous sources of physical experience, acquire new capabilities with limited task-specific supervision, improve through interaction, and support reliable, responsive execution in complex robotic systems. Furthermore, as robots become increasingly autonomous, their learned physical capabilities must be accessible to higher-level reasoning and planning systems. Meeting these requirements calls for models that capture not only how robots act, but also how their actions change the physical world.",
+   "section": "1. Introduction"
+  },
+  {
+   "id": "S022",
+   "page": 3,
+   "kind": "prose",
+   "text": "We introduce GR00T 2, a new generation of foundation world-action models (WAMs). GR00T 2 jointly predicts future visual observations and embodied actions, learning how physical interactions unfold alongside the actions that produce them. Through large-scale pretraining on diverse human and robot experience, GR00T 2 develops general-purpose manipulation capabilities across both parallel-gripper robots and dexterous hands. We demonstrate four major advances. First, GR00T 2 delivers strong out-of-the-box performance across diverse manipulation tasks and embodiments. Second, its pretrained capabilities enable rapid adaptation to challenging new tasks from remarkably few demonstrations, while reinforcement learning (RL) further improves manipulation reliability through real-world interaction. Third, GR00T 2 enables x-adaptation (cross adaptation), allowing physical knowledge acquired from one embodiment to be transferred to another through joint prediction of future observations and actions. Finally, GR00T 2 supports agentic control through two complementary capabilities: skill composition and recovery with code-as-policy (CaP), enabling higher-level agents to orchestrate manipulation and recover from execution failures, and steerable world-action generation through a WAM API, allowing agents to guide and compose robot behaviors using visual targets.",
+   "section": "1. Introduction"
+  },
+  {
+   "id": "S023",
+   "page": 3,
+   "kind": "prose",
+   "text": "Emergence of X-Adaptability. A central innovation of GR00T 2 is its cross-adaptation (x-adapt) capability, which allows the model to generalize to task-scene-embodiment combinations unseen during training. Consider a manipulation task observed only in human demonstrations and a robot embodiment represented by data from an entirely different set of tasks. Through joint world-action pretraining, GR00T 2 learns to imagine how the task would unfold when performed by the target robot and to generate actions corresponding to that imagined interaction. This creates a mechanism for transferring physical knowledge across heterogeneous sources of experience, including UMI demonstrations, dexterous UMI data, human hand interactions, and robot embodiments with substantially different kinematics. We explore this capability through cross-embodiment transfer experiments and a zero-teleoperation dexterous learning system, demonstrating the potential to acquire robot skills directly from human experience without collecting task-specific robot demonstrations. More broadly, cross-embodiment imagination points toward a new scaling property of robot foundation models: physical behaviors learned during pretraining can become executable capabilities across embodiments.",
+   "section": "1. Introduction"
+  },
+  {
+   "id": "S024",
+   "page": 3,
+   "kind": "prose",
+   "text": "Fast Adaptation and Agentic Control. GR00T 2 advances the capabilities of pretrained robot policies across generalization, dexterity, and adaptation. A diverse pretraining mixture equips the model with a broad repertoire of physical behaviors, enabling strong out-of-the-box performance and rapid acquisition of challenging new skills from few demonstrations. We further extend these capabilities through RL to improve manipulation reliability and efficient inference for responsive, closed-loop control. Building on these learned skills, we integrate GR00T 2 with higher-level reasoning agents that use CaP to compose manipulation skills, monitor execution, and recover from unexpected failures, bringing GR00T 2 closer to deployment-level reliability on challenging long-horizon manipulation tasks. Beyond skill composition and recovery, GR00T 2’s joint world-action representation provides a natural interface for steering robot behavior through desired visual outcomes and intermediate future states. We develop a WAM API that exposes this capability to higher-level agents, allowing them to guide and compose robot behaviors through visual targets. Together, these capabilities",
+   "section": "1. Introduction"
+  },
+  {
+   "id": "C001",
+   "page": 4,
+   "kind": "caption",
+   "text": "Figure 1: We introduce GR00T 2, a world-action model for general-purpose robots. Top: GR00T 2 pretrains on human and robot data. Second row: given a language goal, multi-view video from the egocentric and both wrist cameras, and the robot state, GR00T 2 jointly predicts multi-view future video and robot actions. Third row: with X-Adapt, GR00T 2 learns a new robot skill from sensorized human demonstrations (Human →Dexter, a Tianji robot with Sharpa hands), from handheld and wearable capture devices (UMI →YAM, DexUMI →XHAND, and DexUMI →Dexter), and through simulation, either from a single human video (Human video →Dexter) or by replaying teleoperated G1 motions across varied simulated scenes (G1 real →sim →real). Bottom: RL post-training on real robots and in a world model improves GR00T 2 beyond its demonstrations (left), a frontier agent runs and steers GR00T 2 (center), and GR00T 2 Turbo directs the SONIC whole-body controller for humanoid loco-manipulation (right).",
+   "section": "GR00T 2",
+   "asset": "F001"
+  },
+  {
+   "id": "S053",
+   "page": 4,
+   "kind": "prose",
+   "text": "create a path toward agentic robotic systems in which high-level reasoning and planning can directly leverage the physical intelligence acquired through world-action pretraining.",
+   "section": "GR00T 2"
+  },
+  {
+   "id": "S054",
+   "page": 4,
+   "kind": "prose",
+   "text": "GR00T 2 Turbo: Token-Efficient World Modeling. We also introduce GR00T 2 Turbo, a lightweight variant of GR00T 2 designed for efficient world-action modeling. Joint video-action prediction enables actions to benefit from learned visual dynamics, but processing video tokens can be costly, particularly for multi-view, low-latency control. GR00T 2 Turbo addresses this cost with a more compact video representation while retaining the joint world-action modeling framework. This design enables faster training and inference, making GR00T 2 Turbo well suited for whole-body control while remaining well above the baselines on bimanual and dexterous manipulation tasks.",
+   "section": "GR00T 2",
+   "merged_ids": [
+    "S055"
+   ]
+  },
+  {
+   "id": "S056",
+   "page": 5,
+   "kind": "prose",
+   "text": "Realizing these advances requires innovations throughout the robot learning stack. We first describe the GR00T 2 architecture and pretraining framework, including Human-1M, our large-scale corpus of embodied human experience (Sec. 4.2.1), and the data processing and training infrastructure that support learning from heterogeneous sources. We then investigate cross-embodiment transfer and introduce a dexterous human-torobot learning system that combines motion retargeting, visual alignment, and world-action modeling. Beyond pretraining, we develop reinforcement learning methods for improving manipulation through interaction and a steerable WAM API that enables agentic planning and guided execution.",
+   "section": "GR00T 2"
+  },
+  {
+   "id": "S057",
+   "page": 5,
+   "kind": "prose",
+   "text": "We evaluate GR00T 2 across a broad suite of simulated and real-world manipulation tasks, spanning generalpurpose policy performance, few-shot adaptation, cross-embodiment transfer, dexterous manipulation, and whole-body humanoid control. Our results demonstrate the versatility of world-action pretraining as a foundation for acquiring and transferring physical skills, and highlight the complementary roles of large-scale pretraining, interactive post-training, and system-level integration. Together, GR00T 2 represents a step toward general-purpose robot foundation models whose physical knowledge can be transferred across embodiments, efficiently adapted to new tasks, and directly accessed and directed by intelligent agents.",
+   "section": "GR00T 2"
+  }
+ ]
+}

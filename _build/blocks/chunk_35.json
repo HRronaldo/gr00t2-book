@@ -1,0 +1,185 @@
+{
+ "chunk_id": "chunk_35",
+ "sections": [
+  "K.5. Inference Infrastructure",
+  "K.6. Scalable Multi-Modal Data Processing"
+ ],
+ "pages": [
+  132,
+  135
+ ],
+ "chars": 7868,
+ "blocks": [
+  {
+   "id": "H75",
+   "page": 132,
+   "kind": "heading",
+   "text": "K.5. Inference Infrastructure",
+   "section": "K.5. Inference Infrastructure"
+  },
+  {
+   "id": "S2306",
+   "page": 132,
+   "kind": "prose",
+   "text": "We use a client-server architecture to deploy GR00T 2 across embodiments and execution backends. The server handles policy inference, while robot clients connect it to embodiment-specific sensing and control.",
+   "section": "K.5. Inference Infrastructure"
+  },
+  {
+   "id": "S2307",
+   "page": 133,
+   "kind": "prose",
+   "text": "K.5.1. Policy Serving",
+   "section": "K.5. Inference Infrastructure"
+  },
+  {
+   "id": "S2308",
+   "page": 133,
+   "kind": "prose",
+   "text": "The robot client sends camera history, robot state, and task instructions through a shared request-reply interface. The server prepares inputs for the loaded model and returns predicted action chunks, which the client maps to the robot’s command format. Checkpoint configuration specifies the required history and embodiment-specific input and action representations. The interface supports PyTorch and optimized runtimes, with client and server running on the same host or separate hosts.",
+   "section": "K.5. Inference Infrastructure"
+  },
+  {
+   "id": "S2309",
+   "page": 133,
+   "kind": "prose",
+   "text": "For streaming or prefetched observations, the server verifies that prepared visual inputs match the camera history in the prediction request.",
+   "section": "K.5. Inference Infrastructure"
+  },
+  {
+   "id": "S2310",
+   "page": 133,
+   "kind": "prose",
+   "text": "K.5.2. Compatibility and Readiness",
+   "section": "K.5. Inference Infrastructure"
+  },
+  {
+   "id": "S2311",
+   "page": 133,
+   "kind": "prose",
+   "text": "Compiled runtime artifacts are specific to the checkpoint and execution environment. The server checks checkpoint identity, input shapes, numerical precision, software versions, and GPU target before use, rejecting incompatible artifacts. Backends that require warmup initialize execution with a representative observation from the client. Readiness indicates that the required checks and initialization have completed.",
+   "section": "K.5. Inference Infrastructure"
+  },
+  {
+   "id": "S2312",
+   "page": 133,
+   "kind": "prose",
+   "text": "On devices with limited GPU memory, the server can offload text-encoder weights to CPU memory, leaving more accelerator memory for policy execution.",
+   "section": "K.5. Inference Infrastructure"
+  },
+  {
+   "id": "S2313",
+   "page": 133,
+   "kind": "prose",
+   "text": "K.5.3. Action Delivery",
+   "section": "K.5. Inference Infrastructure"
+  },
+  {
+   "id": "S2314",
+   "page": 133,
+   "kind": "prose",
+   "text": "The client buffers action chunks and schedules commands at the controller’s execution rate. With asynchronous prediction enabled, it requests the next chunk while the controller executes the current one. Clients using timestamped waypoints discard expired targets before sending commands to the controller. Inference acceleration and policy-quality validation are described in Sec. I.1. RTC and action-timing methods are described in Sec. I.2 and I.3.",
+   "section": "K.5. Inference Infrastructure"
+  },
+  {
+   "id": "H76",
+   "page": 133,
+   "kind": "heading",
+   "text": "K.6. Scalable Multi-Modal Data Processing",
+   "section": "K.6. Scalable Multi-Modal Data Processing"
+  },
+  {
+   "id": "S2315",
+   "page": 133,
+   "kind": "prose",
+   "text": "Scaling GR00T 2 across tasks and environments requires turning increasingly large and diverse collections of human demonstrations into training-ready data. Our infrastructure processes petabyte-scale monthly input volumes, with individual production jobs using nearly 10,000 vCPUs. At this scale, preparation must sustain both massive data movement and heterogeneous computation: multi-camera video must be retrieved, decoded, and resized. Motion records must be transformed and, where needed, retargeted to the training hand representation, and observations, actions, and annotations must be aligned in time. Recording duration, resolution, encoding, and retargeting requirements vary across sources, so equal numbers of episodes can impose very different I/O and compute demands. The output is a consistent set of indexed multimodal episodes, packaged into training-ready shards (Fig. 69).",
+   "section": "K.6. Scalable Multi-Modal Data Processing"
+  },
+  {
+   "id": "S2316",
+   "page": 133,
+   "kind": "prose",
+   "text": "The central challenge is that these conversions share data and compete for limited working storage. A long video can contain many episodes, while one episode can depend on several camera files and separately stored motion records. Staging a shared file once avoids repeated downloads, but its slowest consumer determines when that storage can be reclaimed. A slow conversion or output upload can therefore retain local files, block retrieval of unrelated inputs, and leave compute workers idle. Interruptions compound the problem by adding repeated transfers and expensive recomputation. Sustained throughput requires coordinating data lifetime with execution progress across the entire pipeline.",
+   "section": "K.6. Scalable Multi-Modal Data Processing"
+  },
+  {
+   "id": "S2317",
+   "page": 133,
+   "kind": "prose",
+   "text": "The ingestion pipeline coordinates execution with the lifetime of its shared inputs: new work is admitted according to committed storage, dispatched where its inputs reside, and releases capacity only after its outputs are safely uploaded. Active files move directly from object storage to processing nodes, allowing conversion to begin before the entire selected collection has been retrieved. This removes intermediate staging on a shared filesystem while making input placement, retention, and reconstruction explicit responsibilities. Fig. 70 shows the mechanisms supporting this lifecycle.",
+   "section": "K.6. Scalable Multi-Modal Data Processing"
+  },
+  {
+   "id": "C104",
+   "page": 134,
+   "kind": "caption",
+   "text": "Figure 69: Transformation of human demonstration recordings into aligned multimodal episodes and training-ready dataset shards.",
+   "section": "K.6. Scalable Multi-Modal Data Processing",
+   "asset": "F069"
+  },
+  {
+   "id": "S2318",
+   "page": 134,
+   "kind": "prose",
+   "text": "Admit and place work (Fig. 70, panels B and C). Equal episode counts can imply very different file footprints and sharing patterns, so task limits alone cannot control storage demand. Before downloading an input group, admission accounts for resident files, pending transfers, and output headroom against the node’s budget. Required inputs must be ready before episode dispatch, and consumers execute on the node holding those inputs. Separate Ray worker pools (Moritz et al., 2018) give loading, conversion, and publication independent concurrency. Bounded queues limit outstanding work while storage admission limits the capacity committed to it.",
+   "section": "K.6. Scalable Multi-Modal Data Processing"
+  },
+  {
+   "id": "S2319",
+   "page": 134,
+   "kind": "prose",
+   "text": "Retain inputs through completion, then release capacity (Fig. 70, panels A to C). A downloaded video may serve several episodes, including consumers still waiting for execution. The loader establishes their claims before handing off work, protecting shared inputs across queueing, conversion, and upload. An episode releases its claims only after its intermediate results have been uploaded and temporary outputs cleaned up, while other consumers continue to protect the same files. Once the last claim is released, cleanup can reclaim those files and make room for the next input group. Consumer completion thus governs admission of subsequent inputs. Retrieval, conversion, and shard publication advance asynchronously around this dependency: they overlap across workers without allowing prefetch to grow independently of the storage that unfinished consumers still hold.",
+   "section": "K.6. Scalable Multi-Modal Data Processing"
+  },
+  {
+   "id": "S2320",
+   "page": 134,
+   "kind": "prose",
+   "text": "Recover within the same capacity budget (Fig. 70, panel D). Recovery preserves this connection between execution and storage. Stopped attempts release obsolete claims, while lost inputs are reconstructed on an available node through the same admission path before affected episodes retry. Durable conversion-group and publication checkpoints separately identify completed results that job resumption can reuse. Input release after upload and cleanup, and checkpoint-based reuse after restart, are distinct boundaries: an uploaded artifact without recorded completion may still require repeated processing. These rules keep retries within the working-storage budget while preserving reusable progress.",
+   "section": "K.6. Scalable Multi-Modal Data Processing"
+  },
+  {
+   "id": "S2321",
+   "page": 134,
+   "kind": "prose",
+   "text": "This coordination of shared-input lifetime, admission, and recovery complements prior work on video analysis, multimodal processing, and prefetching (Poms et al., 2018; Chen et al., 2025; Luan et al., 2026; Dryden et al., 2021).",
+   "section": "K.6. Scalable Multi-Modal Data Processing"
+  },
+  {
+   "id": "S2322",
+   "page": 134,
+   "kind": "prose",
+   "text": "Production evaluation. Tab. 36 summarizes throughput and resource use across three production jobs and recovery across five interrupted jobs. Each job uses 100 nodes with 96 vCPUs and 768 GiB of memory per node. The throughput workload covers 1.30 million episodes and about 18,700 demonstration-hours, with three camera views per episode.",
+   "section": "K.6. Scalable Multi-Modal Data Processing"
+  },
+  {
+   "id": "S2323",
+   "page": 134,
+   "kind": "prose",
+   "text": "Completed-conversion time efficiency is the share of completed conversion time spent on work that did not need to be repeated after interruption.",
+   "section": "K.6. Scalable Multi-Modal Data Processing"
+  },
+  {
+   "id": "C105",
+   "page": 135,
+   "kind": "caption",
+   "text": "Figure 70: Multimodal data ingestion: (A) asynchronous overlap, (B) processing stages and the feedback from input release to admission, (C) storage tiers, and (D) recovery. Numbers identify shards, and timings are illustrative. Compute/upload overlap occurs across workers.",
+   "section": "K.6. Scalable Multi-Modal Data Processing",
+   "asset": "F070"
+  },
+  {
+   "id": "C106",
+   "page": 135,
+   "kind": "caption",
+   "text": "Table 36: Production evaluation of the data ingestion system. Ranges span jobs. Memory and disk use are per-node means.",
+   "section": "K.6. Scalable Multi-Modal Data Processing",
+   "asset": "T036"
+  },
+  {
+   "id": "S2326",
+   "page": 135,
+   "kind": "prose",
+   "text": "Published demonstration duration per job ∼6,240 h Execution time per job 8.0–8.6 h End-to-end throughput 722–780 demonstration-hours/h Time to first training-ready shard ≤28 min Mean worker assignment at 10–80% conversion completion",
+   "section": "K.6. Scalable Multi-Modal Data Processing"
+  }
+ ]
+}

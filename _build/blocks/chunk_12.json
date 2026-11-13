@@ -1,0 +1,193 @@
+{
+ "chunk_id": "chunk_12",
+ "sections": [
+  "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training",
+  "B.4. DexUMI →Tianji + Sharpa"
+ ],
+ "pages": [
+  50,
+  53
+ ],
+ "chars": 11059,
+ "blocks": [
+  {
+   "id": "H27",
+   "page": 50,
+   "kind": "heading",
+   "text": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training",
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "S964",
+   "page": 50,
+   "kind": "prose",
+   "text": "DexUMI (Xu et al., 2025) extends UMI from parallel grippers to five-fingered hands. We use the GEAR DexUMI exoskeleton (NVIDIA GEAR Team, 2026), which replicates the kinematics, contact surfaces, and camera mount of the XHAND1 Pro-U robot hand, so that every recorded finger joint, fingertip force, and camera view has a robot counterpart. Unlike the original DexUMI, which sensed force with force-sensitive resistors and removed the exoskeleton from video with SAM2 and ProPainter, GEAR DexUMI maps its 16 degrees of freedom one-toone onto the robot’s joints (Sec. E.4), measures three-axis fingertip force in the robot hand’s own tactile format, and leaves the video unedited (Sec. E.6). DexUMI provides post-training data for complex, long-horizon, and dynamic dexterous tasks, which GR00T 2 learns with compliance labels derived from fingertip force (Eqs. (1) and (3)).",
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "S965",
+   "page": 50,
+   "kind": "prose",
+   "text": "Because the exoskeleton replicates the robot hand, we post-train GR00T 2 from the GR00T 2 pretraining checkpoint (Sec. E.5) on DexUMI demonstrations alone, without robot play data, and evaluate it on three bimanual tasks on a Tianji robot with two 7-DoF arms and two XHAND1 Pro-U hands (Fig. 30). Prepare Banana Yogurt and Scoop Granola are the two halves of a long make-breakfast task. One policy learns both, and each half is evaluated separately. Fire Chemistry is a short, dynamic tool task: the robot strikes a match, lights a lamp under a flask with it, and puts the match out in water. Each task is scored by subtask:",
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "S966",
+   "page": 50,
+   "kind": "prose",
+   "text": "• Prepare Banana Yogurt: (1) place a banana on the cutting board, (2) draw a knife from the knife block, slice the banana, set the knife down, and lift the lid off a bowl of yogurt, (3) drop the banana pieces into the bowl and move the bowl onto the board in the center of the table. • Scoop Granola: (1) pick up the granola jar, pass it to the other hand, and unscrew its lid, (2) grab a spatula and scoop granola from the jar into the bowl, (3) pass the jar back and set it down on the table. • Fire Chemistry: (1) pull a long match from its holder, pick up the matchbox with the other hand, and strike the match on it, (2) light the lamp with the match and put the match out in a cup of water.",
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "S967",
+   "page": 50,
+   "kind": "prose",
+   "text": "The tasks combine tool use (a knife, a spatula, and a match), hand-to-hand transfers, contact-rich twisting to unscrew a lid, and a fast strike that must ignite the match.",
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "S968",
+   "page": 50,
+   "kind": "prose",
+   "text": "Baselines and evaluation. We compare GR00T 2 with two vision-language-action models, GR00T 1.7 and 𝜋0.5 (Physical Intelligence et al., 2025). Each starts from its own pretrained model and is post-trained on DexUMI demonstrations of the same tasks with GR00T 2’s data recipe: the same action space, normalization, and prompts. We report the fraction of trials that reach the end of each subtask and the fraction that completes the whole task (Tab. 5).",
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "C035",
+   "page": 51,
+   "kind": "caption",
+   "text": "Figure 30: DexUMI tasks. Each block shows one task with six keyframes, numbered by subtask as in Tab. 5: a person demonstrating the task with the DexUMI exoskeletons (top) and a GR00T 2 rollout on a Tianji robot with XHAND1 Pro-U hands (bottom). Prepare Banana Yogurt and Scoop Granola are the two halves of one continuous make-breakfast demonstration and rollout, and every task is demonstrated only with DexUMI.",
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training",
+   "asset": "F030"
+  },
+  {
+   "id": "S969",
+   "page": 52,
+   "kind": "prose",
+   "text": "GR00T 2 performs all three tasks from DexUMI demonstrations alone: it completes Prepare Banana Yogurt, Scoop Granola, and Fire Chemistry in 60%, 80%, and 75% of trials, whereas GR00T 1.7 and 𝜋0.5 complete no trial of any task.",
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "S970",
+   "page": 52,
+   "kind": "prose",
+   "text": "While DexUMI captures detailed data of human manipulation motion, using position label alone is not sufficient to describe the human manipulation strategy. Two more pieces of information are required: the force being applied, and the compliance profile being used. Force encourages forming and maintaining the desired contact modes, while a suitable compliance profile make the manipulation robust against positional uncertainties and even disturbance forces. We adopt the Adaptive Compliance Policy (ACP) (Hou et al., 2025) to give our policy the ability to reason about force and compliance: the DexUMI collected force/motion data are converted offline to stiffness and virtual target labels used to augment the policy action vector. In GR00T 2, we adapt the original ACP formulation for dexterous hands:",
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "S971",
+   "page": 52,
+   "kind": "prose",
+   "text": "Joint space action formulation. The original ACP assumes Cartesian pose as the robot’s action, and works the best when the robot has six or more degrees-of-freedoms (DOFs). For dexterous hands with typically three to five joints per finger, the Cartesian space ACP formulation could produce actions that the hand cannot execute. Instead, we define the ACP action in joint space, including position target, virtual target and stiffness.",
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "S972",
+   "page": 52,
+   "kind": "prose",
+   "text": "Joint torque as the unified hand force representation. Different hand or DexUMI hardware may use different force sensing solutions, such as joint torque sensor, force-torque sensor, or tactile sensors. To work with our joint space action, we choose joint torque as the unified force representation for dexterous hands, and project the Cartesian space force measurements, if any, back to the joint space. In the case of the XHAND1 Pro-U, force 𝑓𝑖,𝑡is estimated for each finger 𝑖from the fingertip tactile sensors, with exponential moving average and a 0.1N cutoff. The fingertip force is then projected onto the actuated joints through the robot hand’s Jacobians, where 𝑞𝑡denotes the finger joint configuration, 𝐵maps the actuated joints to the full configuration. We augment the policy action space with the predicted finger joint torque.",
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training",
+   "merged_ids": [
+    "S976"
+   ]
+  },
+  {
+   "id": "S977",
+   "page": 52,
+   "kind": "prose",
+   "text": "Stiffness and virtual targets. Following ACP, we scale the time-varying per joint stiffness value based on the joint torque magnitude:",
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "E001",
+   "page": 52,
+   "kind": "equation",
+   "text": "𝐾eff = 𝑠acp 𝑘𝑝, (2)",
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training",
+   "crop": "assets/equations/E001.png"
+  },
+  {
+   "id": "S978",
+   "page": 52,
+   "kind": "prose",
+   "text": "where 𝑘𝑝is the default position gain of the joint, 𝑠acp is the adaptive factor that falls linearly from 1.0 to 𝑠min = 0.3 as joint torque 𝜏𝑡rises from 0.1 to 0.4 N m, softening the hand under load. The intuition is that large force can only come from rigid contacts, for which the robot needs to exhibit more compliance. With the policy predicting both position and force, the stiffness 2 is computed online, then used to update the position set point. This is the virtual target 𝑎𝑡in ACP:",
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "S985",
+   "page": 52,
+   "kind": "prose",
+   "text": "The hand can achieve the predicted force when tracking the virtual target with the computed stiffness 𝐾eff.",
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "H28",
+   "page": 52,
+   "kind": "heading",
+   "text": "B.4. DexUMI →Tianji + Sharpa",
+   "section": "B.4. DexUMI →Tianji + Sharpa"
+  },
+  {
+   "id": "S986",
+   "page": 52,
+   "kind": "prose",
+   "text": "GR00T 2 can also learn a task on a dexterous hand from demonstrations recorded with an exoskeleton built for a different hand. The DexUMI exoskeleton replicates the 16-DoF XHAND1 Pro-U hand (Sec. B.3), and the policy runs on the Tianji, a bimanual robot with two 7-DoF arms and two 22-DoF Sharpa hands. Kinematics differ because the Sharpa hand has a different joint layout from the XHAND, with 22 degrees of freedom instead of 16, so the recorded joint angles must be retargeted before they can be used as Sharpa commands. Camera viewpoints differ because the wrist cameras are mounted on the DexUMI wrist during data collection and on the Sharpa wrist during evaluation, and because the head camera is worn by the operator during data collection but fixed on the robot during evaluation. Appearance differs because the demonstrations show the exoskeleton and the operator’s arms.",
+   "section": "B.4. DexUMI →Tianji + Sharpa",
+   "merged_ids": [
+    "S987"
+   ]
+  },
+  {
+   "id": "S988",
+   "page": 53,
+   "kind": "prose",
+   "text": "We evaluate on two tasks. Microscope Slide Dabbing is the chemistry-lab task of the same name in Fig. 26. In Conveyor Package Selection and Tossing, the robot must pick out the packages from mixed objects on a moving belt and toss them into the bin, leaving the other objects untouched on the belt. Each task is demonstrated with 100 DexUMI episodes and co-trained with Tianji + Sharpa play data that contain no demonstration of the target task. We compare against GR00T 1.7 and 𝜋0.5 (Physical Intelligence et al., 2025), post-trained on the same data with the same recipe. GR00T 2 succeeds in 60% and 65% of 20 trials, whereas neither baseline completes a single trial (Tab. 6).",
+   "section": "B.4. DexUMI →Tianji + Sharpa"
+  },
+  {
+   "id": "S989",
+   "page": 53,
+   "kind": "prose",
+   "text": "In the DexUMI experiments above, the exoskeleton replicates the robot hand joint for joint, so the recorded joint angles are used directly as hand commands. This setting corresponds to UMI direct (Sec. E.2). Here we use DexUMI demonstrations on a hand that the exoskeleton does not replicate, the 22-DoF Sharpa hand on the Tianji, which is the robot used in the human-to-robot experiments (Sec. B.1). This setting corresponds to UMI →YAM transfer (Sec. B.2), and it avoids building a separate exoskeleton for each robot hand.",
+   "section": "B.4. DexUMI →Tianji + Sharpa"
+  },
+  {
+   "id": "S990",
+   "page": 53,
+   "kind": "prose",
+   "text": "The recorded joint angles and fingertip forces correspond to the XHAND. The force labels (Eq. (1)) are computed with the XHAND Jacobians and do not apply to the Sharpa hand, so the policy is trained on joint positions only, and the hand tracks position targets in its admittance mode with fixed gains.",
+   "section": "B.4. DexUMI →Tianji + Sharpa"
+  },
+  {
+   "id": "S991",
+   "page": 53,
+   "kind": "prose",
+   "text": "Fingertip retargeting. We compute fingertip positions from the recorded joint angles with the XHAND forward kinematics and treat them as the fingertip readings of a motion-capture glove. The closed-form geometric solver used for glove teleoperation (Sec. B.1.2) then places the Sharpa fingertips at these positions, with the two hands aligned at the thumb-index pinch point, and solves the 7-DoF arm for the resulting hand pose. The thumb, index, middle, and ring fingertips are matched to their targets, and the pinky follows the alignment of the hand.",
+   "section": "B.4. DexUMI →Tianji + Sharpa"
+  },
+  {
+   "id": "S992",
+   "page": 53,
+   "kind": "prose",
+   "text": "Wrist-view reprojection. The wrist cameras are mounted differently on the DexUMI and Sharpa wrists, and retargeting also changes the wrist pose. As a result, the Sharpa wrist camera ends up about 31∘away from the DexUMI wrist camera. We calibrate both camera mounts by hand-eye calibration, solving for each camera’s pose relative to the wrist from its image motion and the tracked wrist motion. We then reproject each DexUMI wrist frame into the Sharpa wrist camera, mapping each pixel through a fronto-parallel plane at the depth of the pinch point. During training, random rotations and zooms of the wrist views account for the remaining calibration error.",
+   "section": "B.4. DexUMI →Tianji + Sharpa"
+  },
+  {
+   "id": "S993",
+   "page": 53,
+   "kind": "prose",
+   "text": "Co-training with robot play data. The converted demonstrations use the robot’s 62-D state and action, consisting of relative wrist poses and absolute Sharpa joint positions, as in the human-to-robot pipeline (Sec. B.1.3). We resample them from 45 to 30 Hz and assign them the robot’s embodiment tag, so that they share its action encoder, action decoder, and normalization statistics. They are co-trained with Tianji + Sharpa play data that contain no demonstration of the target task, sampled 75 : 25 for slide dabbing and 50 : 50 for package selection and tossing.",
+   "section": "B.4. DexUMI →Tianji + Sharpa",
+   "merged_ids": [
+    "S994"
+   ]
+  },
+  {
+   "id": "S995",
+   "page": 53,
+   "kind": "prose",
+   "text": "Evaluation. Microscope Slide Dabbing is scored with the rubric of Sec. B.1.4, and a trial succeeds when it completes every stage. A Conveyor Package Selection and Tossing trial succeeds when the packages are tossed into the bin and no other object is touched. Any human intervention counts as a failure. GR00T 1.7 and 𝜋0.5 each start from their own pretrained model and share the post-training mixture, recipe, and step budget of GR00T 2. We report the fraction of 20 trials per task that complete the whole task (Tab. 6).",
+   "section": "B.4. DexUMI →Tianji + Sharpa"
+  }
+ ]
+}

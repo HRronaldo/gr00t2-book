@@ -1,0 +1,311 @@
+{
+ "chunk_id": "chunk_10",
+ "sections": [
+  "A. Fast-Adapt with GR00T 2",
+  "A.1. Benchmark Tasks",
+  "A.2. Zero-Shot Generalization with GR00T 2",
+  "A.3. Dexter-50: Emergent Cross-Embodiment Zero-Shot and Few-Shot Transfer.",
+  "B. X-Adapt with GR00T 2",
+  "B.1. Human →Tianji + Sharpa",
+  "Fails at 0-shot, succeeds at 5-shot"
+ ],
+ "pages": [
+  38,
+  46
+ ],
+ "chars": 16642,
+ "blocks": [
+  {
+   "id": "H20",
+   "page": 38,
+   "kind": "heading",
+   "text": "A. Fast-Adapt with GR00T 2",
+   "section": "A. Fast-Adapt with GR00T 2"
+  },
+  {
+   "id": "H21",
+   "page": 38,
+   "kind": "heading",
+   "text": "A.1. Benchmark Tasks",
+   "section": "A.1. Benchmark Tasks"
+  },
+  {
+   "id": "C022",
+   "page": 38,
+   "kind": "caption",
+   "text": "Figure 21: YAM post-training benchmark tasks. The six tasks of Tab. 1a, one per row. Left: task name and a short description. Right: key frames from four representative stages of each task, which has more stages than shown (Hot Wheels Assembly has 24).",
+   "section": "A.1. Benchmark Tasks",
+   "asset": "F021"
+  },
+  {
+   "id": "C023",
+   "page": 39,
+   "kind": "caption",
+   "text": "Figure 22: Dexter post-training benchmark tasks. The seven tasks of Tab. 1b, one per row. Left: task name and a short description. Right: key frames from four representative stages of each task.",
+   "section": "A.1. Benchmark Tasks",
+   "asset": "F022"
+  },
+  {
+   "id": "S768",
+   "page": 39,
+   "kind": "prose",
+   "text": "Fig. 23 plots the average task progress of each model in Tab. 1a against its inference latency.",
+   "section": "A.1. Benchmark Tasks"
+  },
+  {
+   "id": "C024",
+   "page": 40,
+   "kind": "caption",
+   "text": "Figure 23: YAM post-training Pareto frontier. Average task progress across the six tasks in Tab. 1a versus inference latency per served call on a GeForce RTX 5090 workstation. The dashed line indicates the Pareto frontier.",
+   "section": "A.1. Benchmark Tasks",
+   "asset": "F023"
+  },
+  {
+   "id": "H22",
+   "page": 40,
+   "kind": "heading",
+   "text": "A.2. Zero-Shot Generalization with GR00T 2",
+   "section": "A.2. Zero-Shot Generalization with GR00T 2"
+  },
+  {
+   "id": "S773",
+   "page": 40,
+   "kind": "prose",
+   "text": "YAM Zero-Shot Benchmark. We evaluate the pretrained policies without task-specific post-training on the YAM V2 benchmark. For 𝜋0.5, we use a checkpoint adapted on in-domain data. We report results for the three unseen evaluation pools: Language Following, Motion Primitives (Easy), and Motion Primitives (Medium/Hard), comprising 14, 10, and 14 tasks, respectively. The benchmark evaluates language grounding and a range of manipulation motions, including actions beyond pick-and-place (Tab. 2).",
+   "section": "A.2. Zero-Shot Generalization with GR00T 2"
+  },
+  {
+   "id": "C025",
+   "page": 40,
+   "kind": "caption",
+   "text": "Table 2: YAM V2 zero-shot evaluation. For each model, Prog. is the average task score and SR is the success rate, both on a 0 to 100 scale. We pool graded trials across available evaluations and weight tasks equally within each group. Trial counts vary across tasks and models, and results include graded trials from ongoing evaluations. †GR00T 1.7 results are preliminary. –: no result available. Bold marks the best Prog. and SR in each row.",
+   "section": "A.2. Zero-Shot Generalization with GR00T 2",
+   "asset": "T002"
+  },
+  {
+   "id": "S780",
+   "page": 40,
+   "kind": "prose",
+   "text": "Dexter Zero-Shot Benchmark. We further evaluate zero-shot transfer on Dexter, a bimanual robot with two dexterous hands, again without task-specific post-training. The evaluation covers 71 tasks: 49 dexterous manipulation tasks and 22 out-of-distribution instruction tasks that probe language grounding through color, size, ordinal position, negation, spatial relations, counting, and named targets. Each model is run for three trials per task, and we report results pooled over all tasks (Tab. 3).",
+   "section": "A.2. Zero-Shot Generalization with GR00T 2"
+  },
+  {
+   "id": "C026",
+   "page": 41,
+   "kind": "caption",
+   "text": "Table 3: Dexter zero-shot evaluation. For each model, Prog. is the average task progress and SR is the success rate, both on a 0 to 100 scale, pooled over 71 tasks (49 manipulation tasks and 22 out-of-distribution instruction tasks) with three trials per task. The four models run interleaved in the same sessions, and the operator who labels success is not told which model is running. Task progress is rated per episode by a vision-language model from the head and wrist camera videos. Bold marks the best Prog. and SR in each row.",
+   "section": "A.2. Zero-Shot Generalization with GR00T 2",
+   "asset": "T003"
+  },
+  {
+   "id": "H23",
+   "page": 41,
+   "kind": "heading",
+   "text": "A.3. Dexter-50: Emergent Cross-Embodiment Zero-Shot and Few-Shot Transfer.",
+   "section": "A.3. Dexter-50: Emergent Cross-Embodiment Zero-Shot and Few-Shot Transfer."
+  },
+  {
+   "id": "S785",
+   "page": 41,
+   "kind": "prose",
+   "text": "GR00T 2 transfers tasks across embodiments. We evaluate it on Dexter, a bimanual robot with two 7-DoF arms and two 22-DoF Sharpa hands, on Dexter-50: 50 tasks that never appear in Dexter’s training data but do appear in data from other embodiments, namely YAM parallel-gripper teleoperation, human video, or both. In the zero-shot setting, the pretrained model receives only the task instruction. In the few-shot setting, we adapt the same checkpoint to each task with 1 or 5 teleoperated Dexter episodes, a few minutes of robot data. We train rank-32 LoRA adapters on every linear layer of the transformer and keep the text encoder, video VAE, action and state heads, and all pretrained weights frozen. The adapters receive the same joint video and action flow-matching loss used in pretraining. We cut each episode into 100 evenly spaced training windows and sample them in proportion to the frozen model’s loss on each window, so that updates concentrate on the hard phases of the task, such as grasping or insertion. All tasks share the same hyperparameters, with no per-task tuning. One run fits on a single RTX 5090 and takes about 30 minutes. We merge the adapters into the base weights after training, so the adapted model is served exactly like the pretrained one.",
+   "section": "A.3. Dexter-50: Emergent Cross-Embodiment Zero-Shot and Few-Shot Transfer."
+  },
+  {
+   "id": "S786",
+   "page": 41,
+   "kind": "prose",
+   "text": "Across the 50 tasks, GR00T 2 succeeds 40% of the time zero-shot, 71% with one episode, and 95% with five (Fig. 24). Zero-shot, it completes 40 of the 50 tasks at least once and succeeds in every trial of four, such as unloading a dish rack and unstacking Rubik’s cubes, skills it has seen only on a parallel-gripper robot or in human video. With five episodes, 37 of the 50 tasks reach 100%, including tasks the zero-shot model never completes, such as emptying a bag, turning a lazy susan, and unfolding a tripod. In most of the failures shown in Fig. 25, the zero-shot model goes for the right steps, but its new hands fail at one of them, such as lifting a teapot lid or opening a drawstring bag. One or five Dexter episodes fix this.",
+   "section": "A.3. Dexter-50: Emergent Cross-Embodiment Zero-Shot and Few-Shot Transfer.",
+   "merged_ids": [
+    "S787"
+   ]
+  },
+  {
+   "id": "C027",
+   "page": 42,
+   "kind": "caption",
+   "text": "Figure 24: Cross-embodiment transfer to Dexter with 0, 1, and 5 Dexter episodes, per task. Success rate on the Dexter-50 tasks, which have no Dexter training data but appear in YAM teleoperation data, human video, or both, sorted by zero-shot success. Zero-shot runs the pretrained model directly, while 1-shot and 5-shot fine-tune it with LoRA on 1 or 5 Dexter episodes. The first group (gray band) is the average over all 50 tasks. Tasks are those the model learns with five episodes (at least 80% success).",
+   "section": "A.3. Dexter-50: Emergent Cross-Embodiment Zero-Shot and Few-Shot Transfer.",
+   "asset": "F024"
+  },
+  {
+   "id": "H24",
+   "page": 42,
+   "kind": "heading",
+   "text": "B. X-Adapt with GR00T 2",
+   "section": "B. X-Adapt with GR00T 2"
+  },
+  {
+   "id": "S844",
+   "page": 42,
+   "kind": "prose",
+   "text": "This section details the cross-embodiment transfer summarized in Sec. 3.2 and the devices and pipelines described in Sec. 4.4.",
+   "section": "B. X-Adapt with GR00T 2"
+  },
+  {
+   "id": "H25",
+   "page": 42,
+   "kind": "heading",
+   "text": "B.1. Human →Tianji + Sharpa",
+   "section": "B.1. Human →Tianji + Sharpa"
+  },
+  {
+   "id": "S845",
+   "page": 42,
+   "kind": "prose",
+   "text": "GR00T 2 can also learn a dexterous task on a robot from human demonstrations alone. Here every task-specific demonstration comes from a person recorded with our human data capture pipeline, which pairs head and wrist cameras with wrist trackers and data gloves, and the resulting policy runs on the Tianji, a bimanual robot with two 7-DoF arms and two 22-DoF Sharpa hands. The embodiment gap now centers on the hand. Appearance differs because the cameras observe a human hand during demonstration and a robot hand at deployment. Kinematics differ because the larger Sharpa hand does not share the size or joint structure of the human hand, so retargeting must map every finger motion onto the 22-DoF robot hand. Dynamics differ because the human moves at natural speed, which teleoperation cannot reproduce on the robot. Three components bridge these gaps: the capture pipeline records robot-aligned views (Sec. B.1.1), a geometric retargeter converts every demonstration into robot actions (Sec. B.1.2), and co-training with task-agnostic play data, collected with our teleoperation system (Sec. C.3.1), grounds the model in the robot (Sec. B.1.3).",
+   "section": "B.1. Human →Tianji + Sharpa"
+  },
+  {
+   "id": "C028",
+   "page": 43,
+   "kind": "caption",
+   "text": "Figure 25: Example Dexter rollouts. Top: zero-shot successes. Middle and bottom: tasks the zero-shot model attempts but fails, mostly at a step its new hands cannot yet do (left, with the failure noted above each row), and completes after fine-tuning on one or five Dexter episodes (right). Rollouts ran on different Dexter stations, so the backgrounds differ.",
+   "section": "Fails at 0-shot, succeeds at 5-shot",
+   "asset": "F025"
+  },
+  {
+   "id": "S866",
+   "page": 43,
+   "kind": "prose",
+   "text": "We evaluate on four tasks (Fig. 26). Filter Paper Setup, Dropper-to-Beaker Dispensing, and Microscope Slide Dabbing are chemistry-lab tasks that handle small, often transparent labware and leave little tolerance for fingertip error. Conveyor Package Tossing is a dynamic task: the robot grasps each package from a moving belt and throws it over the belt into the bin assigned to that package, a targeted throw that teleoperation cannot demonstrate. For each task, we co-train the retargeted human demonstrations with task-agnostic Tianji play data. The play data contain no demonstrations of the target tasks. All models are post-trained with an identical data recipe and number of optimization steps. Without a single teleoperated demonstration of the target tasks, GR00T 2 succeeds in 65%, 30%, 10%, and 50% of 20 trials on the four tasks, whereas GR00T 1.7 and GR00T 2 without cross-embodiment pretraining fail every chemistry-lab trial and reach only 5% and 20% on tossing (Fig. 27). Adding 10 teleoperated demonstrations raises GR00T 2 to 95%, 70%, and 50% on the chemistry-lab tasks, against 45%, 40%, and 30% without cross-embodiment pretraining and 0% for GR00T 1.7. One hundred human demonstrations per task therefore suffice to deploy precise and dynamic dexterous tasks on a robot that has never been teleoperated for them. Sec. B.1.4 details the protocol, and Sec. B.1.5 analyzes why the transfer works.",
+   "section": "Fails at 0-shot, succeeds at 5-shot",
+   "merged_ids": [
+    "S867",
+    "S868"
+   ]
+  },
+  {
+   "id": "S869",
+   "page": 44,
+   "kind": "prose",
+   "text": "B.1.1. Human Data Capture and Conversion",
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S870",
+   "page": 44,
+   "kind": "prose",
+   "text": "Human data capture. Each demonstration is recorded with a lightweight egocentric rig: a head-mounted camera provides the ego view, wrist-mounted cameras provide close-up views of hand-object contact, and the hands are tracked by a motion-capture glove (Manus) paired with a 6-DoF tracker (PICO) rigidly attached to each wrist. The glove provides per-finger joint angles, while the tracker provides the global wrist pose. Together they yield a full 3D hand pose at every timestep without any robot in the loop. Because the tracker’s IMU does not coincide with the anatomical wrist, we calibrate the tracker-to-wrist rigid transform per session: an annotator clicks fingertip locations in a handful of frames spanning diverse hand poses, and we solve for the transform that minimizes the reprojection error of the glove-predicted fingertips. Camera intrinsics and extrinsics are verified in the same tool by overlaying the tracked controller pose onto the video, so that calibration errors are caught before any data is converted. The raw stream (ego and wrist video, wrist poses, finger joints, and language annotations) is captured at 60 Hz, stored in a time-synchronized format and quality-checked by visualizing the reconstructed hand trajectory against the video.",
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S871",
+   "page": 44,
+   "kind": "prose",
+   "text": "From human data to robot data. The captured human trajectories are converted into robot-space supervision in a single offline pass, with no task-specific robot teleoperation. First, each wrist pose is anchored globally in the gravity-aligned robot base frame: the human’s head camera is placed at the robot’s head camera, and a per-task offset shifts the hands into the robot workspace. The converted trajectories therefore carry absolute wrist poses in the robot frame, not wrist displacements alone. Second, the human finger configuration is retargeted to the robot hand via inverse kinematics on fingertip targets, producing joint commands that respect the robot’s kinematic limits while preserving the task-relevant contact geometry rather than the literal human pose. Third, the ego and wrist camera streams are kept as the policy’s visual inputs, so that the resulting episodes, downsampled to 30 Hz, have the same observation and action schema as native robot data. During post-training, we sample converted human episodes and generic, non-task-specific robot play data with equal probability. This co-training grounds the model in the robot’s appearance and dynamics, while human demonstrations provide all task-specific supervision.",
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S872",
+   "page": 44,
+   "kind": "prose",
+   "text": "B.1.2. Geometric Retargeting",
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S873",
+   "page": 44,
+   "kind": "prose",
+   "text": "The role of our retargeting solver is to bring sub-millimeter accuracy to robot finger tips with kHz computation speed. Given that the conversion is solely offline without human supervision, we ask for automated singularity handling near workspace boundary and robust redundancy DoF management. To achieve this we make use of a closed-form geometric inverse kinematic solving technique introduced in Chen et al. (2026b) and Kong et al. (2026) to handle both the 7-DoF arms and 22 DoF robot hands. Given 6D pose data of ego camera and left / right wrist mount, we first find the ideal placement of human data in robot frame for each task. The solver then retargets the hands before the arm, and both stages track fingertip targets. A unified “palm-box” hand frame introduced in Kong et al. (2026), anchored at the index fingertip, aligns human and robot hands. The 22-DoF hand solver places the robot thumb tip relative to the solved index fingertip, which preserves the pinch geometry, while the other fingers follow the human bone directions. The arm’s geometric inverse-kinematics solver then tracks the palm-box origin, so the robot index fingertip lands on the human index fingertip.",
+   "section": "Fails at 0-shot, succeeds at 5-shot",
+   "merged_ids": [
+    "S874"
+   ]
+  },
+  {
+   "id": "S875",
+   "page": 44,
+   "kind": "prose",
+   "text": "Our combined arm-hand solver achieves approximately 118,000 bimanual solves per second on a single core of an Intel Core Ultra 9 285K CPU, with a mean native computation time of 8.48 𝜇s, excluding Python interface overhead. Across 1,024 synthetic in-range wrist targets, maximum forward-kinematics-verified pose errors remain below 10−15 m and 10−15 rad. This throughput supports real-time teleoperation (Sec. C.3.1) and offline human-data conversion.",
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "C029",
+   "page": 45,
+   "kind": "caption",
+   "text": "Figure 26: Sensorized human transfer benchmark tasks. Each row shows the ordered stages of one task, with the language instruction that GR00T 2 receives.",
+   "section": "Fails at 0-shot, succeeds at 5-shot",
+   "asset": "F026"
+  },
+  {
+   "id": "S876",
+   "page": 45,
+   "kind": "prose",
+   "text": "B.1.3. Co-Training with Robot Play Data",
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S877",
+   "page": 45,
+   "kind": "prose",
+   "text": "GR00T 2 turns retargeted human demonstrations into a robot policy by co-training them with robot play data. Starting from its cross-embodiment pretrained checkpoint, GR00T 2 fine-tunes on two complementary sources: retargeted human demonstrations of the target task, which contain the task but not the robot, and task-agnostic play data from the target robot, collected with the teleoperation system of Sec. C.3.1, which contain the robot but not the task. Human data teach GR00T 2 what to do: the task intent, the object interactions, and the motion strategy, such as which hand leads, which fingers make contact, and how fast the wrist moves. Play data teach GR00T 2 how this robot looks and moves: its appearance, kinematics, and dynamics, which stay the same across tasks, so one play pool serves every task. Without teleoperation, the play data are the only robot data in post-training. Each new task therefore adds only cheap human demonstrations.",
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S878",
+   "page": 45,
+   "kind": "prose",
+   "text": "Human and robot episodes share one data format, so the two sources mix freely within a training batch. Both provide three camera views (ego and two wrists) at 30 Hz, a 62-D state of absolute wrist poses in the robot base frame and hand-joint positions, and a 62-D action chunk of wrist poses relative to the current state and absolute hand-joint positions.",
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S879",
+   "page": 45,
+   "kind": "prose",
+   "text": "B.1.4. Learning New Tasks without Teleoperation",
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S880",
+   "page": 45,
+   "kind": "prose",
+   "text": "GR00T 2 learns new robot tasks from human demonstrations alone. Four tasks on the Tianji, a bimanual robot with two 7-DoF arms and two 22-DoF Sharpa hands, test this claim and stress two parts of the embodiment gap. Three chemistry-lab tasks handle small, often transparent labware and test precision under the kinematic gap, where retargeting error and the larger robot hand both consume the tolerance. The dynamic task tests the kinodynamic gap on a fast, targeted throw that teleoperation cannot demonstrate (Fig. 26).",
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S881",
+   "page": 45,
+   "kind": "prose",
+   "text": "Tasks and metrics. A rubric splits each task into 𝐾ordered stages, and we grade each trial by the number of stages 𝑘it completes in order. A trial succeeds when 𝑘= 𝐾, its task progress is 𝑘/𝐾, and any human intervention counts as a failure.",
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S882",
+   "page": 45,
+   "kind": "prose",
+   "text": "• Filter Paper Setup (𝐾=6): grasp the filter paper, place it in the funnel, unfold and seat it in the funnel,",
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "C030",
+   "page": 46,
+   "kind": "caption",
+   "text": "Figure 27: Learning new tasks with zero or few teleoperated demonstrations. Success rate (top) and task progress (bottom) over 20 trials per point, with 0, 1, or 10 teleoperated demonstrations of the target task added to post-training. At",
+   "section": "Fails at 0-shot, succeeds at 5-shot",
+   "asset": "F027"
+  },
+  {
+   "id": "S892",
+   "page": 46,
+   "kind": "prose",
+   "text": "0, no training data contain a robot trajectory of the task. All models share the human demonstrations, robot data, and post-training recipe. Each baseline changes one factor relative to GR00T 2, either the model formulation (GR00T 1.7, a VLA) or the pretraining data (GR00T 2 w/o cross-embodiment pretraining, pretrained on target-robot data alone, Sec. B.1.5). Conveyor Package Tossing is evaluated at 0 only, since teleoperation cannot demonstrate its fast, targeted throw.",
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S893",
+   "page": 46,
+   "kind": "prose",
+   "text": "grasp the water bottle, wet the filter paper, and put the bottle back. • Dropper-to-Beaker Dispensing (𝐾=3): grasp the pipette, draw the clear liquid, and release it into the blue liquid. • Microscope Slide Dabbing (𝐾=4): grasp the swab, dip it into the water, bring it to the slide, and dab the slide. • Conveyor Package Tossing (𝐾=3): grasp a package from the moving belt, toss it over the belt, and land it in the bin assigned to that package.",
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S894",
+   "page": 46,
+   "kind": "prose",
+   "text": "All models post-train on one mixture, retargeted human demonstrations and robot play data sampled 1:1, with one recipe and step budget and no per-task tuning or checkpoint selection. To measure what teleoperation still adds, we also add 1 or 10 teleoperated demonstrations of the target task to the mixture. Each point averages 20 trials.",
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  }
+ ]
+}

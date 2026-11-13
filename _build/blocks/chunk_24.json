@@ -1,0 +1,315 @@
+{
+ "chunk_id": "chunk_24",
+ "sections": [
+  "F.4. Precision Manipulation through RL Post-Training",
+  "F.5. Reinforcement Learning with Neural Simulation"
+ ],
+ "pages": [
+  91,
+  95
+ ],
+ "chars": 16671,
+ "blocks": [
+  {
+   "id": "H52",
+   "page": 91,
+   "kind": "heading",
+   "text": "F.4. Precision Manipulation through RL Post-Training",
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "S1675",
+   "page": 91,
+   "kind": "prose",
+   "text": "We evaluate three complementary post-training approaches on four real-world contact-rich manipulation tasks, demonstrating how GR00T 2 improves through RL-based learning and targeted policy adaptation.",
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "S1676",
+   "page": 91,
+   "kind": "prose",
+   "text": "Tasks. Our evaluation includes four precision manipulation tasks (Fig. 49). In fixed-pipe fittings, the robot grasps a threaded tee fitting, aligns it with a horizontally mounted pipe, engages the threads, and completes one full turn. This is the Fixed-Pipe Fittings task of Tab. 1a, but each RL trial starts from a fitting pose that the post-trained policy struggles with. In finger placement, the robot inserts two 3 mm pins on a gripper finger into matching holes on a fixed base, requiring accurate position and yaw alignment.",
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "S1677",
+   "page": 91,
+   "kind": "prose",
+   "text": "In cable insertion, the robot inserts an Ethernet connector into a designated network-switch port, with success determined by network-link connectivity. In charger insertion, the robot inserts a two-prong charger into a specified outlet within a 2 × 6 grid. These tasks involve tight geometric tolerances, partial occlusion, and contact-sensitive execution.",
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "S1678",
+   "page": 91,
+   "kind": "prose",
+   "text": "Evaluation Protocol. All evaluated methods build on the same SFT-initialized GR00T 2 checkpoint, either as an initialization or as a frozen base. GRPO directly updates GR00T 2 using both successful and failed trajectories. Self-imitation reuses successful GRPO rollouts without additional collection. Residual RL instead learns a separate controller on top of the frozen base, using human-assisted training experience.",
+   "section": "F.4. Precision Manipulation through RL Post-Training",
+   "merged_ids": [
+    "S1679"
+   ]
+  },
+  {
+   "id": "S1680",
+   "page": 92,
+   "kind": "prose",
+   "text": "For each task, evaluations use the same target distribution, reset conditions, and time limits, with no human intervention during evaluation. Trials are independent of training rollouts, and we report per-task success rates. An episode is considered a failure if misalignment prevents the policy from recovering or if the insertion exceeds the time limit.",
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "S1681",
+   "page": 92,
+   "kind": "prose",
+   "text": "Real-World Results. Direct RL on GR00T 2 improves precision manipulation. GRPO increases success rates on all four tasks (Fig. 5), raising fixed-pipe fittings from 66% to 86%, finger placement from 58% to 72%, cable insertion from 76% to 92%, and charger insertion from 40% to 94%. With 50 trials per task, the gains on charger insertion and fixed-pipe fittings are significant at the 5% level (two-sided Fisher exact test), whereas those on cable insertion (38 to 46 successes) and finger placement (29 to 36) are not conclusive at this sample size.",
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "S1682",
+   "page": 92,
+   "kind": "prose",
+   "text": "Self-imitation consolidates successful RL exploration. Self-imitation reaches 88% on fixed-pipe fittings, 98% on finger placement, 94% on cable insertion, and 96% on charger insertion, matching or exceeding GRPO on all four tasks. The gain is most pronounced on finger placement, where success rises from 72% to 98%.",
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "S1683",
+   "page": 92,
+   "kind": "prose",
+   "text": "These results highlight the potential of combining RL exploration with supervised policy optimization. RL discovers successful behaviors through interaction, while self-imitation consolidates them under a stable supervised objective. This offers a complementary route to improving GR00T 2 beyond direct policy-gradient optimization.",
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "S1684",
+   "page": 92,
+   "kind": "prose",
+   "text": "Residual RL enables targeted adaptation without updating GR00T 2. Residual RL reaches 76% on fixed-pipe fittings, 84% on finger placement, 82% on cable insertion, and 70% on charger insertion, with clear gains over supervised post-training on finger placement and charger insertion. These results show that lightweight corrective controllers can improve precision execution while leaving the pretrained GR00T 2 intact.",
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "S1685",
+   "page": 92,
+   "kind": "prose",
+   "text": "These experiments show that direct RL, self-imitation, and residual RL can improve GR00T 2’s precision manipulation through complementary forms of post-training.",
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "S1686",
+   "page": 92,
+   "kind": "prose",
+   "text": "The preceding experiments improve policies through physical interaction. We next investigate a complementary source of training experience: interaction with a learned environment constructed from recorded policy rollouts.",
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "H53",
+   "page": 92,
+   "kind": "heading",
+   "text": "F.5. Reinforcement Learning with Neural Simulation",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1687",
+   "page": 92,
+   "kind": "prose",
+   "text": "In neural-simulation RL, the policy interacts with a learned world model in place of the physical environment. This changes how training experience is generated while retaining reward-based optimization of the pretrained world-action policy.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1688",
+   "page": 92,
+   "kind": "prose",
+   "text": "We use DreamDojo (Gao et al., 2026), initialized from pretrained video priors, to turn recorded robot interactions into a learning environment. Successful and failed attempts provide supervision for task-specific adaptation. A pretrained GR00T 2 policy can then collect further training experience through interaction with the adapted model. Task rollouts are still required to construct this environment, while subsequent policy-learning rollouts are generated in neural simulation.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1689",
+   "page": 92,
+   "kind": "prose",
+   "text": "To support policy learning, the model’s predictions must provide usable inputs to GR00T 2 throughout an episode. We provide multi-view camera predictions, align them with executed action chunks, and approximate proprioceptive inputs using action targets. We also maintain visual history across successive world-model calls. We first describe world-model construction and the closed-loop policy interface, including support for long-horizon interaction. We then present the experimental setup, reward modeling and policy optimization, and results in RoboLab and on real-world tasks.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1690",
+   "page": 92,
+   "kind": "prose",
+   "text": "Training Data and Task Adaptation. We first mid-train DreamDojo on multi-view episodes, then adapt the resulting model to downstream tasks. The bimanual YAM corpus contains 8,310 four-view episodes from policy rollouts and DAgger collection, including failed attempts and recovery. These episodes total approximately 226.8 hours at 30 Hz. The DROID source corpus contains 57,773 episodes, approximately 273 hours at 15 Hz, with three synchronized camera views and recorded joint and gripper actions.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation",
+   "merged_ids": [
+    "S1691"
+   ]
+  },
+  {
+   "id": "S1692",
+   "page": 93,
+   "kind": "prose",
+   "text": "We tile synchronized camera views into one video canvas so that the model predicts them jointly using DreamDojo’s existing video backbone and causal variational autoencoder (VAE). YAM uses a 2 × 2 layout at 480 × 640 pixels. DROID concatenates three 180 × 320 views horizontally and pads the canvas vertically to 192 × 960 pixels.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1693",
+   "page": 93,
+   "kind": "prose",
+   "text": "Video and action sampling are aligned separately. For YAM, we downsample video from 30 to 15 Hz while retaining fourteen-dimensional actions at 30 Hz. Each window contains five conditioning frames and twelve future frames, paired with 24 future actions. DROID video and eight-dimensional actions both remain at 15 Hz, and each window contains five conditioning frames and sixteen future frames. We precompute and cache VAE latents, which are the compressed video representations used by the world model. We sample temporally aligned training windows from this cache, avoiding repeated encoding of the same recorded videos.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1694",
+   "page": 93,
+   "kind": "prose",
+   "text": "Task adaptation. We adapt the mid-trained world model to the scenes and action distributions encountered by the target policy. Successful and failed rollouts provide supervision on the states reached during execution, allowing the model to learn task-relevant visual changes and action effects. We fine-tune the model on these rollouts using the multi-view representation and temporal alignment used during policy interaction. Recorded robot actions and world-model inputs use consistent action coordinates and normalization.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1695",
+   "page": 93,
+   "kind": "prose",
+   "text": "Closed-Loop Simulation Interface. To collect experience for policy optimization, we alternate GR00T 2 action prediction with world-model prediction throughout a task episode. A rollout starts from recorded multi-view observations. GR00T 2 predicts an action sequence, and the world model predicts the camera observations resulting from its executed prefix. These predicted images become the policy’s next visual input, allowing GR00T 2 to respond to the consequences of its own actions. Repeating this interaction produces a trajectory for reward evaluation and policy learning.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1696",
+   "page": 93,
+   "kind": "prose",
+   "text": "At interaction round 𝑟, GR00T 2 samples an action plan from the current observation and task instruction. Let 𝐴𝑟denote its executed prefix of 𝐻actions and 𝐶𝑟the world model’s conditioning latents. Initially, 𝐶0 is obtained by encoding five recorded video frames into two latent frames. The mapping 𝑔converts actions into the world model’s action coordinates and normalization. Future latents and the next conditioning history are then given by",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1700",
+   "page": 93,
+   "kind": "prose",
+   "text": "Here, Tail2 retains the final two latent frames of the concatenated conditioning and predicted sequence. After decoding, we remove the overlapping conditioning prefix and append the newly predicted images to the policy’s visual history. The views and historical frames required by GR00T 2 form its next observation, closing the interaction loop.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1701",
+   "page": 93,
+   "kind": "prose",
+   "text": "The rollout preserves the video-action alignment used during training. For YAM, the world model predicts twelve new video frames at 15 Hz for 24 native actions at 30 Hz. For DROID/RoboLab, it predicts sixteen frames for sixteen actions, both at 15 Hz. We query the policy again after executing this action prefix and truncate the final round at the task horizon.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1702",
+   "page": 93,
+   "kind": "prose",
+   "text": "We exclude the five-frame conditioning prefix from the images returned to the policy. RoboLab decodes the complete latent window at each round. YAM retains the causal decoder cache and decodes only new latents after the first round. This decoder cache is separate from the latent history passed to the world model. For policies requiring proprioception, we initialize the state input from the recorded reset state. At each later policy query, we use the last executed action target as an approximation of the current robot state.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1703",
+   "page": 94,
+   "kind": "prose",
+   "text": "Long-Horizon Prediction. Policy learning requires multiple rounds of interaction, whereas the world model is trained on short video windows. We therefore generate successive segments autoregressively. After the first segment, the model conditions on its own predictions rather than recorded observations. Errors in this history can affect subsequent predictions and policy decisions.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1704",
+   "page": 94,
+   "kind": "prose",
+   "text": "For the DROID-derived model used in RoboLab, we perturb recorded conditioning latents during training to expose the model to imperfect visual histories, while keeping recorded future latents as prediction targets. For a clean conditioning tensor 𝐶, we use",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "E007",
+   "page": 94,
+   "kind": "equation",
+   "text": "𝐶= (1 −𝜎)𝐶+ 𝜎𝜖, 𝜖∼𝒩(0, 𝐼). (20)",
+   "section": "F.5. Reinforcement Learning with Neural Simulation",
+   "crop": "assets/equations/E007.png"
+  },
+  {
+   "id": "S1705",
+   "page": 94,
+   "kind": "prose",
+   "text": "The noise strength 𝜎is sampled from 0, 0.0245, 0.0480, and 0.0925 with probabilities 0.2, 0.2, 0.4, and 0.2, respectively. We also explored replacing recorded history with a model-generated preceding segment, with gradients stopped through that history. These preliminary trials showed no clear additional benefit over noise augmentation, which we retain in the final training recipe.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1706",
+   "page": 94,
+   "kind": "prose",
+   "text": "At rollout time, we pass the final two predicted latent frames to the next world-model segment as its conditioning history. This avoids decoding and re-encoding images to construct that history. We still decode predicted latents into images for GR00T 2: the world model carries its history in latent space, while the policy receives camera observations in pixel space.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1707",
+   "page": 94,
+   "kind": "prose",
+   "text": "Experimental Setup. Starting from SFT, GRPO updates GR00T 2 through interaction with the learned environment, while the world model and learned success detector remain fixed. Native RoboLab evaluation and real-world execution test whether these updates improve behavior outside the learned environment.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1708",
+   "page": 94,
+   "kind": "prose",
+   "text": "We collect rollouts from the initial GR00T 2 policy, retaining successful and failed attempts for world-model adaptation and reward supervision. The study covers ten RoboLab tasks and four families of physical manipulation: peg insertion, test-tube insertion into a specified rack hole, bun placement on yellow and white cups, and hardware sorting with nine instructions. Hardware sorting tests whether the policy selects the requested target object and destination from three target object categories and three colored trays in the presence of distractors. Fig. 52 illustrates the physical task setups.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1709",
+   "page": 94,
+   "kind": "prose",
+   "text": "World-model adaptation uses 300 physical rollouts for each insertion task and each of the two bun-placement tasks, and approximately 300 rollouts in total for hardware sorting. The insertion and hardware tasks share a jointly adapted world model, while a separate model is adapted for bun placement. For RoboLab, we adapt one shared world model using 450 training trajectories per task across 64 tasks, with 50 trajectories per task held out. Joint policy RL uses ten tasks from this collection. Each RL run starts from its SFT baseline and keeps the world model and reward model fixed. RoboLab reward supervision uses 450 training and 50 validation trajectories per task. The test-tube success detector uses a separate set of 600 training and 120 validation videos labeled for insertion and release in the designated rack hole.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1710",
+   "page": 94,
+   "kind": "prose",
+   "text": "Reward Modeling and Policy Optimization. Sparse rewards. Dense progress rewards are difficult to obtain consistently across manipulation tasks and expensive to annotate. They can also introduce reward hacking when a policy increases a proxy score without completing the requested goal. We therefore use sparse task-completion rewards, learning a binary success detector rather than a continuous progress score.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1711",
+   "page": 94,
+   "kind": "prose",
+   "text": "We train compact success detectors based on VideoMAE (Tong et al., 2022) to provide rewards during RL. For physical videos, a vision-language model (VLM) proposes outcome labels and supporting visual evidence, and targeted human review resolves ambiguous cases. These offline labels supervise the compact detectors, avoiding VLM queries during policy learning. For hardware sorting only, annotated world-model rollouts augment the recorded videos to cover observations encountered in neural simulation. The other reward models use recorded task data.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1712",
+   "page": 94,
+   "kind": "prose",
+   "text": "Success is defined by the requested instruction: choosing the wrong object or destination is a negative outcome.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1713",
+   "page": 95,
+   "kind": "prose",
+   "text": "We use task-specific detectors, including instruction-specific outputs for joint hardware sorting. RoboLab provides native success labels, while physical-task labels use recorded outcomes and reviewed visual evidence. The detector and its task-specific decision rule remain fixed during RL. Final policy evaluation uses native RoboLab outcomes and physical execution, independently of the learned reward model.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1714",
+   "page": 95,
+   "kind": "prose",
+   "text": "Policy optimization. We apply the clipped transition-level policy optimization principle of Sec. F.1.1 to interaction with a fixed learned environment. We collect groups of attempts from the same recorded reset context and score them with the learned success detector. The neural-simulation experiments use Flow-SDE (Liu et al., 2025) for stochastic action denoising, while the physical-RL recipe uses CPS. Both provide tractable transition densities for likelihood-ratio updates.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1715",
+   "page": 95,
+   "kind": "prose",
+   "text": "We optimize a clipped likelihood-ratio objective on selected action-denoising transitions. For each selected transition, we store the sampled latent input and output, denoising index, conditioning inputs, and behaviorpolicy probability. During optimization, we replay the same transition and recompute its probability under the current parameters with gradients enabled. The sampled transition and noise schedule remain fixed, so the likelihood ratio compares the two policies on the same sampled event.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1716",
+   "page": 95,
+   "kind": "prose",
+   "text": "Consistent replay is necessary because numerical differences can produce an apparent policy change before any update. We disable dropout, preserve positional-encoding precision, and check rollout and replay logprobabilities under unchanged weights before the first optimizer update. Activation checkpointing reduces memory use during backpropagation through the joint world-action model described in Sec. F.1.1. The likelihood ratio scores the selected action transition, with no separate video-likelihood objective or learned critic. In the physical-task recipe, we compute the actor loss using actions up to and including the first chunk in which success is confirmed. Later actions are excluded.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1717",
+   "page": 95,
+   "kind": "prose",
+   "text": "Policy Improvement in RoboLab. We evaluate task success using native RoboLab outcomes, independently of the learned world model and reward model. Fig. 50 compares the SFT policy with the policy obtained by joint RL from that initialization. Each policy is evaluated for 500 episodes per task, or 5,000 episodes in total, using matched observation and action settings and full task horizons. Mean success increases from 51.32% to 70.88%, a gain of 19.56 percentage points.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1718",
+   "page": 95,
+   "kind": "prose",
+   "text": "Batch and group size. Sparse rewards connect exploration to optimization: a larger group can reveal a return difference that a smaller group misses. In RoboLab, we compare (𝐵, 𝐺) = (512, 8) and (1536, 24), where 𝐵is the number of trajectories collected per round and 𝐺the number of attempts per reset group. Both recipes collect 64 groups and perform four optimizer updates per round.",
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  }
+ ]
+}

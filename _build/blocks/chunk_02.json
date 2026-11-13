@@ -1,0 +1,197 @@
+{
+ "chunk_id": "chunk_02",
+ "sections": [
+  "2. GR00T 2 Overview",
+  "3. GR00T 2 Capabilities",
+  "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery"
+ ],
+ "pages": [
+  5,
+  8
+ ],
+ "chars": 10904,
+ "blocks": [
+  {
+   "id": "H03",
+   "page": 5,
+   "kind": "heading",
+   "text": "2. GR00T 2 Overview",
+   "section": "2. GR00T 2 Overview"
+  },
+  {
+   "id": "S058",
+   "page": 5,
+   "kind": "prose",
+   "text": "GR00T 2 is a world-action model (WAM): a single model that, given the robot’s visual and proprioceptive input and a user instruction, predicts both how the scene will unfold and the robot’s actions. One pretrained checkpoint covers parallel-gripper arms, dexterous hands, and a humanoid, and learns diverse source data sources including human egocentric videos, handheld UMI gripper data, and robot teleopration data. (Sec. 4.2).",
+   "section": "2. GR00T 2 Overview"
+  },
+  {
+   "id": "S059",
+   "page": 5,
+   "kind": "prose",
+   "text": "Inputs and outputs. At every control step, GR00T 2 receives (i) a 0.8s history of 224 × 320 images from up to four cameras at 5 fps, typically a head camera and one camera on each wrist, (ii) the robot’s proprioceptive state, and (iii) a natural-language instruction. It returns a chunk of future actions together with the predicted future frames of every camera. The robot executes the chunk through its own controller while the next chunk is computed (Sec. K.5).",
+   "section": "2. GR00T 2 Overview"
+  },
+  {
+   "id": "S060",
+   "page": 5,
+   "kind": "prose",
+   "text": "Architecture. GR00T 2 is built on Cosmos-Predict2.5-2B, a video diffusion transformer pretrained for world simulation (NVIDIA et al., 2025a). Video, state, and action inputs become tokens in one sequence that a single 2B-parameter transformer processes (Fig. 1):",
+   "section": "2. GR00T 2 Overview"
+  },
+  {
+   "id": "S061",
+   "page": 5,
+   "kind": "prose",
+   "text": "• Video. A frozen Wan 2.1 video VAE (Wan Team et al., 2025) compresses each camera stream 4× in time and 8× in each spatial dimension. The latents are split into patches, giving 280 tokens per latent frame and camera at 224 × 320. A learned view embedding tells the model which camera each token comes from. Past frames enter as context, and future frames are generated. • Language. A frozen Cosmos-Reason1 vision-language model (NVIDIA et al., 2025b) encodes the instruction, and the transformer reads it through cross-attention. • State and actions. Small embodiment-specific MLPs map the robot state and the noisy action chunk into the transformer’s width, and an embodiment-specific decoder maps the output tokens back to actions.",
+   "section": "2. GR00T 2 Overview"
+  },
+  {
+   "id": "S062",
+   "page": 5,
+   "kind": "prose",
+   "text": "Inside the transformer, video tokens attend to one another across time and cameras, and action tokens attend to all video tokens, including the future frames being generated. Actions can therefore follow the future the model imagines. GR00T 2 is trained with flow matching (Lipman et al., 2023) on future video latents and actions together, with one loss for each. At inference, a few denoising steps suffice: one or two for video and two to four for actions in our deployments (Sec. I.1).",
+   "section": "2. GR00T 2 Overview"
+  },
+  {
+   "id": "S063",
+   "page": 5,
+   "kind": "prose",
+   "text": "GR00T 2 Turbo: Efficient World-Action Modeling. While GR00T 2 already runs in real time when served from a workstation GPU (a median of 153 ms to predict an action chunk for Dexter from three camera views on a GeForce RTX 5090, Tab. 27), humanoid whole-body loco-manipulation sets a much stricter budget. The policy must react quickly to keep the whole body coordinated as the robot moves, and it must run onboard on",
+   "section": "2. GR00T 2 Overview"
+  },
+  {
+   "id": "C002",
+   "page": 6,
+   "kind": "caption",
+   "text": "Figure 2: Cross-embodiment transfer to Dexter with 0, 1, and 5 Dexter episodes. Results on the Dexter-50 tasks, which have no Dexter training data but appear in YAM teleoperation data, human video, or both. Zero-shot runs the pretrained model directly, while 1-shot and 5-shot fine-tune it with LoRA on 1 or 5 Dexter episodes. Left: average success rate over the 50 tasks. Right: number of tasks in each success-rate range. The tasks are those the model learns with five episodes (at least 80% success). Per-task results are in Fig. 24.",
+   "section": "2. GR00T 2 Overview",
+   "asset": "F002"
+  },
+  {
+   "id": "S078",
+   "page": 6,
+   "kind": "prose",
+   "text": "an edge GPU such as the NVIDIA Jetson AGX Thor, which has far less compute. We therefore design GR00T 2 Turbo to make the world-modeling objective itself even cheaper. Most of the tokens GR00T 2 predicts are future video, and video is highly redundant. Turbo keeps the 2B transformer that models video and actions jointly but encodes video with a higher-compression VAE, so it still predicts future observations and actions together, with far fewer visual tokens. This makes both training and inference faster. Turbo predicts in 124 ms on the onboard Jetson Thor of the Unitree G1, where it plans whole-body motion for the SONIC controller (Sec. 3.5 and 4.6.1). Turbo trails GR00T 2 on dexterous tasks but remains well above the baselines on bimanual and dexterous manipulation, and offers a favorable tradeoff between task performance and inference latency (Sec. 3.1 and Fig. 23).",
+   "section": "2. GR00T 2 Overview",
+   "merged_ids": [
+    "S079"
+   ]
+  },
+  {
+   "id": "S080",
+   "page": 6,
+   "kind": "prose",
+   "text": "Specifically, Turbo replaces the video VAE with the Wan 2.2 VAE (Wan Team et al., 2025), increasing spatial compression from 8× to 16× per dimension and producing a 4× smaller spatial latent grid. The latent input and output projections are adapted to the new VAE, while the action horizon remains unchanged.",
+   "section": "2. GR00T 2 Overview"
+  },
+  {
+   "id": "S081",
+   "page": 6,
+   "kind": "prose",
+   "text": "Using GR00T 2 on a new robot. To bring up a robot, a practitioner maps its cameras to the head and wrist views, expresses its actions in a supported action space (or adds a new one), and post-trains GR00T 2 on demonstrations of the target tasks. Sec. 3 shows how few demonstrations this takes, and how to replace teleoperation with human or UMI demonstrations altogether.",
+   "section": "2. GR00T 2 Overview"
+  },
+  {
+   "id": "H04",
+   "page": 6,
+   "kind": "heading",
+   "text": "3. GR00T 2 Capabilities",
+   "section": "3. GR00T 2 Capabilities"
+  },
+  {
+   "id": "S082",
+   "page": 6,
+   "kind": "prose",
+   "text": "We now present the capabilities of GR00T 2. Sec. 3.1 shows zero-shot deployment and few-shot adaptation on new tasks and post-training on long-horizon tasks that demand precision and dexterity, and Sec. 3.2 studies cross-embodiment transfer, in which GR00T 2 learns a skill on a robot without teleoperated demonstrations of that skill. Sec. 3.3 shows that reinforcement learning improves GR00T 2 beyond its demonstrations, Sec. 3.4 pairs GR00T 2 with a frontier agent for long-horizon tasks, and Sec. 3.5 extends GR00T 2 to whole-body humanoid loco-manipulation. We report the main results here and defer the full evaluations to the appendix.",
+   "section": "3. GR00T 2 Capabilities"
+  },
+  {
+   "id": "H05",
+   "page": 6,
+   "kind": "heading",
+   "text": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery",
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery"
+  },
+  {
+   "id": "S083",
+   "page": 6,
+   "kind": "prose",
+   "text": "Zero-shot deployment on new tasks. Pretraining on teleoperation data from many robots and on Human-1M human video (Sec. 4.2) gives GR00T 2 an emergent ability to perform tasks it has never seen on the target robot. We test this on Dexter (Tianji robot + Sharpa hands), a bimanual robot with two 22-DoF dexterous hands, with 50 tasks that are absent from Dexter’s own data and appear only in YAM gripper data, human video, or both. Deployed out of the box and conditioned only on the language instruction, GR00T 2 succeeds in 40% of trials and completes 40 of the 50 tasks at least once (Fig. 2). Most failures come from a single step",
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery"
+  },
+  {
+   "id": "C003",
+   "page": 7,
+   "kind": "caption",
+   "text": "Table 1: Post-training benchmarks. For each model, Prog. is the average task progress score across all trials and SR is the success rate, both on a scale from 0 to 100. Bold marks the best Prog. and SR in each row, and the last row of each table averages its tasks. Each YAM result is based on up to 20 trials. On Truck Assembly, GR00T 2 and GR00T 2 Turbo were evaluated on a revised, easier set of start scenes, and on the original scenes GR00T 2 succeeds in 7 of 20 trials with a progress score of 94.0. Baselines: 𝜋0.5 (Physical Intelligence et al., 2025), GR00T 1.7 (NVIDIA, 2026a), FastWAM (Yuan et al., 2026), MolmoAct2 (Fang et al., 2026), and FLUX 3 Action (Black Forest Labs, 2026).",
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery",
+   "asset": "T001"
+  },
+  {
+   "id": "S088",
+   "page": 7,
+   "kind": "prose",
+   "text": "Hot Wheels Assembly 95.4 85.0 68.6 50.0 13.1 0.0 19.5 0.0 0.8 0.0 1.5 0.0 0.5 0.0 Toy Tractor Assembly 63.8 45.0 54.5 40.0 8.4 0.0 3.6 0.0 1.9 0.0 1.1 0.0 2.4 0.0 Toy Plane Assembly 71.0 70.0 63.5 55.0 24.0 10.0 11.0 0.0 10.0 0.0 13.5 0.0 10.0 0.0 iPhone into Box 89.0 65.0 91.0 55.0 67.5 5.0 49.5 15.0 17.0 0.0 38.0 0.0 19.5 0.0 Fixed-Pipe Fittings 70.0 70.0 90.0 90.0 30.0 30.0 35.0 35.0 45.0 45.0 35.0 35.0 0.0 0.0 Wire into Breaker 98.5 95.0 100.0 100.0 30.0 30.0 17.0 0.0 18.5 5.0 10.0 10.0 8.0 0.0",
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery"
+  },
+  {
+   "id": "S094",
+   "page": 7,
+   "kind": "prose",
+   "text": "Make Shipping Label 78.0 60.0 73.0 60.0 41.0 5.0 16.0 0.0 Flashlight Battery Replacement 86.0 55.0 49.0 15.0 34.0 0.0 41.0 0.0 GB300 Memory 96.0 85.0 81.0 50.0 43.0 0.0 55.0 0.0 Truck Assembly 98.0 65.0 43.0 5.0 0.0 0.0 0.0 0.0 Crude Salt Filtering 98.0 85.0 88.0 65.0 17.0 0.0 14.0 0.0 Vitamin C Test 86.0 75.0 67.0 25.0 9.0 0.0 14.0 0.0 Microscope 64.0 55.0 33.0 20.0 10.0 0.0 9.0 0.0",
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery"
+  },
+  {
+   "id": "C004",
+   "page": 7,
+   "kind": "caption",
+   "text": "Figure 3: Representative tasks from the two post-training benchmarks. Hot Wheels Assembly on YAM (top) and Make Shipping Label on Dexter (bottom).",
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery",
+   "asset": "F003"
+  },
+  {
+   "id": "S096",
+   "page": 7,
+   "kind": "prose",
+   "text": "that falls short on precision within an otherwise correct execution. The ability grows with data, and zero-shot success on new Dexter tasks more than doubles as the amount of human video in pretraining increases (Fig. 10). On broader zero-shot suites for YAM and Dexter, GR00T 2 also leads the VLA baselines in success rate (Tabs. 2 and 3).",
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery"
+  },
+  {
+   "id": "S097",
+   "page": 7,
+   "kind": "prose",
+   "text": "Few-shot mastery with minutes of robot data. Because the pretrained model already knows how to approach",
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery"
+  },
+  {
+   "id": "C005",
+   "page": 8,
+   "kind": "caption",
+   "text": "Figure 4: Learning new tasks without teleoperation. Each column is one way to demonstrate a task without the target robot. It shows a demonstration, a GR00T 2 rollout on the robot, and the real-robot success rate per task. Best baseline is the highest success among the other models evaluated on that task (GR00T 1.7 (NVIDIA, 2026a), 𝜋0.5 (Physical Intelligence et al., 2025), LingBot-VA (Li et al., 2026)). *For Conveyor Sorting, the bars show the share of the 50 conveyor items sorted, not the share of successful trials. Full results are in Fig. 27 and Tabs. 4, 5 and 7.",
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery",
+   "asset": "F004"
+  },
+  {
+   "id": "S130",
+   "page": 8,
+   "kind": "prose",
+   "text": "these tasks, very little robot data closes the gap. One teleoperated episode per task lifts success to 71%, and five episodes, under three minutes of robot data, lift it to 95%, with 37 of the 50 tasks succeeding in every trial. The 50 tasks were chosen among those the model learns with five episodes (at least 80% success), so the five-episode rate is high partly by construction. Each adaptation is a LoRA fine-tune of about 30 minutes on a single RTX 5090, and merging the adapter into the weights means the adapted model is served exactly like the pretrained one (Sec. A.3).",
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery"
+  },
+  {
+   "id": "S131",
+   "page": 8,
+   "kind": "prose",
+   "text": "Long-horizon tasks that demand precision and dexterity. The same pretraining pays off when GR00T 2 is post-trained on long-horizon tasks that chain many precise steps. On six YAM tasks, from assembling a toy car end to end in 24 stages to inserting a wire into a breaker, GR00T 2 reaches 71.7% average success, compared with at most 12.5% for the VLA and WAM baselines (Tab. 1a and Fig. 3). On seven dexterous-hand tasks, such as filtering crude salt, testing for vitamin C, and swapping a GB300 memory module, GR00T 2 reaches 68.6% average success, compared with at most 0.7% for GR00T 1.7 and 𝜋0.5 (Tab. 1b). Completing such tasks end to end, with dexterous hands and tight tolerances at every step, is a new capability for a generalist robot model. All tasks of both benchmarks are shown in Sec. A.1.",
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery"
+  },
+  {
+   "id": "S132",
+   "page": 8,
+   "kind": "prose",
+   "text": "GR00T 2 Turbo. Although Turbo is designed primarily for onboard deployment on edge devices (Sec. 2), it still retains much of GR00T 2 capability. In zero-shot evaluation, it stays close to GR00T 2 on YAM and ranks second among the evaluated models on Dexter (Tabs. 2 and 3). After post-training it gives up some success, reaching 65.0% on the YAM tasks and 34.3% on the dexterous-hand tasks, still well above the baselines. Fig. 23 shows the resulting trade-off between task progress and inference latency.",
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery"
+  }
+ ]
+}

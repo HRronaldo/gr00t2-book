@@ -1,0 +1,196 @@
+{
+ "chunk_id": "chunk_05",
+ "sections": [
+  "4.2. Data",
+  "4.3. Real-World Benchmarking: Mapping the Hill We Climb"
+ ],
+ "pages": [
+  15,
+  17
+ ],
+ "chars": 9427,
+ "blocks": [
+  {
+   "id": "H12",
+   "page": 15,
+   "kind": "heading",
+   "text": "4.2. Data",
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S288",
+   "page": 15,
+   "kind": "prose",
+   "text": "GR00T 2 pretrains on human demonstrations, UMI demonstrations, and robot teleoperation, which play complementary roles. Egocentric human video from Human-1M provides broad coverage of physical interactions and environments, and robot performance grows with the amount of it (Sec. 4.2.1). UMI provides scalable, task-focused demonstrations with robot-compatible action representations (Sec. 4.2.2), and teleoperation grounds the model in embodiment-specific behaviors and executable actions (Sec. 4.2.3). Finally, Flora, our data engine, labels the subtask annotation of human and robot episodes at this scale (Sec. 4.2.4). App. C details the collection, processing, and curation of each source, and Sec. 4.7.3 describes the pipeline that converts raw data into training-ready format.",
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S289",
+   "page": 15,
+   "kind": "prose",
+   "text": "4.2.1. Human Data",
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S290",
+   "page": 15,
+   "kind": "prose",
+   "text": "For a world action model, egocentric human experience captures the motion and visual diversity needed to achieve strong coverage across objects, affordances, tasks, scenes and environments. GR00T 2 leverages 402,730 hours across approximately 13.75 million episodes, spanning over 51,500 unique collectors and 123,000 scenes of high quality egocentric data filtered from Human-1M. The dataset is a 1 million hour egocentric human experience dataset of proficient human labor sensorized with egocentric cameras, dense language annotations, SLAM and 3D hand pose keypoints curated by NVIDIA, spanning demonstrations in both natural “in-the-wild” and controlled studio environments. Additional details on filters and dataset composition in Sec. C.1.",
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S291",
+   "page": 15,
+   "kind": "prose",
+   "text": "In-lab human data. To enable direct transfer to the target robot embodiment, GR00T 2 contains 3,000 hours of robot-aligned studio data, collected under a stricter protocol. The visual gap is mitigated by matching the egocentric and wrist camera viewpoints, while the motion gap is mitigated by matching demonstration speed with the robot. This data is demonstration-style where each task is demonstrated hundreds of times with a repeatable strategy (Sec. C.1.3).",
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S292",
+   "page": 15,
+   "kind": "prose",
+   "text": "Human Data Scaling. Under the same GR00T 2 architecture, training recipe and post-training teleoperation data, we ablate four Human-1M data pre-training scales (0%, 1%, 10%, or 100%). We control training length in epochs. The 1%, 10%, and 100% models start from a shared human-video pretraining checkpoint and are each pretrained for about 0.5 epoch of their share, while the 0% model skips human-video pretraining entirely. The step from 0% to 1% therefore also includes this shared stage, and the 1%, 10%, and 100% models differ only in their share of human data and the matching training length. Here one epoch means the model passes once over every step of every 30 Hz trajectory. Every model is then trained on the same target Dexter teleoperation data, co-trained with its human share, for the same 3 epochs of that robot data. We measure real robot and video rollout success rate (%) and task progress (%) on 72 Dexter tasks, 22 out-of-distribution tasks with new kinds of instructions and 50 tasks absent from Dexter’s training data. Across all four settings, we see positive scaling in performance as human data is scaled (Fig. 10). Real robot success rates increase from 18% to 41% from 0% human data pre-training to 100%. Video rollout success rates similarly increase from 30% to 51%. Together, these results show that what GR00T 2 learns from human video transfers to the robot. With the robot data held fixed, pretraining on all of the multi-view human video more than doubles real-robot success on new tasks, and none of the metrics levels off at 100%, which suggests that more human video will keep improving robot performance (Sec. C.1.5).",
+   "section": "4.2. Data",
+   "merged_ids": [
+    "S293"
+   ]
+  },
+  {
+   "id": "S294",
+   "page": 16,
+   "kind": "prose",
+   "text": "4.2.2. UMI Data",
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S295",
+   "page": 16,
+   "kind": "prose",
+   "text": "UMI-10K, recorded with the handheld UMI device (App. E), contributes 942k quality-controlled episodes and 10,184 hours of bimanual parallel-gripper demonstrations across 2,897 tasks. The dataset is extremely diverse with no single task contributing more than 1.2% of hours. The instructions span 356 object categories and 49 dextrous skills. The corpus covers 2,798 distinct skill-object combinations, including dynamic, articulated, and deformable manipulation that teleoperation rarely captures. Many tasks contain counterfactual pairs, which is aimed to improve policy instruction following (Sec. C.2).",
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S296",
+   "page": 16,
+   "kind": "prose",
+   "text": "4.2.3. Teleoperation Data",
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S297",
+   "page": 16,
+   "kind": "prose",
+   "text": "Cross-embodiment teleoperated demonstrations provide robot action supervision for GR00T 2. The pre-training mixture contains a total of 23.5k hours and 1.16M episodes of teleoperation data including:",
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S298",
+   "page": 16,
+   "kind": "prose",
+   "text": "• Bimanual YAM arms with parallel grippers (18.7k hours, including ABC-130k (XDOF, 2026)), • Bimanual arms with Sharpa hands (2.9k hours), • Bimanual arms with Wuji hands (1.3k hours), • The Unitree G1 humanoid (275 hours), • The single-arm Franka Panda from DROID (Khazatsky et al., 2024).",
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S299",
+   "page": 16,
+   "kind": "prose",
+   "text": "Additional details are provided in Sec. C.3.",
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S300",
+   "page": 16,
+   "kind": "prose",
+   "text": "4.2.4. Data Annotation with Flora",
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S301",
+   "page": 16,
+   "kind": "prose",
+   "text": "GR00T 2 pretraining uses dense timestamped language annotations for language conditioning, filtering and rebalancing. GR00T 2 RL post-training additionally requires process rewards, while policy evaluation requires outcome labelling. At the scale of Human-1M and our robot corpora, human labeling is too slow and frontier API models are too expensive. To provide these dense labels, we leverage Flora (Leng et al., 2026), the data engine that annotates training and evaluation data for GR00T 2. Flora consists of three models that identify action boundaries, annotate each action with a self-contained imperative instruction, and generate outcome, dense, and rubric-based rewards. On WGO-Bench (Macrodata Labs, 2026), Flora achieves a temporal segmentation F1 of 50.3, compared to 46.0 for the next-best model, GPT-6 Astra (OpenAI, 2026). Additional details are provided in Sec. C.4.",
+   "section": "4.2. Data"
+  },
+  {
+   "id": "H13",
+   "page": 16,
+   "kind": "heading",
+   "text": "4.3. Real-World Benchmarking: Mapping the Hill We Climb",
+   "section": "4.3. Real-World Benchmarking: Mapping the Hill We Climb"
+  },
+  {
+   "id": "S302",
+   "page": 16,
+   "kind": "prose",
+   "text": "Every GR00T 2 candidate earned its place in blinded head-to-head matches on real robots, accumulated into a single leaderboard that tells us which checkpoint is better, by how much, and how sure we can be.",
+   "section": "4.3. Real-World Benchmarking: Mapping the Hill We Climb"
+  },
+  {
+   "id": "S303",
+   "page": 16,
+   "kind": "prose",
+   "text": "Why head-to-head. Real-robot evaluation is expensive, but its results accumulate, and months of evaluations are only worth keeping if they stay comparable. Absolute success rates do not: they drift with the station, the operator, the hardware, and the day, so a score from one session cannot be compared with a score from another.",
+   "section": "4.3. Real-World Benchmarking: Mapping the Hill We Climb"
+  },
+  {
+   "id": "S305",
+   "page": 17,
+   "kind": "prose",
+   "text": "GR00T 2 Turbo other best so far 90% CI (new bests)",
+   "section": "4.3. Real-World Benchmarking: Mapping the Hill We Climb"
+  },
+  {
+   "id": "C012",
+   "page": 17,
+   "kind": "caption",
+   "text": "Figure 11: Mapping the hill we climb. Every checkpoint on the current YAM suite, rated relative to the A/B reference (⋆, the board’s top-rated checkpoint, here a GR00T 2 Turbo checkpoint) and placed at the date it was saved. The line tracks the best checkpoint so far, and bars are paired 90% bootstrap intervals for the checkpoints that set a new best. Evidence: the 6,035 blinded A/B comparisons of this suite, from 122 campaigns.",
+   "section": "4.3. Real-World Benchmarking: Mapping the Hill We Climb",
+   "asset": "F011"
+  },
+  {
+   "id": "S308",
+   "page": 17,
+   "kind": "prose",
+   "text": "Elo vs. reference ★",
+   "section": "4.3. Real-World Benchmarking: Mapping the Hill We Climb"
+  },
+  {
+   "id": "S314",
+   "page": 17,
+   "kind": "prose",
+   "text": "Jul Aug Sep Oct Nov checkpoint date (2026)",
+   "section": "4.3. Real-World Benchmarking: Mapping the Hill We Climb",
+   "merged_ids": [
+    "S315"
+   ]
+  },
+  {
+   "id": "S316",
+   "page": 17,
+   "kind": "prose",
+   "text": "A blinded A/B trial runs two to four checkpoints in randomized order on the same scene, by the same operator, within minutes, so the drift is shared and cancels in the comparison. GearArena, our real-robot leaderboard, pools every such trial. By the snapshot used here it held 195 A/B campaigns with 16,044 graded robot episodes and 11,767 pairwise comparisons, collected on 10 YAM stations by more than 20 operators between July and November 2026, rating 71 checkpoints.",
+   "section": "4.3. Real-World Benchmarking: Mapping the Hill We Climb"
+  },
+  {
+   "id": "S317",
+   "page": 17,
+   "kind": "prose",
+   "text": "Tasks from first principles. We design evaluation tasks by asking what the robot should be able to do, then choosing tasks that expose those capabilities, and finally gauging them on real checkpoints: a task every checkpoint completes is archived, and one no checkpoint completes is shelved until models catch up, since neither separates anything. Two suites resulted: a first suite of general and dexterous manipulation tasks and the current suite of 38 language-following and motion-primitive tasks, each run with partial-credit rubrics.",
+   "section": "4.3. Real-World Benchmarking: Mapping the Hill We Climb"
+  },
+  {
+   "id": "S318",
+   "page": 17,
+   "kind": "prose",
+   "text": "From matches to a map. Every pair of checkpoints in a trial forms one comparison, decided by the operator’s explicit ranking (equal grades count as ties). A Bradley-Terry model (Bradley and Terry, 1952), fit jointly to all comparisons, gives each checkpoint an Elo rating. Within each head-to-head, every task carries equal weight, and confidence intervals come from a bootstrap that resamples tasks rather than trials. Every new checkpoint is first matched against the A/B reference, the best-rated checkpoint on the board, which keeps all ratings on one connected scale (App. D).",
+   "section": "4.3. Real-World Benchmarking: Mapping the Hill We Climb"
+  },
+  {
+   "id": "S319",
+   "page": 17,
+   "kind": "prose",
+   "text": "What it bought us. Arena turned close calls into decisions. GR00T 2 outrates 𝜋0.5 by 236 Elo (95% CI 171 to 325), an expected 80% head-to-head win rate, and GR00T 1.7 by 95 Elo (CI 50 to 148), both in all 500 bootstrap resamples (Tab. 13). On our YAM V2 task suite, which focuses on foundational skills such as language following and motion primitives (Tab. 2), GR00T 2 Turbo is statistically indistinguishable from GR00T 2 in skill while running each inference about three times faster (52 vs. 171 ms per served call on a GeForce RTX 5090 workstation, Fig. 23). Over four months, the best checkpoint on the current suite climbed 206 Elo, from a June model that today’s top checkpoint would beat 77% of the time (Fig. 11). Simulated evaluations reproduce Elo ratings fit to blinded A/B trials of this kind with Pearson 𝑟= 0.93 (Sec. 4.5.2). App. D details the task design, the rating model, the A/B infrastructure, and the full results.",
+   "section": "4.3. Real-World Benchmarking: Mapping the Hill We Climb"
+  }
+ ]
+}

@@ -1,0 +1,160 @@
+{
+ "chunk_id": "chunk_09",
+ "sections": [
+  "5. Conclusion and Open Problems"
+ ],
+ "pages": [
+  26,
+  28
+ ],
+ "chars": 11637,
+ "blocks": [
+  {
+   "id": "H18",
+   "page": 26,
+   "kind": "heading",
+   "text": "5. Conclusion and Open Problems",
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S469",
+   "page": 26,
+   "kind": "prose",
+   "text": "GR00T 2 is a world-action model: a single 2B-parameter transformer that predicts future observations and robot actions together, pretrained on egocentric human video, handheld UMI demonstrations, and teleoperation of gripper arms, dexterous hands, and a humanoid. Predicting the future gives all of these sources a common objective, including human video that carries no robot actions. On 50 dexterous tasks new to the robot, the resulting model succeeds zero-shot in 40% of trials and reaches 95% with five demonstrations (Sec. 3.1). It learns robot tasks without teleoperated demonstrations of those tasks (Sec. 3.2). Real-world RL raises its success on contact-rich skills to 88 to 98% (Sec. 3.3). With corrective data and a frontier agent, it completes cluttered long-horizon assemblies in at least 97% of trials (Sec. 3.4). GR00T 2 Turbo runs onboard a humanoid and directs a learned whole-body controller (Sec. 3.5).",
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S470",
+   "page": 26,
+   "kind": "prose",
+   "text": "Three observations from building GR00T 2 shape the problems that follow.",
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S471",
+   "page": 26,
+   "kind": "prose",
+   "text": "• Much of what the robot learns need not come from robot data. Robot success on new tasks more than doubles with human video in pretraining and does not level off at the largest scale we tested (Fig. 10). For glove and Gripper UMI demonstrations, task-agnostic data from the target robot specify the embodiment, while the demonstrations specify the task (Sec. 3.2). • Reliability comes from complementary mechanisms, not from pretraining alone. Pretraining provides breadth. Corrective demonstrations and RL close gaps in precision and contact. The agent supplies memory, verification, and recovery over long horizons. • Progress depended on measurement. Blinded head-to-head evaluation and calibrated simulation (Sec. 4.3 and 4.5.2) turned close comparisons into decisions.",
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S472",
+   "page": 26,
+   "kind": "prose",
+   "text": "Each observation also points to problems that remain open. We group them by part of the robot learning system, and start each group from the basic constraint that makes it hard.",
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S473",
+   "page": 26,
+   "kind": "prose",
+   "text": "Model. A robot policy learns from data dominated by observation rather than action, and it must act at the rate of the physical world. Joint video-action prediction turns every video into supervision, but most of the tokens it predicts encode future video, much of which does not bear on the next action. GR00T 2 Turbo predicts a spatial latent grid four times smaller than that of GR00T 2. After post-training, it loses 6.7 points of success on YAM but half of its success on dexterous tasks, falling from 68.6% to 34.3% (Tab. 1). The comparison does not isolate the cause, but it suggests that the visual detail a policy must predict depends on the task and the embodiment. Four questions follow.",
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S474",
+   "page": 26,
+   "kind": "prose",
+   "text": "• What to predict. It is unknown which aspects of the future a policy should predict, and at what resolution and horizon. It is also unclear whether prediction helps mainly as a training signal or also as imagination at inference time. • Memory. GR00T 2 observes 0.8 s of history, and tasks that require memory are delegated to the agent (Sec. 3.4). In imitation learning, longer raw context can invite shortcuts such as copying past ac- tions (de Haan et al., 2019; Wen et al., 2020), which suggests that memory should be structured rather than simply longer. • Force and touch. GR00T 2 handles force only as an output: from DexUMI demonstrations, it predicts joint torques that set the hand’s compliance (Sec. 4.4.3). It does not take touch as input, and tactile recordings are scarce compared with video. How to add force and touch as inputs without eroding visual priors, and at which control rate, is open. • Interfaces in the control hierarchy. Image-space points tell GR00T 2 where to act but not how, so requirements such as pouring or scooping still rest on language and learned skills (Sec. 3.4). Below GR00T 2 Turbo, the interface to SONIC is a motion latent decoded into joint position targets (Sec. 3.5), so contact force is not represented explicitly. Which representation should pass between reasoning, policy, and controller, and how it transfers to new embodiments, is unsettled.",
+   "section": "5. Conclusion and Open Problems",
+   "merged_ids": [
+    "S475",
+    "S476"
+   ]
+  },
+  {
+   "id": "S477",
+   "page": 27,
+   "kind": "prose",
+   "text": "Data. Every hour of robot data requires a robot and an operator, whereas human experience is abundant but recorded in a different body. GR00T 2 pretrains on about 400,000 hours of human video, 10,000 hours of UMI demonstrations, and 23,500 hours of teleoperation (Sec. 4.2). Human video brings coverage, UMI brings task-focused demonstrations in a robot-compatible format, and teleoperation grounds the embodiment.",
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S478",
+   "page": 27,
+   "kind": "prose",
+   "text": "What is missing is an exchange rate between these sources. It is not known how much robot performance an hour of each source yields, or how that yield changes with the data already present. It is also not known how little target-robot data suffices to specify a new embodiment. Simulation raises the same question. Compute widens coverage, but agreement with the real world still requires measurement and robot time. The scaling with human video shows only that one of these rates is positive (Fig. 10). Until they are measured, collection budgets cannot be allocated on principle.",
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S479",
+   "page": 27,
+   "kind": "prose",
+   "text": "A second question is what makes data useful beyond its quantity. Demonstrations show mostly successful behavior, whereas RL, world models, and verifiers also need failures and recoveries; the world model we use for RL is trained on robot episodes that include both (Sec. 4.5.3). Labels of how well each demonstration was executed could serve as a further training signal.",
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S480",
+   "page": 27,
+   "kind": "prose",
+   "text": "Evaluation. A success rate measured on real robots is a binomial estimate, and its uncertainty shrinks only with the square root of the number of trials. Our post-training benchmarks use up to 20 trials per task (Tab. 1). That is enough to resolve the large gaps between GR00T 2 and its baselines, but not the differences that matter in deployment. Distinguishing 95% from 99% success takes about 285 trials per policy, and 99% from 99.9% more than 1,000.1 Absolute rates also drift with station, operator, and day, which is why we rank checkpoints by blinded head-to-head comparisons (Sec. 4.3). Even then, the independent units are tasks rather than trials, and 30 to 35% of comparisons are ties (Sec. D.7). Three directions follow.",
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S481",
+   "page": 27,
+   "kind": "prose",
+   "text": "• Proxy evaluation at deployment scale. Across 25 YAM tasks, simulation predicts the real-robot task progress of 14 generalist checkpoints with a Pearson correlation of 0.93 (Sec. 4.5.2). It remains to be shown whether simulation is as predictive for contact-rich assembly, for RL-trained policies that exploit simulator errors, and for comparisons between training recipes rather than checkpoints. • Automated verification. In our long-horizon assemblies, three of the eight failures were screws left partly driven that both GR00T 2 and the agent judged complete (Sec. G.1). Verifying subtle physical state is a prerequisite for autonomous evaluation, for RL rewards, and for deciding when to ask a person for help. • Cost to reliability. Robot learning rarely reports the quantity that determines deployment: the robot time and human time needed to bring a new task to a target reliability. The same accounting, under matched budgets, would settle when RL is worth more than additional demonstrations or corrections.",
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S482",
+   "page": 27,
+   "kind": "prose",
+   "text": "Hardware. A model can learn only what the hardware allows people to demonstrate, sensors to record, and robots to repeat. Our teleoperation cannot demonstrate fast, targeted motions such as the conveyor toss, which GR00T 2 learned from human demonstrations instead (Sec. 3.2). Capture devices that match the robot shrink the gap the model must bridge. DexUMI replicates the joints and contact surfaces of the robot hand, so on that hand its demonstrations need no robot play data (Sec. 4.4). This argues for designing robots and capture devices together, with shared kinematics, camera placement, and tactile formats.",
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S483",
+   "page": 27,
+   "kind": "prose",
+   "text": "1Two-sided two-proportion 𝑧-test at significance level 0.05 with 80% power.",
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S484",
+   "page": 28,
+   "kind": "prose",
+   "text": "Learning from interaction makes further demands. Physical interaction and scene resets limit how fast realworld RL collects experience (Sec. F.3), so autonomous improvement needs stations that reset themselves, detect success, and withstand thousands of contact-rich attempts. Onboard compute and power, finally, bound the model itself: GR00T 2 Turbo exists because a humanoid must run its policy on an edge GPU (Sec. 2).",
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S485",
+   "page": 28,
+   "kind": "prose",
+   "text": "Infrastructure. Joint video-action training processes multi-camera video at every step, and video dominates the cost of storage, decoding, and computation. Pretraining GR00T 2 used 1,024 GB300 GPUs and a data pipeline that processes petabyte-scale input each month (Sec. 4.7). It is not yet known how world-action models scale with model size, data, and compute, or how compute should be divided between video and action prediction. Scaling laws of this kind, under the constraint that the deployed model must run in real time, would guide the design of the next model.",
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S486",
+   "page": 28,
+   "kind": "prose",
+   "text": "The larger shift is from offline to online learning. RL post-training already couples robots, training, and evaluation in one service that retains experience across interruptions (Sec. F.3). An agent found the basis of our RL recipe through about 35 days of autonomous experimentation in simulation (Sec. 4.1). Extending this loop from single stations to fleets requires infrastructure in which robot experience, simulation, and world-model rollouts feed training continuously while every model and dataset version stays reproducible.",
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S487",
+   "page": 28,
+   "kind": "prose",
+   "text": "Deployment. The value of a deployed robot is set by how often it needs a person, how fast it works, and whether it is safe. GR00T 2 predicts an action chunk for Dexter in 153 ms on a GeForce RTX 5090 workstation GPU, and GR00T 2 Turbo predicts one for the G1 humanoid in 124 ms on its onboard Jetson Thor (median prediction latency, Sec. 2 and Tab. 27). Phase-conditioned retiming shortens mean completion time by 15 to 26% on three dexterous tasks (Tab. 29). Reliability is less settled. On long-horizon tasks, post-training reaches about 70% average success (Tab. 1). From cluttered starts, assembly success of at least 97% required corrective data and an agent that monitors and repairs (Sec. 3.4). That agent is slow relative to the policy. In visually steered trash sorting on YAM, a median agent turn takes 7.5 s against about 0.6 s per unaccelerated policy call, and the robot waits for the agent during a median 38% of an episode (Sec. G.2). Three problems stand out.",
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S488",
+   "page": 28,
+   "kind": "prose",
+   "text": "• Routine improvement. RL and world-model training still require rollouts and adaptation for each task (Sec. 4.5.3). A loop in which deployment exposes failures, agents propose corrections, and successful behaviors are distilled back into the policy (Sec. G.3) would turn this per-task cost into a by-product of operation. • Latency across the hierarchy. Reasoning, verification, and recovery must move closer to the policy’s control rate, through faster agents, distilled verifiers, or a policy that absorbs recurring corrections. • Safe physical action. Safety training of language models constrains what they say, and it is not known to carry over to what a robot does. A policy that agents can steer needs its own checks on the physical consequences of each action, at the rate at which actions execute.",
+   "section": "5. Conclusion and Open Problems",
+   "merged_ids": [
+    "S489"
+   ]
+  },
+  {
+   "id": "S490",
+   "page": 28,
+   "kind": "prose",
+   "text": "GR00T 2 shows that one model, pretrained to predict how the physical world unfolds, can learn from human experience, transfer skills across embodiments, and serve as the manipulation layer of an agentic system. The open problems above share one structure. Each asks how to turn a scarce resource, whether robot hours, human time, or onboard compute, into reliable physical capability, and how to measure the result with enough confidence to act on it.",
+   "section": "5. Conclusion and Open Problems"
+  }
+ ]
+}

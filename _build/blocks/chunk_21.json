@@ -1,0 +1,179 @@
+{
+ "chunk_id": "chunk_21",
+ "sections": [
+  "E.4. DexUMI Exoskeleton Hardware",
+  "E.5. DexUMI Post-Training Recipe",
+  "E.6. DexUMI WAM-Native Inpainting",
+  "F. RL Post-Training"
+ ],
+ "pages": [
+  81,
+  84
+ ],
+ "chars": 7940,
+ "blocks": [
+  {
+   "id": "H45",
+   "page": 81,
+   "kind": "heading",
+   "text": "E.4. DexUMI Exoskeleton Hardware",
+   "section": "E.4. DexUMI Exoskeleton Hardware"
+  },
+  {
+   "id": "S1468",
+   "page": 81,
+   "kind": "prose",
+   "text": "The GEAR DexUMI exoskeleton (NVIDIA GEAR Team, 2026) replicates the kinematics of the target robot hand (XHAND1 Pro-U) joint for joint and reproduces its fingertip and palm contact surfaces, which keeps the visual and physical gap to the robot small for policy training. It is also designed for wearability, so that operators can comfortably collect high-quality data across long, dexterous tasks. Compared with the original DexUMI, it offers the following improvements:",
+   "section": "E.4. DexUMI Exoskeleton Hardware",
+   "merged_ids": [
+    "S1469"
+   ]
+  },
+  {
+   "id": "S1470",
+   "page": 81,
+   "kind": "prose",
+   "text": "• More degrees of freedom. The exoskeleton captures 16 degrees of freedom, using 20 joints of which four pairs are coupled. • Higher precision and durability. Machined parts give higher precision and durability. • No over-constraint, better tracking and wearability. Removing non-essential contact surfaces and adopting a remote-center-of-motion (RCM) linkage resolves the over-constraint of the original structure. The structure flexes less, which improves tracking precision and wearability. • Daisy-chained encoders. The joint encoders are daisy-chained, which simplifies cable management. • Left and right hands. Both left- and right-hand versions are available, enabling bimanual tasks.",
+   "section": "E.4. DexUMI Exoskeleton Hardware"
+  },
+  {
+   "id": "S1471",
+   "page": 81,
+   "kind": "prose",
+   "text": "Remote-center-of-motion joints. Matching the robot hand’s abduction/adduction (AB/AD) and flexion joints is a packaging problem, since those joint centers lie where the operator’s finger is. We replicate them with an RCM linkage that creates a virtual joint at the robot hand’s joint center without placing hardware in the operator’s workspace (Fig. 44a). The RCM is a parallel four-bar linkage. To avoid over-constraining it, only two of the four holes at the top joint are used. Leaving the other two unused reduces binding from manufacturing tolerances and keeps motion smooth.",
+   "section": "E.4. DexUMI Exoskeleton Hardware"
+  },
+  {
+   "id": "S1472",
+   "page": 81,
+   "kind": "prose",
+   "text": "Thumb. The thumb linkages use a “kicked-out” geometry that preserves the robot hand’s thumb kinematics while clearing space for the operator’s own thumb, so its range of motion is unobstructed during dexterous manipulation (Fig. 44b).",
+   "section": "E.4. DexUMI Exoskeleton Hardware"
+  },
+  {
+   "id": "S1473",
+   "page": 81,
+   "kind": "prose",
+   "text": "Rigid, compact joints. Every joint is supported on both sides to prevent deflection and improve measurement precision. Custom pins keep joint bulk low while forming secure connections, and a variant with a direct keying interface mates to the joint encoders, reducing backlash and improving sensor accuracy (Fig. 45a).",
+   "section": "E.4. DexUMI Exoskeleton Hardware"
+  },
+  {
+   "id": "C061",
+   "page": 82,
+   "kind": "caption",
+   "text": "Figure 44: GEAR DexUMI kinematic design. (a) A remote-center-of-motion linkage places a virtual joint at the robot hand’s AB/AD and flexion joint centers. (b) The kicked-out thumb linkage keeps the robot hand’s thumb kinematics while clearing the operator’s thumb.",
+   "section": "E.4. DexUMI Exoskeleton Hardware",
+   "asset": "F044"
+  },
+  {
+   "id": "S1476",
+   "page": 82,
+   "kind": "prose",
+   "text": "Contact surfaces and camera. The fingertip and palm tactile-sensor contact surfaces match the robot hand’s, and the fingertip geometry is reproduced on the exoskeleton to reduce the visual gap between human collection and robot execution (Fig. 45b). Non-essential contact surfaces are removed to improve wearability. The camera mounting angle and alignment are carried over to the robot hand’s mount, so the collected images match the deployed field of view (Fig. 45c). Finally, the chassis is anodized green so that a color threshold can segment it for the masked-video augmentation (Sec. E.6).",
+   "section": "E.4. DexUMI Exoskeleton Hardware"
+  },
+  {
+   "id": "S1477",
+   "page": 82,
+   "kind": "prose",
+   "text": "Sensing. The exoskeleton fingertips report force in the robot hand’s own tactile format: five fingertip sensors with two pads and three force axes each, 30 channels per hand. Per hand, an iPhone tracks a wrist frame 12.6 cm from its lens, which a per-arm hand-eye calibration maps onto the robot, and the same 640 × 400, 45 fps wrist and head cameras serve collection and deployment.",
+   "section": "E.4. DexUMI Exoskeleton Hardware"
+  },
+  {
+   "id": "H46",
+   "page": 82,
+   "kind": "heading",
+   "text": "E.5. DexUMI Post-Training Recipe",
+   "section": "E.5. DexUMI Post-Training Recipe"
+  },
+  {
+   "id": "S1478",
+   "page": 82,
+   "kind": "prose",
+   "text": "For the DexUMI results of Sec. B.3, we post-train the 2B GR00T 2 model from the GR00T 2 pretraining checkpoint for 60,000 steps at a learning rate of 3 × 10−5, with 224 × 320 images from the wrist cameras and, optionally, the head camera. The policy predicts 40-step action chunks at stride 2 on the 45 fps data: relative end-effector poses for each arm and, for each hand, either absolute joint positions with joint torques or offset joint positions in their place (Eqs. (1) and (3)).",
+   "section": "E.5. DexUMI Post-Training Recipe"
+  },
+  {
+   "id": "H47",
+   "page": 82,
+   "kind": "heading",
+   "text": "E.6. DexUMI WAM-Native Inpainting",
+   "section": "E.6. DexUMI WAM-Native Inpainting"
+  },
+  {
+   "id": "S1479",
+   "page": 82,
+   "kind": "prose",
+   "text": "GR00T 2 addresses the visual gap between the exoskeleton and the robot hand inside training rather than by editing video: it corrupts the exoskeleton region so that the model cannot rely on exoskeleton-specific appearance. By WAM-native inpainting we mean this in-model treatment, in place of offline video editing. Our earlier pipeline, following the original DexUMI (Xu et al., 2025), filmed each demonstration replayed on a real robot hand, segmented the exoskeleton from manually picked keypoints, inpainted it with ProPainter, and composited the robot hand back in, at the cost of robot time, manual input, and GPU-heavy segmentation and inpainting.",
+   "section": "E.6. DexUMI WAM-Native Inpainting"
+  },
+  {
+   "id": "S1480",
+   "page": 82,
+   "kind": "prose",
+   "text": "Exoskeleton masks. We segment the green regions in every camera video with HSV color bands, morphological cleanup, and a ±2-frame temporal majority vote, and store each mask as a lossless binary video beside its RGB stream.",
+   "section": "E.6. DexUMI WAM-Native Inpainting"
+  },
+  {
+   "id": "C062",
+   "page": 83,
+   "kind": "caption",
+   "text": "Figure 45: GEAR DexUMI joints, contact surfaces, and camera. (a) Double-sided joint support and a custom pin with a direct keying interface to the joint encoder. (b) Fingertip and palm contact surfaces replicate the robot hand’s tactile sensors. (c) The camera mount matches the robot hand’s mounting angle and alignment.",
+   "section": "E.6. DexUMI WAM-Native Inpainting",
+   "asset": "F045"
+  },
+  {
+   "id": "S1484",
+   "page": 83,
+   "kind": "prose",
+   "text": "Masked-video augmentation. During training only, GR00T 2 corrupts the masked region before cropping and resizing, with one draw of corruption parameters per sample shared across frames and views, blended in through a feathered mask:",
+   "section": "E.6. DexUMI WAM-Native Inpainting"
+  },
+  {
+   "id": "E004",
+   "page": 83,
+   "kind": "equation",
+   "text": ", 𝛼= 𝐺𝜎* 𝑚, (9)",
+   "section": "E.6. DexUMI WAM-Native Inpainting",
+   "crop": "assets/equations/E004.png"
+  },
+  {
+   "id": "S1489",
+   "page": 83,
+   "kind": "prose",
+   "text": "where 𝑚is the binary mask and 𝐺𝜎a Gaussian blur with 𝜎= 6 px at 640 px width, so the corruption fades out over a narrow band around the mask and pixels farther from it stay bit-identical. The default corruption 𝑐rotates hue over the full color wheel, scales saturation by 𝑈[0.1, 1.2] and value by 𝑈[0.2, 1.15], and adds luminance noise. The saturation and value ranges deliberately reach dark, desaturated colors because the deployed robot hand is largely black. Masks are dropped from the deployed model’s inputs, so a checkpoint needs only RGB and inference frames pass through unchanged.",
+   "section": "E.6. DexUMI WAM-Native Inpainting"
+  },
+  {
+   "id": "H48",
+   "page": 84,
+   "kind": "heading",
+   "text": "F. RL Post-Training",
+   "section": "F. RL Post-Training"
+  },
+  {
+   "id": "S1490",
+   "page": 84,
+   "kind": "prose",
+   "text": "Pretraining equips GR00T 2 with broad visual and motor priors, but reliable real-world manipulation often requires adaptation to precise alignment, contact dynamics, and physical interaction. Reinforcement learning (RL) provides a complementary approach to supervised fine-tuning (SFT), enabling policies to improve through robot experience and task-level feedback.",
+   "section": "F. RL Post-Training",
+   "merged_ids": [
+    "S1491"
+   ]
+  },
+  {
+   "id": "S1492",
+   "page": 84,
+   "kind": "prose",
+   "text": "Applying RL to GR00T 2 introduces unique challenges. Unlike action-only policies, GR00T 2 jointly generates actions and predicted visual futures through iterative denoising. Policy optimization must therefore accommodate joint video-action computation while enabling effective exploration. Furthermore, physical interaction is expensive, requiring efficient algorithms and infrastructure to make iterative post-training practical.",
+   "section": "F. RL Post-Training"
+  },
+  {
+   "id": "S1493",
+   "page": 84,
+   "kind": "prose",
+   "text": "We address these challenges through three complementary components. First, we develop direct GR00T 2 posttraining methods, including GRPO-based optimization (Shao et al., 2024) and self-imitation from successful RL exploration, alongside residual RL for localized corrections (Sec. F.1). Second, we leverage AutoRL, an autonomous research system that discovers and improves RL post-training algorithms through closed-loop experimentation in simulation (Sec. F.2). Third, we develop scalable infrastructure that coordinates robot interaction, training, and evaluation while preserving experience and minimizing iteration overhead (Sec. F.3). We demonstrate these capabilities on four real-world precision manipulation tasks (Sec. F.4). We also investigate RL post-training through interaction with a learned neural simulator. We adapt DreamDojo (Gao et al., 2026) to recorded policy rollouts, then demonstrate that GR00T 2 can improve through world-model-based RL (Sec. F.5).",
+   "section": "F. RL Post-Training"
+  }
+ ]
+}

@@ -1,0 +1,108 @@
+{
+ "chunk_id": "chunk_07",
+ "sections": [
+  "4.5. Simulation and Evaluation"
+ ],
+ "pages": [
+  20,
+  22
+ ],
+ "chars": 7142,
+ "blocks": [
+  {
+   "id": "H15",
+   "page": 20,
+   "kind": "heading",
+   "text": "4.5. Simulation and Evaluation",
+   "section": "4.5. Simulation and Evaluation"
+  },
+  {
+   "id": "S376",
+   "page": 20,
+   "kind": "prose",
+   "text": "Simulation serves GR00T 2 in two roles. Physics simulation of digital twins of our real-world tasks provides a fast, repeatable, and calibrated proxy for real-robot evaluation, which we use throughout development (Sec. 4.5.1 and 4.5.2). Neural simulation with a learned world model, adapted from recorded rollouts, provides an environment for reinforcement learning (Sec. 4.5.3). We also evaluate GR00T 2 on five public simulation benchmarks (Sec. 4.5.4).",
+   "section": "4.5. Simulation and Evaluation",
+   "merged_ids": [
+    "S377"
+   ]
+  },
+  {
+   "id": "C018",
+   "page": 21,
+   "kind": "caption",
+   "text": "Figure 17: Real-world tasks and their simulated counterparts. Each pair shows the real workcell’s top camera (Real) and the same moment when the recorded robot commands are replayed in simulation (Sim), for five general manipulation tasks and one stage of the multi-stage airplane assembly. More tasks are shown in Fig. 61.",
+   "section": "4.5. Simulation and Evaluation",
+   "asset": "F017"
+  },
+  {
+   "id": "C019",
+   "page": 21,
+   "kind": "caption",
+   "text": "Figure 18: Simulated vs. real-world performance per policy. (a) Task progress (mean rubric score) and (b) success rate, averaged over 25 tasks (dashed: y = x). (c) Bradley-Terry Elo ratings fitted separately to pairwise outcomes in simulation and in real-world A/B evaluations (dashed: least-squares fit, since the two Elo scales differ). r: Pearson, 𝜌: Spearman, MMRV: mean maximum rank violation. Each point is a generalist checkpoint of GR00T 2 trained for the YAM embodiment.",
+   "section": "4.5. Simulation and Evaluation",
+   "asset": "F018"
+  },
+  {
+   "id": "S407",
+   "page": 21,
+   "kind": "prose",
+   "text": "4.5.1. Real-to-Sim Task Construction",
+   "section": "4.5. Simulation and Evaluation"
+  },
+  {
+   "id": "S408",
+   "page": 21,
+   "kind": "prose",
+   "text": "We recreate in simulation the real-world tasks used to develop GR00T 2, from general manipulation tasks evaluated zero-shot to multi-stage assembly, with rigid and articulated objects, deformable materials, and particles (Fig. 17). The aim is to reproduce both the visual setup and the physical interactions that determine whether a task succeeds. Agent-assisted workflows build the environments: agents use inputs such as real robot videos, 3D scans, and photographs, along with tools from SimFoundry (Ranawaka et al., 2026), to handle scene and asset reconstruction, including geometry, appearance, and collision modeling. Human experts review the resulting content and provide feedback to guide refinement. The simulation environments run in Isaac Lab Arena (NVIDIA Isaac Lab-Arena Contributors, 2025) on Newton (The Newton Contributors, 2025) with the MuJoCo Warp solver (Google DeepMind and NVIDIA, 2025). Environments are validated through several means including grasp and drop tests (for assets), replaying real robot demonstrations, and for assembly environments, testing assembly without a robot (Sec. J.1). For the humanoid, a separate motion-centric pipeline turns teleoperated whole-body motions into simulated demonstrations (Sec. 3.5).",
+   "section": "4.5. Simulation and Evaluation"
+  },
+  {
+   "id": "S409",
+   "page": 21,
+   "kind": "prose",
+   "text": "4.5.2. Simulation as a Proxy for Real-World Evaluation",
+   "section": "4.5. Simulation and Evaluation"
+  },
+  {
+   "id": "S410",
+   "page": 21,
+   "kind": "prose",
+   "text": "Policies trained on real data are evaluated in these environments directly, without fine-tuning or co-training on simulation data. On 25 YAM tasks, 14 GR00T 2 checkpoints evaluated in both settings, with 5 blinded A/B trials on the real robot and 10 simulated trials per task, give Pearson correlations of 0.93 for task progress, 0.92 for success rate, and 0.93 for Bradley-Terry Elo ratings. These values are 95 to 99% of the correlation that a perfect simulator would reach with the same number of trials (Figs. 18 and 65). Environments reconstructed from DROID setups reach 0.98, 0.95, and 0.97 for five generalist checkpoints. This calibration makes simulation a development tool: during pretraining, simulated evaluations tracked intermediate checkpoints and narrowed the final model candidates to three, which we then compared on real robots. We tested changes to the data pipeline, such as sequence packing and mixed-shard sampling, with small-scale training and closed-loop simulation before adopting them in pretraining. Inference settings were screened in simulation before robot tests. Beyond success rate, simulation testing revealed how inference settings affect motion smoothness, and we confirmed this finding in physical trials. Simulation also served to develop the agent’s recovery skills on the toy plane assembly task (Sec. 3.4). While physical-robot evaluation remains the final validation for every design choice (Sec. J.2), simulation evaluation significantly increased development speed and iteration frequency.",
+   "section": "4.5. Simulation and Evaluation",
+   "merged_ids": [
+    "S411"
+   ]
+  },
+  {
+   "id": "S412",
+   "page": 22,
+   "kind": "prose",
+   "text": "4.5.3. Neural Simulation",
+   "section": "4.5. Simulation and Evaluation"
+  },
+  {
+   "id": "S413",
+   "page": 22,
+   "kind": "prose",
+   "text": "Physics simulation requires reconstructing each task, whereas a learned world model can be built from recorded robot interaction. We turn DreamDojo (Gao et al., 2026), a world model initialized from pretrained video priors, into an environment in which GR00T 2 collects RL experience (Sec. 4.1). DreamDojo is first mid-trained on multi-view robot episodes, 8,310 from YAM (about 227 hours, including failed attempts and recoveries) and 57,773 from DROID (about 273 hours), with the camera views tiled into one video canvas so that they are predicted jointly. It is then adapted to the target tasks from a few hundred successful and failed rollouts of the initial policy per task. In closed loop, GR00T 2 predicts an action chunk, the world model predicts the multi-view frames that result from executing it, and these frames become GR00T 2’s next observation. The world model carries its history in latent space, and the last commanded action stands in for the robot state. Because each episode chains many short predictions, the world model conditions on its own imperfect outputs. For the model used in RoboLab, perturbing the conditioning latents with noise during training exposes it to such histories. Rewards come from compact video classifiers that detect task success, trained offline on labels that a vision-language model proposes and humans review. A sparse success reward is used because dense progress scores are expensive to annotate and can be exploited by the policy. RL in this environment raises the success of GR00T 2 from 43% to 72% on average over four real-world tasks (peg insertion, rack-hole insertion, and bun placement on two cups; Fig. 52) and from 51% to 71% on ten RoboLab tasks, both measured outside the learned environment (Sec. F.5).",
+   "section": "4.5. Simulation and Evaluation"
+  },
+  {
+   "id": "S414",
+   "page": 22,
+   "kind": "prose",
+   "text": "4.5.4. Simulation Benchmarks",
+   "section": "4.5. Simulation and Evaluation"
+  },
+  {
+   "id": "S415",
+   "page": 22,
+   "kind": "prose",
+   "text": "We evaluate GR00T 2 on five public benchmarks with their official task sets, episode budgets, and success criteria, using for each a single checkpoint post-trained from the same pretrained model (Sec. J.3). Baseline results are taken from the official leaderboards as of November 6, 2026, except GR00T 1.7, which we retrain and evaluate ourselves. Among VLA and WAM policies on the public leaderboards, GR00T 2 achieves the highest success rate on RoboCasa365 (Nasiriany et al., 2026), a single-arm mobile manipulation benchmark (67.2%, 2.8 points above the best prior entry), and on RoboDojo (Chen et al., 2026a), a bimanual benchmark (35.5%). On RoboLab (Yang et al., 2026) and MolmoSpaces (Kim et al., 2026), it places third (47.4%) and second (45.1%) after post-training only on real DROID data, so both evaluations are zero-shot real-to-sim transfer. On the G1 Factory humanoid benchmark (NVIDIA, 2026c), it reaches 84.7% success against 69.4% for GR00T 1.7. With RL post-training and agentic execution, GR00T 2 ranks first on the RoboCasa365 and RoboDojo leaderboards, the latter evaluated on one of its three official layout banks (Sec. 3.4 and Tab. 19).",
+   "section": "4.5. Simulation and Evaluation",
+   "merged_ids": [
+    "S416"
+   ]
+  }
+ ]
+}

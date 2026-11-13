@@ -1,0 +1,163 @@
+{
+ "chunk_id": "chunk_13",
+ "sections": [
+  "B.5. Human →Simulation →Tianji + Sharpa"
+ ],
+ "pages": [
+  53,
+  56
+ ],
+ "chars": 10016,
+ "blocks": [
+  {
+   "id": "H29",
+   "page": 53,
+   "kind": "heading",
+   "text": "B.5. Human →Simulation →Tianji + Sharpa",
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S996",
+   "page": 53,
+   "kind": "prose",
+   "text": "Despite their broad capabilities, WAMs still struggle with contact-rich dexterous manipulation, such as in-hand object reorientation. Reinforcement learning (RL) in simulation offers a complementary source of skills, including forceful tool use, precise contact interactions, and recovery behaviors that are difficult to demonstrate",
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "C036",
+   "page": 54,
+   "kind": "caption",
+   "text": "Table 6: DexUMI →Tianji + Sharpa results. Fraction of real-robot trials that complete the whole task, over 20 trials per task. No training data contain a robot trajectory of either task.",
+   "section": "B.5. Human →Simulation →Tianji + Sharpa",
+   "asset": "T006"
+  },
+  {
+   "id": "S999",
+   "page": 54,
+   "kind": "prose",
+   "text": "reliably through teleoperation or kinematic retargeting. We introduce a human-to-sim-to-real pipeline that enables GR00T 2 to acquire these skills from a single human demonstration video per task.",
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1000",
+   "page": 54,
+   "kind": "prose",
+   "text": "Building on NVIDIA’s Video to Data (V2D) (NVIDIA, 2026b) pipeline, we reconstruct 3D object assets, hand– object motion, and contacts from stereo video, then train a state-based RL expert using CHORD (Zhu et al., 2026). We collect expert demonstrations with native simulation rendering, physical and visual randomization, and state perturbations that broaden state coverage and elicit recovery behaviors beyond nominal trajectories. Fig. 16 illustrates the full pipeline.",
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1001",
+   "page": 54,
+   "kind": "prose",
+   "text": "We fine-tune GR00T 2’s diffusion transformer (DiT) on 1.5K simulation episodes, incorporating training-time Real-Time Chunking (RTC) for continuous execution. The resulting policy is deployed zero-shot using RGB observations, robot state, and task instructions, without additional real-world robot data or scene-specific reconstruction or alignment. By expanding one human demonstration into diverse robot rollouts, this approach provides a scalable source of dexterous manipulation data. We hypothesize that GR00T 2’s pretrained priors support compositional generalization: fine-tuning combines simulation-learned contact-rich skills with the perceptual and behavioral knowledge acquired during large-scale pretraining.",
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1002",
+   "page": 54,
+   "kind": "prose",
+   "text": "We evaluate nail hammering, flask handover, and table sweeping, comparing GR00T 2 against GR00T 1.7 and 𝜋0.5. GR00T 2 demonstrates successful transfer of dexterous manipulation skills from simulation to the real world. Although 𝜋0.5 performs well in simulation, its real-world execution is limited to grasping and lifting, with no successful completion of the full tasks, which require subsequent reorientation and object interactions.",
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1003",
+   "page": 54,
+   "kind": "prose",
+   "text": "Human and Object Reconstruction. Stable simulation and policy training require accurate, geometrically consistent reconstructions of hand motion, object trajectories, and their contacts. Independent estimates of hands and objects can be inconsistent, particularly when the supplied object mesh differs from the object observed in the video. We use V2D’s agentic pipeline for 4D hand-object reconstruction, coordinating tools such as SAM3 (Carion et al., 2025), FoundationPose (Wen et al., 2024), and GATOR (Wu et al., 2026) for segmentation, object tracking, and hand tracking. To resolve geometric inconsistencies, the reconstructed hands are refined against the supplied object mesh while keeping the mesh and reference object motion fixed. Contact-wrench objectives and geometric checks guide alignment, followed by penetration correction and finger repair. This formulation adapts hand configurations and contact locations to the supplied geometry while targeting the interaction’s mechanical effect on the object. These anchors provide persistent references for downstream robotic grounding. Evaluated on 15 stereo trajectories from SHOW3D (Rim et al., 2026), a dataset of hand-object interactions captured in the wild with annotated 3D hand and object poses, the reconstruction pipeline achieves an average hand reconstruction error of 17.5 mm and an object Chamfer distance of 3.0 mm.",
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1004",
+   "page": 54,
+   "kind": "prose",
+   "text": "RL in Simulation. Using the reconstructed object assets and trajectories, we train a state-based RL expert to perform dexterous manipulation in simulation. The policy observes privileged robot and object states and outputs arm and hand joint targets. Training follows CHORD, with a warm-up procedure following SimToolReal (Kedia et al., 2026).",
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1005",
+   "page": 54,
+   "kind": "prose",
+   "text": "We calibrate the simulated robot’s joint dynamics through system identification of stiffness, damping, armature, friction, and delay. To improve robustness to physical variation, we randomize robot dynamics, object properties, and scene geometry during training. We also vary initial robot and object configurations, fixture geometry, and table dimensions, while ensuring valid, collision-free initialization.",
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "C037",
+   "page": 55,
+   "kind": "caption",
+   "text": "Figure 31: GR00T 2 learns dexterous manipulation through human-to-sim-to-real transfer. Starting from a single human demonstration per task captured with an egocentric stereo camera, the Video-to-Data pipeline generates simulation data for SFT of GR00T 2. The resulting policies transfer zero-shot to the real world on Hammer Nail, Handover Flask, and Brushing Trash, demonstrating dexterous in-hand object reorientation, handover, tool use, and bimanual coordination.",
+   "section": "B.5. Human →Simulation →Tianji + Sharpa",
+   "asset": "F031"
+  },
+  {
+   "id": "S1006",
+   "page": 55,
+   "kind": "prose",
+   "text": "The reward follows CHORD (Zhu et al., 2026) and combines task execution, motion regularization, and contact quality to encourage reliable, human-like tool interactions. Task rewards include keypoint-based tracking of the demonstrated object trajectory, subgoal completion, task progress, and terminal success. Joint-speed penalties regularize motion. Contact rewards use contact wrenches to encourage human-like grasps, improve grasp quality, and sustain object holding. We optimize the policy using a PPO-based SAPG (Singla et al., 2024).",
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1007",
+   "page": 55,
+   "kind": "prose",
+   "text": "Harvest Dexterity from Simulation. We convert the RL expert’s skills into demonstrations for supervised fine-tuning (SFT). Each rollout records RGB observations, robot states, expert actions, and task instructions. The privileged tool and goal keypoints available to the RL expert are excluded from GR00T 2’s inputs. We continue to randomize physical properties and scene configurations during collection to capture expert behavior across diverse conditions.",
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1008",
+   "page": 55,
+   "kind": "prose",
+   "text": "To broaden state coverage and capture recovery behavior, we introduce random-action bursts, object teleports, and robot-joint teleports during data collection. These perturbations move the system away from nominal trajectories and elicit corrective behavior from the expert. The resulting demonstrations cover states that GR00T 2 may encounter when its own actions deviate, helping mitigate the narrow state coverage and compounding errors observed with naive expert-rollout collection.",
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1009",
+   "page": 55,
+   "kind": "prose",
+   "text": "We also randomize visual appearance using native Isaac Lab (Mittal et al., 2025) rendering, without visual inpainting or style transfer models. Randomization covers object and scene colors, textures, material properties, illumination, environment lighting, and camera calibration. Small perturbations to camera poses and intrinsics model calibration uncertainty, while image noise models sensor variation.",
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1010",
+   "page": 55,
+   "kind": "prose",
+   "text": "SFT with Simulation Data. We fine-tune GR00T 2 for each task using 1.5k simulation episodes, sourced from one human demonstration video. During SFT, we update the DiT, retain the pretrained action normalization statistics, and freeze the action decoder and video output projection. The fine-tuned policy is deployed zero-shot in the real world using RGB observations, robot state, and a task instruction, with no additional real-world robot data. To support continuous real-time execution of action chunks, we incorporate training-time Real-Time Chunking (RTC).",
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "C038",
+   "page": 56,
+   "kind": "caption",
+   "text": "Table 7: GR00T 2 learns dexterous manipulation skills from simulation demonstrations generated from human videos and transfers these skills zero-shot to the real world. Fine-tuned models are evaluated in simulation (s) and the real world (r).",
+   "section": "B.5. Human →Simulation →Tianji + Sharpa",
+   "asset": "T007"
+  },
+  {
+   "id": "S1014",
+   "page": 56,
+   "kind": "prose",
+   "text": "Learning Tasks with Human-to-Sim-to-Real. We evaluate GR00T 2 on three tasks requiring dexterous manipulation, with success defined as follows:",
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1015",
+   "page": 56,
+   "kind": "prose",
+   "text": "• Hammer Nail: The nail is driven into the fixture until its head contacts the fixture’s top surface. • Handover Flask: The flask is lifted off the table, handed over, and tilted to a pouring angle without being dropped. • Brushing Trash: Paper waste is swept into the red dustpan using the brush.",
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1016",
+   "page": 56,
+   "kind": "prose",
+   "text": "GR00T 2 is deployed with 2 action 1 video denoising steps during inference with RTC enabled at 20 Hz. 𝜋0.5 is deployed with the settings recommended in the official implementation: each inference integrates the flow-matching action expert for 10 steps, and the robot executes the first 8 actions of each predicted 30-step chunk (0.4 s at 20 Hz) before synchronously querying the policy again, with 𝜋0.5 observing only the most recent frame of each camera view.",
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1017",
+   "page": 56,
+   "kind": "prose",
+   "text": "We compare against GR00T 1.7 and 𝜋0.5 in both simulation and the real world. Figure 31 shows execution rollouts for each task. Tab. 7 reports the number of successful episodes for each method. With simulation-only post-training, GR00T 2 achieves 20/20, 13/20, and 19/20 full-task successes in simulation on nail hammering, flask handover, and trash sweeping, respectively (Table 7). In real-world evaluation, it completes nail hammering in 9/10 trials and trash sweeping in 8/10 trials, demonstrating zero-shot transfer on both tasks. Both GR00T 1.7 and 𝜋0.5 achieve 0/10 full-task successes on every real-world task despite making intermediate progress. On nail hammering, GR00T 1.7 lifts the hammer in 10/10 trials and completes in-hand reorientation in 6/10 trials, but never drives the nail to the required depth. On trash sweeping, it lifts the brush in 7/10 trials but never completes the sweep. Similarly, 𝜋0.5 lifts the hammer, flask, and brush in 6/10, 4/10, and 9/10 trials, respectively, but completes none of the full tasks. These results distinguish successful grasp acquisition from full task execution, which requires subsequent reorientation and contact interactions. For the Handover Flask task, the high-frequency specialist policy succeeds in the real world. However, the handover requires precise spatiotemporal coordination and contact control, making it particularly sensitive to observation and inference delays.",
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  }
+ ]
+}

@@ -1,0 +1,323 @@
+{
+ "chunk_id": "chunk_17",
+ "sections": [
+  "D.2. Designing Evaluation Tasks from First Principles",
+  "D.3. The Arena: Stations, Operators, Campaigns, and Suites",
+  "D.4. Leaderboard Mathematics",
+  "D.5. A/B Evaluation Infrastructure",
+  "D.6. Results: What the Arena Shows about GR00T 2"
+ ],
+ "pages": [
+  66,
+  71
+ ],
+ "chars": 15448,
+ "blocks": [
+  {
+   "id": "H37",
+   "page": 66,
+   "kind": "heading",
+   "text": "D.2. Designing Evaluation Tasks from First Principles",
+   "section": "D.2. Designing Evaluation Tasks from First Principles"
+  },
+  {
+   "id": "S1203",
+   "page": 66,
+   "kind": "prose",
+   "text": "Want, represent, gauge. Our task suites are designed in three steps. First, we ask what the robot should be able to do: follow spatial and attribute-based language instructions, execute basic motion primitives reliably, and handle contact-rich and deformable-object skills. Second, we choose the tasks that best represent each capability, one physical arrangement per task, each with a partial-credit rubric that scores a rollout as the weighted fraction of completed sub-tasks between 0 and 1 (the task-progress metric of Sec. J.2.1). Third, we gauge every task on real checkpoints. A task that every checkpoint completes no longer separates anything and is archived, while a task that no checkpoint completes is shelved until the models catch up. Shelving is also enforced by the rating itself: a comparison in which both rollouts score exactly zero is dropped (Sec. D.4), so a task nobody can do contributes nothing. In the first suite, the zipper-closing task scored zero in every trial for every checkpoint, and drops out this way.",
+   "section": "D.2. Designing Evaluation Tasks from First Principles"
+  },
+  {
+   "id": "S1204",
+   "page": 66,
+   "kind": "prose",
+   "text": "Two suites. The first suite (YAM V1, July to October 2026) combined general manipulation tasks (wiping, slot insertion, unscrewing, opening and closing, scooping, flattening and folding, language following) with dexterous assembly and packing tasks (airplane and car assembly, iPhone box). The current suite (YAM V2, from September 21, 2026) has 38 tasks in three sub-suites: 14 language-following tasks (LF, e.g. place the cup between the bowl and the plate, put the second block from the left in the basket), 10 easy motion primitives (MP easy, e.g. flip a cup, pour beans between bowls), and 14 medium-to-hard motion primitives (MP mid/hard, e.g. screw a lid onto a jar, thread a cable tie into a bottle, roll a towel, unhook rings). Each A/B campaign on V2 runs one sub-suite with two trials per task per checkpoint.",
+   "section": "D.2. Designing Evaluation Tasks from First Principles",
+   "merged_ids": [
+    "S1205"
+   ]
+  },
+  {
+   "id": "S1206",
+   "page": 66,
+   "kind": "prose",
+   "text": "The current suite is unsaturated. Fig. 34 applies the gauge to V2. Across 9,402 graded rollouts (the V2 rollouts of Tab. 12 without those of VLM-based policies and of one uncoded task), per-task mean scores range from 0.05 (rolling clay) to 0.73 (cup in basket), with a median of 0.28. No task is close to saturation, and six tasks (rolling clay, wiping a circle, wiping a blue mark, picking the second block from the left, stacking the middle block, and pushing a cup left) score at most 0.10 on average, which makes them candidates for shelving. The suite therefore still separates the strongest checkpoints, which is the property that makes its comparisons informative.",
+   "section": "D.2. Designing Evaluation Tasks from First Principles"
+  },
+  {
+   "id": "S1207",
+   "page": 66,
+   "kind": "prose",
+   "text": "Task identity. The rating treats each task name as one physical arrangement (one scene), so names matter. Several V2 tasks were recorded under two identifiers, a bare name and a coded one (e.g. T_Motion_Roll_Towel and T_Motion_Roll_Towel_M17_U), and the live leaderboard counts them as different tasks.2 Admission to a",
+   "section": "D.2. Designing Evaluation Tasks from First Principles"
+  },
+  {
+   "id": "S1208",
+   "page": 66,
+   "kind": "prose",
+   "text": "2Merging the two identifiers of each task (74 task names to the suite’s 38 tasks) changes no rating by more than 8 Elo, leaves the top eleven ranks unchanged, and moves every reported 𝑃(𝐴>𝐵) by at most 0.02 (offline re-fit on the same snapshot).",
+   "section": "D.2. Designing Evaluation Tasks from First Principles"
+  },
+  {
+   "id": "C047",
+   "page": 67,
+   "kind": "caption",
+   "text": "Figure 35: From an A/B request to a rating. A campaign is requested with its checkpoints, tasks, trial count, and station. The station runs a blinded session in which the operator stages each scene, runs every arm, and grades and ranks the rollouts without knowing which checkpoint produced which. Recordings, the blinding manifest, latency statistics, and a checksummed results snapshot are stored with the session. The arena ingests them, decodes the blinding, admits each graded trial to its suite, and refits the ratings. Researchers choose the next comparisons from the leaderboard.",
+   "section": "D.2. Designing Evaluation Tasks from First Principles",
+   "asset": "F035"
+  },
+  {
+   "id": "S1228",
+   "page": 67,
+   "kind": "prose",
+   "text": "suite is explicit: each suite lists its task identifiers and the embodiment tags it accepts, so evidence cannot leak between suites.",
+   "section": "D.2. Designing Evaluation Tasks from First Principles"
+  },
+  {
+   "id": "H38",
+   "page": 67,
+   "kind": "heading",
+   "text": "D.3. The Arena: Stations, Operators, Campaigns, and Suites",
+   "section": "D.3. The Arena: Stations, Operators, Campaigns, and Suites"
+  },
+  {
+   "id": "S1229",
+   "page": 67,
+   "kind": "prose",
+   "text": "Campaigns and sessions. The unit of work is the campaign: one A/B evaluation request naming two to four checkpoints, a task list, the number of trials per task, and a station. A campaign runs in one or more recording sessions on that station, typically by one operator. In the snapshot, the two YAM suites hold 195 campaigns run on 10 YAM stations by more than 20 operators, with 16,044 graded rollouts in 5,570 trials (Tab. 12). Campaigns are collected continuously. The leaderboard counts graded trials of campaigns still in progress, and never counts an ungraded trial as a failure.",
+   "section": "D.3. The Arena: Stations, Operators, Campaigns, and Suites"
+  },
+  {
+   "id": "S1230",
+   "page": 67,
+   "kind": "prose",
+   "text": "Suites as separate leagues. Each suite is its own league with its own evidence, ratings, and history: YAM V1, YAM V2, and a dexterous-hand suite on Tianji arms with Sharpa hands (Dex, 25 checkpoints, 29 campaigns, 1,492 matches). Ratings are comparable only within a suite. Within the dexterous suite, inference settings are part of a checkpoint’s identity: the same weights served with two different inference regimes are rated as separate entries, and disconnected groups of checkpoints that never met are reported as separate comparison groups rather than forced onto one scale.",
+   "section": "D.3. The Arena: Stations, Operators, Campaigns, and Suites"
+  },
+  {
+   "id": "S1231",
+   "page": 67,
+   "kind": "prose",
+   "text": "Provenance and audit. The arena reads each campaign’s graded results from a checksummed snapshot stored with its recordings, falling back to the request record only when no snapshot exists, and records which source it used. A board history keeps every change point, so any past leaderboard can be replayed. A weekly audit re-checks every scored trial against its recording, and a campaign whose blinding is in doubt is withheld from every leaderboard (one campaign is withheld today, because its operator could see checkpoint labels).",
+   "section": "D.3. The Arena: Stations, Operators, Campaigns, and Suites"
+  },
+  {
+   "id": "H39",
+   "page": 67,
+   "kind": "heading",
+   "text": "D.4. Leaderboard Mathematics",
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "S1234",
+   "page": 67,
+   "kind": "prose",
+   "text": "From trials to matches. In a trial with 𝑛arms, every pair of arms forms one match, in total. The outcome is the operator’s explicit ranking of the rollouts. When the operator graded two rollouts identically, the forced order between them carries no information, and the match counts as a tie. When both rollouts scored exactly zero, the match is dropped, since it bounds both checkpoints below the task’s difficulty without ordering them.",
+   "section": "D.4. Leaderboard Mathematics",
+   "merged_ids": [
+    "S1235"
+   ]
+  },
+  {
+   "id": "S1236",
+   "page": 67,
+   "kind": "prose",
+   "text": "Bradley-Terry model. Each checkpoint 𝑖has a strength 𝑝𝑖> 0, and",
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "S1239",
+   "page": 68,
+   "kind": "prose",
+   "text": "The strengths are fit jointly to all matches by maximum likelihood (Bradley and Terry, 1952), using the minorization-maximization update (Hunter, 2004)",
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "E002",
+   "page": 68,
+   "kind": "equation",
+   "text": "𝑗̸=𝑖𝑛𝑖𝑗/(𝑝𝑖+ 𝑝𝑗), (5)",
+   "section": "D.4. Leaderboard Mathematics",
+   "crop": "assets/equations/E002.png"
+  },
+  {
+   "id": "S1241",
+   "page": 68,
+   "kind": "prose",
+   "text": "where 𝑊𝑖is checkpoint 𝑖’s total weighted wins (a tie counts half) and 𝑛𝑖𝑗the total weight of matches between 𝑖and 𝑗. Each checkpoint also receives one virtual tie against a fixed anchor, a weak prior that keeps undefeated or winless checkpoints finite and pulls checkpoints with little evidence toward the middle. Because the fit is a batch estimate, it does not depend on the order in which evaluations arrived. Ratings are reported on the Elo scale (Elo, 1978), with ¯𝑝the geometric mean of all strengths, so 1500 is the field average and a difference of 100 Elo corresponds to a 64% expected win rate.",
+   "section": "D.4. Leaderboard Mathematics",
+   "merged_ids": [
+    "S1245"
+   ]
+  },
+  {
+   "id": "S1246",
+   "page": 68,
+   "kind": "prose",
+   "text": "Task normalization. A raw fit would let a frequently evaluated task dominate. We instead normalize within each head-to-head: for every pair of checkpoints and every task, the matches of that pair on that task are rescaled to total weight one,",
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "E003",
+   "page": 68,
+   "kind": "equation",
+   "text": "𝑤𝑚= 1 {𝑚′ : pair(𝑚′) = pair(𝑚), task(𝑚′) = task(𝑚)}⃒⃒, (7)",
+   "section": "D.4. Leaderboard Mathematics",
+   "crop": "assets/equations/E003.png"
+  },
+  {
+   "id": "S1247",
+   "page": 68,
+   "kind": "prose",
+   "text": "so that within any head-to-head each task contributes the fraction of its trials won, and each distinct task counts once. Normalizing per pair, rather than per task across the whole leaderboard, keeps a checkpoint’s weights independent of evaluations it took no part in: under global normalization, a checkpoint that lost its only head-to-head could be ranked above the opponent that beat it, and adding one checkpoint shifted the relative standing of others by up to 27 Elo.",
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "S1248",
+   "page": 68,
+   "kind": "prose",
+   "text": "Uncertainty from scenes, not trials. All trials of a task re-stage the same arrangement, so they are not independent. Confidence intervals therefore come from a cluster bootstrap (Davison and Hinkley, 1997) that resamples tasks with replacement, re-derives the weights of Eq. (7) inside every resample, and refits Eq. (4). We use 500 resamples and report the 2.5th and 97.5th percentiles (figures draw the 5th and 95th, i.e. 90% intervals, for legibility), withholding an interval when a checkpoint’s matches span fewer than three tasks. Re-deriving the weights matters: computing them once, before resampling, made intervals about 30% narrower than the estimator warrants on our July evaluations.",
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "S1249",
+   "page": 68,
+   "kind": "prose",
+   "text": "Comparing two checkpoints. Overlapping intervals do not imply that two checkpoints are equal (Schenker and Gentleman, 2001): a lucky draw of tasks lifts both, and that shared variation cancels in their difference. We therefore compare checkpoints with the paired statistic computed over the same 𝐵= 500 resamples, together with the percentile interval of the gap Elo(𝑏)",
+   "section": "D.4. Leaderboard Mathematics",
+   "merged_ids": [
+    "S1261"
+   ]
+  },
+  {
+   "id": "S1263",
+   "page": 68,
+   "kind": "prose",
+   "text": "𝐵. On the current suite, the median interval is 93 Elo wide, and 176 of the 253 pairs among 23 checkpoints (the 20 in Fig. 36 and three further development checkpoints) are resolved at the 95% level.",
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "S1264",
+   "page": 68,
+   "kind": "prose",
+   "text": "Anchoring. Every new checkpoint’s first A/B campaign is against the reference checkpoint, which ties it to the rest of the leaderboard and gives it full task coverage in one session. A second campaign against its warm-start parent answers whether a change helped. The reference is the best-rated checkpoint on the A/B leaderboard unless one is pinned deliberately. Because the paired comparison benefits from shared variation, checkpoints that must be told apart are best run in the same campaign.",
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "C048",
+   "page": 69,
+   "kind": "caption",
+   "text": "Table 13: Paired comparisons on YAM V2. Elo difference (A minus B) with its paired 95% interval, and the share of 500 bootstrap resamples in which A rates higher (Eq. (8)). “GR00T 2” is the released checkpoint, and the expected win rate follows from the Elo difference.",
+   "section": "D.4. Leaderboard Mathematics",
+   "asset": "T013"
+  },
+  {
+   "id": "S1266",
+   "page": 69,
+   "kind": "prose",
+   "text": "GR00T 2 𝜋0.5 (Physical Intelligence et al., 2025) +236 [+171, +325] > 0.99 80% GR00T 2 GR00T 1.7 (NVIDIA, 2026a) +95 [+50, +148] > 0.99 63% GR00T 2 GR00T 2 Turbo (early checkpoint) +12 [−20, +48] 0.80 52% GR00T 2 GR00T 2 Turbo (⋆) −14 [−58, +28] 0.28 48% GR00T 1.7 𝜋0.5 +141 [+78, +227] > 0.99 69% GR00T 2 Turbo GR00T 1.7 +109 [+54, +168] > 0.99 65%",
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "S1270",
+   "page": 69,
+   "kind": "prose",
+   "text": "switch between arms checks that the server reports the expected kind, so a misrouted port fails loudly rather than silently serving the wrong model. Baselines run with their native settings, such as their own prompts and action filtering, so that a comparison measures the policy rather than our serving of it.",
+   "section": "D.5. A/B Evaluation Infrastructure"
+  },
+  {
+   "id": "S1271",
+   "page": 69,
+   "kind": "prose",
+   "text": "Blinding. The operator sees only what is needed to run and grade the rollouts. The visualization shows the same information for every arm. The operator’s terminal shows nothing that names or times an arm: the client’s command line, which names every checkpoint, is kept away from the operator, per-query timing warnings are recorded rather than printed, and warm-up messages and recording timers behave identically for every arm. The mapping from rotation slots to checkpoints is written to a session manifest that is read only after grading.",
+   "section": "D.5. A/B Evaluation Infrastructure"
+  },
+  {
+   "id": "S1272",
+   "page": 69,
+   "kind": "prose",
+   "text": "Recording and grading. Every episode is recorded and uploaded with per-arm latency statistics, which supply the inference-speed axis of Fig. 38. Each trial is graded with its rubric and an explicit ranking of the arms. The arena decodes a trial only when the request declares that its labels are rotation slots. Rows it cannot resolve to checkpoints are skipped rather than guessed, and a weekly audit compares each scored trial with the checkpoint its recording says it served.",
+   "section": "D.5. A/B Evaluation Infrastructure"
+  },
+  {
+   "id": "S1273",
+   "page": 69,
+   "kind": "prose",
+   "text": "The leaderboard. Fig. 36 shows the current suite. The top four places are held by GR00T 2 and GR00T 2 Turbo checkpoints, whose intervals overlap. The GR00T 1.7 checkpoint sits about 80 to 110 Elo below them, and 𝜋0.5, adapted to our robot, ranks near the bottom.",
+   "section": "D.6. Results: What the Arena Shows about GR00T 2"
+  },
+  {
+   "id": "S1274",
+   "page": 69,
+   "kind": "prose",
+   "text": "Head-to-head. Tab. 13 gives the paired comparisons. GR00T 2 is ahead of 𝜋0.5 by 236 Elo and of GR00T 1.7 by 95 Elo, and both differences hold in every bootstrap resample. GR00T 2 Turbo is statistically indistinguishable from GR00T 2. The same ordering appears in the raw rubric scores of the trials in which both checkpoints ran (Tab. 14): GR00T 2’s advantage over 𝜋0.5 is present on every sub-suite and largest on the medium-to-hard",
+   "section": "D.6. Results: What the Arena Shows about GR00T 2"
+  },
+  {
+   "id": "S1276",
+   "page": 69,
+   "kind": "prose",
+   "text": "The climb. Fig. 37 places every checkpoint against its suite’s reference by the date it was saved. On the current suite, the best checkpoint rose from 206 Elo below today’s best in June to 93 and then 43 below in September, and to 14 below in mid-October (GR00T 2), before the GR00T 2 Turbo checkpoint that now leads. On the",
+   "section": "D.6. Results: What the Arena Shows about GR00T 2"
+  },
+  {
+   "id": "C049",
+   "page": 70,
+   "kind": "caption",
+   "text": "Figure 36: YAM V2 leaderboard. Elo with 90% scene-clustered bootstrap intervals for 20 checkpoints, colored by model family. Numbers on the right are A/B matches. ⋆marks the A/B reference. Development checkpoints are shown under anonymized aliases.",
+   "section": "D.6. Results: What the Arena Shows about GR00T 2",
+   "asset": "F036"
+  },
+  {
+   "id": "S1307",
+   "page": 70,
+   "kind": "prose",
+   "text": "first suite, the best checkpoint rose from 185 below to 87 below between June and mid-September before the current leader. Because all points come from one fit, these gaps are measured on a common scale even though the checkpoints were evaluated months apart, which is exactly what absolute scores from different sessions cannot provide (Sec. D.1).",
+   "section": "D.6. Results: What the Arena Shows about GR00T 2"
+  },
+  {
+   "id": "S1308",
+   "page": 70,
+   "kind": "prose",
+   "text": "Skill and speed. Fig. 38 adds the inference cost measured during the same A/B episodes. Among the 21 checkpoints served by the GR00T 2 policy server, the GR00T 2 Turbo reference is both the highest rated and the fastest, with no detectable loss in skill (Tab. 13). On a GeForce RTX 5090 workstation it runs about three times faster than GR00T 2 (52 vs. 171 ms per served call, Fig. 23). The timings in Fig. 38 are server compute recorded in the A/B serving logs. They rank checkpoints within one serving stack, but serving stacks differ in model size, hardware, and compilation, so the figure is not a like-for-like speed comparison across stacks.3",
+   "section": "D.6. Results: What the Arena Shows about GR00T 2"
+  },
+  {
+   "id": "S1309",
+   "page": 70,
+   "kind": "prose",
+   "text": "These serving-log timings are also a different measurement from the median model-prediction latencies on named GPUs in Tab. 27 and from the per-call latencies of the YAM post-training models in Fig. 23.",
+   "section": "D.6. Results: What the Arena Shows about GR00T 2"
+  },
+  {
+   "id": "S1310",
+   "page": 70,
+   "kind": "prose",
+   "text": "3The serving stack is inferred from the model family, since each family runs its own policy server. The per-episode latency records do not include the GPU, host, or compilation settings.",
+   "section": "D.6. Results: What the Arena Shows about GR00T 2"
+  },
+  {
+   "id": "C050",
+   "page": 71,
+   "kind": "caption",
+   "text": "Table 14: Matched rubric scores by sub-suite. Mean rubric score (0 to 1) over the trials in which both checkpoints were graded in the same campaign. Trial counts in parentheses.",
+   "section": "D.6. Results: What the Arena Shows about GR00T 2",
+   "asset": "T014"
+  },
+  {
+   "id": "C051",
+   "page": 71,
+   "kind": "caption",
+   "text": "Figure 37: Climbing the hill. Every checkpoint on each suite, rated relative to that suite’s A/B reference (⋆, the top-rated checkpoint) and placed at the date the checkpoint was saved. The line tracks the best checkpoint so far. Bars are paired 90% bootstrap intervals, shown for the checkpoints that set a new best. All points in a panel come from one fit on the same evidence. The two suites are separate leagues. One V1 checkpoint lies below the plotted range.",
+   "section": "D.6. Results: What the Arena Shows about GR00T 2",
+   "asset": "F037"
+  },
+  {
+   "id": "S1341",
+   "page": 71,
+   "kind": "prose",
+   "text": "How the arena was used. In the final months of the project, the arena was read weekly at the team’s training sync, as the shared reference for which checkpoints had moved the frontier and which differences were still within noise. It separated effects that absolute scores conflated: on the dexterous suite, serving the same checkpoints with a new inference regime reordered the leaderboard (the previous leader fell from first of 13 to fifth of 9), which is why inference settings are part of a checkpoint’s identity there (Sec. D.3). It also provided the real-world ground truth for calibrating simulation: the Bradley-Terry ratings from blinded A/B trials are the real-world side of the simulation-reality correlation in Sec. 4.5.2 (𝑟= 0.93).",
+   "section": "D.6. Results: What the Arena Shows about GR00T 2"
+  }
+ ]
+}

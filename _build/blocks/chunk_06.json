@@ -1,0 +1,176 @@
+{
+ "chunk_id": "chunk_06",
+ "sections": [
+  "4.4. Learning without Teleoperation: Devices and Pipelines"
+ ],
+ "pages": [
+  17,
+  20
+ ],
+ "chars": 8228,
+ "blocks": [
+  {
+   "id": "H14",
+   "page": 17,
+   "kind": "heading",
+   "text": "4.4. Learning without Teleoperation: Devices and Pipelines",
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S320",
+   "page": 17,
+   "kind": "prose",
+   "text": "GR00T 2 learns a skill on a robot from demonstrations recorded without that robot (Sec. 3.2). In all four sources below, the demonstrations specify the task. For human motion capture and the Gripper UMI, whose devices differ from the robot, task-agnostic data from the target robot specify the embodiment, and cross-embodiment pretraining connects the two. The DexUMI exoskeleton replicates the robot hand it is built for, so on that hand its demonstrations need no robot play data (Sec. 4.4.3). Capture and conversion remove what can be removed before training, namely differences in camera geometry (Sec. C.1.3), kinematics, and action semantics",
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "C013",
+   "page": 18,
+   "kind": "caption",
+   "text": "Figure 12: GR00T 2 learns new robot tasks from human demonstrations. (1) A person performs the task wearing GMSL head and wrist cameras at robot-matched poses, PICO controllers that track 6-DoF wrist poses, and Manus gloves that track finger joints. (2) Retargeting maps each wrist pose to the 7-DoF arm and each hand pose to the 22-DoF hand, and the video stays unmodified. (3) GR00T 2 co-trains on the retargeted human demonstrations and on robot data of other tasks: videos supervise video prediction, and human and robot actions train one shared action head. (4) On the robot, GR00T 2 takes the observation and the instruction, predicts a sequence of future frames, and outputs the actions the robot executes. No teleoperated demonstration of the new task enters training.",
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines",
+   "asset": "F012"
+  },
+  {
+   "id": "S324",
+   "page": 18,
+   "kind": "prose",
+   "text": "A person performs the task wearing head and wrist cameras at robot-matched poses, a motion-capture glove, and a 6-DoF tracker on each wrist (Fig. 12). With the head camera at the robot’s head-camera pose, the wrists are anchored in the robot base frame, and a closed-form inverse-kinematics solver (Chen et al., 2026b; Kong et al., 2026) retargets them offline to the 7-DoF arms and 22-DoF Sharpa hands, placing the robot fingertips at the human fingertips to preserve the pinch geometry. The video stays unmodified. At about 118,000 bimanual solves per second, the same solver also drives teleoperation, which collects task-agnostic play data on the target robot. One play pool, sampled 1:1 with the human demonstrations, serves every task (Sec. B.1.1 to B.1.3 and C.3.1). For tasks that only humans demonstrated, GR00T 2 then predicts the robot’s own hands completing each step (Fig. 13).",
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S325",
+   "page": 18,
+   "kind": "prose",
+   "text": "Filter Paper Setup",
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S326",
+   "page": 18,
+   "kind": "prose",
+   "text": "1 Place filter 2 Secure it 3 Wet it Dropper-to-Beaker Dispensing",
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S327",
+   "page": 18,
+   "kind": "prose",
+   "text": "1 Grasp pipette 2 Draw liquid 3 Dispense",
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S328",
+   "page": 18,
+   "kind": "prose",
+   "text": "Human demo",
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S329",
+   "page": 18,
+   "kind": "prose",
+   "text": "Human demo training data training data real input real input prediction prediction",
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines",
+   "merged_ids": [
+    "S330",
+    "S331",
+    "S332",
+    "S333",
+    "S334",
+    "S335"
+   ]
+  },
+  {
+   "id": "C014",
+   "page": 18,
+   "kind": "caption",
+   "text": "Figure 13: Human demonstrations and GR00T 2 predictions. Two tasks that only humans demonstrated. Given one robot start frame and the instruction, GR00T 2 predicts the robot’s ego view. Times are measured from the start frame. Human demonstrations (top rows) appear only in training. All four tasks are shown in Fig. 28.",
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines",
+   "asset": "F013"
+  },
+  {
+   "id": "C015",
+   "page": 19,
+   "kind": "caption",
+   "text": "Figure 14: GR00T 2-generated future frames on YAM, without and with YAM co-training. Both models observe the same YAM top-camera frame (left) and predict eight future steps of Toy Dumptruck Assembly, a task demonstrated only with Gripper UMI. Trained on UMI data alone (top), GR00T 2 renders human arms and the blue UMI fingers entering the scene. Co-trained with task-agnostic YAM data (bottom), it renders YAM’s own arms. The co-training data supply the robot’s appearance as well as its action statistics.",
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines",
+   "asset": "F014"
+  },
+  {
+   "id": "C016",
+   "page": 19,
+   "kind": "caption",
+   "text": "Figure 15: DexUMI demonstration and GR00T 2 rollout. Prepare Banana Yogurt, with keyframes numbered by subtask: a person demonstrating the task with the DexUMI exoskeletons (top) and a GR00T 2 rollout on a Tianji robot with XHAND1 Pro-U hands (bottom). The task is demonstrated only with DexUMI. All three DexUMI tasks are shown in Fig. 30.",
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines",
+   "asset": "F015"
+  },
+  {
+   "id": "S346",
+   "page": 19,
+   "kind": "prose",
+   "text": "4.4.2. Gripper UMI",
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S347",
+   "page": 19,
+   "kind": "prose",
+   "text": "Gripper UMI is a handheld parallel gripper in the lineage of UMI (Chi et al., 2024). We use our open-source GEAR UMI (NVIDIA GEAR Team, 2026): its robot-style wrist cameras and width encoder record human demonstrations in robot coordinates without a robot (Sec. E.1), and it also yields the UMI-10K pretraining corpus (Sec. 4.2.2). A robot end-effector that reproduces the handheld’s cameras and fingers removes the sensing and gripper gaps by construction (Sec. E.2). For an off-the-shelf robot such as YAM, which shares none of them, three findings make the transfer work. (1) Co-training with task-agnostic YAM data closes the appearance and scene gap: GR00T 2 then predicts YAM’s arms performing the handheld-demonstrated task (Fig. 14). (2) The model absorbs appearance but not geometry, so the fisheye wrist view is re-rendered to imitate YAM’s wrist camera, and a rough match of field of view and viewing direction suffices. (3) Handheld actions are re-expressed in YAM’s action space and decoded by its own action head. With cross-embodiment pretraining, 41 to 75 handheld episodes per task reach high success rates, and 10 to 20 already yield end-to-end success. The rarest subskill, not the task length, sets this number (Sec. B.2 and E.3).",
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines",
+   "merged_ids": [
+    "S348"
+   ]
+  },
+  {
+   "id": "S349",
+   "page": 19,
+   "kind": "prose",
+   "text": "4.4.3. DexUMI",
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S350",
+   "page": 19,
+   "kind": "prose",
+   "text": "DexUMI (Xu et al., 2025) extends robot-free collection from parallel grippers to five-fingered hands. We use our open-source GEAR DexUMI (NVIDIA GEAR Team, 2026): the wearable exoskeleton replicates the kinematics of the target XHAND1 Pro-U hand, with its 16 degrees of freedom mapped one-to-one onto the",
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "C017",
+   "page": 20,
+   "kind": "caption",
+   "text": "Figure 16: Human-to-sim-to-real transfer for GR00T 2. (1) Human-to-sim reconstructs assets and motions from one human demonstration. (2) RL trains a state-based manipulation policy in simulation. (3) Data collection under perturbations expands state coverage and captures recovery behavior. (4) GR00T 2 is fine-tuned exclusively on simulation data and deployed zero-shot in the real world.",
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines",
+   "asset": "F016"
+  },
+  {
+   "id": "S372",
+   "page": 20,
+   "kind": "prose",
+   "text": "robot joints, and matches the hand’s contact surfaces, wrist-camera mount, and tactile format (Sec. E.4). Two choices adapt GR00T 2 to these data. First, the exoskeleton is handled in training rather than by editing video: its green parts are segmented by color, and their appearance is randomized consistently in the conditioning and predicted frames, which removes the earlier step of replaying each demonstration on a robot hand for inpainting (Sec. E.6). Second, following the Adaptive Compliance Policy (Hou et al., 2025), fingertip forces are projected onto the hand joints as torques and added to the action. At execution, the predicted torque lowers each joint’s stiffness and offsets its position target, so that the hand applies the predicted force and remains robust to positional uncertainty (Sec. B.3). Because the exoskeleton replicates the hand, no robot play data are needed: post-trained on DexUMI demonstrations alone, GR00T 2 performs long-horizon tool use with both hands (Fig. 15).",
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S373",
+   "page": 20,
+   "kind": "prose",
+   "text": "DexUMI demonstrations can also be converted for a hand that the exoskeleton does not replicate. For the 22-DoF Sharpa hand, we compute the XHAND fingertip positions from the recorded joint angles and retarget them with the closed-form solver used for glove teleoperation (Sec. B.1.2). As with Gripper UMI, we warp each DexUMI wrist frame to match the Sharpa wrist camera, which sits at a different pose. The demonstrations are co-trained with Sharpa play data in the robot’s action space and with its normalization statistics (Sec. B.4).",
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S374",
+   "page": 20,
+   "kind": "prose",
+   "text": "4.4.4. Human-to-Sim-to-Real",
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S375",
+   "page": 20,
+   "kind": "prose",
+   "text": "Contact-rich skills such as in-hand reorientation and forceful tool use remain difficult for WAMs to learn, and recovery behaviors are difficult to demonstrate. Reinforcement learning in simulation supplies them from a single human video (Fig. 16). The NVIDIA Video to Data pipeline (NVIDIA, 2026b) reconstructs the object assets and the hand and object motion. A state-based RL expert, trained with CHORD (Zhu et al., 2026) under identified robot dynamics and randomized physics, learns to track the object motion and complete the task. Its rollouts become image-based training data, perturbed by random action bursts and teleports so that they contain corrections, and rendered in Isaac Lab with randomized appearance, lighting, and camera calibration. GR00T 2 is fine-tuned on 1.5k such episodes per task with training-time real-time chunking (Sec. 4.6.2) and deployed on the real robot without any real-world robot data (Sec. B.5).",
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  }
+ ]
+}

@@ -1,0 +1,197 @@
+{
+ "chunk_id": "chunk_30",
+ "sections": [
+  "I.2. Policy Smoothness",
+  "I.3. Accelerating Task Throughput Beyond Demonstrations",
+  "J. Simulations",
+  "J.1. Real-to-Sim Generation of High-Fidelity Tasks"
+ ],
+ "pages": [
+  115,
+  119
+ ],
+ "chars": 10724,
+ "blocks": [
+  {
+   "id": "H64",
+   "page": 115,
+   "kind": "heading",
+   "text": "I.2. Policy Smoothness",
+   "section": "I.2. Policy Smoothness"
+  },
+  {
+   "id": "S2087",
+   "page": 115,
+   "kind": "prose",
+   "text": "To account for inference latency, we build on training-time real-time chunking (RTC) (Black et al., 2025), which conditions each prediction on the committed action prefix from the previous prediction. We propose a simple extension of training-time RTC that we term noisy-prefix RTC. During fine-tuning, we perturb the conditioning action prefix with Gaussian noise. At inference, we condition on clean committed commands.",
+   "section": "I.2. Policy Smoothness"
+  },
+  {
+   "id": "S2088",
+   "page": 115,
+   "kind": "prose",
+   "text": "Simulation experiments on training-time RTC schemes. We evaluate task performance and action smoothness for GR00T 2 under fixed simulated inference delays, comparing RTC-conditioned execution with naive asynchronous execution.",
+   "section": "I.2. Policy Smoothness"
+  },
+  {
+   "id": "S2089",
+   "page": 115,
+   "kind": "prose",
+   "text": "A simple noisy-prefix RTC adaptation. We initialize from a GR00T 2 policy post-trained for 30k steps on RoboDojo (Chen et al., 2026a) demonstrations without RTC. Our proposed adaptation applies 5k additional fine-tuning steps on 800 demonstrations spanning eight precision tasks, adding Gaussian noise with 𝜎= 0.1 to the conditioning action prefix during training. This trains the policy to generate continuations from perturbed prefixes. We compare against clean-prefix training-time RTC, which uses no prefix noise during fine-tuning.",
+   "section": "I.2. Policy Smoothness"
+  },
+  {
+   "id": "C088",
+   "page": 116,
+   "kind": "caption",
+   "text": "Table 28: Evaluation of a simple noisy-prefix RTC extension under simulated inference latency. Success and progress use 1,200 matched episodes per condition, while jerk uses 120 matched diagnostic layouts. Jerk changes are relative to async execution of the noisy-prefix fine-tuned checkpoint at the same delay. Negative changes indicate lower jerk. Bold values indicate the best result within each delay setting.",
+   "section": "I.2. Policy Smoothness",
+   "asset": "T028"
+  },
+  {
+   "id": "S2095",
+   "page": 116,
+   "kind": "prose",
+   "text": "Both variants use clean committed prefixes during RTC inference. The naive async reference uses the same noisy-prefix fine-tuned checkpoint as the noisy RTC method, with prefix conditioning disabled at inference.",
+   "section": "I.2. Policy Smoothness"
+  },
+  {
+   "id": "S2096",
+   "page": 116,
+   "kind": "prose",
+   "text": "Evaluation protocol. All conditions replan every eight commands at 25 Hz. Fixed delays of four and eight commands correspond to 160 ms and 320 ms, respectively. Delay is modeled through the action queue, without adding wall-clock sleeps to the simulator. Success rate and mean task progress are measured over 1,200 matched episodes per condition, comprising 150 layouts for each task. Jerk is measured in a separate diagnostic using 120 matched layouts per condition, with 15 layouts per task distributed across three layout banks.",
+   "section": "I.2. Policy Smoothness"
+  },
+  {
+   "id": "S2097",
+   "page": 116,
+   "kind": "prose",
+   "text": "We compute commanded joint jerk using third finite differences at ∆𝑡= 0.04 s, excluding grippers and startup. Cross-chunk jerk includes all three four-sample stencils crossing each old-to-new prediction handoff. The p95 statistic gives equal weight to each episode. Peak jerk is the largest observed absolute sample. At an eight-command delay, the prediction handoff coincides with the next replanning boundary.",
+   "section": "I.2. Policy Smoothness"
+  },
+  {
+   "id": "S2098",
+   "page": 116,
+   "kind": "prose",
+   "text": "Results. Table 28 reports performance and commanded-action smoothness relative to naive async execution. With identical noisy-prefix fine-tuned weights, RTC increases observed success from 32.83% to 34.75% at a four-command delay, while reducing p95 cross-chunk commanded jerk by 6.5% and peak jerk by 69.2%. At an eight-command delay, success increases from 15.00% to 21.42%, with reductions of 87.2% in p95 jerk and 22.5% in peak jerk.",
+   "section": "I.2. Policy Smoothness"
+  },
+  {
+   "id": "S2099",
+   "page": 116,
+   "kind": "prose",
+   "text": "Clean-prefix fine-tuning produces smoother commands at the four-command delay, but achieves lower task success than noisy-prefix fine-tuning. At the eight-command delay, the two RTC variants achieve the same observed success rate. The clean-prefix variant has lower p95 commanded jerk, whereas the noisy-prefix variant has lower peak commanded jerk. For simulated joint states at the eight-command delay, noisy RTC reduces p95 jerk by 40.1% but increases the observed peak by 13.4% relative to async execution.",
+   "section": "I.2. Policy Smoothness"
+  },
+  {
+   "id": "H65",
+   "page": 116,
+   "kind": "heading",
+   "text": "I.3. Accelerating Task Throughput Beyond Demonstrations",
+   "section": "I.3. Accelerating Task Throughput Beyond Demonstrations"
+  },
+  {
+   "id": "S2100",
+   "page": 116,
+   "kind": "prose",
+   "text": "We leverage an agentic task-throughput acceleration algorithm to enable GR00T 2 to complete tasks with higher task-completion throughput than the demonstration dataset. We decompose overall task execution into semantically meaningful phases, such as reaching, grasping, transporting, and screwing, which differ in their sensitivity to acceleration. An agent searches for a speed schedule over these phases by evaluating accelerated rollouts and refining the speed schedule based on observed failures. At deployment, a lightweight observationconditioned future subtask predictor predicts a sequence of future phases aligned with GR00T 2’s action-chunk horizon. Given the action chunk, predicted phases and a speed schedule, a trajectory transformation function produces a new action chunk for execution (see Fig 20). We train the predictor using temporally aligned phase annotations generated by an agent.",
+   "section": "I.3. Accelerating Task Throughput Beyond Demonstrations"
+  },
+  {
+   "id": "S2101",
+   "page": 117,
+   "kind": "prose",
+   "text": "Evaluation Tasks. We showcase GR00T 2-Accelerated across three tasks on the Tianji Sharpa robot from the Dexter post-training benchmark task (see Section A.1). We report task progress scores, success rates and mean completion times of successful episodes in Table 29. Our experiments indicate that GR00T 2-Accelerated consistently decreases task completion times while preserving success rates across the evaluated long-horizon dexterous tasks.",
+   "section": "I.3. Accelerating Task Throughput Beyond Demonstrations"
+  },
+  {
+   "id": "C089",
+   "page": 117,
+   "kind": "caption",
+   "text": "Table 29: Task success rate and completion time on Dexter post-training tasks. Completion time is averaged over successful trials only.",
+   "section": "I.3. Accelerating Task Throughput Beyond Demonstrations",
+   "asset": "T029"
+  },
+  {
+   "id": "C090",
+   "page": 118,
+   "kind": "caption",
+   "text": "Figure 61: Subset of environments for Real-to-Sim Evaluation. Side-by-side of real-world tasks that are used to evaluate generalist capabilities of GR00T 2 and their simulation counterparts. Odd columns are the simulation environments and even columns are frames from the real-world robot workcell. Each task is evaluated five times in the real-world and ten times in simulation per checkpoint, with the results used to calculate the correlations between performance in simulation and the real-world.",
+   "section": "I.3. Accelerating Task Throughput Beyond Demonstrations",
+   "asset": "F061"
+  },
+  {
+   "id": "H66",
+   "page": 118,
+   "kind": "heading",
+   "text": "J. Simulations",
+   "section": "J. Simulations"
+  },
+  {
+   "id": "S2116",
+   "page": 118,
+   "kind": "prose",
+   "text": "In this section, we outline how simulation contributed to GR00T 2. We developed a real-to-sim workflow that recreates high-fidelity digital twins of real-world tasks used for evaluating GR00T 2 (Sec. J.1). Policy evaluations in these high-fidelity digital twins proved to have strong correlations with real-world evaluations, allowing them to accelerate GR00T 2 development (Sec. J.2). Finally, we showcase GR00T 2’s capabilities on standardized simulation environments, establishing new state-of-the-art results on several of the latest benchmarks (Sec. J.3).",
+   "section": "J. Simulations"
+  },
+  {
+   "id": "H67",
+   "page": 118,
+   "kind": "heading",
+   "text": "J.1. Real-to-Sim Generation of High-Fidelity Tasks",
+   "section": "J.1. Real-to-Sim Generation of High-Fidelity Tasks"
+  },
+  {
+   "id": "S2117",
+   "page": 118,
+   "kind": "prose",
+   "text": "J.1.1. GR00T 2 Simulation Task Suite",
+   "section": "J.1. Real-to-Sim Generation of High-Fidelity Tasks"
+  },
+  {
+   "id": "S2118",
+   "page": 118,
+   "kind": "prose",
+   "text": "We seek to recreate the real-world tasks used in GR00T 2 development, including general manipulation tasks that are evaluated zero-shot and multi-stage assembly tasks. The task set spans rigid and articulated objects, deformable materials, and particles with diverse interactions including, but not limited to, sliding, pushing and scooping. We aim to reproduce both the visual setup and the physical interactions that determine whether each task succeeds, so that the resulting environments are useful for policy evaluation and skill development. This modeling can be challenging for tasks involving complex interactions with particles or deformables, since physics stability and fidelity must be maintained while running fast enough for large-scale evaluation. To enable this, we agentically integrate and tune different solvers such as the Finite Element Method (FEM) (Sifakis and Barbic, 2012) for deformable bodies, Position-Based Dynamics (PBD) (Müller et al., 2007) for granular media, in addition to rigid-body and articulation dynamics. Contact-rich assembly provides another demanding example of real-to-sim reconstruction. Parts must fit together, remain attached during manipulation, and interact with robot grippers and tools. We reconstruct toy plane, Hot Wheels, and toy tractor assembly assets with separate components, fasteners, and handheld drills (Fig. 62). Their initial and assembled configurations illustrate the component structure and geometric relationships that these environments must represent.",
+   "section": "J.1. Real-to-Sim Generation of High-Fidelity Tasks",
+   "merged_ids": [
+    "S2119"
+   ]
+  },
+  {
+   "id": "S2120",
+   "page": 119,
+   "kind": "prose",
+   "text": "J.1.2. Agent-Guided Simulation Creation",
+   "section": "J.1. Real-to-Sim Generation of High-Fidelity Tasks"
+  },
+  {
+   "id": "S2121",
+   "page": 119,
+   "kind": "prose",
+   "text": "We use complementary agent-assisted workflows to construct these environments. Tools from Sim- Foundry (Ranawaka et al., 2026) use real-world robot videos to guide scene reconstruction and refinement. We also use scans, photographs, and available physical measurements to reconstruct individual assets and their functional interfaces. Agents assist with geometry, appearance, collision modeling, and simulation setup, while human experts guide modeling decisions and review the resulting interactions.",
+   "section": "J.1. Real-to-Sim Generation of High-Fidelity Tasks"
+  },
+  {
+   "id": "S2122",
+   "page": 119,
+   "kind": "prose",
+   "text": "Visual reconstruction is paired with collision geometry tailored to the intended contacts. Fig. 63 illustrates this process for the tractor body, from the physical object and input scan to the reconstructed visual asset and its collision representations. Coarse handling geometry captures the overall shape, while detailed fitting geometry retains features such as bores and reconstructed threaded interfaces. The wheel-shaft close-ups show the two levels of detail: a simplified shape is sufficient for grasping and large-scale handling, whereas high-precision operations such as threading and insertion require the full fitting geometry.",
+   "section": "J.1. Real-to-Sim Generation of High-Fidelity Tasks"
+  },
+  {
+   "id": "S2123",
+   "page": 119,
+   "kind": "prose",
+   "text": "The toy plane and Hot Wheels assembly environments run in Isaac Lab Arena (NVIDIA Isaac Lab-Arena Contributors, 2025), using Newton (The Newton Contributors, 2025) with the MuJoCo Warp solver (Google DeepMind and NVIDIA, 2025). Each object has two sets of colliders: a coarse set for interactions such as grasping and contact with the worktable, and a detailed set for tight-fit insertion and threading bolts into nuts with a powered drill. We use convex and signed distance field (SDF) colliders for these representations. Collision masks determine which sets can interact, allowing larger-scale and fine-scale contacts to be simulated simultaneously. To support long-horizon, multi-stage assembly tasks, we developed an Isaac Lab extension for defining attachment points on individual parts. When a part reaches its intended assembly position within a predefined tolerance, the extension creates a joint between the corresponding rigid bodies, keeping the assembled parts connected during subsequent manipulation.",
+   "section": "J.1. Real-to-Sim Generation of High-Fidelity Tasks"
+  },
+  {
+   "id": "S2124",
+   "page": 119,
+   "kind": "prose",
+   "text": "We validate the environments and assets in several stages. First, we test assembly without a robot, applying forces directly to the parts and the drill. These tests follow the real-world sequence of inserting parts and driving bolts. We also perform grasping and drop tests to check the stability of individual assets and the overall scene. Finally, we replay real-world robot demonstrations in simulation (Fig. 64) to assess asset stability and interactions such as grasping, insertion, and fastening. The validated environments then support the GR00T 2 applications described in Sec. J.2.",
+   "section": "J.1. Real-to-Sim Generation of High-Fidelity Tasks"
+  }
+ ]
+}

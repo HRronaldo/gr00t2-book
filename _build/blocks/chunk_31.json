@@ -1,0 +1,234 @@
+{
+ "chunk_id": "chunk_31",
+ "sections": [
+  "J.2. Accelerating GR00T 2 Development with Simulation"
+ ],
+ "pages": [
+  119,
+  123
+ ],
+ "chars": 12240,
+ "blocks": [
+  {
+   "id": "H68",
+   "page": 119,
+   "kind": "heading",
+   "text": "J.2. Accelerating GR00T 2 Development with Simulation",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2125",
+   "page": 119,
+   "kind": "prose",
+   "text": "Once generated, the simulation environments can be used for many different applications. We first quantify the utility of our simulation suite by comparing the outcomes of GR00T 2 policy evaluations in sim and in real (Sec. J.2.1). We then highlight how these high-fidelity environments contributed to GR00T 2 development, including: optimization of GR00T 2 inference for deployment (Sec. J.2.2), faster iteration on the GR00T 2 pretraining process (Sec. J.2.3), and the development of agentic recovery skills in simulation that assist GR00T 2 during real-world deployment (Sec. J.2.4).",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation",
+   "merged_ids": [
+    "S2126"
+   ]
+  },
+  {
+   "id": "C091",
+   "page": 120,
+   "kind": "caption",
+   "text": "Figure 62: Reconstructed assembly tasks. Toy plane, Hot Wheels car, and toy tractor (left to right), shown in reset configurations (top) and assembled configurations (bottom). Camera and scale are held fixed within each column. The panels illustrate asset configurations rather than robot-policy success.",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation",
+   "asset": "F062"
+  },
+  {
+   "id": "C092",
+   "page": 120,
+   "kind": "caption",
+   "text": "Figure 63: From physical objects to sim-ready assets. Source photograph, input scan, reconstructed visual asset, handling collision hulls (purple), and fitting signed-distance-field (SDF) source surfaces (teal) for the same tractor body, from left to right. Circular close-ups compare the same wheel shaft: a coarse solid handling shape and the fitting bore with reconstructed thread geometry.",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation",
+   "asset": "F063"
+  },
+  {
+   "id": "S2127",
+   "page": 120,
+   "kind": "prose",
+   "text": "J.2.1. Sim and Real Policy Evaluation Correlation Analysis",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2128",
+   "page": 120,
+   "kind": "prose",
+   "text": "In order for our simulation suite to be useful, it is important for simulation to be calibrated with the real world. In this section, we gauge our simulation quality by seeing if it can be used as convincing surrogate for real world evaluation (Ranawaka et al., 2026; Jain et al., 2025). We test our policies zero-shot in simulation, without additional fine-tuning or co-training with simulation data, and find that the simulation evaluations strongly correlate with real-world results. This enables the testing of policies at a scale, cadence, and level of reproducibility that would be intractable for real-world evals.",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2129",
+   "page": 120,
+   "kind": "prose",
+   "text": "Setup. We evaluate 14 checkpoints in both simulation and the real world on matched setups across 25 tasks on the YAM embodiment. Additionally, we evaluate 10 tasks on the DROID (Khazatsky et al., 2024) embodiment with 5 generalist checkpoints. Each task is evaluated for 5 trials on the real robots, and 10 trials in simulation.",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2130",
+   "page": 120,
+   "kind": "prose",
+   "text": "Metrics. We measure sim and real correlation using Pearson Correlation Coefficient (r), Spearman Rank Correlation Coefficient (𝜌) and the Mean Maximum Rank Violation (MMRV) proposed by Li et al. (2024). For a simulation that perfectly reflects real-world conditions, we would observe 𝑟→1, indicating that policy performance in simulation matches that in the real world, 𝜌→1, indicating that the relative rankings of policies are maintained between simulation and the real world, and MMRV →0, indicating that the number of policy ranking violations are minimized. These correlations are calculated for task progress, success rate and the",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "C093",
+   "page": 121,
+   "kind": "caption",
+   "text": "Figure 64: Robot assembly of the toy plane. Wing insertion, reorientation, and fastening with a power drill, shown from left to right during a single continuous demonstration-guided execution.",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation",
+   "asset": "F064"
+  },
+  {
+   "id": "C094",
+   "page": 121,
+   "kind": "caption",
+   "text": "Figure 65: Sim-real Pearson correlation per policy for three computed metrics, compared with the noise ceiling: the correlation a perfect simulator would reach given the same number of real and simulated trials.",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation",
+   "asset": "F065"
+  },
+  {
+   "id": "S2142",
+   "page": 121,
+   "kind": "prose",
+   "text": "Bradley-Terry (BT) (Bradley and Terry, 1952) Elo ratings of the checkpoints. Task progress is the rubric score of a trial, a weighted sum of the completed sub-tasks between 0 and 1, and a trial is successful when the score is 1. Both are averaged within each task and then across tasks. MMRV is reported for task progress and success rate.",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2143",
+   "page": 121,
+   "kind": "prose",
+   "text": "Bradley-Terry Elo. Real-world evaluations use blinded A/B tests: in each trial, two or three checkpoints run in randomized order from the same initial setup (based on a corresponding simulation initialization), and every pair of checkpoints in the trial forms one comparison, won by the higher score (equal scores count as a tie). We fit BT ratings to these pairwise outcomes. In simulation, every checkpoint is evaluated on the same fixed initial layouts (10 per task), so any two checkpoints can be compared layout by layout without re-running them.",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2144",
+   "page": 121,
+   "kind": "prose",
+   "text": "Results on YAM embodiment. We evaluate 14 GR00T 2 variants across 25 YAM tasks in the same simulator. We completed real-world trials with the A/B evaluation procedure defined earlier. For each trial, we aligned the object initialization with the simulation using projected overlays. We find that our simulator predicts policy performance with high correlations with the real world, with a Pearson 𝑟up to 0.93 for task progress and BT Elo score. Since evaluations in both the real world and simulation can be non-deterministic, and the number of trials per task is limited, there is an effective statistical ceiling to how high these correlations can be for even a perfect simulator. Following Lage-Castellanos et al. (2019), we estimate this ceiling by assuming a perfect simulator. For checkpoint 𝑐on task 𝑡, let ˆ𝑝𝑐𝑡= 𝑠𝑐𝑡/𝑛𝑐𝑡be its real-world success rate (𝑠𝑐𝑡successes in 𝑛𝑐𝑡trials), which we treat as its true success probability. In each repetition, we generate two independent evaluations from these true values, one standing in for the real robot and one for a perfect simulator, each with 𝑛𝑐𝑡trials:",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2158",
+   "page": 121,
+   "kind": "prose",
+   "text": "where 𝑇𝑐is the number of tasks for checkpoint 𝑐and the two binomial draws are independent. This gives one real and one perfect-simulator score per checkpoint, and we compute the Pearson correlation ˜𝑟= corr(˜x, ˜y)",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "C095",
+   "page": 122,
+   "kind": "caption",
+   "text": "Figure 66: Simulated vs. real-world performance per policy on DROID. We evaluate 5 generalist checkpoints on the DROID embodiment across 10 tasks, with 5 real-world and 10 simulated trials per task, on the same layouts for every checkpoint. Panels and metrics as in Fig. 18: (a) task progress and (b) success rate averaged over tasks (dashed: 𝑦= 𝑥), and (c) Bradley-Terry Elo (dashed: least-squares fit).",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation",
+   "asset": "F066"
+  },
+  {
+   "id": "S2190",
+   "page": 122,
+   "kind": "prose",
+   "text": "across the 14 checkpoints. Since ˜x and ˜y share the same true values, they differ only because of the limited number of trials, so the median of ˜𝑟over 1,000 repetitions is the expected correlation any simulator could achieve with this evaluation budget. As shown in Fig. 65, our simulator produces correlations that are within 95% −99% of this ceiling.",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2191",
+   "page": 122,
+   "kind": "prose",
+   "text": "Results on DROID embodiment. Separately, we evaluate five generalist DROID checkpoints including GR00T 2 and publicly available models on environments reconstructed from real-world DROID setups. We use the same five layouts per task for each checkpoint in the real-world and the same ten layouts in simulation, to minimize variation in trial initializations. Once again, we see high Pearson r of 0.98, 0.95, 0.97 for task progress, success rate and BT Elo respectively. This demonstrates that our agentic real-to-sim reconstruction method is viable for different embodiments.",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2192",
+   "page": 122,
+   "kind": "prose",
+   "text": "J.2.2. GR00T 2 Inference Optimization through Simulation",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2193",
+   "page": 122,
+   "kind": "prose",
+   "text": "Inference optimization aims to help GR00T 2 respond sooner to new observations while preserving task success and smooth motion. We optimize model execution and the processing and transfer of observations, and vary the number of steps used to refine video and action predictions (see Accelerating Model Inference). Simulation provides a repeatable setting for testing how these changes affect behavior. We can restart each trial from the same scene without repeatedly setting up a physical workcell, making it practical to screen settings before robot testing.",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2194",
+   "page": 122,
+   "kind": "prose",
+   "text": "Changes that reduce prediction time can also change action predictions, so task success and motion quality must be checked together. For each checkpoint, we keep the number of actions per prediction fixed while comparing original PyTorch execution with TensorRT and CUDA Graphs and testing different numbers of refinement steps. In a YAM cube-handover pilot, several settings completed the task but differed in motion smoothness. Follow-up trials of the same checkpoint and task on a physical YAM robot also showed this distinction. In separate runtime comparisons, the optimized implementation supported more frequent updates to the action plan with comparable task progress in simulation.",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2195",
+   "page": 122,
+   "kind": "prose",
+   "text": "Simulation also helps us prototype real-time chunking (RTC), which connects new action predictions to actions already scheduled for execution. In separate simulation experiments (see Policy Smoothness), we compare RTC training with and without noise added to the previous action sequence. Repeated trials from matched scenes with controlled prediction delays help us assess whether smoother transitions between action sequences preserve task success, without testing every delay setting on physical robots.",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation",
+   "merged_ids": [
+    "S2196"
+   ]
+  },
+  {
+   "id": "S2197",
+   "page": 123,
+   "kind": "prose",
+   "text": "We measure prediction latency directly on the target hardware, separately from simulated task duration. Ordinary synchronous simulation pauses while waiting for predictions, so it does not reproduce the effect of inference delay on a moving robot. The RTC experiments explicitly model this delay, but physical-robot tests remain necessary to check behavior under actual deployment timing. Simulation narrows the settings taken to these tests, where we assess task success and motion quality on the target robot.",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2198",
+   "page": 123,
+   "kind": "prose",
+   "text": "J.2.3. GR00T 2 Pretraining Acceleration with Simulation",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2199",
+   "page": 123,
+   "kind": "prose",
+   "text": "Simulation enabled faster iteration on GR00T 2 pretraining through many different means.",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2200",
+   "page": 123,
+   "kind": "prose",
+   "text": "Monitoring of pretraining progress and checkpoint selection. Evaluating a single pretraining checkpoint across a large set of real-world tasks can take hours. Simulation provides a faster way to compare policies across a diverse task set during model development. During GR00T 2 pretraining, we evaluated intermediate checkpoints on a set of tasks from our simulation suite to inspect their closed-loop behavior and compare model capabilities as training progressed. These comparisons help us identify overfitting as we iterate on the model, and assess the relative performance of our checkpoints and external baselines without running extensive real-world evaluations for every candidate.",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2201",
+   "page": 123,
+   "kind": "prose",
+   "text": "Simulation also guided checkpoint selection: we used a subset of our simulation suite (25 tasks) to determine which checkpoints showed promising closed-loop evaluation results. This provided a stable way to understand if checkpoints were worth physical robot evaluation. As a concrete example, we used this workflow to finalize our pretrained model: simulation results narrowed the candidates to three checkpoints, which we then evaluated on physical robots to select the final checkpoint. In this way, simulation was a tool to guide checkpoint analysis and development, but we still used physical-robot evaluation to validate conclusions about real-world performance.",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2202",
+   "page": 123,
+   "kind": "prose",
+   "text": "Optimizing the data pipeline. Changes to the data loading and processing pipeline are costly to assess through full-scale pretraining. We expect a new pipeline that processes the data correctly and preserves training dynamics to produce model performance comparable to the existing pipeline. We test this expectation with small-scale training and closed-loop simulation before adopting a new pipeline for pretraining.",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2203",
+   "page": 123,
+   "kind": "prose",
+   "text": "As an example, we compared five configurations that varied sequence packing, mixed-shard sampling, and text-token masking. For each configuration, we post-trained a model on real-robot teleoperation data from the YAM Scoop and Unscrew tasks, then evaluated it on simulated versions of those tasks. Simulation was used only for evaluation. The new data loading pipeline showed no observed regression in closed-loop simulation performance relative to the existing pipeline, giving us confidence to adopt it for pretraining.",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2204",
+   "page": 123,
+   "kind": "prose",
+   "text": "J.2.4. Agentic Skill Development in Simulation",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2205",
+   "page": 123,
+   "kind": "prose",
+   "text": "Simulation also helps us develop specialized manipulation skills. As described in Sec. G.1, ASPIRE learns skills that code-as-policy (CaP) can invoke alongside GR00T 2 to carry out difficult steps or recover from failures. For example, the toy plane assembly task (Fig. 64) provided a repeatable setting for developing recovery skills that transferred to physical robots. In simulation, we could test candidate behaviors, inspect failures, and refine the skills before evaluating them on the physical system.",
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  }
+ ]
+}

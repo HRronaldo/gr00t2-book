@@ -1,0 +1,137 @@
+{
+ "chunk_id": "chunk_15",
+ "sections": [
+  "C.2. UMI-10K for GR00T 2",
+  "C.3. Teleoperation Data for GR00T 2"
+ ],
+ "pages": [
+  61,
+  63
+ ],
+ "chars": 7002,
+ "blocks": [
+  {
+   "id": "H32",
+   "page": 61,
+   "kind": "heading",
+   "text": "C.2. UMI-10K for GR00T 2",
+   "section": "C.2. UMI-10K for GR00T 2"
+  },
+  {
+   "id": "S1110",
+   "page": 61,
+   "kind": "prose",
+   "text": "Scale. The Gripper UMI corpus (App. E) contributes 942k quality-controlled episodes and 10,184 hours of bimanual parallel-gripper demonstrations across 2,897 tasks to GR00T 2 pretraining (Tab. 10). The corpus is built for breadth, focusing on short to mid-horizon tasks with wide behavior coverage, rather than depth on a few specialized tasks: no task accounts for more than 1.2% of the hours, and the instructions span 356 object categories and 49 skills in our manipulation vocabulary.",
+   "section": "C.2. UMI-10K for GR00T 2"
+  },
+  {
+   "id": "S1111",
+   "page": 61,
+   "kind": "prose",
+   "text": "Task distribution. We characterize the corpus by tagging every task instruction with a 49-skill vocabulary organized in four groups by manipulation and object type: prehensile, non-prehensile, articulated, and deformable, the same vocabulary that drives task generation (below). The skill distribution is shown in (Fig. 32): pick-and-place appears in 64% of episodes, while 88% of episodes also exercise at least one other skill to ensure diversity and complexity of actions captured. 29% of episodes involve a dynamic skill such as throwing, toppling, shaking, or sweeping, and 17% involve a precision skill such as insertion or capping. Articulated-object skills, drawers, lids, zippers, box flaps, doors, knobs, and cranks, appear in 29% of episodes, and deformable-object skills, folding, spreading, rolling, tearing, and tying, in 15%. Tasks are graded into three difficulty tiers along two axes, the number of sequential subgoals and the share of more complex motion beyond pick-and-place, which both increase with difficulty tier. By hours, 41% of the corpus is simple (two or more subgoals, any motion), 38% moderate (three or more state-dependent subgoals with at least one non-pickand-place skill), and 21% complex (four or more state-dependent subgoals dominated by non-pick-and-place skills).",
+   "section": "C.2. UMI-10K for GR00T 2",
+   "merged_ids": [
+    "S1112"
+   ]
+  },
+  {
+   "id": "S1113",
+   "page": 61,
+   "kind": "prose",
+   "text": "Task design. Tasks are generated using a language-model based agent which pairs skills from the vocabulary",
+   "section": "C.2. UMI-10K for GR00T 2"
+  },
+  {
+   "id": "C043",
+   "page": 62,
+   "kind": "caption",
+   "text": "Table 11: Robot teleoperation data in the GR00T 2 pretraining mixture. Share is the fraction of robot-data samples drawn from each source.",
+   "section": "C.2. UMI-10K for GR00T 2",
+   "asset": "T011"
+  },
+  {
+   "id": "S1120",
+   "page": 62,
+   "kind": "prose",
+   "text": "with objects from an object inventory into task templates, which are linted, deduplicated against every existing task. A human then inspects each task and manually accepts or rejects it. Each template is instantiated into concrete tasks by sampling different object, count, color, and position, which yields counterfactual pairs that share a scene but differ in one attribute of the instruction, and each generation round under-samples skills that are already common. The result is broad compositional coverage: 2,798 distinct skill-object pairs, with 70% of the top-24-skill by top-30-object grid populated.",
+   "section": "C.2. UMI-10K for GR00T 2"
+  },
+  {
+   "id": "S1121",
+   "page": 62,
+   "kind": "prose",
+   "text": "Quality control. Every episode passes a three-stage quality pipeline before it enters the corpus. First, an autonomous station-side check rejects recordings with uneven frame timing, dropped frames, or tracking and gripper faults at the point of capture. Second, an agentic QC pipeline reviews each remaining episode from its videos and instruction and scores four aspects: task completion (every step of the instruction is carried out on the objects, counts, and targets the instruction names, and the result is left in the specified state), motion quality (no micro-adjustments, jerky or abrupt movements, or idle hesitation), scene validity (a clean workspace without distracting or occluding objects or people), and view quality (both grippers and the task area visible in every camera); an episode is rejected on any critical failure or on a low aspect score. Third, human reviewers audit the agent’s verdicts on sampled and disputed episodes against a golden set, and their corrections feed back into the judge. Together these stages filter out roughly a quarter of recorded episodes (about 11% at the station and 16% at the agentic gate), so the corpus contains only clean, instruction-faithful demonstrations whose motion reflects natural human manipulation: the 95th-percentile gripper speed within an episode is 0.28 m/s on each arm, and peak speeds exceed 0.68 m/s in a tenth of the episodes.",
+   "section": "C.2. UMI-10K for GR00T 2",
+   "merged_ids": [
+    "S1122"
+   ]
+  },
+  {
+   "id": "H33",
+   "page": 62,
+   "kind": "heading",
+   "text": "C.3. Teleoperation Data for GR00T 2",
+   "section": "C.3. Teleoperation Data for GR00T 2"
+  },
+  {
+   "id": "S1123",
+   "page": 62,
+   "kind": "prose",
+   "text": "GR00T 2 pretrains on about 23.5k hours and 1.16M episodes of teleoperation from six sources. They span bimanual parallel-gripper arms, bimanual arms with dexterous hands, a humanoid, and a single-arm manipulator (Tab. 11).",
+   "section": "C.3. Teleoperation Data for GR00T 2"
+  },
+  {
+   "id": "S1124",
+   "page": 62,
+   "kind": "prose",
+   "text": "Embodiments and sources. Bimanual parallel-gripper data come from YAM arms and make up the largest block: 18.7k hours covering a broad range of household and tabletop tasks, including 3.6k hours from ABC- 130k (XDOF, 2026). Dexterous data come from bimanual arms with multi-fingered hands. The Sharpa data (22-DoF Sharpa hands) cover 2.9k hours, and Wuji (20-DoF Wuji hands on 7-DoF Tianji arms) adds 1.3k hours. Humanoid data come from the Unitree G1 (App. H), and DROID (Khazatsky et al., 2024) contributes single-arm Franka data from 564 scenes. Every bimanual platform records a head or top-down view and two wrist views.",
+   "section": "C.3. Teleoperation Data for GR00T 2",
+   "merged_ids": [
+    "S1125"
+   ]
+  },
+  {
+   "id": "C044",
+   "page": 63,
+   "kind": "caption",
+   "text": "Figure 33: Teleoperation system for Tianji + Sharpa. (A) Teleoperation pipeline from operator devices to the robot. The retargeter is the solver used for human-data conversion. (B) Robot platform: Tianji arms, Sharpa hands, and the GEAR Neck. (C) Key upgrades: hardware, numbered at their location in (B), and software.",
+   "section": "C.3. Teleoperation Data for GR00T 2",
+   "asset": "F033"
+  },
+  {
+   "id": "S1140",
+   "page": 63,
+   "kind": "prose",
+   "text": "Mixture. Sampling shares are set per source rather than in proportion to hours (Tab. 11). YAM holds 64% of robot hours but receives 51% of samples. The dexterous Sharpa and Wuji data together hold 18% of hours and receive 35% of samples.",
+   "section": "C.3. Teleoperation Data for GR00T 2"
+  },
+  {
+   "id": "S1141",
+   "page": 63,
+   "kind": "prose",
+   "text": "C.3.1. In-Lab Teleoperation System for Tianji + Sharpa",
+   "section": "C.3. Teleoperation Data for GR00T 2"
+  },
+  {
+   "id": "S1142",
+   "page": 63,
+   "kind": "prose",
+   "text": "The sources in Tab. 11 form the pretraining mixture. In addition, we collect robot data in our lab, mainly for post-training, with the Tianji + Sharpa teleoperation system in Fig. 33. It shares its devices and retargeting with the human-data pipeline (Sec. B.1.1 and B.1.2) and collects, for example, the task-agnostic play data used to learn new tasks without teleoperation (Sec. B.1.3) and the 1 or 10 target-task demonstrations added for comparison (Sec. B.1.4).",
+   "section": "C.3. Teleoperation Data for GR00T 2"
+  },
+  {
+   "id": "S1143",
+   "page": 63,
+   "kind": "prose",
+   "text": "Platform and pipeline. Tianji + Sharpa pairs two 7-DoF Tianji arms with two 22-DoF Sharpa Wave hands. A longer upper arm (288 to 400 mm) recovers the workspace in front of the chest, and a 220 ∘/s joint limit keeps up with human wrist motion. A teleoperation server ingests all devices through Isaac Teleop, a retargeter maps them to arm and hand commands, and a robot server executes them.",
+   "section": "C.3. Teleoperation Data for GR00T 2"
+  },
+  {
+   "id": "S1144",
+   "page": 63,
+   "kind": "prose",
+   "text": "Active head without motion sickness. The cameras ride on the GEAR Neck, our open-source 3-DoF neck that follows the headset, and stream at 60 fps for lower latency and less blur. A moving head camera normally causes motion sickness, because the image lags the operator’s head turn by the capture, transport, and neck delay. Our 3-DoF reprojection in Televiz renders each frame at its capture-time orientation and lets the headset re-render it against the current head pose at its own rate, so head rotation is answered locally and end-to-end latency no longer drives operator comfort.",
+   "section": "C.3. Teleoperation Data for GR00T 2"
+  }
+ ]
+}

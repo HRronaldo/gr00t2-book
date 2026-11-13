@@ -1,0 +1,8582 @@
+{
+ "source": {
+  "file": "gr00t2_whitepaper.pdf",
+  "title": "GR00T 2: Scaling Robot Foundation Models for Generalization, Dexterity, and Adaptation",
+  "publisher": "NVIDIA",
+  "date": "2026-11",
+  "pages": 135
+ },
+ "blocks": [
+  {
+   "id": "S001",
+   "type": "prose",
+   "page": 1,
+   "section": "Front matter"
+  },
+  {
+   "id": "S002",
+   "type": "prose",
+   "page": 1,
+   "section": "Front matter"
+  },
+  {
+   "id": "H01",
+   "type": "heading",
+   "page": 1,
+   "section": "Contents"
+  },
+  {
+   "id": "S003",
+   "type": "prose",
+   "page": 1,
+   "section": "Contents"
+  },
+  {
+   "id": "S004",
+   "type": "prose",
+   "page": 1,
+   "section": "Contents"
+  },
+  {
+   "id": "S005",
+   "type": "prose",
+   "page": 1,
+   "section": "Contents"
+  },
+  {
+   "id": "S006",
+   "type": "prose",
+   "page": 1,
+   "section": "Contents"
+  },
+  {
+   "id": "S007",
+   "type": "prose",
+   "page": 1,
+   "section": "Contents"
+  },
+  {
+   "id": "S008",
+   "type": "prose",
+   "page": 1,
+   "section": "Contents"
+  },
+  {
+   "id": "S009",
+   "type": "prose",
+   "page": 1,
+   "section": "Contents"
+  },
+  {
+   "id": "S010",
+   "type": "prose",
+   "page": 1,
+   "section": "Contents"
+  },
+  {
+   "id": "S011",
+   "type": "prose",
+   "page": 1,
+   "section": "Contents"
+  },
+  {
+   "id": "S012",
+   "type": "prose",
+   "page": 1,
+   "section": "Contents"
+  },
+  {
+   "id": "S013",
+   "type": "prose",
+   "page": 2,
+   "section": "Contents"
+  },
+  {
+   "id": "S014",
+   "type": "prose",
+   "page": 2,
+   "section": "Contents"
+  },
+  {
+   "id": "S015",
+   "type": "prose",
+   "page": 2,
+   "section": "Contents"
+  },
+  {
+   "id": "S016",
+   "type": "prose",
+   "page": 2,
+   "section": "Contents"
+  },
+  {
+   "id": "S017",
+   "type": "prose",
+   "page": 2,
+   "section": "Contents"
+  },
+  {
+   "id": "S018",
+   "type": "prose",
+   "page": 2,
+   "section": "Contents"
+  },
+  {
+   "id": "S019",
+   "type": "prose",
+   "page": 2,
+   "section": "Contents"
+  },
+  {
+   "id": "S020",
+   "type": "prose",
+   "page": 2,
+   "section": "Contents"
+  },
+  {
+   "id": "H02",
+   "type": "heading",
+   "page": 3,
+   "section": "1. Introduction"
+  },
+  {
+   "id": "S021",
+   "type": "prose",
+   "page": 3,
+   "section": "1. Introduction"
+  },
+  {
+   "id": "S022",
+   "type": "prose",
+   "page": 3,
+   "section": "1. Introduction"
+  },
+  {
+   "id": "S023",
+   "type": "prose",
+   "page": 3,
+   "section": "1. Introduction"
+  },
+  {
+   "id": "S024",
+   "type": "prose",
+   "page": 3,
+   "section": "1. Introduction"
+  },
+  {
+   "id": "C001",
+   "type": "caption",
+   "page": 4,
+   "section": "GR00T 2",
+   "asset": "F001"
+  },
+  {
+   "id": "S053",
+   "type": "prose",
+   "page": 4,
+   "section": "GR00T 2"
+  },
+  {
+   "id": "S054",
+   "type": "prose",
+   "page": 4,
+   "section": "GR00T 2"
+  },
+  {
+   "id": "S055",
+   "type": "prose",
+   "page": 5,
+   "section": "GR00T 2"
+  },
+  {
+   "id": "S056",
+   "type": "prose",
+   "page": 5,
+   "section": "GR00T 2"
+  },
+  {
+   "id": "S057",
+   "type": "prose",
+   "page": 5,
+   "section": "GR00T 2"
+  },
+  {
+   "id": "H03",
+   "type": "heading",
+   "page": 5,
+   "section": "2. GR00T 2 Overview"
+  },
+  {
+   "id": "S058",
+   "type": "prose",
+   "page": 5,
+   "section": "2. GR00T 2 Overview"
+  },
+  {
+   "id": "S059",
+   "type": "prose",
+   "page": 5,
+   "section": "2. GR00T 2 Overview"
+  },
+  {
+   "id": "S060",
+   "type": "prose",
+   "page": 5,
+   "section": "2. GR00T 2 Overview"
+  },
+  {
+   "id": "S061",
+   "type": "prose",
+   "page": 5,
+   "section": "2. GR00T 2 Overview"
+  },
+  {
+   "id": "S062",
+   "type": "prose",
+   "page": 5,
+   "section": "2. GR00T 2 Overview"
+  },
+  {
+   "id": "S063",
+   "type": "prose",
+   "page": 5,
+   "section": "2. GR00T 2 Overview"
+  },
+  {
+   "id": "C002",
+   "type": "caption",
+   "page": 6,
+   "section": "2. GR00T 2 Overview",
+   "asset": "F002"
+  },
+  {
+   "id": "S078",
+   "type": "prose",
+   "page": 6,
+   "section": "2. GR00T 2 Overview"
+  },
+  {
+   "id": "S079",
+   "type": "prose",
+   "page": 6,
+   "section": "2. GR00T 2 Overview"
+  },
+  {
+   "id": "S080",
+   "type": "prose",
+   "page": 6,
+   "section": "2. GR00T 2 Overview"
+  },
+  {
+   "id": "S081",
+   "type": "prose",
+   "page": 6,
+   "section": "2. GR00T 2 Overview"
+  },
+  {
+   "id": "H04",
+   "type": "heading",
+   "page": 6,
+   "section": "3. GR00T 2 Capabilities"
+  },
+  {
+   "id": "S082",
+   "type": "prose",
+   "page": 6,
+   "section": "3. GR00T 2 Capabilities"
+  },
+  {
+   "id": "H05",
+   "type": "heading",
+   "page": 6,
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery"
+  },
+  {
+   "id": "S083",
+   "type": "prose",
+   "page": 6,
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery"
+  },
+  {
+   "id": "C003",
+   "type": "caption",
+   "page": 7,
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery",
+   "asset": "T001"
+  },
+  {
+   "id": "S088",
+   "type": "prose",
+   "page": 7,
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery"
+  },
+  {
+   "id": "S094",
+   "type": "prose",
+   "page": 7,
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery"
+  },
+  {
+   "id": "C004",
+   "type": "caption",
+   "page": 7,
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery",
+   "asset": "F003"
+  },
+  {
+   "id": "S096",
+   "type": "prose",
+   "page": 7,
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery"
+  },
+  {
+   "id": "S097",
+   "type": "prose",
+   "page": 7,
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery"
+  },
+  {
+   "id": "C005",
+   "type": "caption",
+   "page": 8,
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery",
+   "asset": "F004"
+  },
+  {
+   "id": "S130",
+   "type": "prose",
+   "page": 8,
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery"
+  },
+  {
+   "id": "S131",
+   "type": "prose",
+   "page": 8,
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery"
+  },
+  {
+   "id": "S132",
+   "type": "prose",
+   "page": 8,
+   "section": "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery"
+  },
+  {
+   "id": "H06",
+   "type": "heading",
+   "page": 8,
+   "section": "3.2. X-Adaptability: Cross-Embodiment Skill Transfer"
+  },
+  {
+   "id": "S133",
+   "type": "prose",
+   "page": 8,
+   "section": "3.2. X-Adaptability: Cross-Embodiment Skill Transfer"
+  },
+  {
+   "id": "S134",
+   "type": "prose",
+   "page": 9,
+   "section": "3.2. X-Adaptability: Cross-Embodiment Skill Transfer"
+  },
+  {
+   "id": "S135",
+   "type": "prose",
+   "page": 9,
+   "section": "3.2. X-Adaptability: Cross-Embodiment Skill Transfer"
+  },
+  {
+   "id": "S136",
+   "type": "prose",
+   "page": 9,
+   "section": "3.2. X-Adaptability: Cross-Embodiment Skill Transfer"
+  },
+  {
+   "id": "S137",
+   "type": "prose",
+   "page": 9,
+   "section": "3.2. X-Adaptability: Cross-Embodiment Skill Transfer"
+  },
+  {
+   "id": "H07",
+   "type": "heading",
+   "page": 9,
+   "section": "3.3. Robust Deployment through Reinforcement Learning"
+  },
+  {
+   "id": "S138",
+   "type": "prose",
+   "page": 9,
+   "section": "3.3. Robust Deployment through Reinforcement Learning"
+  },
+  {
+   "id": "S139",
+   "type": "prose",
+   "page": 9,
+   "section": "3.3. Robust Deployment through Reinforcement Learning"
+  },
+  {
+   "id": "S140",
+   "type": "prose",
+   "page": 9,
+   "section": "3.3. Robust Deployment through Reinforcement Learning"
+  },
+  {
+   "id": "C006",
+   "type": "caption",
+   "page": 10,
+   "section": "3.3. Robust Deployment through Reinforcement Learning",
+   "asset": "F005"
+  },
+  {
+   "id": "C007",
+   "type": "caption",
+   "page": 10,
+   "section": "3.3. Robust Deployment through Reinforcement Learning",
+   "asset": "F006"
+  },
+  {
+   "id": "S190",
+   "type": "prose",
+   "page": 10,
+   "section": "3.3. Robust Deployment through Reinforcement Learning"
+  },
+  {
+   "id": "H08",
+   "type": "heading",
+   "page": 10,
+   "section": "3.4. Agentic GR00T 2"
+  },
+  {
+   "id": "S191",
+   "type": "prose",
+   "page": 10,
+   "section": "3.4. Agentic GR00T 2"
+  },
+  {
+   "id": "C008",
+   "type": "caption",
+   "page": 11,
+   "section": "3.4. Agentic GR00T 2",
+   "asset": "F007"
+  },
+  {
+   "id": "S199",
+   "type": "prose",
+   "page": 11,
+   "section": "3.4. Agentic GR00T 2"
+  },
+  {
+   "id": "S200",
+   "type": "prose",
+   "page": 11,
+   "section": "3.4. Agentic GR00T 2"
+  },
+  {
+   "id": "S201",
+   "type": "prose",
+   "page": 11,
+   "section": "3.4. Agentic GR00T 2"
+  },
+  {
+   "id": "S202",
+   "type": "prose",
+   "page": 11,
+   "section": "3.4. Agentic GR00T 2"
+  },
+  {
+   "id": "S203",
+   "type": "prose",
+   "page": 12,
+   "section": "3.4. Agentic GR00T 2"
+  },
+  {
+   "id": "S204",
+   "type": "prose",
+   "page": 12,
+   "section": "3.4. Agentic GR00T 2"
+  },
+  {
+   "id": "C009",
+   "type": "caption",
+   "page": 12,
+   "section": "3.4. Agentic GR00T 2",
+   "asset": "F008"
+  },
+  {
+   "id": "S218",
+   "type": "prose",
+   "page": 12,
+   "section": "3.4. Agentic GR00T 2"
+  },
+  {
+   "id": "S219",
+   "type": "prose",
+   "page": 12,
+   "section": "3.4. Agentic GR00T 2"
+  },
+  {
+   "id": "C010",
+   "type": "caption",
+   "page": 13,
+   "section": "3.4. Agentic GR00T 2",
+   "asset": "F009"
+  },
+  {
+   "id": "S262",
+   "type": "prose",
+   "page": 13,
+   "section": "3.4. Agentic GR00T 2"
+  },
+  {
+   "id": "H09",
+   "type": "heading",
+   "page": 13,
+   "section": "3.5. Humanoid Loco-Manipulation"
+  },
+  {
+   "id": "S263",
+   "type": "prose",
+   "page": 13,
+   "section": "3.5. Humanoid Loco-Manipulation"
+  },
+  {
+   "id": "S264",
+   "type": "prose",
+   "page": 13,
+   "section": "3.5. Humanoid Loco-Manipulation"
+  },
+  {
+   "id": "S265",
+   "type": "prose",
+   "page": 13,
+   "section": "3.5. Humanoid Loco-Manipulation"
+  },
+  {
+   "id": "H10",
+   "type": "heading",
+   "page": 14,
+   "section": "4. How We Made GR00T 2"
+  },
+  {
+   "id": "S266",
+   "type": "prose",
+   "page": 14,
+   "section": "4. How We Made GR00T 2"
+  },
+  {
+   "id": "H11",
+   "type": "heading",
+   "page": 14,
+   "section": "4.1. Training: Pre-Training and RL Post-Training"
+  },
+  {
+   "id": "S267",
+   "type": "prose",
+   "page": 14,
+   "section": "4.1. Training: Pre-Training and RL Post-Training"
+  },
+  {
+   "id": "S268",
+   "type": "prose",
+   "page": 14,
+   "section": "4.1. Training: Pre-Training and RL Post-Training"
+  },
+  {
+   "id": "S269",
+   "type": "prose",
+   "page": 14,
+   "section": "4.1. Training: Pre-Training and RL Post-Training"
+  },
+  {
+   "id": "S270",
+   "type": "prose",
+   "page": 14,
+   "section": "4.1. Training: Pre-Training and RL Post-Training"
+  },
+  {
+   "id": "S271",
+   "type": "prose",
+   "page": 14,
+   "section": "4.1. Training: Pre-Training and RL Post-Training"
+  },
+  {
+   "id": "S272",
+   "type": "prose",
+   "page": 14,
+   "section": "4.1. Training: Pre-Training and RL Post-Training"
+  },
+  {
+   "id": "C011",
+   "type": "caption",
+   "page": 15,
+   "section": "4.1. Training: Pre-Training and RL Post-Training",
+   "asset": "F010"
+  },
+  {
+   "id": "S287",
+   "type": "prose",
+   "page": 15,
+   "section": "4.1. Training: Pre-Training and RL Post-Training"
+  },
+  {
+   "id": "H12",
+   "type": "heading",
+   "page": 15,
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S288",
+   "type": "prose",
+   "page": 15,
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S289",
+   "type": "prose",
+   "page": 15,
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S290",
+   "type": "prose",
+   "page": 15,
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S291",
+   "type": "prose",
+   "page": 15,
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S292",
+   "type": "prose",
+   "page": 15,
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S293",
+   "type": "prose",
+   "page": 16,
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S294",
+   "type": "prose",
+   "page": 16,
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S295",
+   "type": "prose",
+   "page": 16,
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S296",
+   "type": "prose",
+   "page": 16,
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S297",
+   "type": "prose",
+   "page": 16,
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S298",
+   "type": "prose",
+   "page": 16,
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S299",
+   "type": "prose",
+   "page": 16,
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S300",
+   "type": "prose",
+   "page": 16,
+   "section": "4.2. Data"
+  },
+  {
+   "id": "S301",
+   "type": "prose",
+   "page": 16,
+   "section": "4.2. Data"
+  },
+  {
+   "id": "H13",
+   "type": "heading",
+   "page": 16,
+   "section": "4.3. Real-World Benchmarking: Mapping the Hill We Climb"
+  },
+  {
+   "id": "S302",
+   "type": "prose",
+   "page": 16,
+   "section": "4.3. Real-World Benchmarking: Mapping the Hill We Climb"
+  },
+  {
+   "id": "S303",
+   "type": "prose",
+   "page": 16,
+   "section": "4.3. Real-World Benchmarking: Mapping the Hill We Climb"
+  },
+  {
+   "id": "S305",
+   "type": "prose",
+   "page": 17,
+   "section": "4.3. Real-World Benchmarking: Mapping the Hill We Climb"
+  },
+  {
+   "id": "C012",
+   "type": "caption",
+   "page": 17,
+   "section": "4.3. Real-World Benchmarking: Mapping the Hill We Climb",
+   "asset": "F011"
+  },
+  {
+   "id": "S308",
+   "type": "prose",
+   "page": 17,
+   "section": "4.3. Real-World Benchmarking: Mapping the Hill We Climb"
+  },
+  {
+   "id": "S314",
+   "type": "prose",
+   "page": 17,
+   "section": "4.3. Real-World Benchmarking: Mapping the Hill We Climb"
+  },
+  {
+   "id": "S315",
+   "type": "prose",
+   "page": 17,
+   "section": "4.3. Real-World Benchmarking: Mapping the Hill We Climb"
+  },
+  {
+   "id": "S316",
+   "type": "prose",
+   "page": 17,
+   "section": "4.3. Real-World Benchmarking: Mapping the Hill We Climb"
+  },
+  {
+   "id": "S317",
+   "type": "prose",
+   "page": 17,
+   "section": "4.3. Real-World Benchmarking: Mapping the Hill We Climb"
+  },
+  {
+   "id": "S318",
+   "type": "prose",
+   "page": 17,
+   "section": "4.3. Real-World Benchmarking: Mapping the Hill We Climb"
+  },
+  {
+   "id": "S319",
+   "type": "prose",
+   "page": 17,
+   "section": "4.3. Real-World Benchmarking: Mapping the Hill We Climb"
+  },
+  {
+   "id": "H14",
+   "type": "heading",
+   "page": 17,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S320",
+   "type": "prose",
+   "page": 17,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "C013",
+   "type": "caption",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines",
+   "asset": "F012"
+  },
+  {
+   "id": "S324",
+   "type": "prose",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S325",
+   "type": "prose",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S326",
+   "type": "prose",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S327",
+   "type": "prose",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S328",
+   "type": "prose",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S329",
+   "type": "prose",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S330",
+   "type": "prose",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S331",
+   "type": "prose",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S332",
+   "type": "prose",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S333",
+   "type": "prose",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S334",
+   "type": "prose",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S335",
+   "type": "prose",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S336",
+   "type": "prose",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S337",
+   "type": "prose",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S338",
+   "type": "prose",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S339",
+   "type": "prose",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S340",
+   "type": "prose",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S341",
+   "type": "prose",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S342",
+   "type": "prose",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S343",
+   "type": "prose",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S344",
+   "type": "prose",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S345",
+   "type": "prose",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "C014",
+   "type": "caption",
+   "page": 18,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines",
+   "asset": "F013"
+  },
+  {
+   "id": "C015",
+   "type": "caption",
+   "page": 19,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines",
+   "asset": "F014"
+  },
+  {
+   "id": "C016",
+   "type": "caption",
+   "page": 19,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines",
+   "asset": "F015"
+  },
+  {
+   "id": "S346",
+   "type": "prose",
+   "page": 19,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S347",
+   "type": "prose",
+   "page": 19,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S348",
+   "type": "prose",
+   "page": 19,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S349",
+   "type": "prose",
+   "page": 19,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S350",
+   "type": "prose",
+   "page": 19,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "C017",
+   "type": "caption",
+   "page": 20,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines",
+   "asset": "F016"
+  },
+  {
+   "id": "S372",
+   "type": "prose",
+   "page": 20,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S373",
+   "type": "prose",
+   "page": 20,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S374",
+   "type": "prose",
+   "page": 20,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "S375",
+   "type": "prose",
+   "page": 20,
+   "section": "4.4. Learning without Teleoperation: Devices and Pipelines"
+  },
+  {
+   "id": "H15",
+   "type": "heading",
+   "page": 20,
+   "section": "4.5. Simulation and Evaluation"
+  },
+  {
+   "id": "S376",
+   "type": "prose",
+   "page": 20,
+   "section": "4.5. Simulation and Evaluation"
+  },
+  {
+   "id": "S377",
+   "type": "prose",
+   "page": 20,
+   "section": "4.5. Simulation and Evaluation"
+  },
+  {
+   "id": "C018",
+   "type": "caption",
+   "page": 21,
+   "section": "4.5. Simulation and Evaluation",
+   "asset": "F017"
+  },
+  {
+   "id": "C019",
+   "type": "caption",
+   "page": 21,
+   "section": "4.5. Simulation and Evaluation",
+   "asset": "F018"
+  },
+  {
+   "id": "S407",
+   "type": "prose",
+   "page": 21,
+   "section": "4.5. Simulation and Evaluation"
+  },
+  {
+   "id": "S408",
+   "type": "prose",
+   "page": 21,
+   "section": "4.5. Simulation and Evaluation"
+  },
+  {
+   "id": "S409",
+   "type": "prose",
+   "page": 21,
+   "section": "4.5. Simulation and Evaluation"
+  },
+  {
+   "id": "S410",
+   "type": "prose",
+   "page": 21,
+   "section": "4.5. Simulation and Evaluation"
+  },
+  {
+   "id": "S411",
+   "type": "prose",
+   "page": 22,
+   "section": "4.5. Simulation and Evaluation"
+  },
+  {
+   "id": "S412",
+   "type": "prose",
+   "page": 22,
+   "section": "4.5. Simulation and Evaluation"
+  },
+  {
+   "id": "S413",
+   "type": "prose",
+   "page": 22,
+   "section": "4.5. Simulation and Evaluation"
+  },
+  {
+   "id": "S414",
+   "type": "prose",
+   "page": 22,
+   "section": "4.5. Simulation and Evaluation"
+  },
+  {
+   "id": "S415",
+   "type": "prose",
+   "page": 22,
+   "section": "4.5. Simulation and Evaluation"
+  },
+  {
+   "id": "S416",
+   "type": "prose",
+   "page": 22,
+   "section": "4.5. Simulation and Evaluation"
+  },
+  {
+   "id": "H16",
+   "type": "heading",
+   "page": 22,
+   "section": "4.6. Deployment and Real-Time Inference"
+  },
+  {
+   "id": "S417",
+   "type": "prose",
+   "page": 22,
+   "section": "4.6. Deployment and Real-Time Inference"
+  },
+  {
+   "id": "C020",
+   "type": "caption",
+   "page": 23,
+   "section": "4.6. Deployment and Real-Time Inference",
+   "asset": "F019"
+  },
+  {
+   "id": "S440",
+   "type": "prose",
+   "page": 23,
+   "section": "4.6. Deployment and Real-Time Inference"
+  },
+  {
+   "id": "S441",
+   "type": "prose",
+   "page": 23,
+   "section": "4.6. Deployment and Real-Time Inference"
+  },
+  {
+   "id": "S442",
+   "type": "prose",
+   "page": 23,
+   "section": "4.6. Deployment and Real-Time Inference"
+  },
+  {
+   "id": "S443",
+   "type": "prose",
+   "page": 23,
+   "section": "4.6. Deployment and Real-Time Inference"
+  },
+  {
+   "id": "S444",
+   "type": "prose",
+   "page": 23,
+   "section": "4.6. Deployment and Real-Time Inference"
+  },
+  {
+   "id": "C021",
+   "type": "caption",
+   "page": 24,
+   "section": "4.6. Deployment and Real-Time Inference",
+   "asset": "F020"
+  },
+  {
+   "id": "S456",
+   "type": "prose",
+   "page": 24,
+   "section": "4.6. Deployment and Real-Time Inference"
+  },
+  {
+   "id": "S457",
+   "type": "prose",
+   "page": 24,
+   "section": "4.6. Deployment and Real-Time Inference"
+  },
+  {
+   "id": "S458",
+   "type": "prose",
+   "page": 24,
+   "section": "4.6. Deployment and Real-Time Inference"
+  },
+  {
+   "id": "H17",
+   "type": "heading",
+   "page": 24,
+   "section": "4.7. Infrastructure"
+  },
+  {
+   "id": "S459",
+   "type": "prose",
+   "page": 24,
+   "section": "4.7. Infrastructure"
+  },
+  {
+   "id": "S460",
+   "type": "prose",
+   "page": 24,
+   "section": "4.7. Infrastructure"
+  },
+  {
+   "id": "S461",
+   "type": "prose",
+   "page": 24,
+   "section": "4.7. Infrastructure"
+  },
+  {
+   "id": "S462",
+   "type": "prose",
+   "page": 24,
+   "section": "4.7. Infrastructure"
+  },
+  {
+   "id": "S463",
+   "type": "prose",
+   "page": 25,
+   "section": "4.7. Infrastructure"
+  },
+  {
+   "id": "S464",
+   "type": "prose",
+   "page": 25,
+   "section": "4.7. Infrastructure"
+  },
+  {
+   "id": "S465",
+   "type": "prose",
+   "page": 25,
+   "section": "4.7. Infrastructure"
+  },
+  {
+   "id": "S466",
+   "type": "prose",
+   "page": 25,
+   "section": "4.7. Infrastructure"
+  },
+  {
+   "id": "S467",
+   "type": "prose",
+   "page": 25,
+   "section": "4.7. Infrastructure"
+  },
+  {
+   "id": "S468",
+   "type": "prose",
+   "page": 26,
+   "section": "4.7. Infrastructure"
+  },
+  {
+   "id": "H18",
+   "type": "heading",
+   "page": 26,
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S469",
+   "type": "prose",
+   "page": 26,
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S470",
+   "type": "prose",
+   "page": 26,
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S471",
+   "type": "prose",
+   "page": 26,
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S472",
+   "type": "prose",
+   "page": 26,
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S473",
+   "type": "prose",
+   "page": 26,
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S474",
+   "type": "prose",
+   "page": 26,
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S475",
+   "type": "prose",
+   "page": 26,
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S476",
+   "type": "prose",
+   "page": 27,
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S477",
+   "type": "prose",
+   "page": 27,
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S478",
+   "type": "prose",
+   "page": 27,
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S479",
+   "type": "prose",
+   "page": 27,
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S480",
+   "type": "prose",
+   "page": 27,
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S481",
+   "type": "prose",
+   "page": 27,
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S482",
+   "type": "prose",
+   "page": 27,
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S483",
+   "type": "prose",
+   "page": 27,
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S484",
+   "type": "prose",
+   "page": 28,
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S485",
+   "type": "prose",
+   "page": 28,
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S486",
+   "type": "prose",
+   "page": 28,
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S487",
+   "type": "prose",
+   "page": 28,
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S488",
+   "type": "prose",
+   "page": 28,
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S489",
+   "type": "prose",
+   "page": 28,
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "S490",
+   "type": "prose",
+   "page": 28,
+   "section": "5. Conclusion and Open Problems"
+  },
+  {
+   "id": "H19",
+   "type": "heading",
+   "page": 29,
+   "section": "References"
+  },
+  {
+   "id": "S491",
+   "type": "prose",
+   "page": 29,
+   "section": "References"
+  },
+  {
+   "id": "S492",
+   "type": "prose",
+   "page": 29,
+   "section": "References"
+  },
+  {
+   "id": "S493",
+   "type": "prose",
+   "page": 29,
+   "section": "References"
+  },
+  {
+   "id": "S494",
+   "type": "prose",
+   "page": 29,
+   "section": "References"
+  },
+  {
+   "id": "S495",
+   "type": "prose",
+   "page": 29,
+   "section": "References"
+  },
+  {
+   "id": "S496",
+   "type": "prose",
+   "page": 29,
+   "section": "References"
+  },
+  {
+   "id": "S497",
+   "type": "prose",
+   "page": 29,
+   "section": "References"
+  },
+  {
+   "id": "S498",
+   "type": "prose",
+   "page": 29,
+   "section": "References"
+  },
+  {
+   "id": "S499",
+   "type": "prose",
+   "page": 29,
+   "section": "References"
+  },
+  {
+   "id": "S500",
+   "type": "prose",
+   "page": 29,
+   "section": "References"
+  },
+  {
+   "id": "S501",
+   "type": "prose",
+   "page": 29,
+   "section": "References"
+  },
+  {
+   "id": "S502",
+   "type": "prose",
+   "page": 29,
+   "section": "References"
+  },
+  {
+   "id": "S503",
+   "type": "prose",
+   "page": 29,
+   "section": "References"
+  },
+  {
+   "id": "S504",
+   "type": "prose",
+   "page": 30,
+   "section": "References"
+  },
+  {
+   "id": "S505",
+   "type": "prose",
+   "page": 30,
+   "section": "References"
+  },
+  {
+   "id": "S506",
+   "type": "prose",
+   "page": 30,
+   "section": "References"
+  },
+  {
+   "id": "S507",
+   "type": "prose",
+   "page": 30,
+   "section": "References"
+  },
+  {
+   "id": "S508",
+   "type": "prose",
+   "page": 30,
+   "section": "References"
+  },
+  {
+   "id": "S509",
+   "type": "prose",
+   "page": 30,
+   "section": "References"
+  },
+  {
+   "id": "S510",
+   "type": "prose",
+   "page": 30,
+   "section": "References"
+  },
+  {
+   "id": "S511",
+   "type": "prose",
+   "page": 30,
+   "section": "References"
+  },
+  {
+   "id": "S512",
+   "type": "prose",
+   "page": 30,
+   "section": "References"
+  },
+  {
+   "id": "S513",
+   "type": "prose",
+   "page": 30,
+   "section": "References"
+  },
+  {
+   "id": "S514",
+   "type": "prose",
+   "page": 30,
+   "section": "References"
+  },
+  {
+   "id": "S515",
+   "type": "prose",
+   "page": 30,
+   "section": "References"
+  },
+  {
+   "id": "S516",
+   "type": "prose",
+   "page": 30,
+   "section": "References"
+  },
+  {
+   "id": "S517",
+   "type": "prose",
+   "page": 30,
+   "section": "References"
+  },
+  {
+   "id": "S518",
+   "type": "prose",
+   "page": 30,
+   "section": "References"
+  },
+  {
+   "id": "S519",
+   "type": "prose",
+   "page": 30,
+   "section": "References"
+  },
+  {
+   "id": "S520",
+   "type": "prose",
+   "page": 30,
+   "section": "References"
+  },
+  {
+   "id": "S521",
+   "type": "prose",
+   "page": 30,
+   "section": "References"
+  },
+  {
+   "id": "S522",
+   "type": "prose",
+   "page": 30,
+   "section": "References"
+  },
+  {
+   "id": "S523",
+   "type": "prose",
+   "page": 30,
+   "section": "References"
+  },
+  {
+   "id": "S524",
+   "type": "prose",
+   "page": 30,
+   "section": "References"
+  },
+  {
+   "id": "S525",
+   "type": "prose",
+   "page": 30,
+   "section": "References"
+  },
+  {
+   "id": "S526",
+   "type": "prose",
+   "page": 30,
+   "section": "References"
+  },
+  {
+   "id": "S527",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S528",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S529",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S530",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S531",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S532",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S533",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S534",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S535",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S536",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S537",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S538",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S539",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S540",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S541",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S542",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S543",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S544",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S545",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S546",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S547",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S548",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S549",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S550",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S551",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S552",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S553",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S554",
+   "type": "prose",
+   "page": 31,
+   "section": "References"
+  },
+  {
+   "id": "S555",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S556",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S557",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S558",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S559",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S560",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S561",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S562",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S563",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S564",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S565",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S566",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S567",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S568",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S569",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S570",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S571",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S572",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S573",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S574",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S575",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S576",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S577",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S578",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S579",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S580",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S581",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S582",
+   "type": "prose",
+   "page": 32,
+   "section": "References"
+  },
+  {
+   "id": "S583",
+   "type": "prose",
+   "page": 33,
+   "section": "References"
+  },
+  {
+   "id": "S584",
+   "type": "prose",
+   "page": 33,
+   "section": "References"
+  },
+  {
+   "id": "S585",
+   "type": "prose",
+   "page": 33,
+   "section": "References"
+  },
+  {
+   "id": "S586",
+   "type": "prose",
+   "page": 33,
+   "section": "References"
+  },
+  {
+   "id": "S587",
+   "type": "prose",
+   "page": 33,
+   "section": "References"
+  },
+  {
+   "id": "S588",
+   "type": "prose",
+   "page": 33,
+   "section": "References"
+  },
+  {
+   "id": "S589",
+   "type": "prose",
+   "page": 33,
+   "section": "References"
+  },
+  {
+   "id": "S590",
+   "type": "prose",
+   "page": 33,
+   "section": "References"
+  },
+  {
+   "id": "S591",
+   "type": "prose",
+   "page": 33,
+   "section": "References"
+  },
+  {
+   "id": "S592",
+   "type": "prose",
+   "page": 33,
+   "section": "References"
+  },
+  {
+   "id": "S593",
+   "type": "prose",
+   "page": 33,
+   "section": "References"
+  },
+  {
+   "id": "S594",
+   "type": "prose",
+   "page": 33,
+   "section": "References"
+  },
+  {
+   "id": "S595",
+   "type": "prose",
+   "page": 33,
+   "section": "References"
+  },
+  {
+   "id": "S596",
+   "type": "prose",
+   "page": 33,
+   "section": "References"
+  },
+  {
+   "id": "S597",
+   "type": "prose",
+   "page": 33,
+   "section": "References"
+  },
+  {
+   "id": "S598",
+   "type": "prose",
+   "page": 33,
+   "section": "References"
+  },
+  {
+   "id": "S599",
+   "type": "prose",
+   "page": 33,
+   "section": "References"
+  },
+  {
+   "id": "S600",
+   "type": "prose",
+   "page": 33,
+   "section": "References"
+  },
+  {
+   "id": "S601",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S602",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S603",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S604",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S605",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S606",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S607",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S608",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S609",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S610",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S611",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S612",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S613",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S614",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S615",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S616",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S617",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S618",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S619",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S620",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S621",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S622",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S623",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S624",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S625",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S626",
+   "type": "prose",
+   "page": 34,
+   "section": "References"
+  },
+  {
+   "id": "S627",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S628",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S629",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S630",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S631",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S632",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S633",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S634",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S635",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S636",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S637",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S638",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S639",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S640",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S641",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S642",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S643",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S644",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S645",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S646",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S647",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S648",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S649",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S650",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S651",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S652",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S653",
+   "type": "prose",
+   "page": 35,
+   "section": "References"
+  },
+  {
+   "id": "S654",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S655",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S656",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S657",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S658",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S659",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S660",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S661",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S662",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S663",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S664",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S665",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S666",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S667",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S668",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S669",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S670",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S671",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S672",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S673",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S674",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S675",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S676",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S677",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S678",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S679",
+   "type": "prose",
+   "page": 36,
+   "section": "References"
+  },
+  {
+   "id": "S680",
+   "type": "prose",
+   "page": 37,
+   "section": "References"
+  },
+  {
+   "id": "S681",
+   "type": "prose",
+   "page": 37,
+   "section": "References"
+  },
+  {
+   "id": "S682",
+   "type": "prose",
+   "page": 37,
+   "section": "References"
+  },
+  {
+   "id": "S683",
+   "type": "prose",
+   "page": 37,
+   "section": "References"
+  },
+  {
+   "id": "S684",
+   "type": "prose",
+   "page": 37,
+   "section": "References"
+  },
+  {
+   "id": "S685",
+   "type": "prose",
+   "page": 37,
+   "section": "References"
+  },
+  {
+   "id": "S686",
+   "type": "prose",
+   "page": 37,
+   "section": "References"
+  },
+  {
+   "id": "S687",
+   "type": "prose",
+   "page": 37,
+   "section": "References"
+  },
+  {
+   "id": "S688",
+   "type": "prose",
+   "page": 37,
+   "section": "References"
+  },
+  {
+   "id": "S689",
+   "type": "prose",
+   "page": 37,
+   "section": "References"
+  },
+  {
+   "id": "S690",
+   "type": "prose",
+   "page": 37,
+   "section": "References"
+  },
+  {
+   "id": "S691",
+   "type": "prose",
+   "page": 37,
+   "section": "References"
+  },
+  {
+   "id": "S692",
+   "type": "prose",
+   "page": 37,
+   "section": "References"
+  },
+  {
+   "id": "S693",
+   "type": "prose",
+   "page": 37,
+   "section": "References"
+  },
+  {
+   "id": "S694",
+   "type": "prose",
+   "page": 37,
+   "section": "References"
+  },
+  {
+   "id": "S695",
+   "type": "prose",
+   "page": 37,
+   "section": "References"
+  },
+  {
+   "id": "S696",
+   "type": "prose",
+   "page": 37,
+   "section": "References"
+  },
+  {
+   "id": "S697",
+   "type": "prose",
+   "page": 37,
+   "section": "References"
+  },
+  {
+   "id": "S698",
+   "type": "prose",
+   "page": 37,
+   "section": "References"
+  },
+  {
+   "id": "S699",
+   "type": "prose",
+   "page": 37,
+   "section": "References"
+  },
+  {
+   "id": "S700",
+   "type": "prose",
+   "page": 37,
+   "section": "References"
+  },
+  {
+   "id": "H20",
+   "type": "heading",
+   "page": 38,
+   "section": "A. Fast-Adapt with GR00T 2"
+  },
+  {
+   "id": "H21",
+   "type": "heading",
+   "page": 38,
+   "section": "A.1. Benchmark Tasks"
+  },
+  {
+   "id": "C022",
+   "type": "caption",
+   "page": 38,
+   "section": "A.1. Benchmark Tasks",
+   "asset": "F021"
+  },
+  {
+   "id": "C023",
+   "type": "caption",
+   "page": 39,
+   "section": "A.1. Benchmark Tasks",
+   "asset": "F022"
+  },
+  {
+   "id": "S768",
+   "type": "prose",
+   "page": 39,
+   "section": "A.1. Benchmark Tasks"
+  },
+  {
+   "id": "C024",
+   "type": "caption",
+   "page": 40,
+   "section": "A.1. Benchmark Tasks",
+   "asset": "F023"
+  },
+  {
+   "id": "H22",
+   "type": "heading",
+   "page": 40,
+   "section": "A.2. Zero-Shot Generalization with GR00T 2"
+  },
+  {
+   "id": "S773",
+   "type": "prose",
+   "page": 40,
+   "section": "A.2. Zero-Shot Generalization with GR00T 2"
+  },
+  {
+   "id": "C025",
+   "type": "caption",
+   "page": 40,
+   "section": "A.2. Zero-Shot Generalization with GR00T 2",
+   "asset": "T002"
+  },
+  {
+   "id": "S780",
+   "type": "prose",
+   "page": 40,
+   "section": "A.2. Zero-Shot Generalization with GR00T 2"
+  },
+  {
+   "id": "C026",
+   "type": "caption",
+   "page": 41,
+   "section": "A.2. Zero-Shot Generalization with GR00T 2",
+   "asset": "T003"
+  },
+  {
+   "id": "H23",
+   "type": "heading",
+   "page": 41,
+   "section": "A.3. Dexter-50: Emergent Cross-Embodiment Zero-Shot and Few-Shot Transfer."
+  },
+  {
+   "id": "S785",
+   "type": "prose",
+   "page": 41,
+   "section": "A.3. Dexter-50: Emergent Cross-Embodiment Zero-Shot and Few-Shot Transfer."
+  },
+  {
+   "id": "S786",
+   "type": "prose",
+   "page": 41,
+   "section": "A.3. Dexter-50: Emergent Cross-Embodiment Zero-Shot and Few-Shot Transfer."
+  },
+  {
+   "id": "S787",
+   "type": "prose",
+   "page": 41,
+   "section": "A.3. Dexter-50: Emergent Cross-Embodiment Zero-Shot and Few-Shot Transfer."
+  },
+  {
+   "id": "C027",
+   "type": "caption",
+   "page": 42,
+   "section": "A.3. Dexter-50: Emergent Cross-Embodiment Zero-Shot and Few-Shot Transfer.",
+   "asset": "F024"
+  },
+  {
+   "id": "H24",
+   "type": "heading",
+   "page": 42,
+   "section": "B. X-Adapt with GR00T 2"
+  },
+  {
+   "id": "S844",
+   "type": "prose",
+   "page": 42,
+   "section": "B. X-Adapt with GR00T 2"
+  },
+  {
+   "id": "H25",
+   "type": "heading",
+   "page": 42,
+   "section": "B.1. Human →Tianji + Sharpa"
+  },
+  {
+   "id": "S845",
+   "type": "prose",
+   "page": 42,
+   "section": "B.1. Human →Tianji + Sharpa"
+  },
+  {
+   "id": "C028",
+   "type": "caption",
+   "page": 43,
+   "section": "Fails at 0-shot, succeeds at 5-shot",
+   "asset": "F025"
+  },
+  {
+   "id": "S866",
+   "type": "prose",
+   "page": 43,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S867",
+   "type": "prose",
+   "page": 44,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S868",
+   "type": "prose",
+   "page": 44,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S869",
+   "type": "prose",
+   "page": 44,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S870",
+   "type": "prose",
+   "page": 44,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S871",
+   "type": "prose",
+   "page": 44,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S872",
+   "type": "prose",
+   "page": 44,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S873",
+   "type": "prose",
+   "page": 44,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S874",
+   "type": "prose",
+   "page": 44,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S875",
+   "type": "prose",
+   "page": 44,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "C029",
+   "type": "caption",
+   "page": 45,
+   "section": "Fails at 0-shot, succeeds at 5-shot",
+   "asset": "F026"
+  },
+  {
+   "id": "S876",
+   "type": "prose",
+   "page": 45,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S877",
+   "type": "prose",
+   "page": 45,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S878",
+   "type": "prose",
+   "page": 45,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S879",
+   "type": "prose",
+   "page": 45,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S880",
+   "type": "prose",
+   "page": 45,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S881",
+   "type": "prose",
+   "page": 45,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S882",
+   "type": "prose",
+   "page": 45,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "C030",
+   "type": "caption",
+   "page": 46,
+   "section": "Fails at 0-shot, succeeds at 5-shot",
+   "asset": "F027"
+  },
+  {
+   "id": "S892",
+   "type": "prose",
+   "page": 46,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S893",
+   "type": "prose",
+   "page": 46,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S894",
+   "type": "prose",
+   "page": 46,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S895",
+   "type": "prose",
+   "page": 46,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S896",
+   "type": "prose",
+   "page": 46,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "C031",
+   "type": "caption",
+   "page": 47,
+   "section": "Fails at 0-shot, succeeds at 5-shot",
+   "asset": "F028"
+  },
+  {
+   "id": "S939",
+   "type": "prose",
+   "page": 47,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S940",
+   "type": "prose",
+   "page": 47,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S941",
+   "type": "prose",
+   "page": 47,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S942",
+   "type": "prose",
+   "page": 47,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S943",
+   "type": "prose",
+   "page": 47,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "S944",
+   "type": "prose",
+   "page": 48,
+   "section": "Fails at 0-shot, succeeds at 5-shot"
+  },
+  {
+   "id": "H26",
+   "type": "heading",
+   "page": 48,
+   "section": "B.2. UMI →YAM"
+  },
+  {
+   "id": "S945",
+   "type": "prose",
+   "page": 48,
+   "section": "B.2. UMI →YAM"
+  },
+  {
+   "id": "S946",
+   "type": "prose",
+   "page": 48,
+   "section": "B.2. UMI →YAM"
+  },
+  {
+   "id": "S947",
+   "type": "prose",
+   "page": 48,
+   "section": "B.2. UMI →YAM"
+  },
+  {
+   "id": "S948",
+   "type": "prose",
+   "page": 48,
+   "section": "B.2. UMI →YAM"
+  },
+  {
+   "id": "S949",
+   "type": "prose",
+   "page": 48,
+   "section": "B.2. UMI →YAM"
+  },
+  {
+   "id": "C032",
+   "type": "caption",
+   "page": 49,
+   "section": "B.2. UMI →YAM",
+   "asset": "F029"
+  },
+  {
+   "id": "S950",
+   "type": "prose",
+   "page": 49,
+   "section": "B.2. UMI →YAM"
+  },
+  {
+   "id": "S951",
+   "type": "prose",
+   "page": 49,
+   "section": "B.2. UMI →YAM"
+  },
+  {
+   "id": "C033",
+   "type": "caption",
+   "page": 49,
+   "section": "B.2. UMI →YAM",
+   "asset": "T004"
+  },
+  {
+   "id": "S956",
+   "type": "prose",
+   "page": 49,
+   "section": "B.2. UMI →YAM"
+  },
+  {
+   "id": "C034",
+   "type": "caption",
+   "page": 50,
+   "section": "B.2. UMI →YAM",
+   "asset": "T005"
+  },
+  {
+   "id": "H27",
+   "type": "heading",
+   "page": 50,
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "S964",
+   "type": "prose",
+   "page": 50,
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "S965",
+   "type": "prose",
+   "page": 50,
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "S966",
+   "type": "prose",
+   "page": 50,
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "S967",
+   "type": "prose",
+   "page": 50,
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "S968",
+   "type": "prose",
+   "page": 50,
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "C035",
+   "type": "caption",
+   "page": 51,
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training",
+   "asset": "F030"
+  },
+  {
+   "id": "S969",
+   "type": "prose",
+   "page": 52,
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "S970",
+   "type": "prose",
+   "page": 52,
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "S971",
+   "type": "prose",
+   "page": 52,
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "S972",
+   "type": "prose",
+   "page": 52,
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "S976",
+   "type": "prose",
+   "page": 52,
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "S977",
+   "type": "prose",
+   "page": 52,
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "E001",
+   "type": "equation",
+   "page": 52,
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training",
+   "image_path": "assets/equations/E001.png",
+   "confidence": "low",
+   "latex": null
+  },
+  {
+   "id": "S978",
+   "type": "prose",
+   "page": 52,
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "S980",
+   "type": "prose",
+   "page": 52,
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "S981",
+   "type": "prose",
+   "page": 52,
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "S983",
+   "type": "prose",
+   "page": 52,
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "S985",
+   "type": "prose",
+   "page": 52,
+   "section": "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training"
+  },
+  {
+   "id": "H28",
+   "type": "heading",
+   "page": 52,
+   "section": "B.4. DexUMI →Tianji + Sharpa"
+  },
+  {
+   "id": "S986",
+   "type": "prose",
+   "page": 52,
+   "section": "B.4. DexUMI →Tianji + Sharpa"
+  },
+  {
+   "id": "S987",
+   "type": "prose",
+   "page": 53,
+   "section": "B.4. DexUMI →Tianji + Sharpa"
+  },
+  {
+   "id": "S988",
+   "type": "prose",
+   "page": 53,
+   "section": "B.4. DexUMI →Tianji + Sharpa"
+  },
+  {
+   "id": "S989",
+   "type": "prose",
+   "page": 53,
+   "section": "B.4. DexUMI →Tianji + Sharpa"
+  },
+  {
+   "id": "S990",
+   "type": "prose",
+   "page": 53,
+   "section": "B.4. DexUMI →Tianji + Sharpa"
+  },
+  {
+   "id": "S991",
+   "type": "prose",
+   "page": 53,
+   "section": "B.4. DexUMI →Tianji + Sharpa"
+  },
+  {
+   "id": "S992",
+   "type": "prose",
+   "page": 53,
+   "section": "B.4. DexUMI →Tianji + Sharpa"
+  },
+  {
+   "id": "S993",
+   "type": "prose",
+   "page": 53,
+   "section": "B.4. DexUMI →Tianji + Sharpa"
+  },
+  {
+   "id": "S994",
+   "type": "prose",
+   "page": 53,
+   "section": "B.4. DexUMI →Tianji + Sharpa"
+  },
+  {
+   "id": "S995",
+   "type": "prose",
+   "page": 53,
+   "section": "B.4. DexUMI →Tianji + Sharpa"
+  },
+  {
+   "id": "H29",
+   "type": "heading",
+   "page": 53,
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S996",
+   "type": "prose",
+   "page": 53,
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "C036",
+   "type": "caption",
+   "page": 54,
+   "section": "B.5. Human →Simulation →Tianji + Sharpa",
+   "asset": "T006"
+  },
+  {
+   "id": "S999",
+   "type": "prose",
+   "page": 54,
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1000",
+   "type": "prose",
+   "page": 54,
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1001",
+   "type": "prose",
+   "page": 54,
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1002",
+   "type": "prose",
+   "page": 54,
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1003",
+   "type": "prose",
+   "page": 54,
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1004",
+   "type": "prose",
+   "page": 54,
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1005",
+   "type": "prose",
+   "page": 54,
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "C037",
+   "type": "caption",
+   "page": 55,
+   "section": "B.5. Human →Simulation →Tianji + Sharpa",
+   "asset": "F031"
+  },
+  {
+   "id": "S1006",
+   "type": "prose",
+   "page": 55,
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1007",
+   "type": "prose",
+   "page": 55,
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1008",
+   "type": "prose",
+   "page": 55,
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1009",
+   "type": "prose",
+   "page": 55,
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1010",
+   "type": "prose",
+   "page": 55,
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "C038",
+   "type": "caption",
+   "page": 56,
+   "section": "B.5. Human →Simulation →Tianji + Sharpa",
+   "asset": "T007"
+  },
+  {
+   "id": "S1014",
+   "type": "prose",
+   "page": 56,
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1015",
+   "type": "prose",
+   "page": 56,
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1016",
+   "type": "prose",
+   "page": 56,
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "S1017",
+   "type": "prose",
+   "page": 56,
+   "section": "B.5. Human →Simulation →Tianji + Sharpa"
+  },
+  {
+   "id": "H30",
+   "type": "heading",
+   "page": 57,
+   "section": "C. Data for GR00T 2"
+  },
+  {
+   "id": "S1018",
+   "type": "prose",
+   "page": 57,
+   "section": "C. Data for GR00T 2"
+  },
+  {
+   "id": "H31",
+   "type": "heading",
+   "page": 57,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1019",
+   "type": "prose",
+   "page": 57,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1020",
+   "type": "prose",
+   "page": 57,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1021",
+   "type": "prose",
+   "page": 57,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1022",
+   "type": "prose",
+   "page": 57,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1023",
+   "type": "prose",
+   "page": 57,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1024",
+   "type": "prose",
+   "page": 57,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1025",
+   "type": "prose",
+   "page": 57,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1026",
+   "type": "prose",
+   "page": 57,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1027",
+   "type": "prose",
+   "page": 57,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1028",
+   "type": "prose",
+   "page": 58,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1029",
+   "type": "prose",
+   "page": 58,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1030",
+   "type": "prose",
+   "page": 58,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1031",
+   "type": "prose",
+   "page": 58,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1032",
+   "type": "prose",
+   "page": 58,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1033",
+   "type": "prose",
+   "page": 58,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "C039",
+   "type": "caption",
+   "page": 58,
+   "section": "C.1. Human Data for GR00T 2",
+   "asset": "T008"
+  },
+  {
+   "id": "S1036",
+   "type": "prose",
+   "page": 58,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1037",
+   "type": "prose",
+   "page": 58,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1038",
+   "type": "prose",
+   "page": 59,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1039",
+   "type": "prose",
+   "page": 59,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1040",
+   "type": "prose",
+   "page": 59,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1042",
+   "type": "prose",
+   "page": 59,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "C040",
+   "type": "caption",
+   "page": 59,
+   "section": "C.1. Human Data for GR00T 2",
+   "asset": "T009"
+  },
+  {
+   "id": "S1044",
+   "type": "prose",
+   "page": 59,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1045",
+   "type": "prose",
+   "page": 60,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1046",
+   "type": "prose",
+   "page": 60,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1047",
+   "type": "prose",
+   "page": 60,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1048",
+   "type": "prose",
+   "page": 60,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1049",
+   "type": "prose",
+   "page": 60,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1050",
+   "type": "prose",
+   "page": 60,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1051",
+   "type": "prose",
+   "page": 60,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "S1052",
+   "type": "prose",
+   "page": 60,
+   "section": "C.1. Human Data for GR00T 2"
+  },
+  {
+   "id": "C041",
+   "type": "caption",
+   "page": 61,
+   "section": "C.1. Human Data for GR00T 2",
+   "asset": "T010"
+  },
+  {
+   "id": "C042",
+   "type": "caption",
+   "page": 61,
+   "section": "C.1. Human Data for GR00T 2",
+   "asset": "F032"
+  },
+  {
+   "id": "H32",
+   "type": "heading",
+   "page": 61,
+   "section": "C.2. UMI-10K for GR00T 2"
+  },
+  {
+   "id": "S1110",
+   "type": "prose",
+   "page": 61,
+   "section": "C.2. UMI-10K for GR00T 2"
+  },
+  {
+   "id": "S1111",
+   "type": "prose",
+   "page": 61,
+   "section": "C.2. UMI-10K for GR00T 2"
+  },
+  {
+   "id": "S1112",
+   "type": "prose",
+   "page": 61,
+   "section": "C.2. UMI-10K for GR00T 2"
+  },
+  {
+   "id": "S1113",
+   "type": "prose",
+   "page": 61,
+   "section": "C.2. UMI-10K for GR00T 2"
+  },
+  {
+   "id": "C043",
+   "type": "caption",
+   "page": 62,
+   "section": "C.2. UMI-10K for GR00T 2",
+   "asset": "T011"
+  },
+  {
+   "id": "S1120",
+   "type": "prose",
+   "page": 62,
+   "section": "C.2. UMI-10K for GR00T 2"
+  },
+  {
+   "id": "S1121",
+   "type": "prose",
+   "page": 62,
+   "section": "C.2. UMI-10K for GR00T 2"
+  },
+  {
+   "id": "S1122",
+   "type": "prose",
+   "page": 62,
+   "section": "C.2. UMI-10K for GR00T 2"
+  },
+  {
+   "id": "H33",
+   "type": "heading",
+   "page": 62,
+   "section": "C.3. Teleoperation Data for GR00T 2"
+  },
+  {
+   "id": "S1123",
+   "type": "prose",
+   "page": 62,
+   "section": "C.3. Teleoperation Data for GR00T 2"
+  },
+  {
+   "id": "S1124",
+   "type": "prose",
+   "page": 62,
+   "section": "C.3. Teleoperation Data for GR00T 2"
+  },
+  {
+   "id": "S1125",
+   "type": "prose",
+   "page": 62,
+   "section": "C.3. Teleoperation Data for GR00T 2"
+  },
+  {
+   "id": "C044",
+   "type": "caption",
+   "page": 63,
+   "section": "C.3. Teleoperation Data for GR00T 2",
+   "asset": "F033"
+  },
+  {
+   "id": "S1140",
+   "type": "prose",
+   "page": 63,
+   "section": "C.3. Teleoperation Data for GR00T 2"
+  },
+  {
+   "id": "S1141",
+   "type": "prose",
+   "page": 63,
+   "section": "C.3. Teleoperation Data for GR00T 2"
+  },
+  {
+   "id": "S1142",
+   "type": "prose",
+   "page": 63,
+   "section": "C.3. Teleoperation Data for GR00T 2"
+  },
+  {
+   "id": "S1143",
+   "type": "prose",
+   "page": 63,
+   "section": "C.3. Teleoperation Data for GR00T 2"
+  },
+  {
+   "id": "S1144",
+   "type": "prose",
+   "page": 63,
+   "section": "C.3. Teleoperation Data for GR00T 2"
+  },
+  {
+   "id": "H34",
+   "type": "heading",
+   "page": 63,
+   "section": "C.4. Data Annotations"
+  },
+  {
+   "id": "S1145",
+   "type": "prose",
+   "page": 63,
+   "section": "C.4. Data Annotations"
+  },
+  {
+   "id": "S1146",
+   "type": "prose",
+   "page": 64,
+   "section": "C.4. Data Annotations"
+  },
+  {
+   "id": "S1147",
+   "type": "prose",
+   "page": 64,
+   "section": "C.4. Data Annotations"
+  },
+  {
+   "id": "S1148",
+   "type": "prose",
+   "page": 64,
+   "section": "C.4. Data Annotations"
+  },
+  {
+   "id": "H35",
+   "type": "heading",
+   "page": 65,
+   "section": "D. Real-World Benchmarking with GearArena"
+  },
+  {
+   "id": "S1149",
+   "type": "prose",
+   "page": 65,
+   "section": "D. Real-World Benchmarking with GearArena"
+  },
+  {
+   "id": "C045",
+   "type": "caption",
+   "page": 65,
+   "section": "D. Real-World Benchmarking with GearArena",
+   "asset": "T012"
+  },
+  {
+   "id": "S1152",
+   "type": "prose",
+   "page": 65,
+   "section": "D. Real-World Benchmarking with GearArena"
+  },
+  {
+   "id": "H36",
+   "type": "heading",
+   "page": 65,
+   "section": "D.1. Why Aggregate Real-Robot Evaluations, and Why A/B"
+  },
+  {
+   "id": "S1153",
+   "type": "prose",
+   "page": 65,
+   "section": "D.1. Why Aggregate Real-Robot Evaluations, and Why A/B"
+  },
+  {
+   "id": "S1154",
+   "type": "prose",
+   "page": 65,
+   "section": "D.1. Why Aggregate Real-Robot Evaluations, and Why A/B"
+  },
+  {
+   "id": "S1155",
+   "type": "prose",
+   "page": 65,
+   "section": "D.1. Why Aggregate Real-Robot Evaluations, and Why A/B"
+  },
+  {
+   "id": "C046",
+   "type": "caption",
+   "page": 66,
+   "section": "D.1. Why Aggregate Real-Robot Evaluations, and Why A/B",
+   "asset": "F034"
+  },
+  {
+   "id": "H37",
+   "type": "heading",
+   "page": 66,
+   "section": "D.2. Designing Evaluation Tasks from First Principles"
+  },
+  {
+   "id": "S1203",
+   "type": "prose",
+   "page": 66,
+   "section": "D.2. Designing Evaluation Tasks from First Principles"
+  },
+  {
+   "id": "S1204",
+   "type": "prose",
+   "page": 66,
+   "section": "D.2. Designing Evaluation Tasks from First Principles"
+  },
+  {
+   "id": "S1205",
+   "type": "prose",
+   "page": 66,
+   "section": "D.2. Designing Evaluation Tasks from First Principles"
+  },
+  {
+   "id": "S1206",
+   "type": "prose",
+   "page": 66,
+   "section": "D.2. Designing Evaluation Tasks from First Principles"
+  },
+  {
+   "id": "S1207",
+   "type": "prose",
+   "page": 66,
+   "section": "D.2. Designing Evaluation Tasks from First Principles"
+  },
+  {
+   "id": "S1208",
+   "type": "prose",
+   "page": 66,
+   "section": "D.2. Designing Evaluation Tasks from First Principles"
+  },
+  {
+   "id": "C047",
+   "type": "caption",
+   "page": 67,
+   "section": "D.2. Designing Evaluation Tasks from First Principles",
+   "asset": "F035"
+  },
+  {
+   "id": "S1228",
+   "type": "prose",
+   "page": 67,
+   "section": "D.2. Designing Evaluation Tasks from First Principles"
+  },
+  {
+   "id": "H38",
+   "type": "heading",
+   "page": 67,
+   "section": "D.3. The Arena: Stations, Operators, Campaigns, and Suites"
+  },
+  {
+   "id": "S1229",
+   "type": "prose",
+   "page": 67,
+   "section": "D.3. The Arena: Stations, Operators, Campaigns, and Suites"
+  },
+  {
+   "id": "S1230",
+   "type": "prose",
+   "page": 67,
+   "section": "D.3. The Arena: Stations, Operators, Campaigns, and Suites"
+  },
+  {
+   "id": "S1231",
+   "type": "prose",
+   "page": 67,
+   "section": "D.3. The Arena: Stations, Operators, Campaigns, and Suites"
+  },
+  {
+   "id": "H39",
+   "type": "heading",
+   "page": 67,
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "S1233",
+   "type": "prose",
+   "page": 67,
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "S1234",
+   "type": "prose",
+   "page": 67,
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "S1235",
+   "type": "prose",
+   "page": 67,
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "S1236",
+   "type": "prose",
+   "page": 67,
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "S1238",
+   "type": "prose",
+   "page": 67,
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "S1239",
+   "type": "prose",
+   "page": 68,
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "E002",
+   "type": "equation",
+   "page": 68,
+   "section": "D.4. Leaderboard Mathematics",
+   "image_path": "assets/equations/E002.png",
+   "confidence": "low",
+   "latex": null
+  },
+  {
+   "id": "S1241",
+   "type": "prose",
+   "page": 68,
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "S1245",
+   "type": "prose",
+   "page": 68,
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "S1246",
+   "type": "prose",
+   "page": 68,
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "E003",
+   "type": "equation",
+   "page": 68,
+   "section": "D.4. Leaderboard Mathematics",
+   "image_path": "assets/equations/E003.png",
+   "confidence": "low",
+   "latex": null
+  },
+  {
+   "id": "S1247",
+   "type": "prose",
+   "page": 68,
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "S1248",
+   "type": "prose",
+   "page": 68,
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "S1249",
+   "type": "prose",
+   "page": 68,
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "S1252",
+   "type": "prose",
+   "page": 68,
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "S1253",
+   "type": "prose",
+   "page": 68,
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "S1257",
+   "type": "prose",
+   "page": 68,
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "S1261",
+   "type": "prose",
+   "page": 68,
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "S1263",
+   "type": "prose",
+   "page": 68,
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "S1264",
+   "type": "prose",
+   "page": 68,
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "C048",
+   "type": "caption",
+   "page": 69,
+   "section": "D.4. Leaderboard Mathematics",
+   "asset": "T013"
+  },
+  {
+   "id": "S1266",
+   "type": "prose",
+   "page": 69,
+   "section": "D.4. Leaderboard Mathematics"
+  },
+  {
+   "id": "S1270",
+   "type": "prose",
+   "page": 69,
+   "section": "D.5. A/B Evaluation Infrastructure"
+  },
+  {
+   "id": "S1271",
+   "type": "prose",
+   "page": 69,
+   "section": "D.5. A/B Evaluation Infrastructure"
+  },
+  {
+   "id": "S1272",
+   "type": "prose",
+   "page": 69,
+   "section": "D.5. A/B Evaluation Infrastructure"
+  },
+  {
+   "id": "S1273",
+   "type": "prose",
+   "page": 69,
+   "section": "D.6. Results: What the Arena Shows about GR00T 2"
+  },
+  {
+   "id": "S1274",
+   "type": "prose",
+   "page": 69,
+   "section": "D.6. Results: What the Arena Shows about GR00T 2"
+  },
+  {
+   "id": "S1276",
+   "type": "prose",
+   "page": 69,
+   "section": "D.6. Results: What the Arena Shows about GR00T 2"
+  },
+  {
+   "id": "C049",
+   "type": "caption",
+   "page": 70,
+   "section": "D.6. Results: What the Arena Shows about GR00T 2",
+   "asset": "F036"
+  },
+  {
+   "id": "S1307",
+   "type": "prose",
+   "page": 70,
+   "section": "D.6. Results: What the Arena Shows about GR00T 2"
+  },
+  {
+   "id": "S1308",
+   "type": "prose",
+   "page": 70,
+   "section": "D.6. Results: What the Arena Shows about GR00T 2"
+  },
+  {
+   "id": "S1309",
+   "type": "prose",
+   "page": 70,
+   "section": "D.6. Results: What the Arena Shows about GR00T 2"
+  },
+  {
+   "id": "S1310",
+   "type": "prose",
+   "page": 70,
+   "section": "D.6. Results: What the Arena Shows about GR00T 2"
+  },
+  {
+   "id": "C050",
+   "type": "caption",
+   "page": 71,
+   "section": "D.6. Results: What the Arena Shows about GR00T 2",
+   "asset": "T014"
+  },
+  {
+   "id": "C051",
+   "type": "caption",
+   "page": 71,
+   "section": "D.6. Results: What the Arena Shows about GR00T 2",
+   "asset": "F037"
+  },
+  {
+   "id": "S1341",
+   "type": "prose",
+   "page": 71,
+   "section": "D.6. Results: What the Arena Shows about GR00T 2"
+  },
+  {
+   "id": "H40",
+   "type": "heading",
+   "page": 71,
+   "section": "D.7. Limitations"
+  },
+  {
+   "id": "S1342",
+   "type": "prose",
+   "page": 71,
+   "section": "D.7. Limitations"
+  },
+  {
+   "id": "C052",
+   "type": "caption",
+   "page": 72,
+   "section": "D.7. Limitations",
+   "asset": "F038"
+  },
+  {
+   "id": "S1366",
+   "type": "prose",
+   "page": 72,
+   "section": "D.7. Limitations"
+  },
+  {
+   "id": "H41",
+   "type": "heading",
+   "page": 73,
+   "section": "E. UMIverse for GR00T 2"
+  },
+  {
+   "id": "S1367",
+   "type": "prose",
+   "page": 73,
+   "section": "E. UMIverse for GR00T 2"
+  },
+  {
+   "id": "S1368",
+   "type": "prose",
+   "page": 73,
+   "section": "E. UMIverse for GR00T 2"
+  },
+  {
+   "id": "H42",
+   "type": "heading",
+   "page": 73,
+   "section": "E.1. Gripper UMI Hardware"
+  },
+  {
+   "id": "S1369",
+   "type": "prose",
+   "page": 73,
+   "section": "E.1. Gripper UMI Hardware"
+  },
+  {
+   "id": "S1370",
+   "type": "prose",
+   "page": 73,
+   "section": "E.1. Gripper UMI Hardware"
+  },
+  {
+   "id": "S1371",
+   "type": "prose",
+   "page": 73,
+   "section": "E.1. Gripper UMI Hardware"
+  },
+  {
+   "id": "S1372",
+   "type": "prose",
+   "page": 73,
+   "section": "E.1. Gripper UMI Hardware"
+  },
+  {
+   "id": "C053",
+   "type": "caption",
+   "page": 74,
+   "section": "E.1. Gripper UMI Hardware",
+   "asset": "F039"
+  },
+  {
+   "id": "S1391",
+   "type": "prose",
+   "page": 74,
+   "section": "E.1. Gripper UMI Hardware"
+  },
+  {
+   "id": "S1392",
+   "type": "prose",
+   "page": 74,
+   "section": "E.1. Gripper UMI Hardware"
+  },
+  {
+   "id": "S1393",
+   "type": "prose",
+   "page": 74,
+   "section": "E.1. Gripper UMI Hardware"
+  },
+  {
+   "id": "H43",
+   "type": "heading",
+   "page": 74,
+   "section": "E.2. UMI Direct"
+  },
+  {
+   "id": "S1394",
+   "type": "prose",
+   "page": 74,
+   "section": "E.2. UMI Direct"
+  },
+  {
+   "id": "C054",
+   "type": "caption",
+   "page": 75,
+   "section": "E.2. UMI Direct",
+   "asset": "F040"
+  },
+  {
+   "id": "S1402",
+   "type": "prose",
+   "page": 75,
+   "section": "E.2. UMI Direct"
+  },
+  {
+   "id": "S1403",
+   "type": "prose",
+   "page": 75,
+   "section": "E.2. UMI Direct"
+  },
+  {
+   "id": "S1404",
+   "type": "prose",
+   "page": 75,
+   "section": "E.2. UMI Direct"
+  },
+  {
+   "id": "H44",
+   "type": "heading",
+   "page": 75,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "S1405",
+   "type": "prose",
+   "page": 75,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "C055",
+   "type": "caption",
+   "page": 76,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations",
+   "asset": "F041"
+  },
+  {
+   "id": "C056",
+   "type": "caption",
+   "page": 76,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations",
+   "asset": "T015"
+  },
+  {
+   "id": "S1410",
+   "type": "prose",
+   "page": 76,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "S1411",
+   "type": "prose",
+   "page": 76,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "S1412",
+   "type": "prose",
+   "page": 76,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "S1413",
+   "type": "prose",
+   "page": 76,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "S1414",
+   "type": "prose",
+   "page": 76,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "C057",
+   "type": "caption",
+   "page": 77,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations",
+   "asset": "T016"
+  },
+  {
+   "id": "S1425",
+   "type": "prose",
+   "page": 77,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "S1426",
+   "type": "prose",
+   "page": 77,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "S1427",
+   "type": "prose",
+   "page": 77,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "S1428",
+   "type": "prose",
+   "page": 77,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "S1429",
+   "type": "prose",
+   "page": 77,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "S1430",
+   "type": "prose",
+   "page": 77,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "S1431",
+   "type": "prose",
+   "page": 77,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "C058",
+   "type": "caption",
+   "page": 78,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations",
+   "asset": "F042"
+  },
+  {
+   "id": "C059",
+   "type": "caption",
+   "page": 78,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations",
+   "asset": "F043"
+  },
+  {
+   "id": "S1446",
+   "type": "prose",
+   "page": 79,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "S1447",
+   "type": "prose",
+   "page": 79,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "S1448",
+   "type": "prose",
+   "page": 79,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "C060",
+   "type": "caption",
+   "page": 79,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations",
+   "asset": "T017"
+  },
+  {
+   "id": "S1460",
+   "type": "prose",
+   "page": 79,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "S1461",
+   "type": "prose",
+   "page": 79,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "S1462",
+   "type": "prose",
+   "page": 80,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "S1463",
+   "type": "prose",
+   "page": 80,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "S1464",
+   "type": "prose",
+   "page": 80,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "S1465",
+   "type": "prose",
+   "page": 80,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "S1466",
+   "type": "prose",
+   "page": 81,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "S1467",
+   "type": "prose",
+   "page": 81,
+   "section": "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  },
+  {
+   "id": "H45",
+   "type": "heading",
+   "page": 81,
+   "section": "E.4. DexUMI Exoskeleton Hardware"
+  },
+  {
+   "id": "S1468",
+   "type": "prose",
+   "page": 81,
+   "section": "E.4. DexUMI Exoskeleton Hardware"
+  },
+  {
+   "id": "S1469",
+   "type": "prose",
+   "page": 81,
+   "section": "E.4. DexUMI Exoskeleton Hardware"
+  },
+  {
+   "id": "S1470",
+   "type": "prose",
+   "page": 81,
+   "section": "E.4. DexUMI Exoskeleton Hardware"
+  },
+  {
+   "id": "S1471",
+   "type": "prose",
+   "page": 81,
+   "section": "E.4. DexUMI Exoskeleton Hardware"
+  },
+  {
+   "id": "S1472",
+   "type": "prose",
+   "page": 81,
+   "section": "E.4. DexUMI Exoskeleton Hardware"
+  },
+  {
+   "id": "S1473",
+   "type": "prose",
+   "page": 81,
+   "section": "E.4. DexUMI Exoskeleton Hardware"
+  },
+  {
+   "id": "C061",
+   "type": "caption",
+   "page": 82,
+   "section": "E.4. DexUMI Exoskeleton Hardware",
+   "asset": "F044"
+  },
+  {
+   "id": "S1476",
+   "type": "prose",
+   "page": 82,
+   "section": "E.4. DexUMI Exoskeleton Hardware"
+  },
+  {
+   "id": "S1477",
+   "type": "prose",
+   "page": 82,
+   "section": "E.4. DexUMI Exoskeleton Hardware"
+  },
+  {
+   "id": "H46",
+   "type": "heading",
+   "page": 82,
+   "section": "E.5. DexUMI Post-Training Recipe"
+  },
+  {
+   "id": "S1478",
+   "type": "prose",
+   "page": 82,
+   "section": "E.5. DexUMI Post-Training Recipe"
+  },
+  {
+   "id": "H47",
+   "type": "heading",
+   "page": 82,
+   "section": "E.6. DexUMI WAM-Native Inpainting"
+  },
+  {
+   "id": "S1479",
+   "type": "prose",
+   "page": 82,
+   "section": "E.6. DexUMI WAM-Native Inpainting"
+  },
+  {
+   "id": "S1480",
+   "type": "prose",
+   "page": 82,
+   "section": "E.6. DexUMI WAM-Native Inpainting"
+  },
+  {
+   "id": "C062",
+   "type": "caption",
+   "page": 83,
+   "section": "E.6. DexUMI WAM-Native Inpainting",
+   "asset": "F045"
+  },
+  {
+   "id": "S1484",
+   "type": "prose",
+   "page": 83,
+   "section": "E.6. DexUMI WAM-Native Inpainting"
+  },
+  {
+   "id": "S1485",
+   "type": "prose",
+   "page": 83,
+   "section": "E.6. DexUMI WAM-Native Inpainting"
+  },
+  {
+   "id": "S1486",
+   "type": "prose",
+   "page": 83,
+   "section": "E.6. DexUMI WAM-Native Inpainting"
+  },
+  {
+   "id": "E004",
+   "type": "equation",
+   "page": 83,
+   "section": "E.6. DexUMI WAM-Native Inpainting",
+   "image_path": "assets/equations/E004.png",
+   "confidence": "low",
+   "latex": null
+  },
+  {
+   "id": "S1489",
+   "type": "prose",
+   "page": 83,
+   "section": "E.6. DexUMI WAM-Native Inpainting"
+  },
+  {
+   "id": "H48",
+   "type": "heading",
+   "page": 84,
+   "section": "F. RL Post-Training"
+  },
+  {
+   "id": "S1490",
+   "type": "prose",
+   "page": 84,
+   "section": "F. RL Post-Training"
+  },
+  {
+   "id": "S1491",
+   "type": "prose",
+   "page": 84,
+   "section": "F. RL Post-Training"
+  },
+  {
+   "id": "S1492",
+   "type": "prose",
+   "page": 84,
+   "section": "F. RL Post-Training"
+  },
+  {
+   "id": "S1493",
+   "type": "prose",
+   "page": 84,
+   "section": "F. RL Post-Training"
+  },
+  {
+   "id": "H49",
+   "type": "heading",
+   "page": 84,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1494",
+   "type": "prose",
+   "page": 84,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1495",
+   "type": "prose",
+   "page": 84,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1496",
+   "type": "prose",
+   "page": 84,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1497",
+   "type": "prose",
+   "page": 84,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1498",
+   "type": "prose",
+   "page": 84,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1500",
+   "type": "prose",
+   "page": 84,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1501",
+   "type": "prose",
+   "page": 84,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1506",
+   "type": "prose",
+   "page": 84,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "C063",
+   "type": "caption",
+   "page": 85,
+   "section": "F.1. RL-Based Adaptation of World-Action Models",
+   "asset": "F046"
+  },
+  {
+   "id": "S1524",
+   "type": "prose",
+   "page": 85,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1529",
+   "type": "prose",
+   "page": 85,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1533",
+   "type": "prose",
+   "page": 85,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1534",
+   "type": "prose",
+   "page": 85,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1535",
+   "type": "prose",
+   "page": 85,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "E005",
+   "type": "equation",
+   "page": 85,
+   "section": "F.1. RL-Based Adaptation of World-Action Models",
+   "image_path": "assets/equations/E005.png",
+   "confidence": "low",
+   "latex": null
+  },
+  {
+   "id": "S1538",
+   "type": "prose",
+   "page": 85,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1539",
+   "type": "prose",
+   "page": 85,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1540",
+   "type": "prose",
+   "page": 86,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1547",
+   "type": "prose",
+   "page": 86,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1548",
+   "type": "prose",
+   "page": 86,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1554",
+   "type": "prose",
+   "page": 86,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1555",
+   "type": "prose",
+   "page": 86,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1556",
+   "type": "prose",
+   "page": 86,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1557",
+   "type": "prose",
+   "page": 86,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1558",
+   "type": "prose",
+   "page": 86,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1560",
+   "type": "prose",
+   "page": 86,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1561",
+   "type": "prose",
+   "page": 86,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1562",
+   "type": "prose",
+   "page": 86,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1563",
+   "type": "prose",
+   "page": 86,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1564",
+   "type": "prose",
+   "page": 86,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1565",
+   "type": "prose",
+   "page": 86,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "E006",
+   "type": "equation",
+   "page": 86,
+   "section": "F.1. RL-Based Adaptation of World-Action Models",
+   "image_path": "assets/equations/E006.png",
+   "confidence": "low",
+   "latex": null
+  },
+  {
+   "id": "S1566",
+   "type": "prose",
+   "page": 86,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1567",
+   "type": "prose",
+   "page": 86,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1568",
+   "type": "prose",
+   "page": 87,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1569",
+   "type": "prose",
+   "page": 87,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1570",
+   "type": "prose",
+   "page": 87,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1571",
+   "type": "prose",
+   "page": 87,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1572",
+   "type": "prose",
+   "page": 87,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1573",
+   "type": "prose",
+   "page": 87,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1575",
+   "type": "prose",
+   "page": 87,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1576",
+   "type": "prose",
+   "page": 87,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1579",
+   "type": "prose",
+   "page": 87,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1580",
+   "type": "prose",
+   "page": 87,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1581",
+   "type": "prose",
+   "page": 87,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1584",
+   "type": "prose",
+   "page": 87,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1585",
+   "type": "prose",
+   "page": 87,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1587",
+   "type": "prose",
+   "page": 87,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1589",
+   "type": "prose",
+   "page": 87,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "S1590",
+   "type": "prose",
+   "page": 87,
+   "section": "F.1. RL-Based Adaptation of World-Action Models"
+  },
+  {
+   "id": "H50",
+   "type": "heading",
+   "page": 87,
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1591",
+   "type": "prose",
+   "page": 87,
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1592",
+   "type": "prose",
+   "page": 87,
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "C064",
+   "type": "caption",
+   "page": 88,
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms",
+   "asset": "F047"
+  },
+  {
+   "id": "S1616",
+   "type": "prose",
+   "page": 88,
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1617",
+   "type": "prose",
+   "page": 88,
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1618",
+   "type": "prose",
+   "page": 88,
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1619",
+   "type": "prose",
+   "page": 88,
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1620",
+   "type": "prose",
+   "page": 88,
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1621",
+   "type": "prose",
+   "page": 88,
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1622",
+   "type": "prose",
+   "page": 88,
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1623",
+   "type": "prose",
+   "page": 89,
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1624",
+   "type": "prose",
+   "page": 89,
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1625",
+   "type": "prose",
+   "page": 89,
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1626",
+   "type": "prose",
+   "page": 89,
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1627",
+   "type": "prose",
+   "page": 89,
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1628",
+   "type": "prose",
+   "page": 89,
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "H51",
+   "type": "heading",
+   "page": 89,
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1629",
+   "type": "prose",
+   "page": 89,
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1630",
+   "type": "prose",
+   "page": 89,
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1631",
+   "type": "prose",
+   "page": 89,
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1632",
+   "type": "prose",
+   "page": 90,
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1633",
+   "type": "prose",
+   "page": 90,
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1634",
+   "type": "prose",
+   "page": 90,
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1635",
+   "type": "prose",
+   "page": 90,
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1636",
+   "type": "prose",
+   "page": 90,
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1637",
+   "type": "prose",
+   "page": 90,
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1638",
+   "type": "prose",
+   "page": 90,
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1639",
+   "type": "prose",
+   "page": 90,
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1640",
+   "type": "prose",
+   "page": 90,
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "C065",
+   "type": "caption",
+   "page": 90,
+   "section": "F.3. Online RL Post-Training Infrastructure",
+   "asset": "F048"
+  },
+  {
+   "id": "S1656",
+   "type": "prose",
+   "page": 90,
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1657",
+   "type": "prose",
+   "page": 90,
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1658",
+   "type": "prose",
+   "page": 90,
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1659",
+   "type": "prose",
+   "page": 90,
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "C066",
+   "type": "caption",
+   "page": 91,
+   "section": "F.3. Online RL Post-Training Infrastructure",
+   "asset": "T018"
+  },
+  {
+   "id": "C067",
+   "type": "caption",
+   "page": 91,
+   "section": "F.3. Online RL Post-Training Infrastructure",
+   "asset": "F049"
+  },
+  {
+   "id": "S1674",
+   "type": "prose",
+   "page": 91,
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "H52",
+   "type": "heading",
+   "page": 91,
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "S1675",
+   "type": "prose",
+   "page": 91,
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "S1676",
+   "type": "prose",
+   "page": 91,
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "S1677",
+   "type": "prose",
+   "page": 91,
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "S1678",
+   "type": "prose",
+   "page": 91,
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "S1679",
+   "type": "prose",
+   "page": 92,
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "S1680",
+   "type": "prose",
+   "page": 92,
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "S1681",
+   "type": "prose",
+   "page": 92,
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "S1682",
+   "type": "prose",
+   "page": 92,
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "S1683",
+   "type": "prose",
+   "page": 92,
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "S1684",
+   "type": "prose",
+   "page": 92,
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "S1685",
+   "type": "prose",
+   "page": 92,
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "S1686",
+   "type": "prose",
+   "page": 92,
+   "section": "F.4. Precision Manipulation through RL Post-Training"
+  },
+  {
+   "id": "H53",
+   "type": "heading",
+   "page": 92,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1687",
+   "type": "prose",
+   "page": 92,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1688",
+   "type": "prose",
+   "page": 92,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1689",
+   "type": "prose",
+   "page": 92,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1690",
+   "type": "prose",
+   "page": 92,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1691",
+   "type": "prose",
+   "page": 93,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1692",
+   "type": "prose",
+   "page": 93,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1693",
+   "type": "prose",
+   "page": 93,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1694",
+   "type": "prose",
+   "page": 93,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1695",
+   "type": "prose",
+   "page": 93,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1696",
+   "type": "prose",
+   "page": 93,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1698",
+   "type": "prose",
+   "page": 93,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1700",
+   "type": "prose",
+   "page": 93,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1701",
+   "type": "prose",
+   "page": 93,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1702",
+   "type": "prose",
+   "page": 93,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1703",
+   "type": "prose",
+   "page": 94,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1704",
+   "type": "prose",
+   "page": 94,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "E007",
+   "type": "equation",
+   "page": 94,
+   "section": "F.5. Reinforcement Learning with Neural Simulation",
+   "image_path": "assets/equations/E007.png",
+   "confidence": "low",
+   "latex": null
+  },
+  {
+   "id": "S1705",
+   "type": "prose",
+   "page": 94,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1706",
+   "type": "prose",
+   "page": 94,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1707",
+   "type": "prose",
+   "page": 94,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1708",
+   "type": "prose",
+   "page": 94,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1709",
+   "type": "prose",
+   "page": 94,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1710",
+   "type": "prose",
+   "page": 94,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1711",
+   "type": "prose",
+   "page": 94,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1712",
+   "type": "prose",
+   "page": 94,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1713",
+   "type": "prose",
+   "page": 95,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1714",
+   "type": "prose",
+   "page": 95,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1715",
+   "type": "prose",
+   "page": 95,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1716",
+   "type": "prose",
+   "page": 95,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1717",
+   "type": "prose",
+   "page": 95,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1718",
+   "type": "prose",
+   "page": 95,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1719",
+   "type": "prose",
+   "page": 95,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1720",
+   "type": "prose",
+   "page": 95,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1721",
+   "type": "prose",
+   "page": 95,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1722",
+   "type": "prose",
+   "page": 95,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "C068",
+   "type": "caption",
+   "page": 96,
+   "section": "F.5. Reinforcement Learning with Neural Simulation",
+   "asset": "F050"
+  },
+  {
+   "id": "C069",
+   "type": "caption",
+   "page": 96,
+   "section": "F.5. Reinforcement Learning with Neural Simulation",
+   "asset": "F051"
+  },
+  {
+   "id": "S1781",
+   "type": "prose",
+   "page": 96,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1782",
+   "type": "prose",
+   "page": 96,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "C070",
+   "type": "caption",
+   "page": 97,
+   "section": "F.5. Reinforcement Learning with Neural Simulation",
+   "asset": "F052"
+  },
+  {
+   "id": "S1829",
+   "type": "prose",
+   "page": 97,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1830",
+   "type": "prose",
+   "page": 97,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1831",
+   "type": "prose",
+   "page": 97,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1832",
+   "type": "prose",
+   "page": 97,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1833",
+   "type": "prose",
+   "page": 97,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "S1834",
+   "type": "prose",
+   "page": 97,
+   "section": "F.5. Reinforcement Learning with Neural Simulation"
+  },
+  {
+   "id": "H54",
+   "type": "heading",
+   "page": 98,
+   "section": "G. Agentic GR00T 2"
+  },
+  {
+   "id": "S1835",
+   "type": "prose",
+   "page": 98,
+   "section": "G. Agentic GR00T 2"
+  },
+  {
+   "id": "S1836",
+   "type": "prose",
+   "page": 98,
+   "section": "G. Agentic GR00T 2"
+  },
+  {
+   "id": "H55",
+   "type": "heading",
+   "page": 98,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1837",
+   "type": "prose",
+   "page": 98,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1838",
+   "type": "prose",
+   "page": 98,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1839",
+   "type": "prose",
+   "page": 98,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1840",
+   "type": "prose",
+   "page": 98,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1841",
+   "type": "prose",
+   "page": 98,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1842",
+   "type": "prose",
+   "page": 98,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "C071",
+   "type": "caption",
+   "page": 99,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy",
+   "asset": "T019"
+  },
+  {
+   "id": "S1845",
+   "type": "prose",
+   "page": 99,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1846",
+   "type": "prose",
+   "page": 99,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1849",
+   "type": "prose",
+   "page": 99,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1850",
+   "type": "prose",
+   "page": 99,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1851",
+   "type": "prose",
+   "page": 99,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1852",
+   "type": "prose",
+   "page": 99,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1853",
+   "type": "prose",
+   "page": 100,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "C072",
+   "type": "caption",
+   "page": 100,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy",
+   "asset": "T020"
+  },
+  {
+   "id": "S1856",
+   "type": "prose",
+   "page": 100,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1857",
+   "type": "prose",
+   "page": 100,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1858",
+   "type": "prose",
+   "page": 100,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1859",
+   "type": "prose",
+   "page": 100,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1860",
+   "type": "prose",
+   "page": 100,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1861",
+   "type": "prose",
+   "page": 100,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1862",
+   "type": "prose",
+   "page": 100,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1863",
+   "type": "prose",
+   "page": 100,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "C073",
+   "type": "caption",
+   "page": 101,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy",
+   "asset": "F053"
+  },
+  {
+   "id": "S1864",
+   "type": "prose",
+   "page": 101,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1865",
+   "type": "prose",
+   "page": 101,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1866",
+   "type": "prose",
+   "page": 101,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1867",
+   "type": "prose",
+   "page": 101,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1868",
+   "type": "prose",
+   "page": 101,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "C074",
+   "type": "caption",
+   "page": 102,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy",
+   "asset": "F054"
+  },
+  {
+   "id": "S1884",
+   "type": "prose",
+   "page": 102,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1885",
+   "type": "prose",
+   "page": 102,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1886",
+   "type": "prose",
+   "page": 102,
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "H56",
+   "type": "heading",
+   "page": 102,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1887",
+   "type": "prose",
+   "page": 102,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1888",
+   "type": "prose",
+   "page": 102,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1889",
+   "type": "prose",
+   "page": 102,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "C075",
+   "type": "caption",
+   "page": 103,
+   "section": "G.2. Agentic Steering with Visual Guidance",
+   "asset": "F055"
+  },
+  {
+   "id": "S1902",
+   "type": "prose",
+   "page": 103,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1903",
+   "type": "prose",
+   "page": 103,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1904",
+   "type": "prose",
+   "page": 103,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1905",
+   "type": "prose",
+   "page": 103,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "C076",
+   "type": "caption",
+   "page": 104,
+   "section": "G.2. Agentic Steering with Visual Guidance",
+   "asset": "T021"
+  },
+  {
+   "id": "S1907",
+   "type": "prose",
+   "page": 104,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1911",
+   "type": "prose",
+   "page": 104,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1912",
+   "type": "prose",
+   "page": 104,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1913",
+   "type": "prose",
+   "page": 104,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1914",
+   "type": "prose",
+   "page": 104,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1915",
+   "type": "prose",
+   "page": 104,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "C077",
+   "type": "caption",
+   "page": 105,
+   "section": "G.2. Agentic Steering with Visual Guidance",
+   "asset": "F056"
+  },
+  {
+   "id": "S1932",
+   "type": "prose",
+   "page": 105,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1933",
+   "type": "prose",
+   "page": 105,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1934",
+   "type": "prose",
+   "page": 105,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "C078",
+   "type": "caption",
+   "page": 106,
+   "section": "G.2. Agentic Steering with Visual Guidance",
+   "asset": "T022"
+  },
+  {
+   "id": "C079",
+   "type": "caption",
+   "page": 106,
+   "section": "G.2. Agentic Steering with Visual Guidance",
+   "asset": "T023"
+  },
+  {
+   "id": "S1945",
+   "type": "prose",
+   "page": 106,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1946",
+   "type": "prose",
+   "page": 106,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1947",
+   "type": "prose",
+   "page": 106,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1948",
+   "type": "prose",
+   "page": 106,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1949",
+   "type": "prose",
+   "page": 106,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "C080",
+   "type": "caption",
+   "page": 107,
+   "section": "G.2. Agentic Steering with Visual Guidance",
+   "asset": "T024"
+  },
+  {
+   "id": "S1962",
+   "type": "prose",
+   "page": 107,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1963",
+   "type": "prose",
+   "page": 107,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1964",
+   "type": "prose",
+   "page": 107,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1965",
+   "type": "prose",
+   "page": 107,
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "H57",
+   "type": "heading",
+   "page": 107,
+   "section": "G.3. Toward Robotic Self-Improvement"
+  },
+  {
+   "id": "S1966",
+   "type": "prose",
+   "page": 107,
+   "section": "G.3. Toward Robotic Self-Improvement"
+  },
+  {
+   "id": "S1967",
+   "type": "prose",
+   "page": 108,
+   "section": "G.3. Toward Robotic Self-Improvement"
+  },
+  {
+   "id": "S1968",
+   "type": "prose",
+   "page": 108,
+   "section": "G.3. Toward Robotic Self-Improvement"
+  },
+  {
+   "id": "S1969",
+   "type": "prose",
+   "page": 108,
+   "section": "G.3. Toward Robotic Self-Improvement"
+  },
+  {
+   "id": "S1970",
+   "type": "prose",
+   "page": 108,
+   "section": "G.3. Toward Robotic Self-Improvement"
+  },
+  {
+   "id": "S1971",
+   "type": "prose",
+   "page": 108,
+   "section": "G.3. Toward Robotic Self-Improvement"
+  },
+  {
+   "id": "H58",
+   "type": "heading",
+   "page": 109,
+   "section": "H. Humanoid Loco-Manipulation"
+  },
+  {
+   "id": "S1972",
+   "type": "prose",
+   "page": 109,
+   "section": "H. Humanoid Loco-Manipulation"
+  },
+  {
+   "id": "S1973",
+   "type": "prose",
+   "page": 109,
+   "section": "H. Humanoid Loco-Manipulation"
+  },
+  {
+   "id": "S1974",
+   "type": "prose",
+   "page": 109,
+   "section": "H. Humanoid Loco-Manipulation"
+  },
+  {
+   "id": "H59",
+   "type": "heading",
+   "page": 109,
+   "section": "H.1. GR00T 2 Turbo on Whole-Body Latent Actions"
+  },
+  {
+   "id": "S1975",
+   "type": "prose",
+   "page": 109,
+   "section": "H.1. GR00T 2 Turbo on Whole-Body Latent Actions"
+  },
+  {
+   "id": "H60",
+   "type": "heading",
+   "page": 109,
+   "section": "H.2. Real-World Whole-Body Loco-Manipulation"
+  },
+  {
+   "id": "S1976",
+   "type": "prose",
+   "page": 109,
+   "section": "H.2. Real-World Whole-Body Loco-Manipulation"
+  },
+  {
+   "id": "C081",
+   "type": "caption",
+   "page": 110,
+   "section": "H.2. Real-World Whole-Body Loco-Manipulation",
+   "asset": "F057"
+  },
+  {
+   "id": "S2009",
+   "type": "prose",
+   "page": 110,
+   "section": "H.2. Real-World Whole-Body Loco-Manipulation"
+  },
+  {
+   "id": "S2010",
+   "type": "prose",
+   "page": 110,
+   "section": "H.2. Real-World Whole-Body Loco-Manipulation"
+  },
+  {
+   "id": "S2011",
+   "type": "prose",
+   "page": 110,
+   "section": "H.2. Real-World Whole-Body Loco-Manipulation"
+  },
+  {
+   "id": "C082",
+   "type": "caption",
+   "page": 111,
+   "section": "H.2. Real-World Whole-Body Loco-Manipulation",
+   "asset": "F058"
+  },
+  {
+   "id": "C083",
+   "type": "caption",
+   "page": 111,
+   "section": "H.2. Real-World Whole-Body Loco-Manipulation",
+   "asset": "T025"
+  },
+  {
+   "id": "S2017",
+   "type": "prose",
+   "page": 111,
+   "section": "H.2. Real-World Whole-Body Loco-Manipulation"
+  },
+  {
+   "id": "H61",
+   "type": "heading",
+   "page": 111,
+   "section": "H.3. WAMs Consume Simulation Data Better than VLAs"
+  },
+  {
+   "id": "S2018",
+   "type": "prose",
+   "page": 111,
+   "section": "H.3. WAMs Consume Simulation Data Better than VLAs"
+  },
+  {
+   "id": "C084",
+   "type": "caption",
+   "page": 112,
+   "section": "H.3. WAMs Consume Simulation Data Better than VLAs",
+   "asset": "F059"
+  },
+  {
+   "id": "C085",
+   "type": "caption",
+   "page": 112,
+   "section": "H.3. WAMs Consume Simulation Data Better than VLAs",
+   "asset": "T026"
+  },
+  {
+   "id": "S2036",
+   "type": "prose",
+   "page": 112,
+   "section": "H.3. WAMs Consume Simulation Data Better than VLAs"
+  },
+  {
+   "id": "S2037",
+   "type": "prose",
+   "page": 112,
+   "section": "H.3. WAMs Consume Simulation Data Better than VLAs"
+  },
+  {
+   "id": "S2038",
+   "type": "prose",
+   "page": 112,
+   "section": "H.3. WAMs Consume Simulation Data Better than VLAs"
+  },
+  {
+   "id": "H62",
+   "type": "heading",
+   "page": 113,
+   "section": "I. Accelerating GR00T 2"
+  },
+  {
+   "id": "S2039",
+   "type": "prose",
+   "page": 113,
+   "section": "I. Accelerating GR00T 2"
+  },
+  {
+   "id": "S2040",
+   "type": "prose",
+   "page": 113,
+   "section": "I. Accelerating GR00T 2"
+  },
+  {
+   "id": "S2041",
+   "type": "prose",
+   "page": 113,
+   "section": "I. Accelerating GR00T 2"
+  },
+  {
+   "id": "S2042",
+   "type": "prose",
+   "page": 113,
+   "section": "I. Accelerating GR00T 2"
+  },
+  {
+   "id": "H63",
+   "type": "heading",
+   "page": 113,
+   "section": "I.1. Accelerating Model Inference"
+  },
+  {
+   "id": "S2043",
+   "type": "prose",
+   "page": 113,
+   "section": "I.1. Accelerating Model Inference"
+  },
+  {
+   "id": "S2044",
+   "type": "prose",
+   "page": 113,
+   "section": "I.1. Accelerating Model Inference"
+  },
+  {
+   "id": "S2045",
+   "type": "prose",
+   "page": 113,
+   "section": "I.1. Accelerating Model Inference"
+  },
+  {
+   "id": "S2046",
+   "type": "prose",
+   "page": 113,
+   "section": "I.1. Accelerating Model Inference"
+  },
+  {
+   "id": "C086",
+   "type": "caption",
+   "page": 114,
+   "section": "I.1. Accelerating Model Inference",
+   "asset": "F060"
+  },
+  {
+   "id": "S2070",
+   "type": "prose",
+   "page": 114,
+   "section": "I.1. Accelerating Model Inference"
+  },
+  {
+   "id": "S2071",
+   "type": "prose",
+   "page": 114,
+   "section": "I.1. Accelerating Model Inference"
+  },
+  {
+   "id": "S2072",
+   "type": "prose",
+   "page": 114,
+   "section": "I.1. Accelerating Model Inference"
+  },
+  {
+   "id": "S2073",
+   "type": "prose",
+   "page": 114,
+   "section": "I.1. Accelerating Model Inference"
+  },
+  {
+   "id": "S2074",
+   "type": "prose",
+   "page": 114,
+   "section": "I.1. Accelerating Model Inference"
+  },
+  {
+   "id": "S2075",
+   "type": "prose",
+   "page": 114,
+   "section": "I.1. Accelerating Model Inference"
+  },
+  {
+   "id": "S2076",
+   "type": "prose",
+   "page": 115,
+   "section": "I.1. Accelerating Model Inference"
+  },
+  {
+   "id": "C087",
+   "type": "caption",
+   "page": 115,
+   "section": "I.1. Accelerating Model Inference",
+   "asset": "T027"
+  },
+  {
+   "id": "S2083",
+   "type": "prose",
+   "page": 115,
+   "section": "I.1. Accelerating Model Inference"
+  },
+  {
+   "id": "S2084",
+   "type": "prose",
+   "page": 115,
+   "section": "I.1. Accelerating Model Inference"
+  },
+  {
+   "id": "S2085",
+   "type": "prose",
+   "page": 115,
+   "section": "I.1. Accelerating Model Inference"
+  },
+  {
+   "id": "S2086",
+   "type": "prose",
+   "page": 115,
+   "section": "I.1. Accelerating Model Inference"
+  },
+  {
+   "id": "H64",
+   "type": "heading",
+   "page": 115,
+   "section": "I.2. Policy Smoothness"
+  },
+  {
+   "id": "S2087",
+   "type": "prose",
+   "page": 115,
+   "section": "I.2. Policy Smoothness"
+  },
+  {
+   "id": "S2088",
+   "type": "prose",
+   "page": 115,
+   "section": "I.2. Policy Smoothness"
+  },
+  {
+   "id": "S2089",
+   "type": "prose",
+   "page": 115,
+   "section": "I.2. Policy Smoothness"
+  },
+  {
+   "id": "C088",
+   "type": "caption",
+   "page": 116,
+   "section": "I.2. Policy Smoothness",
+   "asset": "T028"
+  },
+  {
+   "id": "S2095",
+   "type": "prose",
+   "page": 116,
+   "section": "I.2. Policy Smoothness"
+  },
+  {
+   "id": "S2096",
+   "type": "prose",
+   "page": 116,
+   "section": "I.2. Policy Smoothness"
+  },
+  {
+   "id": "S2097",
+   "type": "prose",
+   "page": 116,
+   "section": "I.2. Policy Smoothness"
+  },
+  {
+   "id": "S2098",
+   "type": "prose",
+   "page": 116,
+   "section": "I.2. Policy Smoothness"
+  },
+  {
+   "id": "S2099",
+   "type": "prose",
+   "page": 116,
+   "section": "I.2. Policy Smoothness"
+  },
+  {
+   "id": "H65",
+   "type": "heading",
+   "page": 116,
+   "section": "I.3. Accelerating Task Throughput Beyond Demonstrations"
+  },
+  {
+   "id": "S2100",
+   "type": "prose",
+   "page": 116,
+   "section": "I.3. Accelerating Task Throughput Beyond Demonstrations"
+  },
+  {
+   "id": "S2101",
+   "type": "prose",
+   "page": 117,
+   "section": "I.3. Accelerating Task Throughput Beyond Demonstrations"
+  },
+  {
+   "id": "C089",
+   "type": "caption",
+   "page": 117,
+   "section": "I.3. Accelerating Task Throughput Beyond Demonstrations",
+   "asset": "T029"
+  },
+  {
+   "id": "C090",
+   "type": "caption",
+   "page": 118,
+   "section": "I.3. Accelerating Task Throughput Beyond Demonstrations",
+   "asset": "F061"
+  },
+  {
+   "id": "H66",
+   "type": "heading",
+   "page": 118,
+   "section": "J. Simulations"
+  },
+  {
+   "id": "S2116",
+   "type": "prose",
+   "page": 118,
+   "section": "J. Simulations"
+  },
+  {
+   "id": "H67",
+   "type": "heading",
+   "page": 118,
+   "section": "J.1. Real-to-Sim Generation of High-Fidelity Tasks"
+  },
+  {
+   "id": "S2117",
+   "type": "prose",
+   "page": 118,
+   "section": "J.1. Real-to-Sim Generation of High-Fidelity Tasks"
+  },
+  {
+   "id": "S2118",
+   "type": "prose",
+   "page": 118,
+   "section": "J.1. Real-to-Sim Generation of High-Fidelity Tasks"
+  },
+  {
+   "id": "S2119",
+   "type": "prose",
+   "page": 119,
+   "section": "J.1. Real-to-Sim Generation of High-Fidelity Tasks"
+  },
+  {
+   "id": "S2120",
+   "type": "prose",
+   "page": 119,
+   "section": "J.1. Real-to-Sim Generation of High-Fidelity Tasks"
+  },
+  {
+   "id": "S2121",
+   "type": "prose",
+   "page": 119,
+   "section": "J.1. Real-to-Sim Generation of High-Fidelity Tasks"
+  },
+  {
+   "id": "S2122",
+   "type": "prose",
+   "page": 119,
+   "section": "J.1. Real-to-Sim Generation of High-Fidelity Tasks"
+  },
+  {
+   "id": "S2123",
+   "type": "prose",
+   "page": 119,
+   "section": "J.1. Real-to-Sim Generation of High-Fidelity Tasks"
+  },
+  {
+   "id": "S2124",
+   "type": "prose",
+   "page": 119,
+   "section": "J.1. Real-to-Sim Generation of High-Fidelity Tasks"
+  },
+  {
+   "id": "H68",
+   "type": "heading",
+   "page": 119,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2125",
+   "type": "prose",
+   "page": 119,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2126",
+   "type": "prose",
+   "page": 119,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "C091",
+   "type": "caption",
+   "page": 120,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation",
+   "asset": "F062"
+  },
+  {
+   "id": "C092",
+   "type": "caption",
+   "page": 120,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation",
+   "asset": "F063"
+  },
+  {
+   "id": "S2127",
+   "type": "prose",
+   "page": 120,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2128",
+   "type": "prose",
+   "page": 120,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2129",
+   "type": "prose",
+   "page": 120,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2130",
+   "type": "prose",
+   "page": 120,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "C093",
+   "type": "caption",
+   "page": 121,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation",
+   "asset": "F064"
+  },
+  {
+   "id": "C094",
+   "type": "caption",
+   "page": 121,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation",
+   "asset": "F065"
+  },
+  {
+   "id": "S2142",
+   "type": "prose",
+   "page": 121,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2143",
+   "type": "prose",
+   "page": 121,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2144",
+   "type": "prose",
+   "page": 121,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2151",
+   "type": "prose",
+   "page": 121,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2158",
+   "type": "prose",
+   "page": 121,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "C095",
+   "type": "caption",
+   "page": 122,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation",
+   "asset": "F066"
+  },
+  {
+   "id": "S2190",
+   "type": "prose",
+   "page": 122,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2191",
+   "type": "prose",
+   "page": 122,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2192",
+   "type": "prose",
+   "page": 122,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2193",
+   "type": "prose",
+   "page": 122,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2194",
+   "type": "prose",
+   "page": 122,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2195",
+   "type": "prose",
+   "page": 122,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2196",
+   "type": "prose",
+   "page": 123,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2197",
+   "type": "prose",
+   "page": 123,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2198",
+   "type": "prose",
+   "page": 123,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2199",
+   "type": "prose",
+   "page": 123,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2200",
+   "type": "prose",
+   "page": 123,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2201",
+   "type": "prose",
+   "page": 123,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2202",
+   "type": "prose",
+   "page": 123,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2203",
+   "type": "prose",
+   "page": 123,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2204",
+   "type": "prose",
+   "page": 123,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "S2205",
+   "type": "prose",
+   "page": 123,
+   "section": "J.2. Accelerating GR00T 2 Development with Simulation"
+  },
+  {
+   "id": "H69",
+   "type": "heading",
+   "page": 123,
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2206",
+   "type": "prose",
+   "page": 123,
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2207",
+   "type": "prose",
+   "page": 123,
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "C096",
+   "type": "caption",
+   "page": 124,
+   "section": "J.3. Simulation Benchmarking",
+   "asset": "T030"
+  },
+  {
+   "id": "S2209",
+   "type": "prose",
+   "page": 124,
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "C097",
+   "type": "caption",
+   "page": 124,
+   "section": "J.3. Simulation Benchmarking",
+   "asset": "T031"
+  },
+  {
+   "id": "S2214",
+   "type": "prose",
+   "page": 124,
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2217",
+   "type": "prose",
+   "page": 124,
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2218",
+   "type": "prose",
+   "page": 124,
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2219",
+   "type": "prose",
+   "page": 124,
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "C098",
+   "type": "caption",
+   "page": 125,
+   "section": "J.3. Simulation Benchmarking",
+   "asset": "T032"
+  },
+  {
+   "id": "S2222",
+   "type": "prose",
+   "page": 125,
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "C099",
+   "type": "caption",
+   "page": 125,
+   "section": "J.3. Simulation Benchmarking",
+   "asset": "T033"
+  },
+  {
+   "id": "S2228",
+   "type": "prose",
+   "page": 125,
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2229",
+   "type": "prose",
+   "page": 125,
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2230",
+   "type": "prose",
+   "page": 125,
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2231",
+   "type": "prose",
+   "page": 125,
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2232",
+   "type": "prose",
+   "page": 125,
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2233",
+   "type": "prose",
+   "page": 125,
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2234",
+   "type": "prose",
+   "page": 125,
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2235",
+   "type": "prose",
+   "page": 125,
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "C100",
+   "type": "caption",
+   "page": 126,
+   "section": "J.3. Simulation Benchmarking",
+   "asset": "T034"
+  },
+  {
+   "id": "S2243",
+   "type": "prose",
+   "page": 126,
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2244",
+   "type": "prose",
+   "page": 126,
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "S2245",
+   "type": "prose",
+   "page": 126,
+   "section": "J.3. Simulation Benchmarking"
+  },
+  {
+   "id": "H70",
+   "type": "heading",
+   "page": 127,
+   "section": "K. Infrastructure"
+  },
+  {
+   "id": "S2246",
+   "type": "prose",
+   "page": 127,
+   "section": "K. Infrastructure"
+  },
+  {
+   "id": "H71",
+   "type": "heading",
+   "page": 127,
+   "section": "K.1. Overall Software and Hardware Stack"
+  },
+  {
+   "id": "S2247",
+   "type": "prose",
+   "page": 127,
+   "section": "K.1. Overall Software and Hardware Stack"
+  },
+  {
+   "id": "C101",
+   "type": "caption",
+   "page": 127,
+   "section": "K.1. Overall Software and Hardware Stack",
+   "asset": "F067"
+  },
+  {
+   "id": "S2248",
+   "type": "prose",
+   "page": 127,
+   "section": "K.1. Overall Software and Hardware Stack"
+  },
+  {
+   "id": "S2249",
+   "type": "prose",
+   "page": 127,
+   "section": "K.1. Overall Software and Hardware Stack"
+  },
+  {
+   "id": "H72",
+   "type": "heading",
+   "page": 127,
+   "section": "K.2. Hardware"
+  },
+  {
+   "id": "S2250",
+   "type": "prose",
+   "page": 127,
+   "section": "K.2. Hardware"
+  },
+  {
+   "id": "S2251",
+   "type": "prose",
+   "page": 128,
+   "section": "K.2. Hardware"
+  },
+  {
+   "id": "S2252",
+   "type": "prose",
+   "page": 128,
+   "section": "K.2. Hardware"
+  },
+  {
+   "id": "S2253",
+   "type": "prose",
+   "page": 128,
+   "section": "K.2. Hardware"
+  },
+  {
+   "id": "S2254",
+   "type": "prose",
+   "page": 128,
+   "section": "K.2. Hardware"
+  },
+  {
+   "id": "S2255",
+   "type": "prose",
+   "page": 128,
+   "section": "K.2. Hardware"
+  },
+  {
+   "id": "S2256",
+   "type": "prose",
+   "page": 128,
+   "section": "K.2. Hardware"
+  },
+  {
+   "id": "S2257",
+   "type": "prose",
+   "page": 128,
+   "section": "K.2. Hardware"
+  },
+  {
+   "id": "S2258",
+   "type": "prose",
+   "page": 128,
+   "section": "K.2. Hardware"
+  },
+  {
+   "id": "S2259",
+   "type": "prose",
+   "page": 128,
+   "section": "K.2. Hardware"
+  },
+  {
+   "id": "S2260",
+   "type": "prose",
+   "page": 128,
+   "section": "K.2. Hardware"
+  },
+  {
+   "id": "H73",
+   "type": "heading",
+   "page": 128,
+   "section": "K.3. Cluster and Job Management"
+  },
+  {
+   "id": "S2261",
+   "type": "prose",
+   "page": 128,
+   "section": "K.3. Cluster and Job Management"
+  },
+  {
+   "id": "S2262",
+   "type": "prose",
+   "page": 128,
+   "section": "K.3. Cluster and Job Management"
+  },
+  {
+   "id": "S2263",
+   "type": "prose",
+   "page": 129,
+   "section": "K.3. Cluster and Job Management"
+  },
+  {
+   "id": "S2264",
+   "type": "prose",
+   "page": 129,
+   "section": "K.3. Cluster and Job Management"
+  },
+  {
+   "id": "S2265",
+   "type": "prose",
+   "page": 129,
+   "section": "K.3. Cluster and Job Management"
+  },
+  {
+   "id": "S2266",
+   "type": "prose",
+   "page": 129,
+   "section": "K.3. Cluster and Job Management"
+  },
+  {
+   "id": "S2267",
+   "type": "prose",
+   "page": 129,
+   "section": "K.3. Cluster and Job Management"
+  },
+  {
+   "id": "S2268",
+   "type": "prose",
+   "page": 129,
+   "section": "K.3. Cluster and Job Management"
+  },
+  {
+   "id": "S2269",
+   "type": "prose",
+   "page": 129,
+   "section": "K.3. Cluster and Job Management"
+  },
+  {
+   "id": "H74",
+   "type": "heading",
+   "page": 129,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2270",
+   "type": "prose",
+   "page": 129,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2271",
+   "type": "prose",
+   "page": 129,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2272",
+   "type": "prose",
+   "page": 129,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2273",
+   "type": "prose",
+   "page": 129,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2274",
+   "type": "prose",
+   "page": 129,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2275",
+   "type": "prose",
+   "page": 129,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "C102",
+   "type": "caption",
+   "page": 130,
+   "section": "K.4. Distributed Training",
+   "asset": "F068"
+  },
+  {
+   "id": "S2279",
+   "type": "prose",
+   "page": 130,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2280",
+   "type": "prose",
+   "page": 130,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2281",
+   "type": "prose",
+   "page": 130,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2282",
+   "type": "prose",
+   "page": 130,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2283",
+   "type": "prose",
+   "page": 131,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2284",
+   "type": "prose",
+   "page": 131,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2285",
+   "type": "prose",
+   "page": 131,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2286",
+   "type": "prose",
+   "page": 131,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2287",
+   "type": "prose",
+   "page": 131,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2288",
+   "type": "prose",
+   "page": 131,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2289",
+   "type": "prose",
+   "page": 131,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2290",
+   "type": "prose",
+   "page": 131,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2291",
+   "type": "prose",
+   "page": 131,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2292",
+   "type": "prose",
+   "page": 132,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2293",
+   "type": "prose",
+   "page": 132,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2294",
+   "type": "prose",
+   "page": 132,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2295",
+   "type": "prose",
+   "page": 132,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2296",
+   "type": "prose",
+   "page": 132,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2297",
+   "type": "prose",
+   "page": 132,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2298",
+   "type": "prose",
+   "page": 132,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2299",
+   "type": "prose",
+   "page": 132,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2300",
+   "type": "prose",
+   "page": 132,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2301",
+   "type": "prose",
+   "page": 132,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2302",
+   "type": "prose",
+   "page": 132,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "C103",
+   "type": "caption",
+   "page": 132,
+   "section": "K.4. Distributed Training",
+   "asset": "T035"
+  },
+  {
+   "id": "S2304",
+   "type": "prose",
+   "page": 132,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "S2305",
+   "type": "prose",
+   "page": 132,
+   "section": "K.4. Distributed Training"
+  },
+  {
+   "id": "H75",
+   "type": "heading",
+   "page": 132,
+   "section": "K.5. Inference Infrastructure"
+  },
+  {
+   "id": "S2306",
+   "type": "prose",
+   "page": 132,
+   "section": "K.5. Inference Infrastructure"
+  },
+  {
+   "id": "S2307",
+   "type": "prose",
+   "page": 133,
+   "section": "K.5. Inference Infrastructure"
+  },
+  {
+   "id": "S2308",
+   "type": "prose",
+   "page": 133,
+   "section": "K.5. Inference Infrastructure"
+  },
+  {
+   "id": "S2309",
+   "type": "prose",
+   "page": 133,
+   "section": "K.5. Inference Infrastructure"
+  },
+  {
+   "id": "S2310",
+   "type": "prose",
+   "page": 133,
+   "section": "K.5. Inference Infrastructure"
+  },
+  {
+   "id": "S2311",
+   "type": "prose",
+   "page": 133,
+   "section": "K.5. Inference Infrastructure"
+  },
+  {
+   "id": "S2312",
+   "type": "prose",
+   "page": 133,
+   "section": "K.5. Inference Infrastructure"
+  },
+  {
+   "id": "S2313",
+   "type": "prose",
+   "page": 133,
+   "section": "K.5. Inference Infrastructure"
+  },
+  {
+   "id": "S2314",
+   "type": "prose",
+   "page": 133,
+   "section": "K.5. Inference Infrastructure"
+  },
+  {
+   "id": "H76",
+   "type": "heading",
+   "page": 133,
+   "section": "K.6. Scalable Multi-Modal Data Processing"
+  },
+  {
+   "id": "S2315",
+   "type": "prose",
+   "page": 133,
+   "section": "K.6. Scalable Multi-Modal Data Processing"
+  },
+  {
+   "id": "S2316",
+   "type": "prose",
+   "page": 133,
+   "section": "K.6. Scalable Multi-Modal Data Processing"
+  },
+  {
+   "id": "S2317",
+   "type": "prose",
+   "page": 133,
+   "section": "K.6. Scalable Multi-Modal Data Processing"
+  },
+  {
+   "id": "C104",
+   "type": "caption",
+   "page": 134,
+   "section": "K.6. Scalable Multi-Modal Data Processing",
+   "asset": "F069"
+  },
+  {
+   "id": "S2318",
+   "type": "prose",
+   "page": 134,
+   "section": "K.6. Scalable Multi-Modal Data Processing"
+  },
+  {
+   "id": "S2319",
+   "type": "prose",
+   "page": 134,
+   "section": "K.6. Scalable Multi-Modal Data Processing"
+  },
+  {
+   "id": "S2320",
+   "type": "prose",
+   "page": 134,
+   "section": "K.6. Scalable Multi-Modal Data Processing"
+  },
+  {
+   "id": "S2321",
+   "type": "prose",
+   "page": 134,
+   "section": "K.6. Scalable Multi-Modal Data Processing"
+  },
+  {
+   "id": "S2322",
+   "type": "prose",
+   "page": 134,
+   "section": "K.6. Scalable Multi-Modal Data Processing"
+  },
+  {
+   "id": "S2323",
+   "type": "prose",
+   "page": 134,
+   "section": "K.6. Scalable Multi-Modal Data Processing"
+  },
+  {
+   "id": "C105",
+   "type": "caption",
+   "page": 135,
+   "section": "K.6. Scalable Multi-Modal Data Processing",
+   "asset": "F070"
+  },
+  {
+   "id": "C106",
+   "type": "caption",
+   "page": 135,
+   "section": "K.6. Scalable Multi-Modal Data Processing",
+   "asset": "T036"
+  },
+  {
+   "id": "S2326",
+   "type": "prose",
+   "page": 135,
+   "section": "K.6. Scalable Multi-Modal Data Processing"
+  },
+  {
+   "id": "S055",
+   "type": "merged",
+   "page": 4,
+   "merged_into": "S054"
+  },
+  {
+   "id": "S079",
+   "type": "merged",
+   "page": 6,
+   "merged_into": "S078"
+  },
+  {
+   "id": "S1052",
+   "type": "merged",
+   "page": 60,
+   "merged_into": "S1051"
+  },
+  {
+   "id": "S1112",
+   "type": "merged",
+   "page": 61,
+   "merged_into": "S1111"
+  },
+  {
+   "id": "S1122",
+   "type": "merged",
+   "page": 62,
+   "merged_into": "S1121"
+  },
+  {
+   "id": "S1125",
+   "type": "merged",
+   "page": 62,
+   "merged_into": "S1124"
+  },
+  {
+   "id": "S1205",
+   "type": "merged",
+   "page": 66,
+   "merged_into": "S1204"
+  },
+  {
+   "id": "S1235",
+   "type": "merged",
+   "page": 67,
+   "merged_into": "S1234"
+  },
+  {
+   "id": "S1245",
+   "type": "merged",
+   "page": 68,
+   "merged_into": "S1241"
+  },
+  {
+   "id": "S1261",
+   "type": "merged",
+   "page": 68,
+   "merged_into": "S1249"
+  },
+  {
+   "id": "S1429",
+   "type": "merged",
+   "page": 77,
+   "merged_into": "S1428"
+  },
+  {
+   "id": "S1430",
+   "type": "merged",
+   "page": 77,
+   "merged_into": "S1428"
+  },
+  {
+   "id": "S1431",
+   "type": "merged",
+   "page": 77,
+   "merged_into": "S1428"
+  },
+  {
+   "id": "S1461",
+   "type": "merged",
+   "page": 79,
+   "merged_into": "S1460"
+  },
+  {
+   "id": "S1462",
+   "type": "merged",
+   "page": 79,
+   "merged_into": "S1460"
+  },
+  {
+   "id": "S1464",
+   "type": "merged",
+   "page": 80,
+   "merged_into": "S1463"
+  },
+  {
+   "id": "S1466",
+   "type": "merged",
+   "page": 80,
+   "merged_into": "S1465"
+  },
+  {
+   "id": "S1469",
+   "type": "merged",
+   "page": 81,
+   "merged_into": "S1468"
+  },
+  {
+   "id": "S1491",
+   "type": "merged",
+   "page": 84,
+   "merged_into": "S1490"
+  },
+  {
+   "id": "S1540",
+   "type": "merged",
+   "page": 85,
+   "merged_into": "S1539"
+  },
+  {
+   "id": "S1547",
+   "type": "merged",
+   "page": 85,
+   "merged_into": "S1539"
+  },
+  {
+   "id": "S1554",
+   "type": "merged",
+   "page": 86,
+   "merged_into": "S1548"
+  },
+  {
+   "id": "S1562",
+   "type": "merged",
+   "page": 86,
+   "merged_into": "S1558"
+  },
+  {
+   "id": "S1563",
+   "type": "merged",
+   "page": 86,
+   "merged_into": "S1558"
+  },
+  {
+   "id": "S1568",
+   "type": "merged",
+   "page": 86,
+   "merged_into": "S1567"
+  },
+  {
+   "id": "S1679",
+   "type": "merged",
+   "page": 91,
+   "merged_into": "S1678"
+  },
+  {
+   "id": "S1691",
+   "type": "merged",
+   "page": 92,
+   "merged_into": "S1690"
+  },
+  {
+   "id": "S1858",
+   "type": "merged",
+   "page": 100,
+   "merged_into": "S1857"
+  },
+  {
+   "id": "S1889",
+   "type": "merged",
+   "page": 102,
+   "merged_into": "S1888"
+  },
+  {
+   "id": "S1947",
+   "type": "merged",
+   "page": 106,
+   "merged_into": "S1946"
+  },
+  {
+   "id": "S203",
+   "type": "merged",
+   "page": 11,
+   "merged_into": "S202"
+  },
+  {
+   "id": "S2076",
+   "type": "merged",
+   "page": 114,
+   "merged_into": "S2075"
+  },
+  {
+   "id": "S2119",
+   "type": "merged",
+   "page": 118,
+   "merged_into": "S2118"
+  },
+  {
+   "id": "S2126",
+   "type": "merged",
+   "page": 119,
+   "merged_into": "S2125"
+  },
+  {
+   "id": "S2196",
+   "type": "merged",
+   "page": 122,
+   "merged_into": "S2195"
+  },
+  {
+   "id": "S2230",
+   "type": "merged",
+   "page": 125,
+   "merged_into": "S2229"
+  },
+  {
+   "id": "S2234",
+   "type": "merged",
+   "page": 125,
+   "merged_into": "S2233"
+  },
+  {
+   "id": "S2251",
+   "type": "merged",
+   "page": 127,
+   "merged_into": "S2250"
+  },
+  {
+   "id": "S2292",
+   "type": "merged",
+   "page": 131,
+   "merged_into": "S2291"
+  },
+  {
+   "id": "S293",
+   "type": "merged",
+   "page": 15,
+   "merged_into": "S292"
+  },
+  {
+   "id": "S315",
+   "type": "merged",
+   "page": 17,
+   "merged_into": "S314"
+  },
+  {
+   "id": "S330",
+   "type": "merged",
+   "page": 18,
+   "merged_into": "S329"
+  },
+  {
+   "id": "S331",
+   "type": "merged",
+   "page": 18,
+   "merged_into": "S329"
+  },
+  {
+   "id": "S332",
+   "type": "merged",
+   "page": 18,
+   "merged_into": "S329"
+  },
+  {
+   "id": "S333",
+   "type": "merged",
+   "page": 18,
+   "merged_into": "S329"
+  },
+  {
+   "id": "S334",
+   "type": "merged",
+   "page": 18,
+   "merged_into": "S329"
+  },
+  {
+   "id": "S335",
+   "type": "merged",
+   "page": 18,
+   "merged_into": "S329"
+  },
+  {
+   "id": "S348",
+   "type": "merged",
+   "page": 19,
+   "merged_into": "S347"
+  },
+  {
+   "id": "S377",
+   "type": "merged",
+   "page": 20,
+   "merged_into": "S376"
+  },
+  {
+   "id": "S411",
+   "type": "merged",
+   "page": 21,
+   "merged_into": "S410"
+  },
+  {
+   "id": "S416",
+   "type": "merged",
+   "page": 22,
+   "merged_into": "S415"
+  },
+  {
+   "id": "S468",
+   "type": "merged",
+   "page": 25,
+   "merged_into": "S467"
+  },
+  {
+   "id": "S475",
+   "type": "merged",
+   "page": 26,
+   "merged_into": "S474"
+  },
+  {
+   "id": "S476",
+   "type": "merged",
+   "page": 26,
+   "merged_into": "S474"
+  },
+  {
+   "id": "S489",
+   "type": "merged",
+   "page": 28,
+   "merged_into": "S488"
+  },
+  {
+   "id": "S787",
+   "type": "merged",
+   "page": 41,
+   "merged_into": "S786"
+  },
+  {
+   "id": "S867",
+   "type": "merged",
+   "page": 43,
+   "merged_into": "S866"
+  },
+  {
+   "id": "S868",
+   "type": "merged",
+   "page": 43,
+   "merged_into": "S866"
+  },
+  {
+   "id": "S874",
+   "type": "merged",
+   "page": 44,
+   "merged_into": "S873"
+  },
+  {
+   "id": "S944",
+   "type": "merged",
+   "page": 47,
+   "merged_into": "S943"
+  },
+  {
+   "id": "S976",
+   "type": "merged",
+   "page": 52,
+   "merged_into": "S972"
+  },
+  {
+   "id": "S987",
+   "type": "merged",
+   "page": 52,
+   "merged_into": "S986"
+  },
+  {
+   "id": "S994",
+   "type": "merged",
+   "page": 53,
+   "merged_into": "S993"
+  }
+ ],
+ "equations": [
+  {
+   "id": "E001",
+   "page": 52,
+   "confidence": "low",
+   "latex": null,
+   "image_path": "assets/equations/E001.png",
+   "printed_text": "𝐾eff = 𝑠acp 𝑘𝑝, (2)"
+  },
+  {
+   "id": "E002",
+   "page": 68,
+   "confidence": "low",
+   "latex": null,
+   "image_path": "assets/equations/E002.png",
+   "printed_text": "𝑗̸=𝑖𝑛𝑖𝑗/(𝑝𝑖+ 𝑝𝑗), (5)"
+  },
+  {
+   "id": "E003",
+   "page": 68,
+   "confidence": "low",
+   "latex": null,
+   "image_path": "assets/equations/E003.png",
+   "printed_text": "𝑤𝑚= 1 {𝑚′ : pair(𝑚′) = pair(𝑚), task(𝑚′) = task(𝑚)}⃒⃒, (7)"
+  },
+  {
+   "id": "E004",
+   "page": 83,
+   "confidence": "low",
+   "latex": null,
+   "image_path": "assets/equations/E004.png",
+   "printed_text": ", 𝛼= 𝐺𝜎* 𝑚, (9)"
+  },
+  {
+   "id": "E005",
+   "page": 85,
+   "confidence": "low",
+   "latex": null,
+   "image_path": "assets/equations/E005.png",
+   "printed_text": "𝑗̸=𝑖𝑅𝑔,𝑗 ℎ𝑔+ 𝑁𝑔−1 , 𝐴𝑔,𝑖= 𝑅𝑔,𝑖−𝑏𝑔,𝑖. (12)"
+  },
+  {
+   "id": "E006",
+   "page": 86,
+   "confidence": "low",
+   "latex": null,
+   "image_path": "assets/equations/E006.png",
+   "printed_text": "ℒSI(𝜃) = 𝜆vℒvideo(𝜃; 𝒟succ) + 𝜆aℒaction(𝜃; 𝒟succ). (16)"
+  },
+  {
+   "id": "E007",
+   "page": 94,
+   "confidence": "low",
+   "latex": null,
+   "image_path": "assets/equations/E007.png",
+   "printed_text": "𝐶= (1 −𝜎)𝐶+ 𝜎𝜖, 𝜖∼𝒩(0, 𝐼). (20)"
+  }
+ ],
+ "figures": [
+  {
+   "id": "F001",
+   "page": 4,
+   "kind": "figure",
+   "file": "assets/F001.png",
+   "fallback_page_render": false,
+   "caption": "Figure 1: We introduce GR00T 2, a world-action model for general-purpose robots. Top: GR00T 2 pretrains on human and robot data. Second row: given a language goal, multi-view video from the egocentric"
+  },
+  {
+   "id": "F002",
+   "page": 6,
+   "kind": "figure",
+   "file": "assets/F002.png",
+   "fallback_page_render": false,
+   "caption": "Figure 2: Cross-embodiment transfer to Dexter with 0, 1, and 5 Dexter episodes. Results on the Dexter-50 tasks, which have no Dexter training data but appear in YAM teleoperation data, human video, or"
+  },
+  {
+   "id": "T001",
+   "page": 7,
+   "kind": "table",
+   "file": "assets/T001.png",
+   "fallback_page_render": false,
+   "caption": "Table 1: Post-training benchmarks. For each model, Prog. is the average task progress score across all trials and SR is the success rate, both on a scale from 0 to 100. Bold marks the best Prog. and S"
+  },
+  {
+   "id": "F003",
+   "page": 7,
+   "kind": "figure",
+   "file": "assets/F003.png",
+   "fallback_page_render": false,
+   "caption": "Figure 3: Representative tasks from the two post-training benchmarks. Hot Wheels Assembly on YAM (top) and Make Shipping Label on Dexter (bottom)."
+  },
+  {
+   "id": "F004",
+   "page": 8,
+   "kind": "figure",
+   "file": "assets/F004.png",
+   "fallback_page_render": false,
+   "caption": "Figure 4: Learning new tasks without teleoperation. Each column is one way to demonstrate a task without the target robot. It shows a demonstration, a GR00T 2 rollout on the robot, and the real-robot "
+  },
+  {
+   "id": "F005",
+   "page": 10,
+   "kind": "figure",
+   "file": "assets/F005.png",
+   "fallback_page_render": false,
+   "caption": "Figure 5: Real-robot post-training on four contact-rich manipulation tasks. Labels report success rates, and whiskers are 95% Wilson intervals over 50 trials per bar. Bold marks each task’s best metho"
+  },
+  {
+   "id": "F006",
+   "page": 10,
+   "kind": "figure",
+   "file": "assets/F006.png",
+   "fallback_page_render": false,
+   "caption": "Figure 6: Agentic runtime architecture. System 2 monitors execution and invokes GR00T 2 and CaP tools through an observe-reason-act-verify loop. GR00T 2 or ASPIRE-generated program serves as execution"
+  },
+  {
+   "id": "F007",
+   "page": 11,
+   "kind": "figure",
+   "file": "assets/F007.png",
+   "fallback_page_render": false,
+   "caption": "Figure 7: Agentic assistance on real robots. (a) Successful trials out of 100 per method on three long-horizon assembly tasks on YAM. Before every trial a person randomly dumps all parts onto the tabl"
+  },
+  {
+   "id": "F008",
+   "page": 12,
+   "kind": "figure",
+   "file": "assets/F008.png",
+   "fallback_page_render": false,
+   "caption": "Figure 8: Higher average success with visual steering on both evaluation tiers. (a) Left- and right-hand steering examples. Circles mark grasp targets and crosses mark release targets, and colors iden"
+  },
+  {
+   "id": "F009",
+   "page": 13,
+   "kind": "figure",
+   "file": "assets/F009.png",
+   "fallback_page_render": false,
+   "caption": "Figure 9: Three-level stack for whole-body loco-manipulation. An optional reasoning model (S2) picks the task and the prompt. GR00T 2 Turbo (S1) reads RGB images and proprioception and predicts 1.6 s "
+  },
+  {
+   "id": "F010",
+   "page": 15,
+   "kind": "figure",
+   "file": "assets/F010.png",
+   "fallback_page_render": false,
+   "caption": "Figure 10: Scaling human video in pretraining. Human-1M data pre-training (0%, 1%, 10%, or 100%) post-trained with Dexter teleoperation data and evaluated on 72 tasks. Real Robot: 3 rollout episodes p"
+  },
+  {
+   "id": "F011",
+   "page": 17,
+   "kind": "figure",
+   "file": "assets/F011.png",
+   "fallback_page_render": true,
+   "caption": "Figure 11: Mapping the hill we climb. Every checkpoint on the current YAM suite, rated relative to the A/B reference (⋆, the board’s top-rated checkpoint, here a GR00T 2 Turbo checkpoint) and placed a"
+  },
+  {
+   "id": "F012",
+   "page": 18,
+   "kind": "figure",
+   "file": "assets/F012.png",
+   "fallback_page_render": false,
+   "caption": "Figure 12: GR00T 2 learns new robot tasks from human demonstrations. (1) A person performs the task wearing GMSL head and wrist cameras at robot-matched poses, PICO controllers that track 6-DoF wrist "
+  },
+  {
+   "id": "F013",
+   "page": 18,
+   "kind": "figure",
+   "file": "assets/F013.png",
+   "fallback_page_render": false,
+   "caption": "Figure 13: Human demonstrations and GR00T 2 predictions. Two tasks that only humans demonstrated. Given one robot start frame and the instruction, GR00T 2 predicts the robot’s ego view. Times are meas"
+  },
+  {
+   "id": "F014",
+   "page": 19,
+   "kind": "figure",
+   "file": "assets/F014.png",
+   "fallback_page_render": false,
+   "caption": "Figure 14: GR00T 2-generated future frames on YAM, without and with YAM co-training. Both models observe the same YAM top-camera frame (left) and predict eight future steps of Toy Dumptruck Assembly, "
+  },
+  {
+   "id": "F015",
+   "page": 19,
+   "kind": "figure",
+   "file": "assets/F015.png",
+   "fallback_page_render": false,
+   "caption": "Figure 15: DexUMI demonstration and GR00T 2 rollout. Prepare Banana Yogurt, with keyframes numbered by subtask: a person demonstrating the task with the DexUMI exoskeletons (top) and a GR00T 2 rollout"
+  },
+  {
+   "id": "F016",
+   "page": 20,
+   "kind": "figure",
+   "file": "assets/F016.png",
+   "fallback_page_render": false,
+   "caption": "Figure 16: Human-to-sim-to-real transfer for GR00T 2. (1) Human-to-sim reconstructs assets and motions from one human demonstration. (2) RL trains a state-based manipulation policy in simulation. (3) "
+  },
+  {
+   "id": "F017",
+   "page": 21,
+   "kind": "figure",
+   "file": "assets/F017.png",
+   "fallback_page_render": false,
+   "caption": "Figure 17: Real-world tasks and their simulated counterparts. Each pair shows the real workcell’s top camera (Real) and the same moment when the recorded robot commands are replayed in simulation (Sim"
+  },
+  {
+   "id": "F018",
+   "page": 21,
+   "kind": "figure",
+   "file": "assets/F018.png",
+   "fallback_page_render": false,
+   "caption": "Figure 18: Simulated vs. real-world performance per policy. (a) Task progress (mean rubric score) and (b) success rate, averaged over 25 tasks (dashed: y = x). (c) Bradley-Terry Elo ratings fitted sep"
+  },
+  {
+   "id": "F019",
+   "page": 23,
+   "kind": "figure",
+   "file": "assets/F019.png",
+   "fallback_page_render": false,
+   "caption": "Figure 19: Model-prediction latency for GR00T 2 Turbo on G1 using (a) a GeForce RTX 5090 and (b) Jetson Thor in 120 W mode. Bars show medians of 500 predictions after 20 warmup requests, using the sam"
+  },
+  {
+   "id": "F020",
+   "page": 24,
+   "kind": "figure",
+   "file": "assets/F020.png",
+   "fallback_page_render": false,
+   "caption": "Figure 20: Phase-conditioned task-completion throughput acceleration of GR00T 2. GR00T 2 predicts a future action chunk, while a subtask predictor identifies its task phases. Using a phase-specific sp"
+  },
+  {
+   "id": "F021",
+   "page": 38,
+   "kind": "figure",
+   "file": "assets/F021.png",
+   "fallback_page_render": false,
+   "caption": "Figure 21: YAM post-training benchmark tasks. The six tasks of Tab. 1a, one per row. Left: task name and a short description. Right: key frames from four representative stages of each task, which has "
+  },
+  {
+   "id": "F022",
+   "page": 39,
+   "kind": "figure",
+   "file": "assets/F022.png",
+   "fallback_page_render": false,
+   "caption": "Figure 22: Dexter post-training benchmark tasks. The seven tasks of Tab. 1b, one per row. Left: task name and a short description. Right: key frames from four representative stages of each task."
+  },
+  {
+   "id": "F023",
+   "page": 40,
+   "kind": "figure",
+   "file": "assets/F023.png",
+   "fallback_page_render": false,
+   "caption": "Figure 23: YAM post-training Pareto frontier. Average task progress across the six tasks in Tab. 1a versus inference latency per served call on a GeForce RTX 5090 workstation. The dashed line indicate"
+  },
+  {
+   "id": "T002",
+   "page": 40,
+   "kind": "table",
+   "file": "assets/T002.png",
+   "fallback_page_render": false,
+   "caption": "Table 2: YAM V2 zero-shot evaluation. For each model, Prog. is the average task score and SR is the success rate, both on a 0 to 100 scale. We pool graded trials across available evaluations and weigh"
+  },
+  {
+   "id": "T003",
+   "page": 41,
+   "kind": "table",
+   "file": "assets/T003.png",
+   "fallback_page_render": false,
+   "caption": "Table 3: Dexter zero-shot evaluation. For each model, Prog. is the average task progress and SR is the success rate, both on a 0 to 100 scale, pooled over 71 tasks (49 manipulation tasks and 22 out-of"
+  },
+  {
+   "id": "F024",
+   "page": 42,
+   "kind": "figure",
+   "file": "assets/F024.png",
+   "fallback_page_render": false,
+   "caption": "Figure 24: Cross-embodiment transfer to Dexter with 0, 1, and 5 Dexter episodes, per task. Success rate on the Dexter-50 tasks, which have no Dexter training data but appear in YAM teleoperation data,"
+  },
+  {
+   "id": "F025",
+   "page": 43,
+   "kind": "figure",
+   "file": "assets/F025.png",
+   "fallback_page_render": false,
+   "caption": "Figure 25: Example Dexter rollouts. Top: zero-shot successes. Middle and bottom: tasks the zero-shot model attempts but fails, mostly at a step its new hands cannot yet do (left, with the failure note"
+  },
+  {
+   "id": "F026",
+   "page": 45,
+   "kind": "figure",
+   "file": "assets/F026.png",
+   "fallback_page_render": false,
+   "caption": "Figure 26: Sensorized human transfer benchmark tasks. Each row shows the ordered stages of one task, with the language instruction that GR00T 2 receives."
+  },
+  {
+   "id": "F027",
+   "page": 46,
+   "kind": "figure",
+   "file": "assets/F027.png",
+   "fallback_page_render": false,
+   "caption": "Figure 27: Learning new tasks with zero or few teleoperated demonstrations. Success rate (top) and task progress (bottom) over 20 trials per point, with 0, 1, or 10 teleoperated demonstrations of the "
+  },
+  {
+   "id": "F028",
+   "page": 47,
+   "kind": "figure",
+   "file": "assets/F028.png",
+   "fallback_page_render": false,
+   "caption": "Figure 28: Predicted futures for tasks that only humans demonstrated. Given one robot start frame and the instruction, GR00T 2 predicts the robot’s ego view autoregressively. Each GR00T 2 row comes fr"
+  },
+  {
+   "id": "F029",
+   "page": 49,
+   "kind": "figure",
+   "file": "assets/F029.png",
+   "fallback_page_render": false,
+   "caption": "Figure 29: Zero-teleop transfer from UMI to YAM. Each row shows one task with the language instruction GR00T 2 receives and six keyframes of a YAM rollout, numbered by stage: Toy Dumptruck Assembly, N"
+  },
+  {
+   "id": "T004",
+   "page": 49,
+   "kind": "table",
+   "file": "assets/T004.png",
+   "fallback_page_render": false,
+   "caption": "Table 4: Zero-teleop transfer from UMI to YAM. For each model, Prog. is the average substage score and SR the end-to-end success rate on YAM, both on a 0 to 100 scale. Every task is demonstrated only "
+  },
+  {
+   "id": "T005",
+   "page": 50,
+   "kind": "table",
+   "file": "assets/T005.png",
+   "fallback_page_render": false,
+   "caption": "Table 5: DexUMI post-training results. Fraction of real-robot trials that reach the end of each subtask. Overall is the fraction that completes the whole task."
+  },
+  {
+   "id": "F030",
+   "page": 51,
+   "kind": "figure",
+   "file": "assets/F030.png",
+   "fallback_page_render": false,
+   "caption": "Figure 30: DexUMI tasks. Each block shows one task with six keyframes, numbered by subtask as in Tab. 5: a person demonstrating the task with the DexUMI exoskeletons (top) and a GR00T 2 rollout on a T"
+  },
+  {
+   "id": "T006",
+   "page": 54,
+   "kind": "table",
+   "file": "assets/T006.png",
+   "fallback_page_render": false,
+   "caption": "Table 6: DexUMI →Tianji + Sharpa results. Fraction of real-robot trials that complete the whole task, over 20 trials per task. No training data contain a robot trajectory of either task."
+  },
+  {
+   "id": "F031",
+   "page": 55,
+   "kind": "figure",
+   "file": "assets/F031.png",
+   "fallback_page_render": false,
+   "caption": "Figure 31: GR00T 2 learns dexterous manipulation through human-to-sim-to-real transfer. Starting from a single human demonstration per task captured with an egocentric stereo camera, the Video-to-Data"
+  },
+  {
+   "id": "T007",
+   "page": 56,
+   "kind": "table",
+   "file": "assets/T007.png",
+   "fallback_page_render": false,
+   "caption": "Table 7: GR00T 2 learns dexterous manipulation skills from simulation demonstrations generated from human videos and transfers these skills zero-shot to the real world. Fine-tuned models are evaluated"
+  },
+  {
+   "id": "T008",
+   "page": 58,
+   "kind": "table",
+   "file": "assets/T008.png",
+   "fallback_page_render": false,
+   "caption": "Table 8: Quantitative criteria for selecting training timesteps."
+  },
+  {
+   "id": "T009",
+   "page": 59,
+   "kind": "table",
+   "file": "assets/T009.png",
+   "fallback_page_render": true,
+   "caption": "Table 9: In-lab collection criteria."
+  },
+  {
+   "id": "T010",
+   "page": 61,
+   "kind": "table",
+   "file": "assets/T010.png",
+   "fallback_page_render": false,
+   "caption": "Table 10: UMI-10K for GR00T 2. Gripper UMI episodes in the pretraining corpus."
+  },
+  {
+   "id": "F032",
+   "page": 61,
+   "kind": "figure",
+   "file": "assets/F032.png",
+   "fallback_page_render": false,
+   "caption": "Figure 32: Skill distribution of the Gripper UMI corpus. Episodes per skill on a logarithmic scale, colored by skill group. An episode counts toward every skill its instruction exercises. Pick-and-pla"
+  },
+  {
+   "id": "T011",
+   "page": 62,
+   "kind": "table",
+   "file": "assets/T011.png",
+   "fallback_page_render": false,
+   "caption": "Table 11: Robot teleoperation data in the GR00T 2 pretraining mixture. Share is the fraction of robot-data samples drawn from each source."
+  },
+  {
+   "id": "F033",
+   "page": 63,
+   "kind": "figure",
+   "file": "assets/F033.png",
+   "fallback_page_render": false,
+   "caption": "Figure 33: Teleoperation system for Tianji + Sharpa. (A) Teleoperation pipeline from operator devices to the robot. The retargeter is the solver used for human-data conversion. (B) Robot platform: Tia"
+  },
+  {
+   "id": "T012",
+   "page": 65,
+   "kind": "table",
+   "file": "assets/T012.png",
+   "fallback_page_render": false,
+   "caption": "Table 12: GearArena at a glance (snapshot of November 6, 2026, 12:28 PT). A campaign is one A/B evaluation request, a trial runs every arm once on the same scene, a rollout is one graded robot episode"
+  },
+  {
+   "id": "F034",
+   "page": 66,
+   "kind": "figure",
+   "file": "assets/F034.png",
+   "fallback_page_render": false,
+   "caption": "Figure 34: Gauging the current suite. Mean rubric score (bars) and full-credit rate (dots) per task over all graded A/B rollouts on YAM V2, grouped by sub-suite and ordered by task code (M05* is a var"
+  },
+  {
+   "id": "F035",
+   "page": 67,
+   "kind": "figure",
+   "file": "assets/F035.png",
+   "fallback_page_render": false,
+   "caption": "Figure 35: From an A/B request to a rating. A campaign is requested with its checkpoints, tasks, trial count, and station. The station runs a blinded session in which the operator stages each scene, r"
+  },
+  {
+   "id": "T013",
+   "page": 69,
+   "kind": "table",
+   "file": "assets/T013.png",
+   "fallback_page_render": true,
+   "caption": "Table 13: Paired comparisons on YAM V2. Elo difference (A minus B) with its paired 95% interval, and the share of 500 bootstrap resamples in which A rates higher (Eq. (8)). “GR00T 2” is the released c"
+  },
+  {
+   "id": "F036",
+   "page": 70,
+   "kind": "figure",
+   "file": "assets/F036.png",
+   "fallback_page_render": false,
+   "caption": "Figure 36: YAM V2 leaderboard. Elo with 90% scene-clustered bootstrap intervals for 20 checkpoints, colored by model family. Numbers on the right are A/B matches. ⋆marks the A/B reference. Development"
+  },
+  {
+   "id": "T014",
+   "page": 71,
+   "kind": "table",
+   "file": "assets/T014.png",
+   "fallback_page_render": false,
+   "caption": "Table 14: Matched rubric scores by sub-suite. Mean rubric score (0 to 1) over the trials in which both checkpoints were graded in the same campaign. Trial counts in parentheses."
+  },
+  {
+   "id": "F037",
+   "page": 71,
+   "kind": "figure",
+   "file": "assets/F037.png",
+   "fallback_page_render": false,
+   "caption": "Figure 37: Climbing the hill. Every checkpoint on each suite, rated relative to that suite’s A/B reference (⋆, the top-rated checkpoint) and placed at the date the checkpoint was saved. The line track"
+  },
+  {
+   "id": "F038",
+   "page": 72,
+   "kind": "figure",
+   "file": "assets/F038.png",
+   "fallback_page_render": false,
+   "caption": "Figure 38: Skill versus inference speed on YAM V2. Elo against policy inferences per second (log scale), measured as server-side compute per inference during the same A/B episodes. Bars are 90% Elo in"
+  },
+  {
+   "id": "F039",
+   "page": 74,
+   "kind": "figure",
+   "file": "assets/F039.png",
+   "fallback_page_render": true,
+   "caption": "Figure 39: Flexure linkage of the handheld gripper. (a) Cut view at the symmetry plane with main dimensions in mm: black parts are PLA, blue parts are TPU 90A, the gray shape is the operator’s finger "
+  },
+  {
+   "id": "F040",
+   "page": 75,
+   "kind": "figure",
+   "file": "assets/F040.png",
+   "fallback_page_render": false,
+   "caption": "Figure 40: Pre-strain and motion of the flexure linkage. (a) Relaxed (printed) shape (dashed) and its pose at the open stop (solid). The 22.858 mm difference per side pre-strains the TPU joints. (b) S"
+  },
+  {
+   "id": "F041",
+   "page": 76,
+   "kind": "figure",
+   "file": "assets/F041.png",
+   "fallback_page_render": false,
+   "caption": "Figure 41: UMI direct rollouts. Each row shows one task with its instruction and six keyframes of a GR00T 2 policy post-trained on Gripper UMI demonstrations alone and deployed on the UMI robot grippe"
+  },
+  {
+   "id": "T015",
+   "page": 76,
+   "kind": "table",
+   "file": "assets/T015.png",
+   "fallback_page_render": false,
+   "caption": "Table 15: UMI direct. Prog. is the average substage score and SR the end-to-end success rate on the UMI robot gripper, both on a 0 to 100 scale, of GR00T 2 post-trained on Gripper UMI demonstrations a"
+  },
+  {
+   "id": "T016",
+   "page": 77,
+   "kind": "table",
+   "file": "assets/T016.png",
+   "fallback_page_render": false,
+   "caption": "Table 16: Gripper UMI versus YAM. YAM differs from the handheld gripper in its cameras, its gripper interface, and its control frame."
+  },
+  {
+   "id": "F042",
+   "page": 78,
+   "kind": "figure",
+   "file": "assets/F042.png",
+   "fallback_page_render": false,
+   "caption": "Figure 42: Gripper UMI versus YAM, same task, same camera slots. Top: a Gripper UMI demonstration of Toy Dumptruck Assembly seen through its wide-FOV head camera and two fisheye wrist cameras, recorde"
+  },
+  {
+   "id": "F043",
+   "page": 78,
+   "kind": "figure",
+   "file": "assets/F043.png",
+   "fallback_page_render": false,
+   "caption": "Figure 43: Wrist views for UMI →YAM transfer. The same UMI wrist frame as (a) the raw fisheye, (b) the stereographic view used in pretraining, and (c) the YAM-aligned re-render that imitates YAM’s wri"
+  },
+  {
+   "id": "T017",
+   "page": 79,
+   "kind": "table",
+   "file": "assets/T017.png",
+   "fallback_page_render": false,
+   "caption": "Table 17: UMI →YAM ablations. Prog. is the average substage score and SR the end-to-end success rate on YAM, both on a 0 to 100 scale, as in Tab. 4. The shaded row in each block is the default configu"
+  },
+  {
+   "id": "F044",
+   "page": 82,
+   "kind": "figure",
+   "file": "assets/F044.png",
+   "fallback_page_render": false,
+   "caption": "Figure 44: GEAR DexUMI kinematic design. (a) A remote-center-of-motion linkage places a virtual joint at the robot hand’s AB/AD and flexion joint centers. (b) The kicked-out thumb linkage keeps the ro"
+  },
+  {
+   "id": "F045",
+   "page": 83,
+   "kind": "figure",
+   "file": "assets/F045.png",
+   "fallback_page_render": false,
+   "caption": "Figure 45: GEAR DexUMI joints, contact surfaces, and camera. (a) Double-sided joint support and a custom pin with a direct keying interface to the joint encoder. (b) Fingertip and palm contact surface"
+  },
+  {
+   "id": "F046",
+   "page": 85,
+   "kind": "figure",
+   "file": "assets/F046.png",
+   "fallback_page_render": false,
+   "caption": "Figure 46: Joint video-action denoising with CPS exploration. Four action-denoising events alternate between joint and cached passes. CPS adds fresh noise only to executed action coordinates. Video de"
+  },
+  {
+   "id": "F047",
+   "page": 88,
+   "kind": "figure",
+   "file": "assets/F047.png",
+   "fallback_page_render": false,
+   "caption": "Figure 47: Autonomous RL recipe discovery with AutoRL. Hill-climbing performance on RoboCasa365 across successive agent-driven experiments. The curve shows the best evaluation performance achieved."
+  },
+  {
+   "id": "F048",
+   "page": 90,
+   "kind": "figure",
+   "file": "assets/F048.png",
+   "fallback_page_render": false,
+   "caption": "Figure 48: Online post-training infrastructure. (A) Algorithm interfaces, worker groups, and shared services. (B) Resource allocation across execution roles. (C) Experience pipelining. (D) Stateful re"
+  },
+  {
+   "id": "T018",
+   "page": 91,
+   "kind": "table",
+   "file": "assets/T018.png",
+   "fallback_page_render": false,
+   "caption": "Table 18: Per-iteration time breakdown for single-robot GRPO. All times are reported in minutes."
+  },
+  {
+   "id": "F049",
+   "page": 91,
+   "kind": "figure",
+   "file": "assets/F049.png",
+   "fallback_page_render": true,
+   "caption": "Figure 49: Real-world RL tasks. (A) Fixed-pipe fittings: grasp, align, engage threads, turn, and release. (B) Finger placement: grasp, align two pins with the base holes, insert, and release. (C) Cabl"
+  },
+  {
+   "id": "F050",
+   "page": 96,
+   "kind": "figure",
+   "file": "assets/F050.png",
+   "fallback_page_render": false,
+   "caption": "Figure 50: Joint RL on ten RoboLab tasks. Training GR00T 2 in DreamDojo increases mean task success from 51.32% to 70.88%, evaluated over 500 episodes per task and policy. Error bars denote 95% Wilson"
+  },
+  {
+   "id": "F051",
+   "page": 96,
+   "kind": "figure",
+   "file": "assets/F051.png",
+   "fallback_page_render": false,
+   "caption": "Figure 51: Policy improvement through neural simulation. (a) DreamDojo rollout success and native RoboLab success during RL. (b) Native RoboLab success at matched collection budgets for two batch/grou"
+  },
+  {
+   "id": "F052",
+   "page": 97,
+   "kind": "figure",
+   "file": "assets/F052.png",
+   "fallback_page_render": false,
+   "caption": "Figure 52: Real-world policy improvement with DreamDojo. Top: two-legged peg insertion, test-tube insertion into the fifth rack hole, bun placement on yellow and white cups, and hardware sorting. Bott"
+  },
+  {
+   "id": "T019",
+   "page": 99,
+   "kind": "table",
+   "file": "assets/T019.png",
+   "fallback_page_render": true,
+   "caption": "Table 19: Comparison with the top seven entries of the RoboCasa365 and RoboDojo leaderboards, including agentic submissions. We report success rate (%) overall and per category. The RoboDojo average i"
+  },
+  {
+   "id": "T020",
+   "page": 100,
+   "kind": "table",
+   "file": "assets/T020.png",
+   "fallback_page_render": false,
+   "caption": "Table 20: Episode outcomes by whether S2 intervenes (SFT + Agent). Each cell gives the number of episodes and how many of them succeed, over all episodes of the SFT + Agent runs (2,093 on RoboDojo and"
+  },
+  {
+   "id": "F053",
+   "page": 101,
+   "kind": "figure",
+   "file": "assets/F053.png",
+   "fallback_page_render": false,
+   "caption": "Figure 53: Online recovery on RoboCasa365 (SFT + Agent). Keyframes from two episodes. The bar below each row shows who controls the robot over the episode. (A) The ASPIRE program grabs the oven handle"
+  },
+  {
+   "id": "F054",
+   "page": 102,
+   "kind": "figure",
+   "file": "assets/F054.png",
+   "fallback_page_render": false,
+   "caption": "Figure 54: Why SFT + Agent episodes fail. Primary cause of manually reviewed failed SFT + Agent episodes: 87 on RoboCasa365 and 80 on RoboDojo."
+  },
+  {
+   "id": "F055",
+   "page": 103,
+   "kind": "figure",
+   "file": "assets/F055.png",
+   "fallback_page_render": false,
+   "caption": "Figure 55: Real-world tasks. (A) Toy Plane assembly: dump the parts, attach and fasten the bottom wing, turn the airplane over, and fasten the top wing. (B) Toy Tractor assembly: dump the parts, faste"
+  },
+  {
+   "id": "T021",
+   "page": 104,
+   "kind": "table",
+   "file": "assets/T021.png",
+   "fallback_page_render": true,
+   "caption": "Table 21: Embodiment-specific choices for visual steering. Everything not listed follows the shared rules in the text. The Dexter column describes the joint YAM and Dexter recipe used for Dexter trash"
+  },
+  {
+   "id": "F056",
+   "page": 105,
+   "kind": "figure",
+   "file": "assets/F056.png",
+   "fallback_page_render": false,
+   "caption": "Figure 56: Short-horizon instruction following benchmark on YAM. Eight reference categories, each illustrated by a shared starting scene and two contrasting instructions. Blue and orange text denote t"
+  },
+  {
+   "id": "T022",
+   "page": 106,
+   "kind": "table",
+   "file": "assets/T022.png",
+   "fallback_page_render": false,
+   "caption": "Table 22: Visual steering results on every benchmark. Short horizon: success rate (%), with successful trials in parentheses (pass@1 on YAM). Long horizon: full-task successes over episodes, with the "
+  },
+  {
+   "id": "T023",
+   "page": 106,
+   "kind": "table",
+   "file": "assets/T023.png",
+   "fallback_page_render": false,
+   "caption": "Table 23: YAM short-horizon pass@1 (%) by reference category. Each category has six instructions and 18 scored trials per setting."
+  },
+  {
+   "id": "T024",
+   "page": 107,
+   "kind": "table",
+   "file": "assets/T024.png",
+   "fallback_page_render": false,
+   "caption": "Table 24: Agent cost and latency on trash sorting. Medians over the 20 episodes per setting. Latency is the per-episode median agent-turn time, agent cost is the charge for the agent’s turns (excludin"
+  },
+  {
+   "id": "F057",
+   "page": 110,
+   "kind": "figure",
+   "file": "assets/F057.png",
+   "fallback_page_render": false,
+   "caption": "Figure 57: Autonomous real-world whole-body loco-manipulation. Representative task sequences executed autonomously by post-trained GR00T 2 Turbo policies, with time progressing from left to right. Fro"
+  },
+  {
+   "id": "F058",
+   "page": 111,
+   "kind": "figure",
+   "file": "assets/F058.png",
+   "fallback_page_render": false,
+   "caption": "Figure 58: Object sets for the tabletop pick-and-place and the table clean-up tasks."
+  },
+  {
+   "id": "T025",
+   "page": 111,
+   "kind": "table",
+   "file": "assets/T025.png",
+   "fallback_page_render": false,
+   "caption": "Table 25: Real-world whole-body loco-manipulation on the Unitree G1. Success rate (%) using each listed model as S1, with the SONIC controller as S0. No partial credit is given (the reported success r"
+  },
+  {
+   "id": "F059",
+   "page": 112,
+   "kind": "figure",
+   "file": "assets/F059.png",
+   "fallback_page_render": false,
+   "caption": "Figure 59: Motion-centric simulation data generation. (A) We use the recorded whole-body motion of a teleoperated episode. (B) SONIC replays the motion in simulation while CMA-ES fits the table and ob"
+  },
+  {
+   "id": "T026",
+   "page": 112,
+   "kind": "table",
+   "file": "assets/T026.png",
+   "fallback_page_render": false,
+   "caption": "Table 26: WAMs consume simulation data better than VLAs. Tabletop pick-and-place success rate (%) over 30 trials on the G1 when simulated demonstrations are mixed into the same real dataset."
+  },
+  {
+   "id": "F060",
+   "page": 114,
+   "kind": "figure",
+   "file": "assets/F060.png",
+   "fallback_page_render": false,
+   "caption": "Figure 60: Timing boundaries for GR00T 2 policy inference. Model prediction covers request-time encoding and iterative denoising. Observation-to-applied-action latency additionally includes observatio"
+  },
+  {
+   "id": "T027",
+   "page": 115,
+   "kind": "table",
+   "file": "assets/T027.png",
+   "fallback_page_render": false,
+   "caption": "Table 27: Median model-prediction latency (p50) for GR00T 2 and GR00T 2 Turbo across embodiments and hardware. Speedup is baseline latency divided by optimized latency."
+  },
+  {
+   "id": "T028",
+   "page": 116,
+   "kind": "table",
+   "file": "assets/T028.png",
+   "fallback_page_render": false,
+   "caption": "Table 28: Evaluation of a simple noisy-prefix RTC extension under simulated inference latency. Success and progress use 1,200 matched episodes per condition, while jerk uses 120 matched diagnostic lay"
+  },
+  {
+   "id": "T029",
+   "page": 117,
+   "kind": "table",
+   "file": "assets/T029.png",
+   "fallback_page_render": false,
+   "caption": "Table 29: Task success rate and completion time on Dexter post-training tasks. Completion time is averaged over successful trials only."
+  },
+  {
+   "id": "F061",
+   "page": 118,
+   "kind": "figure",
+   "file": "assets/F061.png",
+   "fallback_page_render": false,
+   "caption": "Figure 61: Subset of environments for Real-to-Sim Evaluation. Side-by-side of real-world tasks that are used to evaluate generalist capabilities of GR00T 2 and their simulation counterparts. Odd colum"
+  },
+  {
+   "id": "F062",
+   "page": 120,
+   "kind": "figure",
+   "file": "assets/F062.png",
+   "fallback_page_render": false,
+   "caption": "Figure 62: Reconstructed assembly tasks. Toy plane, Hot Wheels car, and toy tractor (left to right), shown in reset configurations (top) and assembled configurations (bottom). Camera and scale are hel"
+  },
+  {
+   "id": "F063",
+   "page": 120,
+   "kind": "figure",
+   "file": "assets/F063.png",
+   "fallback_page_render": false,
+   "caption": "Figure 63: From physical objects to sim-ready assets. Source photograph, input scan, reconstructed visual asset, handling collision hulls (purple), and fitting signed-distance-field (SDF) source surfa"
+  },
+  {
+   "id": "F064",
+   "page": 121,
+   "kind": "figure",
+   "file": "assets/F064.png",
+   "fallback_page_render": false,
+   "caption": "Figure 64: Robot assembly of the toy plane. Wing insertion, reorientation, and fastening with a power drill, shown from left to right during a single continuous demonstration-guided execution."
+  },
+  {
+   "id": "F065",
+   "page": 121,
+   "kind": "figure",
+   "file": "assets/F065.png",
+   "fallback_page_render": false,
+   "caption": "Figure 65: Sim-real Pearson correlation per policy for three computed metrics, compared with the noise ceiling: the correlation a perfect simulator would reach given the same number of real and simula"
+  },
+  {
+   "id": "F066",
+   "page": 122,
+   "kind": "figure",
+   "file": "assets/F066.png",
+   "fallback_page_render": false,
+   "caption": "Figure 66: Simulated vs. real-world performance per policy on DROID. We evaluate 5 generalist checkpoints on the DROID embodiment across 10 tasks, with 5 real-world and 10 simulated trials per task, o"
+  },
+  {
+   "id": "T030",
+   "page": 124,
+   "kind": "table",
+   "file": "assets/T030.png",
+   "fallback_page_render": true,
+   "caption": "Table 30: Results on the RoboCasa365 benchmark. We report success rate (%). The best and second-best results are highlighted in bold and underline, respectively."
+  },
+  {
+   "id": "T031",
+   "page": 124,
+   "kind": "table",
+   "file": "assets/T031.png",
+   "fallback_page_render": true,
+   "caption": "Table 31: Results on the RoboDojo benchmark. Dimension columns report success rate (%), while the last two columns report the average score and success rate (%). GR00T 2 is evaluated on all three layo"
+  },
+  {
+   "id": "T032",
+   "page": 125,
+   "kind": "table",
+   "file": "assets/T032.png",
+   "fallback_page_render": false,
+   "caption": "Table 32: Results on the RoboLab benchmark. We report success rate (%) overall and per difficulty tier. The best and second-best results are highlighted in bold and underline, respectively."
+  },
+  {
+   "id": "T033",
+   "page": 125,
+   "kind": "table",
+   "file": "assets/T033.png",
+   "fallback_page_render": false,
+   "caption": "Table 33: Results on the MolmoSpaces benchmark. We report success rate (%). The best and second-best results are highlighted in bold and underline, respectively. Baselines: 𝜋0.5-DROID (Physical Intell"
+  },
+  {
+   "id": "T034",
+   "page": 126,
+   "kind": "table",
+   "file": "assets/T034.png",
+   "fallback_page_render": false,
+   "caption": "Table 34: Results on G1 Factory. We report success rate (%) over 100 episodes per task. The best results are highlighted in bold. Baseline: GR00T 1.7 (NVIDIA, 2026a)."
+  },
+  {
+   "id": "F067",
+   "page": 127,
+   "kind": "figure",
+   "file": "assets/F067.png",
+   "fallback_page_render": false,
+   "caption": "Figure 67: Overall software and hardware stack of GR00T 2."
+  },
+  {
+   "id": "F068",
+   "page": 130,
+   "kind": "figure",
+   "file": "assets/F068.png",
+   "fallback_page_render": false,
+   "caption": "Figure 68: Data delivery during multi-view pretraining on 1,024 NVIDIA GB300 GPUs over 100 consecutive steadystate steps. (a) Delivered sample-window throughput. (b) Exposed batch-retrieval wait, show"
+  },
+  {
+   "id": "T035",
+   "page": 132,
+   "kind": "table",
+   "file": "assets/T035.png",
+   "fallback_page_render": false,
+   "caption": "Table 35: Measured training-input delivery over 100 steady-state steps on 1,024 NVIDIA GB300 GPUs. The wait-time share is relative to aggregate measured rank-step time."
+  },
+  {
+   "id": "F069",
+   "page": 134,
+   "kind": "figure",
+   "file": "assets/F069.png",
+   "fallback_page_render": true,
+   "caption": "Figure 69: Transformation of human demonstration recordings into aligned multimodal episodes and training-ready dataset shards."
+  },
+  {
+   "id": "F070",
+   "page": 135,
+   "kind": "figure",
+   "file": "assets/F070.png",
+   "fallback_page_render": false,
+   "caption": "Figure 70: Multimodal data ingestion: (A) asynchronous overlap, (B) processing stages and the feedback from input release to admission, (C) storage tiers, and (D) recovery. Numbers identify shards, an"
+  },
+  {
+   "id": "T036",
+   "page": 135,
+   "kind": "table",
+   "file": "assets/T036.png",
+   "fallback_page_render": false,
+   "caption": "Table 36: Production evaluation of the data ingestion system. Ranges span jobs. Memory and disk use are per-node means."
+  }
+ ]
+}

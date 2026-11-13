@@ -1,0 +1,435 @@
+[
+ {
+  "chunk_id": "chunk_01",
+  "pages": [
+   3,
+   5
+  ],
+  "chars": 8103,
+  "sections": [
+   "1. Introduction",
+   "GR00T 2"
+  ]
+ },
+ {
+  "chunk_id": "chunk_02",
+  "pages": [
+   5,
+   8
+  ],
+  "chars": 10904,
+  "sections": [
+   "2. GR00T 2 Overview",
+   "3. GR00T 2 Capabilities",
+   "3.1. Fast Adaptation: Zero-Shot Generalization and Few-Shot Mastery"
+  ]
+ },
+ {
+  "chunk_id": "chunk_03",
+  "pages": [
+   8,
+   13
+  ],
+  "chars": 14781,
+  "sections": [
+   "3.2. X-Adaptability: Cross-Embodiment Skill Transfer",
+   "3.3. Robust Deployment through Reinforcement Learning",
+   "3.4. Agentic GR00T 2"
+  ]
+ },
+ {
+  "chunk_id": "chunk_04",
+  "pages": [
+   13,
+   15
+  ],
+  "chars": 7763,
+  "sections": [
+   "3.5. Humanoid Loco-Manipulation",
+   "4. How We Made GR00T 2",
+   "4.1. Training: Pre-Training and RL Post-Training"
+  ]
+ },
+ {
+  "chunk_id": "chunk_05",
+  "pages": [
+   15,
+   17
+  ],
+  "chars": 9427,
+  "sections": [
+   "4.2. Data",
+   "4.3. Real-World Benchmarking: Mapping the Hill We Climb"
+  ]
+ },
+ {
+  "chunk_id": "chunk_06",
+  "pages": [
+   17,
+   20
+  ],
+  "chars": 8228,
+  "sections": [
+   "4.4. Learning without Teleoperation: Devices and Pipelines"
+  ]
+ },
+ {
+  "chunk_id": "chunk_07",
+  "pages": [
+   20,
+   22
+  ],
+  "chars": 7142,
+  "sections": [
+   "4.5. Simulation and Evaluation"
+  ]
+ },
+ {
+  "chunk_id": "chunk_08",
+  "pages": [
+   22,
+   25
+  ],
+  "chars": 13062,
+  "sections": [
+   "4.6. Deployment and Real-Time Inference",
+   "4.7. Infrastructure"
+  ]
+ },
+ {
+  "chunk_id": "chunk_09",
+  "pages": [
+   26,
+   28
+  ],
+  "chars": 11637,
+  "sections": [
+   "5. Conclusion and Open Problems"
+  ]
+ },
+ {
+  "chunk_id": "chunk_10",
+  "pages": [
+   38,
+   46
+  ],
+  "chars": 16642,
+  "sections": [
+   "A. Fast-Adapt with GR00T 2",
+   "A.1. Benchmark Tasks",
+   "A.2. Zero-Shot Generalization with GR00T 2",
+   "A.3. Dexter-50: Emergent Cross-Embodiment Zero-Shot and Few-Shot Transfer.",
+   "B. X-Adapt with GR00T 2",
+   "B.1. Human →Tianji + Sharpa",
+   "Fails at 0-shot, succeeds at 5-shot"
+  ]
+ },
+ {
+  "chunk_id": "chunk_11",
+  "pages": [
+   46,
+   50
+  ],
+  "chars": 11715,
+  "sections": [
+   "Fails at 0-shot, succeeds at 5-shot",
+   "B.2. UMI →YAM"
+  ]
+ },
+ {
+  "chunk_id": "chunk_12",
+  "pages": [
+   50,
+   53
+  ],
+  "chars": 11059,
+  "sections": [
+   "B.3. DexUMI for Complex, Long-Horizon, and Dynamic Post-Training",
+   "B.4. DexUMI →Tianji + Sharpa"
+  ]
+ },
+ {
+  "chunk_id": "chunk_13",
+  "pages": [
+   53,
+   56
+  ],
+  "chars": 10016,
+  "sections": [
+   "B.5. Human →Simulation →Tianji + Sharpa"
+  ]
+ },
+ {
+  "chunk_id": "chunk_14",
+  "pages": [
+   57,
+   61
+  ],
+  "chars": 16177,
+  "sections": [
+   "C. Data for GR00T 2",
+   "C.1. Human Data for GR00T 2"
+  ]
+ },
+ {
+  "chunk_id": "chunk_15",
+  "pages": [
+   61,
+   63
+  ],
+  "chars": 7002,
+  "sections": [
+   "C.2. UMI-10K for GR00T 2",
+   "C.3. Teleoperation Data for GR00T 2"
+  ]
+ },
+ {
+  "chunk_id": "chunk_16",
+  "pages": [
+   63,
+   66
+  ],
+  "chars": 6669,
+  "sections": [
+   "C.4. Data Annotations",
+   "D. Real-World Benchmarking with GearArena",
+   "D.1. Why Aggregate Real-Robot Evaluations, and Why A/B"
+  ]
+ },
+ {
+  "chunk_id": "chunk_17",
+  "pages": [
+   66,
+   71
+  ],
+  "chars": 15448,
+  "sections": [
+   "D.2. Designing Evaluation Tasks from First Principles",
+   "D.3. The Arena: Stations, Operators, Campaigns, and Suites",
+   "D.4. Leaderboard Mathematics",
+   "D.5. A/B Evaluation Infrastructure",
+   "D.6. Results: What the Arena Shows about GR00T 2"
+  ]
+ },
+ {
+  "chunk_id": "chunk_18",
+  "pages": [
+   71,
+   74
+  ],
+  "chars": 8357,
+  "sections": [
+   "D.7. Limitations",
+   "E. UMIverse for GR00T 2",
+   "E.1. Gripper UMI Hardware"
+  ]
+ },
+ {
+  "chunk_id": "chunk_19",
+  "pages": [
+   74,
+   79
+  ],
+  "chars": 14328,
+  "sections": [
+   "E.2. UMI Direct",
+   "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  ]
+ },
+ {
+  "chunk_id": "chunk_20",
+  "pages": [
+   80,
+   81
+  ],
+  "chars": 6356,
+  "sections": [
+   "E.3. UMI →YAM Transfer: Embodiment Gaps and Ablations"
+  ]
+ },
+ {
+  "chunk_id": "chunk_21",
+  "pages": [
+   81,
+   84
+  ],
+  "chars": 7940,
+  "sections": [
+   "E.4. DexUMI Exoskeleton Hardware",
+   "E.5. DexUMI Post-Training Recipe",
+   "E.6. DexUMI WAM-Native Inpainting",
+   "F. RL Post-Training"
+  ]
+ },
+ {
+  "chunk_id": "chunk_22",
+  "pages": [
+   84,
+   87
+  ],
+  "chars": 9666,
+  "sections": [
+   "F.1. RL-Based Adaptation of World-Action Models"
+  ]
+ },
+ {
+  "chunk_id": "chunk_23",
+  "pages": [
+   87,
+   91
+  ],
+  "chars": 9819,
+  "sections": [
+   "F.2. Automated Discovery of RL Post-Training Algorithms",
+   "F.3. Online RL Post-Training Infrastructure"
+  ]
+ },
+ {
+  "chunk_id": "chunk_24",
+  "pages": [
+   91,
+   95
+  ],
+  "chars": 16671,
+  "sections": [
+   "F.4. Precision Manipulation through RL Post-Training",
+   "F.5. Reinforcement Learning with Neural Simulation"
+  ]
+ },
+ {
+  "chunk_id": "chunk_25",
+  "pages": [
+   95,
+   101
+  ],
+  "chars": 17024,
+  "sections": [
+   "F.5. Reinforcement Learning with Neural Simulation",
+   "G. Agentic GR00T 2",
+   "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  ]
+ },
+ {
+  "chunk_id": "chunk_26",
+  "pages": [
+   101,
+   106
+  ],
+  "chars": 16895,
+  "sections": [
+   "G.1. Agentic Skill Composition and Recovery with Code-as-Policy",
+   "G.2. Agentic Steering with Visual Guidance"
+  ]
+ },
+ {
+  "chunk_id": "chunk_27",
+  "pages": [
+   106,
+   109
+  ],
+  "chars": 7903,
+  "sections": [
+   "G.2. Agentic Steering with Visual Guidance",
+   "G.3. Toward Robotic Self-Improvement",
+   "H. Humanoid Loco-Manipulation"
+  ]
+ },
+ {
+  "chunk_id": "chunk_28",
+  "pages": [
+   109,
+   111
+  ],
+  "chars": 6756,
+  "sections": [
+   "H.1. GR00T 2 Turbo on Whole-Body Latent Actions",
+   "H.2. Real-World Whole-Body Loco-Manipulation"
+  ]
+ },
+ {
+  "chunk_id": "chunk_29",
+  "pages": [
+   111,
+   115
+  ],
+  "chars": 13054,
+  "sections": [
+   "H.3. WAMs Consume Simulation Data Better than VLAs",
+   "I. Accelerating GR00T 2",
+   "I.1. Accelerating Model Inference"
+  ]
+ },
+ {
+  "chunk_id": "chunk_30",
+  "pages": [
+   115,
+   119
+  ],
+  "chars": 10724,
+  "sections": [
+   "I.2. Policy Smoothness",
+   "I.3. Accelerating Task Throughput Beyond Demonstrations",
+   "J. Simulations",
+   "J.1. Real-to-Sim Generation of High-Fidelity Tasks"
+  ]
+ },
+ {
+  "chunk_id": "chunk_31",
+  "pages": [
+   119,
+   123
+  ],
+  "chars": 12240,
+  "sections": [
+   "J.2. Accelerating GR00T 2 Development with Simulation"
+  ]
+ },
+ {
+  "chunk_id": "chunk_32",
+  "pages": [
+   123,
+   126
+  ],
+  "chars": 8443,
+  "sections": [
+   "J.3. Simulation Benchmarking"
+  ]
+ },
+ {
+  "chunk_id": "chunk_33",
+  "pages": [
+   127,
+   129
+  ],
+  "chars": 9084,
+  "sections": [
+   "K. Infrastructure",
+   "K.1. Overall Software and Hardware Stack",
+   "K.2. Hardware",
+   "K.3. Cluster and Job Management"
+  ]
+ },
+ {
+  "chunk_id": "chunk_34",
+  "pages": [
+   129,
+   132
+  ],
+  "chars": 11083,
+  "sections": [
+   "K.4. Distributed Training"
+  ]
+ },
+ {
+  "chunk_id": "chunk_35",
+  "pages": [
+   132,
+   135
+  ],
+  "chars": 7868,
+  "sections": [
+   "K.5. Inference Infrastructure",
+   "K.6. Scalable Multi-Modal Data Processing"
+  ]
+ }
+]

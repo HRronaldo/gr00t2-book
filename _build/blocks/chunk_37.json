@@ -1,0 +1,213 @@
+{
+ "chunk_id": "chunk_37",
+ "sections": [
+  "K. Infrastructure",
+  "K.1. Overall Software and Hardware Stack",
+  "K.2. Hardware",
+  "K.3. Cluster and Job Management"
+ ],
+ "pages": [
+  127,
+  129
+ ],
+ "chars": 9084,
+ "blocks": [
+  {
+   "id": null,
+   "page": 127,
+   "kind": "heading",
+   "text": "K. Infrastructure",
+   "section": "K. Infrastructure"
+  },
+  {
+   "id": "S2246",
+   "page": 127,
+   "kind": "prose",
+   "text": "This section describes the compute, data, and research infrastructure used to develop GR00T 2.",
+   "section": "K. Infrastructure"
+  },
+  {
+   "id": null,
+   "page": 127,
+   "kind": "heading",
+   "text": "K.1. Overall Software and Hardware Stack",
+   "section": "K.1. Overall Software and Hardware Stack"
+  },
+  {
+   "id": "S2247",
+   "page": 127,
+   "kind": "prose",
+   "text": "Training a robotics foundation model like GR00T involves: (1) the ingestion and conversion of large volumes of multimodal recordings, such as video, motion, and language annotations, into training-ready datasets, (2) pretraining and post-training at scale on GPU clusters, and (3) the deployment and evaluation of the resulting policies in simulation and on robots. This section describes the infrastructure we built for these workloads and used to develop GR00T 2. At each layer of the stack we build on widely used open-source software, such as PyTorch, Ray, SkyPilot, and Kubernetes, improving it where needed and adding robotics-specific components on top. We describe the overall stack first and each component separately below.",
+   "section": "K.1. Overall Software and Hardware Stack"
+  },
+  {
+   "id": "C101",
+   "page": 127,
+   "kind": "caption",
+   "text": "Figure 67: Overall software and hardware stack of GR00T 2.",
+   "section": "K.1. Overall Software and Hardware Stack",
+   "asset": "F067"
+  },
+  {
+   "id": "S2248",
+   "page": 127,
+   "kind": "prose",
+   "text": "Fig. 67 shows the stack from the hardware up. Each workload runs on the NVIDIA platform suited to it: GB300 for training, RTX PRO 6000 for data processing, L40 and L40S for simulation and evaluation, and Jetson Thor for inference on the robot. Kubernetes manages the GPU clusters, with NVIDIA NVSentinel monitoring node health and services such as GPU Operator and DCGM alongside it. SkyPilot (Yang et al., 2023) provisions clusters and schedules and manages jobs across them. Ray (Moritz et al., 2018) distributes work within a job, for training workers and for data ingestion alike, and PyTorch is the deep learning framework.",
+   "section": "K.1. Overall Software and Hardware Stack"
+  },
+  {
+   "id": "S2249",
+   "page": 127,
+   "kind": "prose",
+   "text": "The following subsections describe the hardware, cluster and job management, distributed training, inference, and data infrastructure. Reinforcement-learning post-training runs on the same stack, and its infrastructure is described in Sec. F.3.",
+   "section": "K.1. Overall Software and Hardware Stack"
+  },
+  {
+   "id": null,
+   "page": 127,
+   "kind": "heading",
+   "text": "K.2. Hardware",
+   "section": "K.2. Hardware"
+  },
+  {
+   "id": "S2250",
+   "page": 127,
+   "kind": "prose",
+   "text": "GR00T 2 has many workloads that span large-scale foundation-model pretraining, simulation and policy evaluation, online post-training, and latency-sensitive robot deployment. These stages place different demands on accelerator memory, interconnect bandwidth, storage throughput, scheduling, and end-to-end latency. As a result, each stage has different hardware and system requirements that need to be accounted for.",
+   "section": "K.2. Hardware"
+  },
+  {
+   "id": "S2252",
+   "page": 128,
+   "kind": "prose",
+   "text": "K.2.1. Pretraining",
+   "section": "K.2. Hardware"
+  },
+  {
+   "id": "S2253",
+   "page": 128,
+   "kind": "prose",
+   "text": "GR00T 2 pretraining ran on NVIDIA GB300 NVL72 systems because the workload placed a premium on GPU memory capacity, Tensor Core throughput, and networking/collective communication acceleration. Each Blackwell Ultra GPU provides up to 288 GB of HBM3e with 8 TB/s of memory bandwidth and approximately 2.5 PFLOPS of dense BF16/FP16 Tensor Core compute. Because the GR00T 2 model was small enough to fit without pipeline parallelism, this memory capacity allowed the model parameters, each rank’s optimizer state, and activations for a per-device batch of 16 to remain in GPU memory. The larger per-device batch provided more matrix-multiplication work for the Tensor Cores and amortized kernel-launch overhead, improving compute utilization (Aubrey and Stam, 2025).",
+   "section": "K.2. Hardware"
+  },
+  {
+   "id": "S2254",
+   "page": 128,
+   "kind": "prose",
+   "text": "For networking, each GB300 NVL72 rack contains 18 compute trays and 72 GPUs connected as one NVLink domain. Fifth-generation NVLink provides 1.8 TB/s of bidirectional bandwidth per GPU. Within each NVLink domain, NVLink SHARP (NVLS) offloaded reductions to the NVSwitch. East/West communication used the RoCE scale-out fabric, with one 800 Gb/s ConnectX-8 SuperNIC per GPU (NVIDIA, n.d.a,n).",
+   "section": "K.2. Hardware"
+  },
+  {
+   "id": "S2255",
+   "page": 128,
+   "kind": "prose",
+   "text": "The full cluster contained 2,016 GPUs across 28 GB300 NVL72 racks. The GR00T 2 main pretraining run used 1,024 GPUs, while the remaining cluster capacity supported other training experiments concurrently.",
+   "section": "K.2. Hardware"
+  },
+  {
+   "id": "S2256",
+   "page": 128,
+   "kind": "prose",
+   "text": "K.2.2. Simulation and Policy Evaluation",
+   "section": "K.2. Hardware"
+  },
+  {
+   "id": "S2257",
+   "page": 128,
+   "kind": "prose",
+   "text": "Simulation and policy evaluation ran on NVIDIA L40 and L40S clusters because these workloads required graphics, simulation compute, and policy inference on the same accelerator. Both GPUs use the Ada Lovelace architecture and provide 48 GB of GDDR6 memory with 864 GB/s of memory bandwidth, 142 third-generation RT Cores, and 568 fourth-generation Tensor Cores. The RT Cores accelerate hardware ray tracing for rendered observations, while the Tensor Cores accelerate low-precision policy inference. The L40S retains the L40’s memory capacity and graphics resources while providing approximately twice its peak low-precision Tensor Core throughput, allowing more inference work to accompany simulation (NVIDIA, 2023, n.d.c).",
+   "section": "K.2. Hardware"
+  },
+  {
+   "id": "S2258",
+   "page": 128,
+   "kind": "prose",
+   "text": "The 48 GB memory capacity provides headroom to keep the policy checkpoint, simulator state, and rendering buffers resident while processing multiple environments, although achievable concurrency depends on the simulator and task. Unlike GB300 NVL72 systems, L40 and L40S are PCIe Gen4 GPUs without NVLink (NVIDIA, 2023, n.d.c). Evaluation therefore scales primarily by distributing independent environment, checkpoint, and random-seed shards across workers rather than through frequent cross-GPU collectives. Network and storage throughput remain important for staging checkpoints and collecting rollout artifacts, but the primary capacity metrics are environments per GPU, rollout throughput, and checkpoint-evaluation turnaround time.",
+   "section": "K.2. Hardware"
+  },
+  {
+   "id": "S2259",
+   "page": 128,
+   "kind": "prose",
+   "text": "K.2.3. Online Post-Training",
+   "section": "K.2. Hardware"
+  },
+  {
+   "id": "S2260",
+   "page": 128,
+   "kind": "prose",
+   "text": "Online post-training ran across heterogeneous H100, GB300, and L40/L40S pools because no single accelerator could satisfy every stage of the workflow. H100 and GB300 systems supported distributed policy optimization. L40 and L40S systems supported simulation-based collection and evaluation, where graphics capabilities were needed. Capacity was allocated independently to each stage and adjusted as workload bottlenecks shifted.",
+   "section": "K.2. Hardware"
+  },
+  {
+   "id": null,
+   "page": 128,
+   "kind": "heading",
+   "text": "K.3. Cluster and Job Management",
+   "section": "K.3. Cluster and Job Management"
+  },
+  {
+   "id": "S2261",
+   "page": 128,
+   "kind": "prose",
+   "text": "K.3.1. Kubernetes",
+   "section": "K.3. Cluster and Job Management"
+  },
+  {
+   "id": "S2262",
+   "page": 128,
+   "kind": "prose",
+   "text": "Kubernetes provides the AI factory execution layer for GR00T 2, with the cluster software stack deployed through NVIDIA AI Cluster Runtime (AICR) (NVIDIA, n.d.d). This integrates NVIDIA DSX OS components for GPU enablement, high-performance networking, and infrastructure resilience. NVIDIA GPU Operator and Network Operator manage the GPU and networking software stacks, while KAI Scheduler and Kueue provide workload scheduling and admission control, priorities, resource quotas, and topology-aware placement for multi-node workloads.",
+   "section": "K.3. Cluster and Job Management"
+  },
+  {
+   "id": "S2263",
+   "page": 129,
+   "kind": "prose",
+   "text": "On GB300 NVL72 systems, NVIDIA’s Dynamic Resource Allocation (DRA) driver manages ComputeDomains, enabling secure multi-node NVLink access for workload pods. NCCL uses this fabric for collective communication within each NVLink domain and RoCE for communication across racks.",
+   "section": "K.3. Cluster and Job Management"
+  },
+  {
+   "id": "S2264",
+   "page": 129,
+   "kind": "prose",
+   "text": "NVSentinel, also part of NVIDIA DSX OS, monitors GPU and node health and supports policy-driven isolation and remediation of faulty nodes. Together with SkyPilot’s job recovery and the training runtime’s checkpoint-resume mechanisms, these components support reliable operation of the GR00T 2 AI factory.",
+   "section": "K.3. Cluster and Job Management"
+  },
+  {
+   "id": "S2265",
+   "page": 129,
+   "kind": "prose",
+   "text": "K.3.2. SkyPilot",
+   "section": "K.3. Cluster and Job Management"
+  },
+  {
+   "id": "S2266",
+   "page": 129,
+   "kind": "prose",
+   "text": "GR00T 2 training uses SkyPilot (Yang et al., 2023) as the infrastructure orchestration layer for distributed GPU workloads. A shared SkyPilot API control plane provides a common interface for submitting experiments, provisioning workload clusters, monitoring execution, and managing cluster lifecycles. The platform connects this control plane to GPU infrastructure through configured Kubernetes contexts and workspace access controls. Infrastructure configuration and administrative policies are maintained separately from model code, allowing researchers to specify training requirements while platform operators manage credentials, storage integration, and infrastructure access.",
+   "section": "K.3. Cluster and Job Management"
+  },
+  {
+   "id": "S2267",
+   "page": 129,
+   "kind": "prose",
+   "text": "Each experiment runs as a SkyPilot managed job. Once resources are available, the workload containers form a Ray cluster, and the training driver creates a distributed worker for each GPU. SkyPilot manages infrastructure execution, Ray places training workers, and PyTorch, NCCL, and the optimizer implementation perform distributed model training.",
+   "section": "K.3. Cluster and Job Management"
+  },
+  {
+   "id": "S2268",
+   "page": 129,
+   "kind": "prose",
+   "text": "The infrastructure accounts for the communication and data-access requirements of large-scale joint videoand-action training. Kubernetes and Kueue coordinate admission of multi-node workloads using GPU topology information, while the OCI workload configuration requests RDMA network attachments and placement within GPU clique topology domains. The training runtime additionally orders distributed ranks according to physical topology. Shared Lustre storage supplies datasets, pretrained assets, and persistent checkpoints, while node-local scratch supports temporary runtime files. These components connect resource allocation to the communication and storage requirements of the GR00T 2 training workload.",
+   "section": "K.3. Cluster and Job Management"
+  },
+  {
+   "id": "S2269",
+   "page": 129,
+   "kind": "prose",
+   "text": "Launch-time administrative policies validate infrastructure selections, preserve backend-specific placement settings, and configure centralized log forwarding. Workspace access controls govern access to the available compute environments. The platform also supports policies that derive queue assignments and scheduling priorities from administrator-managed workspace configuration. SkyPilot managed-job recovery works together with bounded retries and checkpoint resume in the training stack. This separation enables infrastructure recovery while retaining training state in persistent storage.",
+   "section": "K.3. Cluster and Job Management"
+  }
+ ]
+}

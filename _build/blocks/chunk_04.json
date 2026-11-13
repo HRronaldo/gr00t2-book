@@ -1,0 +1,121 @@
+{
+ "chunk_id": "chunk_04",
+ "sections": [
+  "3.5. Humanoid Loco-Manipulation",
+  "4. How We Made GR00T 2",
+  "4.1. Training: Pre-Training and RL Post-Training"
+ ],
+ "pages": [
+  13,
+  15
+ ],
+ "chars": 7763,
+ "blocks": [
+  {
+   "id": "H09",
+   "page": 13,
+   "kind": "heading",
+   "text": "3.5. Humanoid Loco-Manipulation",
+   "section": "3.5. Humanoid Loco-Manipulation"
+  },
+  {
+   "id": "S263",
+   "page": 13,
+   "kind": "prose",
+   "text": "Bipedal humanoid loco-manipulation poses additional challenges to robotic foundation models: the robot must stay balanced through every motion, which requires high-frequency whole-body control at 50 Hz. We bring GR00T 2 to this setting by pairing GR00T 2 Turbo with SONIC (Luo et al., 2026), a learned whole-body controller (Fig. 9). Turbo uses camera observations and proprioception to choose what motion to take next, and SONIC turns that desired motion into joint commands for execution. Both models run onboard the humanoid using a multi-layer stack (Sec. H.1).",
+   "section": "3.5. Humanoid Loco-Manipulation"
+  },
+  {
+   "id": "S264",
+   "page": 13,
+   "kind": "prose",
+   "text": "Whole-body Loco-manipulation. Using SONIC’s whole-body motion latent interface as its action space, GR00T 2 Turbo coordinates the humanoid’s entire body for locomotion and manipulation. We evaluate the resulting policies on four real-world long horizon whole-body tasks. In popcorn serving, the robot holds a cup while scooping and pouring with the other hand. In table clean-up, it repeatedly grasps diverse objects, walks to the trash bins, and places them inside. In ground pick-up, it bends down to pick up diverse objects. In whole-body cleaning, it picks up a cup from the floor, wipes a spill with a towel under its foot, then kneels to retrieve and discard the towel. On popcorn serving, Turbo completes all 48 trials, compared with 83.3% for GR00T 1.7 using the same demonstrations and controller. Each trial requires two filled cups. Detailed results for all four real-world tasks are reported in Sec. H.2 and Tab. 25.",
+   "section": "3.5. Humanoid Loco-Manipulation"
+  },
+  {
+   "id": "S265",
+   "page": 13,
+   "kind": "prose",
+   "text": "Sim-and-real for Loco-manipulation. Whole-body teleoperation data is costly to collect, so we design a motion-centric real-to-sim pipeline that turns each recorded motion into demonstrations across varied scenes. We replay the motion through SONIC in simulation, keeping it fixed while fitting table and object placements so that the robot completes the pick, then render successful rollouts in diverse rooms. These demonstrations expand visual diversity while preserving the real robot’s controller and action representation (Sec. H.3). The WAM makes better use of this simulated data than the VLA baseline on out-of-distribution table pick-and-place: starting from the same 6.7% success with real data alone, co-training raises GR00T 2 Turbo to 63.3%, compared with 40.0% for GR00T 1.7, over 30 trials each (Tab. 26). Reusing real motions in simulation therefore provides a practical way to improve the WAM’s generalization without collecting additional teleoperated demonstrations.",
+   "section": "3.5. Humanoid Loco-Manipulation"
+  },
+  {
+   "id": "H10",
+   "page": 14,
+   "kind": "heading",
+   "text": "4. How We Made GR00T 2",
+   "section": "4. How We Made GR00T 2"
+  },
+  {
+   "id": "S266",
+   "page": 14,
+   "kind": "prose",
+   "text": "This section describes the methods behind GR00T 2, focusing on the key design decisions, while the appendix provides the full details. Sec. 4.1 presents the training recipe, from pretraining to RL post-training, and Sec. 4.2 the training data. Sec. 4.3 describes how we benchmark checkpoints against each other on real robots. Sec. 4.4 describes the capture devices and pipelines for learning without teleoperation, Sec. 4.5 the simulation and evaluation framework, Sec. 4.6 real-time deployment, and Sec. 4.7 the training and data infrastructure.",
+   "section": "4. How We Made GR00T 2"
+  },
+  {
+   "id": "H11",
+   "page": 14,
+   "kind": "heading",
+   "text": "4.1. Training: Pre-Training and RL Post-Training",
+   "section": "4.1. Training: Pre-Training and RL Post-Training"
+  },
+  {
+   "id": "S267",
+   "page": 14,
+   "kind": "prose",
+   "text": "Pre-training. We initialize GR00T 2 from the pretrained Cosmos-Predict2.5-2B video diffusion transformer. To turn this video model into a general-purpose robot policy, we need it both to understand how physical interactions unfold and to connect those dynamics to actions across embodiments. We therefore train on a diverse mixture of human and robot experience in three stages: we first adapt the video model to embodied interactions, then learn video and actions jointly, and finally place greater emphasis on robot data. This progression lets us draw on the breadth of human experience while focusing the resulting model on robot execution.",
+   "section": "4.1. Training: Pre-Training and RL Post-Training"
+  },
+  {
+   "id": "S268",
+   "page": 14,
+   "kind": "prose",
+   "text": "Stage 1: Single-view video pre-training. We first adapt the pretrained video model to embodied visual experience from egocentric human video, supplemented by robot data. Human demonstrations provide diverse examples of hands interacting with objects across tasks and environments, while robot observations introduce the visual conditions of robot manipulation. Each training example uses a single camera view, and the model is trained to predict future video from the observation history. The goal is to establish a visual dynamics prior for embodied interaction before training the model to generate actions.",
+   "section": "4.1. Training: Pre-Training and RL Post-Training"
+  },
+  {
+   "id": "S269",
+   "page": 14,
+   "kind": "prose",
+   "text": "Stage 2: Multi-view video-action training. We next connect the learned visual dynamics to actions by extending the model with embodiment-specific state and action modules. We jointly train video and action prediction on human and robot data, using multi-view observations where available to capture interactions from complementary viewpoints. Robot trajectories provide embodiment-specific actions, while human demonstrations provide tracked hand-pose trajectories as action supervision. Video and action are trained with flow-matching objectives, and the action loss is applied when valid action supervision is available. The mixture increases the contribution of YAM and dexterous-hand sources while retaining substantial egocentric human data. Joint training is intended to bring experience from these different embodiments into a shared model that can predict both the evolution of a scene and actions for the target robot.",
+   "section": "4.1. Training: Pre-Training and RL Post-Training"
+  },
+  {
+   "id": "S270",
+   "page": 14,
+   "kind": "prose",
+   "text": "Stage 3: Robot-upweighted video-action training. A broad mixture of human and robot data provides diverse physical experience, but the final policy must generate actions in the robot’s own action space. We therefore continue joint video-action training with a stronger emphasis on robot demonstrations, particularly YAM, while retaining dexterous-hand, egocentric human, and other data sources. This reweighting focuses training on the observations and control required for robot execution while continuing to draw on the broader experience acquired in the earlier stages.",
+   "section": "4.1. Training: Pre-Training and RL Post-Training"
+  },
+  {
+   "id": "S271",
+   "page": 14,
+   "kind": "prose",
+   "text": "The resulting model serves as the starting point for the task-specific adaptation and RL post-training described below. Details of the data sources are provided in Sec. 4.2.",
+   "section": "4.1. Training: Pre-Training and RL Post-Training"
+  },
+  {
+   "id": "S272",
+   "page": 14,
+   "kind": "prose",
+   "text": "RL post-training. To explore, we replace GR00T 2’s deterministic action denoising with Coefficients-Preserving Sampling (CPS) (Wang and Yu, 2025) during rollouts, injecting noise only into the action denoising process while video denoising stays deterministic. Policy updates use a group-relative objective in the style of GRPO whose baseline also remembers each context’s past returns, so that groups in which every attempt succeeds, or every attempt fails, still carry a learning signal. The basis of this recipe was found by AutoRL, a research agent that iterated on the algorithm in simulation for about 35 days (Sec. F.2). Two complementary approaches are GRPO-induced self-imitation, which fine-tunes GR00T 2 on successful GRPO rollouts, and residual RL, which learns a small corrective policy on top of a frozen GR00T 2 (Sec. F.1.2). For RL without the real robot, we adapt the DreamDojo world model to the target tasks from rollouts of the initial policy and use a learned",
+   "section": "4.1. Training: Pre-Training and RL Post-Training"
+  },
+  {
+   "id": "C011",
+   "page": 15,
+   "kind": "caption",
+   "text": "Figure 10: Scaling human video in pretraining. Human-1M data pre-training (0%, 1%, 10%, or 100%) post-trained with Dexter teleoperation data and evaluated on 72 tasks. Real Robot: 3 rollout episodes per task. An operator grades binary success and a vision-language model scores task progress. Video rollout: autoregressive video generation from 3 recorded initial configurations per task and 10 generation seeds per configuration. A vision-language model judges success and scores task progress. We report % progress and success rate with ±1 SEM bars.",
+   "section": "4.1. Training: Pre-Training and RL Post-Training",
+   "asset": "F010"
+  },
+  {
+   "id": "S287",
+   "page": 15,
+   "kind": "prose",
+   "text": "completion detector as the reward (Sec. F.5). An online infrastructure coordinates robot interaction, training, and evaluation, and retains experience across interruptions (Sec. F.3).",
+   "section": "4.1. Training: Pre-Training and RL Post-Training"
+  }
+ ]
+}

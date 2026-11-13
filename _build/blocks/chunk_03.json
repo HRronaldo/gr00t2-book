@@ -1,0 +1,205 @@
+{
+ "chunk_id": "chunk_03",
+ "sections": [
+  "3.2. X-Adaptability: Cross-Embodiment Skill Transfer",
+  "3.3. Robust Deployment through Reinforcement Learning",
+  "3.4. Agentic GR00T 2"
+ ],
+ "pages": [
+  8,
+  13
+ ],
+ "chars": 14781,
+ "blocks": [
+  {
+   "id": "H06",
+   "page": 8,
+   "kind": "heading",
+   "text": "3.2. X-Adaptability: Cross-Embodiment Skill Transfer",
+   "section": "3.2. X-Adaptability: Cross-Embodiment Skill Transfer"
+  },
+  {
+   "id": "S133",
+   "page": 8,
+   "kind": "prose",
+   "text": "GR00T 2 can learn a new task on a robot without any task-specific teleoperated demonstration. Fig. 4 summarizes four ways to teach it such a task, from demonstrations recorded with a motion-capture glove, the DexUMI exoskeleton, or the handheld Gripper UMI, and from a single human video expanded in simulation.",
+   "section": "3.2. X-Adaptability: Cross-Embodiment Skill Transfer"
+  },
+  {
+   "id": "S134",
+   "page": 9,
+   "kind": "prose",
+   "text": "For the glove and Gripper UMI demonstrations, which come from a different embodiment than the robot, one recipe bridges the gap. Demonstrations recorded without the robot specify the task, task-agnostic play data from the target robot specify the embodiment, and cross-embodiment pretraining connects the two. Without this pretraining, the same post-training data yield substantially lower performance (Sec. B.1.5). For the glove, DexUMI, and Gripper UMI demonstrations, the baselines are post-trained on the same data as GR00T 2 (Fig. 27 and Tabs. 4 and 5). When teleoperated demonstrations are available, they complement rather than replace the human data (App. B).",
+   "section": "3.2. X-Adaptability: Cross-Embodiment Skill Transfer"
+  },
+  {
+   "id": "S135",
+   "page": 9,
+   "kind": "prose",
+   "text": "Transfer to dexterous hands. Two devices record dexterous demonstrations without the robot: a motioncapture glove worn on the bare hand, and the DexUMI exoskeleton, which replicates the robot hand’s joints and contact surfaces and records fingertip forces in the hand’s tactile format. With the glove, human demonstrations are recorded with head and wrist cameras, retargeted offline to the robot hand, and co-trained with play data of the target robot (Sec. B.1.3). On a bimanual robot with Sharpa hands, this recipe teaches precise chemistry-lab tasks and a fast conveyor toss that cannot be demonstrated through teleoperation. On one task, GR00T 2 trained without any teleoperated demonstration outperforms a baseline without cross-embodiment pretraining that receives ten (Fig. 27). DexUMI extends robot-free collection to tasks that depend on force and compliance: from its force recordings, GR00T 2 learns to predict the force to apply along with the motion, and the hand’s stiffness adapts to that force. Trained on DexUMI demonstrations alone, GR00T 2 slices a banana and unscrews a jar in a long-horizon breakfast task and lights a lamp with a struck match, with 60 to 80% success per task, whereas GR00T 1.7 and 𝜋0.5 complete none (Fig. 15 and Tab. 5). DexUMI demonstrations also transfer to a hand that the exoskeleton does not replicate. After retargeting to the 22-DoF Sharpa hand, GR00T 2 succeeds in 60% of trials on microscope slide dabbing and 65% on conveyor package selection and tossing, and the same two baselines succeed in none (Tab. 6).",
+   "section": "3.2. X-Adaptability: Cross-Embodiment Skill Transfer"
+  },
+  {
+   "id": "S136",
+   "page": 9,
+   "kind": "prose",
+   "text": "Transfer to parallel-gripper robots. Demonstrations are recorded with the handheld Gripper UMI, in robot format through robot-style wrist cameras and a width encoder, and deployed on YAM, a robot that shares neither its cameras, nor its gripper, nor its workspace. GR00T 2 co-trains them with task-agnostic YAM play data that supply the embodiment and aligns them to YAM’s camera geometry and action space (Sec. 4.4.2). With 41 to 75 demonstrations per task and no teleoperation, GR00T 2 completes a long-horizon toy assembly and a board disassembly in 60% and 50% of trials and sorts 86% of the items off a moving conveyor, whereas the baselines complete neither long-horizon task (Tab. 4). As few as 10 to 20 demonstrations yield end-to-end success. Collection is thus decoupled from the robot, and human-speed motion makes dynamic skills learnable.",
+   "section": "3.2. X-Adaptability: Cross-Embodiment Skill Transfer"
+  },
+  {
+   "id": "S137",
+   "page": 9,
+   "kind": "prose",
+   "text": "Transfer from a single human video through simulation. From one human video, we reconstruct the objects and the hand-object motion, train an RL expert in simulation, and fine-tune GR00T 2 on visually randomized rollouts of that expert. The resulting policy transfers zero-shot to the real robot and drives a nail in 9 of 10 trials, whereas GR00T 1.7 and 𝜋0.5 complete none of the real-world tasks (Sec. B.5).",
+   "section": "3.2. X-Adaptability: Cross-Embodiment Skill Transfer"
+  },
+  {
+   "id": "H07",
+   "page": 9,
+   "kind": "heading",
+   "text": "3.3. Robust Deployment through Reinforcement Learning",
+   "section": "3.3. Robust Deployment through Reinforcement Learning"
+  },
+  {
+   "id": "S138",
+   "page": 9,
+   "kind": "prose",
+   "text": "Supervised fine-tuning (SFT) equips GR00T 2 with manipulation skills, but contact-rich tasks remain sensitive to small errors in alignment and physical interaction. We apply real-world RL on top of SFT policy to further improve the reliability of GR00T 2 through real-world interaction and task-level success feedback.",
+   "section": "3.3. Robust Deployment through Reinforcement Learning"
+  },
+  {
+   "id": "S139",
+   "page": 9,
+   "kind": "prose",
+   "text": "We evaluate four precision manipulation tasks: fixed-pipe fittings (the task of Tab. 1a, started from harder fitting poses), finger placement, cable insertion, and charger insertion (Fig. 5). We directly optimize GR00T 2 using Group Relative Policy Optimization (GRPO) (Shao et al., 2024) and further train on successful GRPO rollouts through GRPO-induced self-imitation. We also compare against residual RL, which learns corrections on top of a frozen GR00T 2 policy (Sec. 4.1).",
+   "section": "3.3. Robust Deployment through Reinforcement Learning"
+  },
+  {
+   "id": "S140",
+   "page": 9,
+   "kind": "prose",
+   "text": "GRPO-induced self-imitation achieves 88%, 98%, 94%, and 96% success on the four tasks, respectively, compared with 40 to 76% after SFT. Residual RL also improves performance, but without updating the underlying GR00T 2 model (Fig. 5). These results show that real-world RL improves the reliability of GR00T 2",
+   "section": "3.3. Robust Deployment through Reinforcement Learning"
+  },
+  {
+   "id": "C006",
+   "page": 10,
+   "kind": "caption",
+   "text": "Figure 5: Real-robot post-training on four contact-rich manipulation tasks. Labels report success rates, and whiskers are 95% Wilson intervals over 50 trials per bar. Bold marks each task’s best method. GRPO and GRPO-induced self-imitation update GR00T 2 directly, whereas residual RL learns a correction policy on top of a frozen GR00T 2. GRPO-induced self-imitation trains on successful GRPO rollouts. *Evaluated with CPS sampling noise.",
+   "section": "3.3. Robust Deployment through Reinforcement Learning",
+   "asset": "F005"
+  },
+  {
+   "id": "C007",
+   "page": 10,
+   "kind": "caption",
+   "text": "Figure 6: Agentic runtime architecture. System 2 monitors execution and invokes GR00T 2 and CaP tools through an observe-reason-act-verify loop. GR00T 2 or ASPIRE-generated program serves as execution backends with shared execution environment interface.",
+   "section": "3.3. Robust Deployment through Reinforcement Learning",
+   "asset": "F006"
+  },
+  {
+   "id": "S190",
+   "page": 10,
+   "kind": "prose",
+   "text": "on contact-rich manipulation. The resulting skills can be integrated into agentic execution for more complex, long-horizon tasks (Sec. 3.4), as we will introduce next.",
+   "section": "3.3. Robust Deployment through Reinforcement Learning"
+  },
+  {
+   "id": "H08",
+   "page": 10,
+   "kind": "heading",
+   "text": "3.4. Agentic GR00T 2",
+   "section": "3.4. Agentic GR00T 2"
+  },
+  {
+   "id": "S191",
+   "page": 10,
+   "kind": "prose",
+   "text": "A frontier multimodal agent and GR00T 2 address complementary parts of a task. The agent determines what to do: it decomposes long tasks, monitors progress, and writes code. GR00T 2 determines how to do it, performing the contact-rich manipulation that is difficult to script. The agent serves as System 2 and calls GR00T 2 as a tool alongside camera, state, and CaP tools (Fig. 6). It supports GR00T 2 in four ways. Augment: for tasks that need memory or explicit reasoning, the agent runs a task-level program that calls GR00T 2 for each manipulation step. Together with RL post-training, this puts GR00T 2 first on both the RoboCasa365 (Nasiriany et al., 2026) and RoboDojo (Chen et al., 2026a) leaderboards (Tab. 19). Assist: on real robots, the agent watches GR00T 2 and, when it sees a dropped part or stalled progress, repairs the state with a CaP skill and hands control back, lifting a post-trained GR00T 2 to near-perfect success on three cluttered assembly tasks (Fig. 7). Guide: beyond language, the agent can steer GR00T 2 with visual targets through the WAM API, described below. Improve: an autonomous research agent discovered the basis of the RL recipe we use to post-train GR00T 2 (Sec. 4.1",
+   "section": "3.4. Agentic GR00T 2"
+  },
+  {
+   "id": "C008",
+   "page": 11,
+   "kind": "caption",
+   "text": "Figure 7: Agentic assistance on real robots. (a) Successful trials out of 100 per method on three long-horizon assembly tasks on YAM. Before every trial a person randomly dumps all parts onto the table, a cluttered starting configuration never seen in post-training and much harder than the arranged layouts of Tab. 1a. A trial that needed human help counts as a failure. The agent lifts GR00T 2 after SFT + DAgger to at least 97% on all three tasks. (b) Full-task success over 20 repeated-insertion episodes with SFT and RL-post-trained GR00T 2 in the same agentic framework. RL post-training raises success from 60% to 95% on multi-cable and from 10% to 100% on multi-charger insertion.",
+   "section": "3.4. Agentic GR00T 2",
+   "asset": "F007"
+  },
+  {
+   "id": "S199",
+   "page": 11,
+   "kind": "prose",
+   "text": "and F.2). We therefore recommend assigning manipulation to GR00T 2 and providing the agent with the task structure, success checks, and a small library of recovery skills (Sec. G.1).",
+   "section": "3.4. Agentic GR00T 2"
+  },
+  {
+   "id": "S200",
+   "page": 11,
+   "kind": "prose",
+   "text": "Agentic Skill Composition and Recovery with Code-as-Policy. In simulation, we use ASPIRE (Lu et al., 2026) to discover task-level programs that compose GR00T 2 calls with perception, reasoning, and CaP primitives. These programs use GR00T 2 as a manipulation tool within more complex task sequences, while System 2 monitors execution and invokes online CaP recovery when unexpected failures occur. Combined with RL post-training, this approach achieves 88.0% success on RoboCasa365 and 75.8% on RoboDojo, evaluated on one of its three official layout banks, the highest reported success rates on both leaderboards as of November 6, 2026 (Tab. 19).",
+   "section": "3.4. Agentic GR00T 2"
+  },
+  {
+   "id": "S201",
+   "page": 11,
+   "kind": "prose",
+   "text": "On physical robots, GR00T 2 remains the primary executor, while the agent monitors progress and invokes CaP skills for targeted recovery. We stress-test this approach on three long-horizon assembly tasks on YAM, a Toy Plane, a Toy Tractor, and a Hot Wheels car (Fig. 55), under conditions much harder than the post-training benchmark in Tab. 1a. There, every trial starts from an arranged layout of the parts. Here, a person randomly dumps all parts onto the table before each trial, so every trial starts from a new cluttered configuration, with overlapping parts and arbitrary poses never seen in post-training, and each method runs 100 trials. The robot must find the parts, assemble them in order, fasten them with a toy drill, and recover from its own errors, all within a single trial that typically lasts 5 to 14 minutes. These numbers therefore measure robustness and are not directly comparable with Tab. 1a. For Hot Wheels Assembly, the benchmark reports 85% success from its fixed layout, while the SFT policy completes 23 of 100 trials once the parts are dumped. DAgger (Ross et al., 2011) raises the three tasks to 84, 71, and 78 successes out of 100, and with the agent repairing dropped parts and stalls before handing control back to GR00T 2, hybrid execution reaches 98, 97, and 97 successes out of 100 trials (Fig. 7). These results bring GR00T 2 closer to deployment-level reliability, with robust long-horizon manipulation from highly variable, unseen initial configurations.",
+   "section": "3.4. Agentic GR00T 2"
+  },
+  {
+   "id": "S202",
+   "page": 11,
+   "kind": "prose",
+   "text": "Building on the RL-trained precision skills from Sec. 3.3, agentic execution composes these skills into longer tasks. In repeated cable and charger insertion, the robot must consecutively insert five Ethernet cables into a network switch or five chargers into selected outlets (Fig. 55). CaP handles object localization, grasping, and positioning, while RL-trained GR00T 2 performs the precision-critical insertions. The agent coordinates the sequence, verifies each insertion, and invokes CaP recovery when needed. Within the same agentic framework, replacing SFT policies with RL-post-trained GR00T 2 improves full-task success from 12/20 to 19/20 for cable insertion and from 2/20 to 20/20 for charger insertion (Fig. 7).",
+   "section": "3.4. Agentic GR00T 2",
+   "merged_ids": [
+    "S203"
+   ]
+  },
+  {
+   "id": "S204",
+   "page": 12,
+   "kind": "prose",
+   "text": "Agentic Steering. With the agent acting as System 2 and GR00T 2 as System 1, a central design question is what the interface between them should be, that is, what the agent sends to GR00T 2 for each step; we refer to this interface as the WAM API. Language is the natural choice, but grounding it in the scene is hard: GR00T 2 must itself find the objects and locations that an instruction refers to. We therefore explore guiding GR00T 2 with image-space grasp and release points in addition to language: the points specify directly which object to manipulate, where to place it, and which arm acts. We mid-train GR00T 2 to condition on these points, rendered as arm-colored markers on its camera image alongside the language instruction. Point supervision is generated automatically from the gripper and hand states in existing demonstrations, requiring neither additional manual annotation nor new robot demonstrations. Once mid-trained, GR00T 2 can be steered by agent-generated points without task-specific policy fine-tuning. During execution, GR00T 2 generates the robot’s actions, while the agent monitors progress and revises its guidance to advance, retry, or finish. In these experiments, the agent is used zero-shot, with one conversation per episode (Sec. G.2).",
+   "section": "3.4. Agentic GR00T 2"
+  },
+  {
+   "id": "C009",
+   "page": 12,
+   "kind": "caption",
+   "text": "Figure 8: Higher average success with visual steering on both evaluation tiers. (a) Left- and right-hand steering examples. Circles mark grasp targets and crosses mark release targets, and colors identify the acting arm. (b, c) Equalweight means of benchmark success rates, not pooled trial rates. Short horizon averages two benchmarks (144 and 64 trials per configuration; the Dexter benchmark was obtained with an earlier implementation of the model), and long horizon averages three robot-task combinations: trash sorting on both robots (20 episodes each) and a YAM-only board-disassembly stress test (10 episodes). Robot-specific protocols and results are given in Sec. G.2.",
+   "section": "3.4. Agentic GR00T 2",
+   "asset": "F008"
+  },
+  {
+   "id": "S218",
+   "page": 12,
+   "kind": "prose",
+   "text": "We evaluate this approach on two embodiments, YAM and Dexter, in two tiers: short-horizon benchmarks test only a few steps instruction following, while long-horizon benchmarks require completing an entire trash-sorting task on both robots, plus board disassembly on YAM as a stress test. Short-horizon instructions are organized by reference type to assess distinct grounding requirements (nominal, spatial, ordinal, cardinal, arm, and object-exclusion references) and execution requirements (action and grasp references). Sec. G.2 details this taxonomy together with the evaluation protocols, individual benchmarks, and instruction-category breakdowns. We compare three settings: GR00T 2 given the original task instruction, GR00T 2 given the agent’s language guidance, and the point-conditioned GR00T 2 given the agent’s language guidance and visual markers. Visual steering achieves the highest average success in both tiers: benchmark-mean success of 76.8% on short-horizon tasks and mean full-task success of 53.3% on long-horizon tasks, compared with 44.2% and 1.7% using the agent’s language guidance alone (Fig. 8).",
+   "section": "3.4. Agentic GR00T 2"
+  },
+  {
+   "id": "S219",
+   "page": 12,
+   "kind": "prose",
+   "text": "Despite these gains, grasp and release points cannot convey every task requirement. The markers specify spatial",
+   "section": "3.4. Agentic GR00T 2"
+  },
+  {
+   "id": "C010",
+   "page": 13,
+   "kind": "caption",
+   "text": "Figure 9: Three-level stack for whole-body loco-manipulation. An optional reasoning model (S2) picks the task and the prompt. GR00T 2 Turbo (S1) reads RGB images and proprioception and predicts 1.6 s chunks of SONIC whole-body motion tokens at about 1 Hz. SONIC (S0) decodes the tokens into joint position targets at 50 Hz, which the robot’s PD controller tracks at 1000 Hz. S1 runs onboard on an NVIDIA Jetson AGX Thor, and S0 runs onboard on an NVIDIA Jetson Orin NX.",
+   "section": "3.4. Agentic GR00T 2",
+   "asset": "F009"
+  },
+  {
+   "id": "S262",
+   "page": 13,
+   "kind": "prose",
+   "text": "targets, not a complete manipulation strategy: requirements such as placing an object on its side, pouring, or scooping still depend on language and GR00T 2’s learned skills. Richer guidance, including target 6D object poses, goal images, or affordance-based marking, could extend this interface.",
+   "section": "3.4. Agentic GR00T 2"
+  }
+ ]
+}

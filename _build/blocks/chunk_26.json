@@ -1,0 +1,243 @@
+{
+ "chunk_id": "chunk_26",
+ "sections": [
+  "G.1. Agentic Skill Composition and Recovery with Code-as-Policy",
+  "G.2. Agentic Steering with Visual Guidance"
+ ],
+ "pages": [
+  101,
+  106
+ ],
+ "chars": 16895,
+ "blocks": [
+  {
+   "id": "S1865",
+   "page": 101,
+   "kind": "prose",
+   "text": "For multi-cable insertion, five Ethernet (RJ45) cables stand upright beside a network switch. The robot must connect them in a fixed order to five designated ports. CaP first localizes all twelve candidate port faces using SAM 3 (Carion et al., 2025) and camera depth, then grasps each connector and transports it along a collision-free path to a pre-insertion pose. GR00T 2 performs the insertion, and S2 checks for an Ethernet link and verifies that the connector occupies the assigned port. If insertion stalls or exceeds 60 s, CaP retracts the connector and prepares another attempt, allowing up to three attempts per port. S2 can stop retries early if the connector has rotated in the gripper. The episode succeeds only if all five connectors are inserted, a setting that compounds insertion errors and introduces occlusion from previously inserted cables.",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1866",
+   "page": 101,
+   "kind": "prose",
+   "text": "For multi-charger insertion, a human specifies five target outlets by pointing to them in order among twelve visually identical outlets arranged as a 2 × 6 grid. S2 grounds the gestures to individual outlets, with SAM 3 providing an independent interpretation. CaP grasps and transports each charger from its holder to the selected pre-insertion pose, and GR00T 2 performs the insertion. S2 checks whether the corresponding letter of an illuminated sign turns on and verifies the final target. Stalled or timed-out attempts can trigger CaP recovery, with at most three attempts per outlet and a 90 s limit per attempt. The task requires both accurate grounding of nonverbal instructions and precise insertion as the scene grows more cluttered.",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1867",
+   "page": 101,
+   "kind": "prose",
+   "text": "Fig. 7b shows that RL post-training improves long-horizon insertion reliability within the same agentic system. For multi-cable insertion, success rises from 12/20 to 19/20, and for multi-charger insertion, it rises from 2/20 to 20/20. The gains highlight the value of RL-trained precision skills within long-horizon agentic execution.",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1868",
+   "page": 101,
+   "kind": "prose",
+   "text": "Failure Analysis. Of the 300 SFT + DAgger + Agent assembly episodes, eight fail in three categories. Incomplete fastening accounts for three failures (two airplane, one Hot Wheels): a screw remains partially driven, but both",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "C074",
+   "page": 102,
+   "kind": "caption",
+   "text": "Figure 54: Why SFT + Agent episodes fail. Primary cause of manually reviewed failed SFT + Agent episodes: 87 on RoboCasa365 and 80 on RoboDojo.",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy",
+   "asset": "F054"
+  },
+  {
+   "id": "S1884",
+   "page": 102,
+   "kind": "prose",
+   "text": "GR00T 2 and S2 judge the step complete because the visual difference is subtle. Late intervention accounts for three failures (one tractor, two Hot Wheels): GR00T 2 mounts a small wheel on an incorrect rear hub before S2 stops it, and the available CaP skills cannot reliably reverse the operation. Physical limitations account for two tractor failures: one screw falls off the table, while another becomes mechanically jammed. Both of these episodes can be completed after brief human intervention, but are counted as failures under the autonomous evaluation protocol.",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1885",
+   "page": 102,
+   "kind": "prose",
+   "text": "On repeated insertion, SFT + RL + Agent fails in only one of the 40 evaluated episodes, due to a timeout during multi-cable insertion. SAM 3 yields an imprecise connector grasp, leading to an offset pre-insertion pose. Although the RL-trained policy moves toward the port, alignment recovery requires small exploratory motions while maintaining forward pressure and supporting the connector against gravity, and the attempt exceeds the 60 s limit. This case illustrates how residual pose errors can still make recovery too slow under a fixed execution budget.",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "S1886",
+   "page": 102,
+   "kind": "prose",
+   "text": "Together, these evaluations demonstrate two complementary forms of agentic execution. In simulation, ASPIREgenerated programs provide the task structure that direct GR00T 2 execution may lack, with online CaP recovery addressing unexpected states. In the real world, GR00T 2 performs most manipulation directly, while S2 detects failures and invokes targeted CaP skills, including skills acquired through CaP sim-to-real transfer. Both strategies extend GR00T 2’s capabilities through programmable recovery without requiring every contingency to be absorbed into the foundation policy itself.",
+   "section": "G.1. Agentic Skill Composition and Recovery with Code-as-Policy"
+  },
+  {
+   "id": "H56",
+   "page": 102,
+   "kind": "heading",
+   "text": "G.2. Agentic Steering with Visual Guidance",
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1887",
+   "page": 102,
+   "kind": "prose",
+   "text": "Agentic skill composition and recovery (Sec. G.1) integrates GR00T 2 with external CaP programs and skills, whereas agentic steering keeps GR00T 2 as the only controller and lets the agent shape its behavior through the WAM API. We first describe the three parts of visual steering, in which the agent adds visual guidance to its language instructions: the interface, the agent loop, and the mid-training of GR00T 2. We then evaluate visual steering on short- and long-horizon benchmarks on YAM and Dexter.",
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1888",
+   "page": 102,
+   "kind": "prose",
+   "text": "Visual Guidance Interface. The interface separates what and where from how. For each step, the agent names the acting arm and gives a grasp point and a release point as pixel coordinates in the image of one scene camera (Tab. 21), while GR00T 2 determines the grasp pose, the approach, and all motion in between. We observed that GR00T 2 conditions strongly on fine visual details in its conditioning frames, so we pass the points by drawing them as markers directly on the conditioning frame rather than through a separate input: a filled disc for the grasp point and a plus-shaped cross for the release point, in the acting arm’s color (magenta for the left arm, cyan for the right), as in Fig. 8a. Only the acting arm is marked, and only on the current frame of the scene camera. Alongside the markers, GR00T 2 receives the agent’s per-step instruction, which names the",
+   "section": "G.2. Agentic Steering with Visual Guidance",
+   "merged_ids": [
+    "S1889"
+   ]
+  },
+  {
+   "id": "C075",
+   "page": 103,
+   "kind": "caption",
+   "text": "Figure 55: Real-world tasks. (A) Toy Plane assembly: dump the parts, attach and fasten the bottom wing, turn the airplane over, and fasten the top wing. (B) Toy Tractor assembly: dump the parts, fasten the wheels on one side, turn the body over, and complete the other side. (C) Hot Wheels assembly: dump the parts, mount and fasten four wheels, and install and fasten the hood. (D) Multi-cable insertion: plug five Ethernet cables into a network switch. (E) Multi-charger insertion: plug five chargers into a power strip.",
+   "section": "G.2. Agentic Steering with Visual Guidance",
+   "asset": "F055"
+  },
+  {
+   "id": "S1902",
+   "page": 103,
+   "kind": "prose",
+   "text": "acting arm, in place of the task instruction.",
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1903",
+   "page": 103,
+   "kind": "prose",
+   "text": "Agent Loop. The agent loop has three layers. System 2 is the agent, which plans the steps and judges whether each step is done and what comes next. System 1 is GR00T 2, which executes the current step from the agent’s instruction and points. The harness is the rule-based program between them, which passes the agent’s instruction and points to GR00T 2 and decides when to query the agent. We use GPT-6 Astra as the agent, zero-shot and with one conversation per episode. At the start of an episode, it receives the task instruction and the images from all of the policy’s cameras, plans the steps, and returns the acting arm and the two points for the first step. The harness queries the agent again when an arm releases an object, when a fast vision-language model, used as a completion checker reports the step done, or after 45 s without a step end. The agent then decides whether to advance to the next step, redo the current one, replan the remaining steps, or finish.",
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1904",
+   "page": 103,
+   "kind": "prose",
+   "text": "Mid-Training for Visual Guidance. Following the points requires mid-training, because pretraining never shows GR00T 2 markers on its observations. We generate the point labels automatically from existing demonstrations by detecting grasp and release events for each arm (Tab. 21). If an arm’s next event is a grasp, its grasp marker is placed at that grasp and its release marker at the following release. If the arm already holds an object, the grasp marker stays at the preceding grasp and the release marker is placed at the next release. Each marker is the end-effector position at the event, projected into the scene camera. Markers are drawn for the arm that acts next, and an arm is never marked alone while the other arm is the one that acts next, so an unmarked arm next to a marked one should not act, as at evaluation. Each sample is conditioned on its annotated sub-task instruction, or on the task instruction where none exists.",
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1905",
+   "page": 103,
+   "kind": "prose",
+   "text": "Each point-conditioned checkpoint is mid-trained from the pretrained GR00T 2 checkpoint for 20k steps with AdamW (learning rate 5 × 10−5, warmup-stable-decay schedule). For each, we also train a languageonly checkpoint on the same data, cameras, schedule, and compute, without markers, which serves as the language-only baseline in the evaluation on YAM and on Dexter trash sorting.",
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "C076",
+   "page": 104,
+   "kind": "caption",
+   "text": "Table 21: Embodiment-specific choices for visual steering. Everything not listed follows the shared rules in the text. The Dexter column describes the joint YAM and Dexter recipe used for Dexter trash sorting.",
+   "section": "G.2. Agentic Steering with Visual Guidance",
+   "asset": "T021"
+  },
+  {
+   "id": "S1907",
+   "page": 104,
+   "kind": "prose",
+   "text": "End effectors Two parallel grippers Two Sharpa five-fingered hands Policy cameras Top, two wrists, bottom Head, two wrists Marked camera Top Head Grasp and release events Gripper opening Fingertip contact forces Marker projection Per-station calibration (in-lab data), nominal camera model (additional teleoperation data)",
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1911",
+   "page": 104,
+   "kind": "prose",
+   "text": "strations (about 11.3k episodes, weight 0.29) Global batch, GPUs 320, 32 GB300 448 (on average 320 YAM and 128 Dexter), 64 GB300 Action chunk 48 predicted actions (1.6 s at 30 Hz), of which the first 30 are executed per policy call Per-step instruction “use the <arm> arm to ...” “... with the <arm> hand”",
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1912",
+   "page": 104,
+   "kind": "prose",
+   "text": "Evaluation Settings. Each real-robot benchmark compares three settings, named as in Fig. 8. GR00T 2 is a language-only checkpoint given the original task instruction. GR00T 2 + Agent (language) is the same checkpoint given the agent’s per-step instructions, from the same agent loop with a prompt that omits the points. GR00T 2 + Agent (language + visual) is a point-conditioned checkpoint given the agent’s per-step instructions and markers. We refer to the last two settings as language guidance and visual guidance.",
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1913",
+   "page": 104,
+   "kind": "prose",
+   "text": "Short-Horizon Instruction Following. The short-horizon benchmarks test whether the guidance steers the policy. The YAM benchmark uses counterfactual instruction pairs: both instructions in a pair start from the same scene, which includes distractor objects, and differ only in the requested behavior, so a policy that repeats one plausible behavior regardless of the instruction can succeed on at most one instruction of each pair. It spans eight reference categories with three pairs each, giving 24 pairs and 48 instructions (Fig. 56). Six categories test grounding: nominal references identify objects or receptacles by name, category, or color; spatial references specify a position, relation, or distance; ordinal references select within an ordering, including relative size; cardinal references specify a number of objects or operations; arm references specify the acting arm; and exclusion references name an object that must be left untouched. Two categories test execution: action references distinguish operations such as opening versus closing, and grasp references constrain the approach or contact region. Each instruction is evaluated in three trials per setting (144 trials per setting). We report pass@1, the mean trial success, and pass@3, the fraction of instructions solved in at least one of their three trials.",
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1914",
+   "page": 104,
+   "kind": "prose",
+   "text": "The Dexter benchmark likewise separates reference types, without counterfactual pairs, in dexterous pickand-place with colored cubes. It contains 32 tasks, each requiring the robot to move a specified cube into a specified basket with a permitted hand, grouped into four overlapping categories: attribute references (color, the Dexter counterpart of nominal references, 6 tasks), spatial references (12), ordinal references (7), and compositions of these references and constraints (9). A trial succeeds if the correct cube is released inside the specified basket by a permitted hand and remains stable for 2 s. Each task is evaluated in two trials per setting (64 trials per setting).",
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1915",
+   "page": 104,
+   "kind": "prose",
+   "text": "Long-Horizon Tasks. The long-horizon benchmarks require completing an entire multi-step task from a single instruction: trash sorting on both robots, and board disassembly on YAM as a stress test. In trash sorting, the robot places five items (on YAM: a glove, a crushed can, a plastic bottle, a sandwich, and a pepper; on Dexter:",
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "C077",
+   "page": 105,
+   "kind": "caption",
+   "text": "Figure 56: Short-horizon instruction following benchmark on YAM. Eight reference categories, each illustrated by a shared starting scene and two contrasting instructions. Blue and orange text denote the alternatives, and all remaining wording is identical. The panel labeled Constraint shows an exclusion reference.",
+   "section": "G.2. Agentic Steering with Visual Guidance",
+   "asset": "F056"
+  },
+  {
+   "id": "S1932",
+   "page": 105,
+   "kind": "prose",
+   "text": "a glove, a crushed can, a drink bottle, a sandwich, and a food scrap) into labeled compost, recycling, and trash bins whose order varies across 20 layouts per robot. Each item scores 0.2 if it ends in its correct bin. In board disassembly (Kimble et al., 2020), the robot removes the USB cable, two plugs, and two gears from a NIST task board and places the cable on a tray, the plugs in the right bin, and the gears in the left bin. Each item scores 0.1 for removal and 0.1 for correct placement. We report full-task success, in which all five items are completed, together with the mean rubric score. On YAM, the long-horizon runs were split between two stations with different operators, so the three settings were not all evaluated under the same station and operator.",
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1933",
+   "page": 105,
+   "kind": "prose",
+   "text": "Results. Tab. 22 lists every benchmark behind Fig. 8. On short-horizon tasks, visual guidance gives the highest success on both robots. On YAM, pass@1 rises from 41.7% for GR00T 2 and 55.6% with language guidance to 83.3% with visual guidance, and the gap narrows but persists at pass@3 (64.6%, 79.2%, and 89.6%). On Dexter, success rises from 29.7% and 32.8% to 70.3%. On long-horizon tasks, visual guidance completes 17 of 20 YAM trash-sorting episodes and 3 of 10 episodes of the board-disassembly stress test, whereas neither GR00T 2 nor language guidance completes any episode of either task. On Dexter trash sorting, visual guidance completes 9 of 20 episodes, against none for GR00T 2 and 1 with language guidance. Paired by layout, it sorts more items correctly than language guidance on 15 of the 20 layouts and fewer on 3 (two-sided sign test, 𝑝= 0.008).",
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1934",
+   "page": 105,
+   "kind": "prose",
+   "text": "The YAM category breakdown (Tab. 23) shows where visual guidance helps. It reaches 100% pass@1 on nominal, spatial, and exclusion references and 94.4% on ordinal references. Language guidance alone already helps on nominal and ordinal references (88.9% each) but barely on spatial references (from 50.0% to 55.6%), where the marked grasp or release point resolves the relation directly. Gains are smaller on the two execution categories: relative to GR00T 2, success rises from 55.6% to 72.2% on action references and from 27.8% to 55.6% on grasp references. The markers do not specify the grasp approach, object orientation, or the motion required for operations such as flipping, pouring, and scooping. On Dexter, visual guidance gains most over GR00T 2 on spatial, ordinal, and compositional tasks (50.0, 57.1, and 50.0 points) and little on attribute tasks",
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "C078",
+   "page": 106,
+   "kind": "caption",
+   "text": "Table 22: Visual steering results on every benchmark. Short horizon: success rate (%), with successful trials in parentheses (pass@1 on YAM). Long horizon: full-task successes over episodes, with the mean rubric score (0 to 1) in parentheses. 𝑛counts trials (short horizon) or episodes (long horizon). The success rates and full-task counts are the components averaged in Fig. 8. †Obtained with an earlier implementation of the model.",
+   "section": "G.2. Agentic Steering with Visual Guidance",
+   "asset": "T022"
+  },
+  {
+   "id": "C079",
+   "page": 106,
+   "kind": "caption",
+   "text": "Table 23: YAM short-horizon pass@1 (%) by reference category. Each category has six instructions and 18 scored trials per setting.",
+   "section": "G.2. Agentic Steering with Visual Guidance",
+   "asset": "T023"
+  },
+  {
+   "id": "S1945",
+   "page": 106,
+   "kind": "prose",
+   "text": "(8.3 points), where GR00T 2 already reaches 75.0%.",
+   "section": "G.2. Agentic Steering with Visual Guidance"
+  },
+  {
+   "id": "S1946",
+   "page": 106,
+   "kind": "prose",
+   "text": "Guidance Following. Success rates alone do not show that GR00T 2 follows the guidance, because a steerable policy should change its behavior when only the guidance changes (Chen et al., 2026d). The counterfactual pairs of the YAM short-horizon benchmark are designed to test a system-level version of this: within a pair, the scene is fixed and only the requested behavior changes. Counting a pair as solved if both of its instructions succeed in at least two of three trials, GR00T 2 solves 4 of the 24 pairs (16.7%), language guidance 10 (41.7%), and visual guidance 19 (79.2%). Conversely, 24 of the 60 successful trials of GR00T 2 (40.0%) come from instructions whose counterpart fails all three trials, as expected from a policy that repeats one behavior regardless of the instruction. This share falls to 12.5% (10 of 80) with language guidance and 5.8% (7 of 120) with visual guidance. On YAM trash sorting, GR00T 2 also follows the arm assignment: with visual guidance, the marked (and named) arm made 169 of 172 gripper closures (98.3%), against 164 of 181 (90.6%) for the named arm with language guidance, so wrong-arm closures fall from 9.4% to 1.7%. Its releases also follow the markers: with visual guidance, every release aimed at a bin landed in the marked bin, with one case unclear, whereas with language guidance, 21 items went into a wrong bin, or a different item was moved, after the agent had named the correct bin (see Failure Analysis).",
+   "section": "G.2. Agentic Steering with Visual Guidance",
+   "merged_ids": [
+    "S1947"
+   ]
+  }
+ ]
+}

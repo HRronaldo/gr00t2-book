@@ -1,0 +1,284 @@
+{
+ "chunk_id": "chunk_23",
+ "sections": [
+  "F.2. Automated Discovery of RL Post-Training Algorithms",
+  "F.3. Online RL Post-Training Infrastructure"
+ ],
+ "pages": [
+  87,
+  91
+ ],
+ "chars": 9819,
+ "blocks": [
+  {
+   "id": "H50",
+   "page": 87,
+   "kind": "heading",
+   "text": "F.2. Automated Discovery of RL Post-Training Algorithms",
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1591",
+   "page": 87,
+   "kind": "prose",
+   "text": "Developing effective RL post-training algorithms for robot foundation models involves choices across objectives, exploration, credit assignment, reward design, and rollout horizons. These decisions interact with task characteristics and model architectures, making algorithm development an iterative process of experimentation and refinement.",
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1592",
+   "page": 87,
+   "kind": "prose",
+   "text": "We leverage AutoRL, an autonomous research framework for closed-loop experimentation, to systematically improve RL post-training algorithms for GR00T 2. The research agent analyzes training failures, proposes hypotheses, modifies code, and evaluates candidate algorithms under fixed protocols. We ran AutoRL for",
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "C064",
+   "page": 88,
+   "kind": "caption",
+   "text": "Figure 47: Autonomous RL recipe discovery with AutoRL. Hill-climbing performance on RoboCasa365 across successive agent-driven experiments. The curve shows the best evaluation performance achieved.",
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms",
+   "asset": "F047"
+  },
+  {
+   "id": "S1616",
+   "page": 88,
+   "kind": "prose",
+   "text": "approximately 35 days on RoboCasa365 (Nasiriany et al., 2026), using an early developmental GR00T 2 checkpoint and the Atomic-Seen and Composite-Seen tasks.",
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1617",
+   "page": 88,
+   "kind": "prose",
+   "text": "F.2.1. Autonomous Experimentation Harness",
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1618",
+   "page": 88,
+   "kind": "prose",
+   "text": "Each AutoRL discovery round follows four stages. First, the agent analyzes previous experiments, diagnostic metrics, and failure modes to identify bottlenecks. Second, it proposes up to four mutually orthogonal hypotheses, each specifying an isolated mechanism, expected outcome, and falsification criterion. A critic filters out redundant or insufficiently testable proposals. Third, valid hypotheses are implemented in independent branches, locally tested, and submitted for cluster training and evaluation. Finally, candidates are compared with the current best baseline and promoted only when improvements exceed a predefined margin. At most one candidate is promoted per round, while rejected hypotheses remain available as negative evidence.",
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1619",
+   "page": 88,
+   "kind": "prose",
+   "text": "This harness enables systematic exploration of algorithmic modifications beyond conventional hyperparameter tuning.",
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1620",
+   "page": 88,
+   "kind": "prose",
+   "text": "F.2.2. Discovering RL Recipes",
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1621",
+   "page": 88,
+   "kind": "prose",
+   "text": "AutoRL starts from a standard PPO implementation and iteratively improves the post-training recipe through successive experiments (Fig. 47). Below, we summarize the eight changes marked in Fig. 47 by the component they affect, each with the best gain over the base model reached after it.",
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1622",
+   "page": 88,
+   "kind": "prose",
+   "text": "Weight anchoring and longer rollouts. Early runs showed the actor drifting rapidly from the pretrained weights, losing existing skills before any useful RL gradient appeared, and rollouts on the long-horizon RoboCasa365 tasks ending before the task could be completed. The agent added an 𝐿2 penalty toward the pretrained weights and extended the rollout horizon. Together these give 1.6 percentage points.",
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1623",
+   "page": 89,
+   "kind": "prose",
+   "text": "Replacing the critic (group-relative baseline). The critic’s explained variance stayed near zero, so its advantages were noise. More capacity and warm-up did not help. The agent removed it in favor of a grouprelative baseline in the style of GRPO (Shao et al., 2024), the ℎ𝑔= 0 case of Eq. (12), and extended the horizon further. Cumulative gain: 3.5 percentage points.",
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1624",
+   "page": 89,
+   "kind": "prose",
+   "text": "Shaping the return (stage progress). Six long-horizon composite tasks still did not move: with binary success every attempt in a group failed identically, leaving no relative signal. For these simulation experiments, the agent introduced stage-progress returns in [0, 1], assigning partial credit according to the furthest subgoal milestone reached. The real-robot experiments instead use binary task-success returns, as defined in Sec. F.1.1. Cumulative gain: 4.1 percentage points.",
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1625",
+   "page": 89,
+   "kind": "prose",
+   "text": "Balancing long and short tasks. Long tasks were trained with an execution horizon of 16 but scored with 8, and training them at 8 as well raised the cumulative gain to 5.0 percentage points. An advantage weight of 2.5 on long tasks crowded out the short ones, and lowering it to 1.5 gave 6.5 percentage points.",
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1626",
+   "page": 89,
+   "kind": "prose",
+   "text": "Less noisy advantages (grouping and stage credit). Task difficulty varied widely within a group, which made the group-relative advantages noisy. Grouping rollouts by initial scene and seed raised the cumulative gain to 7.5 percentage points. Failures often came after some stages had already been completed, so the agent added stage-aware credit within each episode, which gave 7.9 percentage points.",
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1627",
+   "page": 89,
+   "kind": "prose",
+   "text": "Remembering each context (persistent baseline). Progress rewards do not help contexts the policy already solves every time or never advances at all. Their groups stay uniform and a current-group baseline gives them zero advantage, and on RoboCasa365 such contexts are most of the data. The agent gave every context a memory of its past returns, an exponential moving average across rounds (Eq. (14)), folded into the leave-oneout baseline as a small number of pseudo-observations (Eq. (12)). This baseline retains a learning signal for uniform-outcome groups when their current returns differ from past performance. The same context statistics also guide rollout allocation away from consistently solved contexts. Cumulative gain: 10.0 percentage points.",
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "S1628",
+   "page": 89,
+   "kind": "prose",
+   "text": "These experiments demonstrate how AutoRL systematically discovers effective post-training strategies: stabilizing policy optimization, replacing an uninformative critic, balancing long and short tasks, improving credit assignment, and keeping a learning signal alive on saturated and unsolved tasks. The resulting algorithm forms the foundation of our direct GR00T 2 post-training approach, which we further adapt to GR00T 2’s joint video-action architecture and real-world robot interaction. As demonstrated in Sec. F.4, this approach achieves substantial improvements on contact-rich manipulation tasks.",
+   "section": "F.2. Automated Discovery of RL Post-Training Algorithms"
+  },
+  {
+   "id": "H51",
+   "page": 89,
+   "kind": "heading",
+   "text": "F.3. Online RL Post-Training Infrastructure",
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1629",
+   "page": 89,
+   "kind": "prose",
+   "text": "Real-robot RL requires repeated coordination among data collection, reward annotation, policy optimization, and evaluation. These stages have different resource requirements and execution rates, while physical interaction and scene resets constrain collection throughput. We develop shared infrastructure that supports heterogeneous learning algorithms, reduces iteration overhead, and preserves experience across failures (Fig. 48).",
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1630",
+   "page": 89,
+   "kind": "prose",
+   "text": "Shared Experience Buffer. Our infrastructure uses a shared experience buffer backed by Lance (Pace et al., 2025). Experience records are constructed incrementally as collection, scoring, and batch preparation produce their outputs. Workers can selectively access relevant fields, while training updates use pinned table versions to ensure stable inputs (Lance Contributors, 2026). Common record identities and policy provenance associate observations, rewards, and updates, and algorithm-defined schemas support different post-training methods within the same data infrastructure.",
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1631",
+   "page": 89,
+   "kind": "prose",
+   "text": "Resource-Efficient Execution. Collection, training, and evaluation use independently configurable resource pools. Compatible GPU resources can be reassigned according to workload dependencies, accommodating both on-policy and off-policy learning. Incremental uploads and prefetching overlap collection, data transfer, scoring, decoding, and training preparation, reducing idle time between iterations.",
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1632",
+   "page": 90,
+   "kind": "prose",
+   "text": "A Algorithm interface Control Experience / policy",
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1633",
+   "page": 90,
+   "kind": "prose",
+   "text": "Experience schema / Reward computation / Batch preparation / Optimization rules",
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1634",
+   "page": 90,
+   "kind": "prose",
+   "text": "Policy updates Coordination",
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1635",
+   "page": 90,
+   "kind": "prose",
+   "text": "Assign work",
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1636",
+   "page": 90,
+   "kind": "prose",
+   "text": "Collection Scoring Training Evaluation",
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1637",
+   "page": 90,
+   "kind": "prose",
+   "text": "Advance phases",
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1638",
+   "page": 90,
+   "kind": "prose",
+   "text": "Sync policies",
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1639",
+   "page": 90,
+   "kind": "prose",
+   "text": "Monitor workers",
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1640",
+   "page": 90,
+   "kind": "prose",
+   "text": "Shared experience buffer Training checkpoints",
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "C065",
+   "page": 90,
+   "kind": "caption",
+   "text": "Figure 48: Online post-training infrastructure. (A) Algorithm interfaces, worker groups, and shared services. (B) Resource allocation across execution roles. (C) Experience pipelining. (D) Stateful recovery. Execution patterns are illustrative.",
+   "section": "F.3. Online RL Post-Training Infrastructure",
+   "asset": "F048"
+  },
+  {
+   "id": "S1656",
+   "page": 90,
+   "kind": "prose",
+   "text": "Stateful Recovery. Physical experience is expensive to reproduce, making robustness to interrupted training essential. Our infrastructure retains experience data and feedback alongside model and optimizer checkpoints. Recovery distinguishes experience already reflected in a restored checkpoint, data associated with discarded updates, and unused data. Compatible experience can subsequently be reused for resumed training or offline learning, reducing redundant physical interaction. This complements prior work on distributed RL execution and durable robot experience data (Yu et al., 2026a; Zang et al., 2026a,b; Wang et al., 2026; Chen et al., 2026c).",
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1657",
+   "page": 90,
+   "kind": "prose",
+   "text": "Execution Efficiency. We evaluate infrastructure efficiency in simulation and real-robot training.",
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1658",
+   "page": 90,
+   "kind": "prose",
+   "text": "In RoboCasa365 GRPO, rollout and training alternate on a shared 40-GPU pool while evaluation retains 40 GPUs. This reduces total allocation from 120 to 80 GPUs and enables evaluation to overlap training. Across eight rounds and nine evaluations, execution time decreases from 14.1 to 8.8 hours, corresponding to approximately 1.6× improvement in update throughput.",
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "S1659",
+   "page": 90,
+   "kind": "prose",
+   "text": "For single-robot GRPO (Tab. 18), experience pipelining and trainer-ready records reduce upload and conversion time from approximately 50 minutes to one minute, while transferring only tuned weights reduces policy download time from approximately 30 minutes to one minute. Total iteration time decreases from between 140 and 160 minutes to between 62 and 72 minutes, yielding approximately 2.2× iteration throughput. Incremental uploads overlap data transfer with physical collection, leaving only a short data-handling delay at the end of each round. These mechanisms reduce overhead without requiring faster robot execution, allowing more",
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  },
+  {
+   "id": "C066",
+   "page": 91,
+   "kind": "caption",
+   "text": "Table 18: Per-iteration time breakdown for single-robot GRPO. All times are reported in minutes.",
+   "section": "F.3. Online RL Post-Training Infrastructure",
+   "asset": "T018"
+  },
+  {
+   "id": "C067",
+   "page": 91,
+   "kind": "caption",
+   "text": "Figure 49: Real-world RL tasks. (A) Fixed-pipe fittings: grasp, align, engage threads, turn, and release. (B) Finger placement: grasp, align two pins with the base holes, insert, and release. (C) Cable insertion: plug an Ethernet cable into a network switch. (D) Charger insertion: plug a charger into an outlet.",
+   "section": "F.3. Online RL Post-Training Infrastructure",
+   "asset": "F049"
+  },
+  {
+   "id": "S1674",
+   "page": 91,
+   "kind": "prose",
+   "text": "efficient use of limited physical interaction resources.",
+   "section": "F.3. Online RL Post-Training Infrastructure"
+  }
+ ]
+}
