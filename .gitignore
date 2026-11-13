@@ -1,0 +1,9 @@
+# 本地私有笔记：不进仓库、不进 GitBook
+卡点记录.md
+
+# 系统与编辑器
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
